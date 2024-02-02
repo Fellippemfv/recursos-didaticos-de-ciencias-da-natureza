@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';  // Usando useAppRouter
 import { useEffect, useState } from 'react';
 import { BiHome, BiHelpCircle, BiSearch } from 'react-icons/bi';
+import ThemeSwitch from './ThemeSwitch';
 
 const Navbar = () => {
   const router = useRouter();  // Utilizando useAppRouter
@@ -37,7 +38,10 @@ const Navbar = () => {
           </span>
         </Link>
       </li>
-     
+      <li className="nav-item">
+      <ThemeSwitch />
+      </li>
+
     </ul>
   );
 };

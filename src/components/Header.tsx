@@ -9,12 +9,12 @@ const Header = () => {
       <header className="flex items-center justify-between py-10">
         <div>
          <p>link 1</p>
+         
 
         </div>
         <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
-       <Navbar />
+          <Navbar />
 
-          <ThemeSwitch />
           <MobileNav />
         </div>
       </header>
