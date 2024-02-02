@@ -13,7 +13,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <ul className="flex items-center space-x-4 leading-5 sm:space-x-6">
+    <ul className="hidden sm:flex flex items-center space-x-4 leading-5 sm:space-x-6">
       <li className="nav-item">
         <Link href="/" className="relative flex items-center py-2 pr-1 hover:text-purple-600 hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-purple-600 hover:after:content-[''] hover:after:transition-all hover:after:duration-300 focus:outline-none transition duration-300">
           <BiHome className="mr-2" />
