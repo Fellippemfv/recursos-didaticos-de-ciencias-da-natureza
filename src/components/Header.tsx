@@ -11,7 +11,7 @@ const Header = () => {
       <div className="flex items-center">
         <FcBiohazard  className="text-blue-500 h-10 w-10 mr-2" />
         <div>
-          <p className="text-black font-bold">Exp</p>
+          <p className="font-bold flex items-center space-x-4 leading-5 sm:space-x-6">Ciências</p>
         </div>
       </div>
       <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
