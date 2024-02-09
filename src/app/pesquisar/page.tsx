@@ -37,7 +37,35 @@ export default function Search() {
     setSelectedOption(option);
   };
 
+  const [checkboxes, setCheckboxes] = useState({
+    terms1: false,
+    terms2: false,
+    terms3: false,
+  });
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const handleSelectChange2 = (id) => {
+    // Atualizar o estado do checkbox clicado
+    setCheckboxes((prevCheckboxes) => ({
+      ...prevCheckboxes,
+      [id]: !prevCheckboxes[id],
+    }));
   
+    // Verificar se algum checkbox está marcado
+    const anyCheckboxChecked = Object.values({...checkboxes, [id]: !checkboxes[id]}).some((value) => value);
+    setIsButtonDisabled(!anyCheckboxChecked);
+  };
+  
+  
+  const handleConfirmClick = () => {
+    setCheckboxes({
+      terms1: false,
+      terms2: false,
+      terms3: false,
+    });
+    setIsButtonDisabled(true);
+  };
 
   return (
 <main className="flex min-h-screen flex-col items-center justify-between p-4">
@@ -68,16 +96,29 @@ export default function Search() {
 
 
       <div className="w-full flex flex-col md:flex-row mx-auto">
-      <button 
-        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mb-0 md:ml-2 ${selectedOption ? '' : 'opacity-50 cursor-not-allowed'}`} 
-        disabled={!selectedOption}
-      >
-        <HiOutlineSearch className="inline mr-1" />
-        Buscar
-      </button>
+      <button
+      className={`bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mb-0 md:ml-2 transition duration-300 ${
+        selectedOption ? 'hover:bg-blue-700' : ''
+      } ${selectedOption ? '' : 'opacity-50 cursor-not-allowed'}`}
+      disabled={!selectedOption}
+    >
+      <div className={`flex items-center justify-center lg:w-full ${selectedOption ? '' : 'lg:w-auto'}`}>
+        <HiOutlineSearch className="mr-2" />
+        <span>Buscar</span>
+      </div>
+    </button>
         <AlertDialog>
-  <AlertDialogTrigger className="ml-0 md:ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Resetar Filtros</AlertDialogTrigger>
-  <AlertDialogContent>
+        <AlertDialogTrigger
+        className={`ml-0 md:ml-2 py-2 px-4 rounded focus:outline-none ${
+          isButtonDisabled
+            ? 'bg-gray-300 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed'
+            : 'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 focus:outline-none focus:bg-gray-300 transition-colors duration-300'
+        }`}
+        disabled={isButtonDisabled}
+      >
+        Resetar Filtros
+      </AlertDialogTrigger>
+      <AlertDialogContent>
     <AlertDialogHeader>
       <AlertDialogTitle>Você tem certeza?</AlertDialogTitle>
       <AlertDialogDescription>
@@ -86,7 +127,9 @@ export default function Search() {
     </AlertDialogHeader>
     <AlertDialogFooter>
       <AlertDialogCancel>Cancelar</AlertDialogCancel>
-      <AlertDialogAction className="">Confirmar</AlertDialogAction>
+      <AlertDialogAction className="" onClick={handleConfirmClick}>
+        Confirmar
+      </AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>
@@ -108,24 +151,41 @@ export default function Search() {
       <div>
         <label className="text-gray-600 block mb-2">Local para Realização</label>
 
-        
-
         <div className="flex flex-wrap">
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms1" />
-            <label htmlFor="lab" className="mr-4">Laboratório</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms2" />
-            <label htmlFor="classroom" className="mr-4">Sala de Aula</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms3" />
-            <label htmlFor="outdoor">Ambiente Aberto</label>
-          </div>
+        <div className="flex items-center mb-2">
+          <Checkbox
+            onClick={() => handleSelectChange2('terms1')}
+            className="mr-2"
+            id="terms1"
+            checked={checkboxes.terms1}
+          />
+          <label htmlFor="lab" className="mr-4">
+            Laboratório
+          </label>
         </div>
+
+        <div className="flex items-center mb-2">
+          <Checkbox
+            onClick={() => handleSelectChange2('terms2')}
+            className="mr-2"
+            id="terms2"
+            checked={checkboxes.terms2}
+          />
+          <label htmlFor="classroom" className="mr-4">
+            Sala de Aula
+          </label>
+        </div>
+
+        <div className="flex items-center mb-2">
+          <Checkbox
+            onClick={() => handleSelectChange2('terms3')}
+            className="mr-2"
+            id="terms3"
+            checked={checkboxes.terms3}
+          />
+          <label htmlFor="outdoor">Ambiente Aberto</label>
+        </div>
+      </div>
       </div>
 
       {/* Nível de Dificuldade */}
