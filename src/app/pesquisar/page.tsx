@@ -12,9 +12,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
+import { Checkbox } from "@/components/ui/checkbox"
+
+
 export default function Search() {
   return (
-<main className="flex min-h-screen flex-col items-center justify-between p-8">
+<main className="flex min-h-screen flex-col items-center justify-between p-4">
   <div className="w-full max-w-screen-lg mx-auto mb-8">
 
 
@@ -68,19 +71,21 @@ export default function Search() {
       <div>
         <label className="text-gray-600 block mb-2">Local para Realização</label>
 
+        
+
         <div className="flex flex-wrap">
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="lab" className="mr-2" />
+          <Checkbox className="mr-2" id="terms1" />
             <label htmlFor="lab" className="mr-4">Laboratório</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="classroom" className="mr-2" />
+          <Checkbox className="mr-2" id="terms2" />
             <label htmlFor="classroom" className="mr-4">Sala de Aula</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="outdoor" className="mr-2" />
+          <Checkbox className="mr-2" id="terms3" />
             <label htmlFor="outdoor">Ambiente Aberto</label>
           </div>
         </div>
@@ -91,12 +96,12 @@ export default function Search() {
         <label className="text-gray-600 block mb-2">Nível de dificuldade</label>
          <div className="flex flex-wrap">
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="lab" className="mr-2" />
+          <Checkbox className="mr-2" id="terms4" />
             <label htmlFor="lab" className="mr-4">Simples</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="outdoor" className="mr-2" />
+          <Checkbox className="mr-2" id="terms5" />
             <label htmlFor="outdoor">Difícil</label>
           </div>
         </div>
@@ -107,22 +112,22 @@ export default function Search() {
         <label className="text-gray-600 block mb-2">Tema</label>
         <div className="flex flex-wrap">
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="lab" className="mr-2" />
+          <Checkbox className="mr-2" id="terms6" />
             <label htmlFor="lab" className="mr-4">Ciências</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="classroom" className="mr-2" />
+          <Checkbox className="mr-2" id="terms7" />
             <label htmlFor="classroom" className="mr-4">Física</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="outdoor" className="mr-2" />
+          <Checkbox className="mr-2" id="terms8" />
             <label htmlFor="outdoor">Biologia</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="outdoor" className="mr-2" />
+          <Checkbox className="mr-2" id="terms9" />
             <label htmlFor="outdoor">Quimica</label>
           </div>
         </div>
@@ -133,17 +138,17 @@ export default function Search() {
         <label className="text-gray-600 block mb-2">Público alvo</label>
         <div className="flex flex-wrap">
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="lab" className="mr-2" />
+          <Checkbox className="mr-2" id="terms10" />
             <label htmlFor="lab" className="mr-4">Ensino fundamental</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="classroom" className="mr-2" />
+          <Checkbox className="mr-2" id="terms11" />
             <label htmlFor="classroom" className="mr-4">Ensino medio</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="outdoor" className="mr-2" />
+          <Checkbox className="mr-2" id="terms12" />
             <label htmlFor="outdoor">Ensino superior</label>
           </div>
         </div>
@@ -154,12 +159,12 @@ export default function Search() {
         <label className="text-gray-600 block mb-2">Custo para realização</label>
         <div className="flex flex-wrap">
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="lab" className="mr-2" />
+          <Checkbox className="mr-2" id="terms13" />
             <label htmlFor="lab" className="mr-4">Baixo custo</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="outdoor" className="mr-2" />
+          <Checkbox className="mr-2" id="terms14" />
             <label htmlFor="outdoor">Alto custo</label>
           </div>
         </div>
@@ -170,17 +175,17 @@ export default function Search() {
         <label className="text-gray-600 block mb-2">Tipos de experimentos</label>
         <div className="flex flex-wrap">
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="lab" className="mr-2" />
+          <Checkbox className="mr-2" id="terms15" />
             <label htmlFor="lab" className="mr-4">Práticos</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="classroom" className="mr-2" />
+          <Checkbox className="mr-2" id="terms16" />
             <label htmlFor="classroom" className="mr-4">Virtuais</label>
           </div>
 
           <div className="flex items-center mb-2">
-            <input type="checkbox" id="outdoor" className="mr-2" />
+          <Checkbox className="mr-2" id="terms17" />
             <label htmlFor="outdoor">Teóricos</label>
           </div>
         </div>
