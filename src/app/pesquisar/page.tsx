@@ -27,7 +27,11 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 
-
+interface CheckboxState {
+  terms1: boolean;
+  terms2: boolean;
+  terms3: boolean;
+}
 
 export default function Search() {
 
@@ -37,27 +41,26 @@ export default function Search() {
     setSelectedOption(option);
   };
 
-  const [checkboxes, setCheckboxes] = useState({
+  const [checkboxes, setCheckboxes] = useState<CheckboxState>({
     terms1: false,
     terms2: false,
     terms3: false,
   });
 
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
-  const handleSelectChange2 = (id) => {
+  const handleSelectChange2 = (id: keyof CheckboxState) => {
     // Atualizar o estado do checkbox clicado
     setCheckboxes((prevCheckboxes) => ({
       ...prevCheckboxes,
       [id]: !prevCheckboxes[id],
     }));
-  
+
     // Verificar se algum checkbox está marcado
     const anyCheckboxChecked = Object.values({...checkboxes, [id]: !checkboxes[id]}).some((value) => value);
     setIsButtonDisabled(!anyCheckboxChecked);
   };
-  
-  
+
   const handleConfirmClick = () => {
     setCheckboxes({
       terms1: false,
@@ -66,7 +69,6 @@ export default function Search() {
     });
     setIsButtonDisabled(true);
   };
-
   return (
 <main className="flex min-h-screen flex-col items-center justify-between p-4">
   <div className="w-full max-w-screen-lg mx-auto mb-8">
