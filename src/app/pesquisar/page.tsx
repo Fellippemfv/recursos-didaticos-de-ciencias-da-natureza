@@ -5,18 +5,36 @@ export default function Search() {
   return (
 <main className="flex min-h-screen flex-col items-center justify-between p-8">
   <div className="w-full max-w-screen-lg mx-auto mb-8">
-    <label htmlFor="search" className="mb-8 text-gray-600 mb-2 block text-xl font-semibold">Filtro de Experimentos</label>
-    
-    <label className="text-gray-600 block mb-2">Descreva o que procura</label>
-    <div className="flex items-center mb-4">
-      <input
-        type="text"
-        id="search"
-        placeholder="Digite aqui..."
-        className="w-full border rounded-md p-2 mr-2 focus:outline-none focus:border-blue-500"
-      />
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Buscar</button>
+
+
+
+
+  <div className=" flex justify-center items-center mb-8">
+  <div className="w-full">
+    <label htmlFor="search" className="mb-4 text-gray-600 mb-2 block text-xl font-semibold">Escolha uma opção</label>
+    <div className=" flex items-center flex-col md:flex-row">
+    <div className="min-w-60 mb-4 md:mb-0 md:w-auto w-full ">
+  <select className="w-full rounded border border-gray-300 py-2 px-2 md:px-4 focus:outline-none focus:border-blue-500">
+    <option value="experimentos">Experimentos</option>
+    <option value="demonstracoes">Demonstrações</option>
+  </select>
+</div>
+
+
+      <div className="w-full flex flex-col md:flex-row mx-auto">
+        <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mb-0 md:ml-2">Buscar</button>
+        <button className="ml-0 md:ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Resetar Filtros</button>
+      </div>
     </div>
+  </div>
+</div>
+
+
+
+
+
+    <label htmlFor="search" className="mb-4 text-gray-600 mb-2 block text-xl font-semibold">Filtros para Busca</label>
+
 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
       {/* Local para Realização */}
@@ -74,6 +92,11 @@ export default function Search() {
           <div className="flex items-center mb-2">
             <input type="checkbox" id="outdoor" className="mr-2" />
             <label htmlFor="outdoor">Biologia</label>
+          </div>
+
+          <div className="flex items-center mb-2">
+            <input type="checkbox" id="outdoor" className="mr-2" />
+            <label htmlFor="outdoor">Quimica</label>
           </div>
         </div>
       </div>
