@@ -1,0 +1,56 @@
+[
+    {
+    "id": 1,
+    "title": "Física",
+    "slug": "fisica",
+    "topicSpecific": [
+        {
+            "id": 1,
+            "title": "Física - Anatomia humana",
+            "slug": "fisica-anatomia-humana"
+            },
+            {
+            "id": 2,
+            "title": "Física - Fisiologia humana",
+            "slug": "fisica-fisiologia-humana"
+            }
+          
+    ]
+    },
+    {
+    "id": 2,
+    "title": "Biologia",
+    "slug": "biologia",
+    "topicSpecific": [
+        {
+            "id": 1,
+            "title": "Biologia - Anatomia humana",
+            "slug": "biologia-anatomia-humana"
+            },
+            {
+            "id": 2,
+            "title": "Biologia - Fisiologia humana",
+            "slug": "biologia-fisiologia-humana"
+            }
+          
+    ]
+    },
+    {
+    "id": 3,
+    "title": "Química",
+    "slug": "quimica",
+    "topicSpecific": [
+        {
+            "id": 1,
+            "title": "Química - Anatomia humana",
+            "slug": "quimica-anatomia-humana"
+            },
+            {
+            "id": 2,
+            "title": "Química - Fisiologia humana",
+            "slug": "quimica-fisiologia-humana"
+            }
+          
+    ]
+    }
+]

@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "title": "Em casa",
+      "slug": "em-casa"
+    },
+    {
+      "id": 2,
+      "title": "Sala de aula",
+      "slug": "sala-de-aula"
+    },
+    {
+      "id": 3,
+      "title": "Quadra da escola",
+      "slug": "quadra-da-escola"
+    },
+    {
+      "id": 4,
+      "title": "Laboratório de ciências",
+      "slug": "laboratorio-de-ciencias"
+    }
+  ]
+  
