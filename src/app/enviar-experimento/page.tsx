@@ -1129,7 +1129,6 @@ setExperimentData((prevData: any) => {
   };
   
   
-  
   const handleRemoveImageMethod = (index: number) => {
     const updatedMethods = [...tempMethods];
     updatedMethods[index] = { ...updatedMethods[index], imagePath: '' };
@@ -1141,9 +1140,14 @@ setExperimentData((prevData: any) => {
       return updatedImages;
     });
   
-    setImageInputsCount((prevCount) => prevCount - 1); // Decremento ao remover uma imagem
+    // Redefine o valor do input file para permitir carregar a mesma imagem novamente
+    const fileInput = document.getElementById(`imageMethod${index + 1}Upload`) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
+    }
   
-    // Remova a imagem do método em experimentData.methods
+    setImageInputsCount((prevCount) => prevCount - 1);
+    
     setExperimentData((prevData: any) => ({
       ...prevData,
       methods: prevData.methods.map((m: any) => {
@@ -1154,6 +1158,7 @@ setExperimentData((prevData: any) => {
       }),
     }));
   };
+  
   
 
 
