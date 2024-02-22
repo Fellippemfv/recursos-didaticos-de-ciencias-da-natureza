@@ -6,16 +6,81 @@
     "topicSpecific": [
         {
             "id": 1,
-            "title": "Física - Anatomia humana",
-            "slug": "fisica-anatomia-humana"
-            },
-            {
+            "title": "Movimento e deslocamento",
+            "slug": "movimento-e-deslocamento"
+        },
+        {
             "id": 2,
-            "title": "Física - Fisiologia humana",
-            "slug": "fisica-fisiologia-humana"
-            }
-          
+            "title": "Força e movimento",
+            "slug": "forca-e-movimento"
+        },
+        {
+            "id": 3,
+            "title": "Gravidade",
+            "slug": "gravidade"
+        },
+        {
+            "id": 4,
+            "title": "Trabalho e energia",
+            "slug": "trabalho-e-energia"
+        },
+        {
+            "id": 5,
+            "title": "Máquinas simples",
+            "slug": "maquinas-simples"
+        },
+        {
+            "id": 6,
+            "title": "Pressão e densidade",
+            "slug": "pressao-e-densidade"
+        },
+        {
+            "id": 7,
+            "title": "Som e ondas sonoras",
+            "slug": "som-e-ondas-sonoras"
+        },
+        {
+            "id": 8,
+            "title": "Luz e óptica",
+            "slug": "luz-e-optica"
+        },
+        {
+            "id": 9,
+            "title": "Eletricidade estática",
+            "slug": "eletricidade-estatica"
+        },
+        {
+            "id": 10,
+            "title": "Circuitos elétricos simples",
+            "slug": "circuitos-eletricos-simples"
+        },
+        {
+            "id": 11,
+            "title": "Efeito térmico da corrente elétrica",
+            "slug": "efeito-termico-da-corrente-eletrica"
+        },
+        {
+            "id": 12,
+            "title": "Magnetismo",
+            "slug": "magnetismo"
+        },
+        {
+            "id": 13,
+            "title": "Óptica geométrica",
+            "slug": "optica-geometrica"
+        },
+        {
+            "id": 14,
+            "title": "Calor e temperatura",
+            "slug": "calor-e-temperatura"
+        },
+        {
+            "id": 15,
+            "title": "Transformações de energia",
+            "slug": "transformacoes-de-energia"
+        }
     ]
+    
     },
     {
     "id": 2,
@@ -24,16 +89,106 @@
     "topicSpecific": [
         {
             "id": 1,
-            "title": "Biologia - Anatomia humana",
-            "slug": "biologia-anatomia-humana"
-            },
-            {
+            "title": "Anatomia humana",
+            "slug": "anatomia-humana"
+        },
+        {
             "id": 2,
-            "title": "Biologia - Fisiologia humana",
-            "slug": "biologia-fisiologia-humana"
-            }
-          
+            "title": "Fisiologia humana",
+            "slug": "fisiologia-humana"
+        },
+        {
+            "id": 3,
+            "title": "Classificação dos seres vivos",
+            "slug": "classificacao-dos-seres-vivos"
+        },
+        {
+            "id": 4,
+            "title": "Ciclo de vida de plantas e animais",
+            "slug": "ciclo-de-vida-de-plantas-e-animais"
+        },
+        {
+            "id": 5,
+            "title": "Ecossistemas",
+            "slug": "ecossistemas"
+        },
+        {
+            "id": 6,
+            "title": "Cadeia alimentar",
+            "slug": "cadeia-alimentar"
+        },
+        {
+            "id": 7,
+            "title": "Adaptação e evolução",
+            "slug": "adaptacao-e-evolucao"
+        },
+        {
+            "id": 8,
+            "title": "Órgãos dos sentidos",
+            "slug": "orgaos-dos-sentidos"
+        },
+        {
+            "id": 9,
+            "title": "Sistema digestório",
+            "slug": "sistema-digestorio"
+        },
+        {
+            "id": 10,
+            "title": "Sistema respiratório",
+            "slug": "sistema-respiratorio"
+        },
+        {
+            "id": 11,
+            "title": "Sistema circulatório",
+            "slug": "sistema-circulatorio"
+        },
+        {
+            "id": 12,
+            "title": "Genética básica",
+            "slug": "genetica-basica"
+        },
+        {
+            "id": 13,
+            "title": "Habitats aquáticos",
+            "slug": "habitats-aquaticos"
+        },
+        {
+            "id": 14,
+            "title": "Habitats terrestres",
+            "slug": "habitats-terrestres"
+        },
+        {
+            "id": 15,
+            "title": "Reprodução de plantas e animais",
+            "slug": "reproducao-de-plantas-e-animais"
+        },
+        {
+            "id": 16,
+            "title": "Sistema nervoso",
+            "slug": "sistema-nervoso"
+        },
+        {
+            "id": 17,
+            "title": "Meio ambiente e sustentabilidade",
+            "slug": "meio-ambiente-e-sustentabilidade"
+        },
+        {
+            "id": 18,
+            "title": "Microrganismos",
+            "slug": "microrganismos"
+        },
+        {
+            "id": 19,
+            "title": "Biodiversidade",
+            "slug": "biodiversidade"
+        },
+        {
+            "id": 20,
+            "title": "Nutrição e alimentação saudável",
+            "slug": "nutricao-e-alimentacao-saudavel"
+        }
     ]
+    
     },
     {
     "id": 3,
@@ -42,15 +197,80 @@
     "topicSpecific": [
         {
             "id": 1,
-            "title": "Química - Anatomia humana",
-            "slug": "quimica-anatomia-humana"
-            },
-            {
+            "title": "Propriedades da matéria",
+            "slug": "propriedades-da-materia"
+        },
+        {
             "id": 2,
-            "title": "Química - Fisiologia humana",
-            "slug": "quimica-fisiologia-humana"
-            }
-          
+            "title": "Estados físicos da matéria",
+            "slug": "estados-fisicos-da-materia"
+        },
+        {
+            "id": 3,
+            "title": "Misturas e substâncias",
+            "slug": "misturas-e-substancias"
+        },
+        {
+            "id": 4,
+            "title": "Transformações da matéria",
+            "slug": "transformacoes-da-materia"
+        },
+        {
+            "id": 5,
+            "title": "Elementos, compostos e misturas",
+            "slug": "elementos-compostos-e-misturas"
+        },
+        {
+            "id": 6,
+            "title": "Modelos atômicos",
+            "slug": "modelos-atomicos"
+        },
+        {
+            "id": 7,
+            "title": "Tabela periódica básica",
+            "slug": "tabela-periodica-basica"
+        },
+        {
+            "id": 8,
+            "title": "Reações químicas simples",
+            "slug": "reacoes-quimicas-simples"
+        },
+        {
+            "id": 9,
+            "title": "Ácidos e bases",
+            "slug": "acidos-e-bases"
+        },
+        {
+            "id": 10,
+            "title": "Soluções e concentração",
+            "slug": "solucoes-e-concentracao"
+        },
+        {
+            "id": 11,
+            "title": "Ciclo da água",
+            "slug": "ciclo-da-agua"
+        },
+        {
+            "id": 12,
+            "title": "Combustíveis e combustão",
+            "slug": "combustiveis-e-combustao"
+        },
+        {
+            "id": 13,
+            "title": "Matéria e energia",
+            "slug": "materia-e-energia"
+        },
+        {
+            "id": 14,
+            "title": "Reações de oxidação e redução (redox)",
+            "slug": "reacoes-de-oxidacao-e-reducao"
+        },
+        {
+            "id": 15,
+            "title": "Poluição atmosférica",
+            "slug": "poluicao-atmosferica"
+        }
     ]
+    
     }
 ]

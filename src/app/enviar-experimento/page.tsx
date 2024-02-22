@@ -227,6 +227,7 @@ export default function Experiment() {
   };
 
   interface Objective {
+    id: number;
     objectiveText: string;
     content: string;
   }
@@ -234,227 +235,208 @@ export default function Experiment() {
   const [tempObjectives, setTempObjectives] = useState<Objective[]>([]);
   const [newObjective, setNewObjective] = useState('');
   const [newObjectiveVisible, setNewObjectiveVisible] = useState(false);
-  const [editIndexObjectives, setEditIndexObjectives] = useState(-1);
-  const [editedObjective, setEditedObjective] = useState('');
-  
+  const [editObjective, setEditObjective] = useState<Objective | null>(null);
+
+  const [nextId, setNextId] = useState(1);
+
   const handleObjectiveTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setNewObjective(value);
   };
-  
+
   const handleAddObjective = () => {
     setNewObjectiveVisible(true);
   };
-  
+
   const handleConfirmAddObjective = () => {
     if (newObjective !== '') {
-      setTempObjectives((prevObjectives) => [...prevObjectives, { objectiveText: newObjective, content: '' }]);
+      const newObj: Objective = { id: nextId, objectiveText: newObjective, content: '' };
+      setTempObjectives((prevObjectives) => [...prevObjectives, newObj]);
       setExperimentData((prevData: any) => {
-        const newObjectives = [...prevData.objectives, { content: newObjective }];
+        const newObjectives = [...prevData.objectives, { id: nextId, content: newObjective }];
         return { ...prevData, objectives: newObjectives };
       });
-  
+
       setNewObjective('');
       setNewObjectiveVisible(false);
+      setNextId(prevId => prevId + 1);
     }
   };
-  
+
   const handleCancelAddObjective = () => {
     setNewObjective('');
     setNewObjectiveVisible(false);
   };
-  
-  const handleEditObjective = (index: number) => {
-    setEditIndexObjectives(index);
-    setEditedObjective(tempObjectives[index].objectiveText);
+
+  const handleEditObjective = (objective: Objective) => {
+    setEditObjective(objective);
   };
-  
+
   const handleSaveObjective = () => {
-    setTempObjectives((prevObjectives) => {
-      const updatedObjectives = [...prevObjectives];
-      updatedObjectives[editIndexObjectives].objectiveText = editedObjective;
-      return updatedObjectives;
-    });
+    if (editObjective) {
+      const updatedObjectives = tempObjectives.map(obj =>
+        obj.id === editObjective.id ? { ...obj, objectiveText: editObjective.objectiveText } : obj
+      );
+      setTempObjectives(updatedObjectives);
   
-    setExperimentData((prevData: any) => {
-      const updatedObjectives = [...prevData.objectives];
-      updatedObjectives[editIndexObjectives].content = editedObjective;
-      return { ...prevData, objectives: updatedObjectives };
-    });
+      const dataObjectives = experimentData.objectives.map((obj: any) =>
+        obj.id === editObjective.id ? { ...obj, content: editObjective.objectiveText } : obj
+      );
+      setExperimentData((prevData: any) => ({ ...prevData, objectives: dataObjectives }));
   
-    setEditIndexObjectives(-1);
-    setEditedObjective('');
+      setEditObjective(null);
+    }
   };
   
-  const handleDeleteObjective = (index: number) => {
-    setTempObjectives((prevObjectives) => {
-      const updatedObjectives = [...prevObjectives];
-      updatedObjectives.splice(index, 1);
-      return updatedObjectives;
-    });
-  
-    setExperimentData((prevData: any) => {
-      const updatedObjectives = [...prevData.objectives];
-      updatedObjectives.splice(index, 1);
-      return { ...prevData, objectives: updatedObjectives };
-    });
+
+  const handleDeleteObjective = (id: number) => {
+    setTempObjectives(prevObjectives => prevObjectives.filter(obj => obj.id !== id));
+    setExperimentData(prevData => ({
+      ...prevData,
+      objectives: prevData.objectives.filter((obj: any) => obj.id !== id),
+    }));
   };
   
   interface Material {
+    id: number;
     materialText: string;
     content: string;
   }
 
-const [tempMaterials, setTempMaterials] = useState<Material[]>([]);
-const [newMaterial, setNewMaterial] = useState('');
-const [newMaterialVisible, setNewMaterialVisible] = useState(false);
-const [editIndexMaterial, setEditIndexMaterial] = useState(-1);
-const [editedMaterial, setEditedMaterial] = useState('');
+  const [tempMaterials, setTempMaterials] = useState<Material[]>([]);
+  const [newMaterial, setNewMaterial] = useState('');
+  const [newMaterialVisible, setNewMaterialVisible] = useState(false);
+  const [editMaterial, setEditMaterial] = useState<Material | null>(null);
 
-const toggleMaterialFields = () => {
-  setNewMaterialVisible(!newMaterialVisible);
-};
+  const [nextMaterialId, setNextMaterialId] = useState(1);
 
-const handleMaterialTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const { value } = event.target;
-  setNewMaterial(value);
-};
+  const handleMaterialTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setNewMaterial(value);
+  };
 
-const handleAddMaterial = () => {
-  setNewMaterialVisible(true);
-};
+  const handleAddMaterial = () => {
+    setNewMaterialVisible(true);
+  };
 
-const handleConfirmAddMaterial = () => {
-  if (newMaterial !== '') {
-    setTempMaterials((prevMaterials) => [...prevMaterials, { materialText: newMaterial, content: '' }]);
-    setExperimentData((prevData: any) => {
-      const newMaterials = [...prevData.materials, { content: newMaterial }];
-      return { ...prevData, materials: newMaterials };
-    });
+  const handleConfirmAddMaterial = () => {
+    if (newMaterial !== '') {
+      const newMat: Material = { id: nextMaterialId, materialText: newMaterial, content: '' };
+      setTempMaterials((prevMaterials) => [...prevMaterials, newMat]);
+      setExperimentData((prevData: any) => {
+        const newMaterials = [...prevData.materials, { id: nextMaterialId, content: newMaterial }];
+        return { ...prevData, materials: newMaterials };
+      });
 
+      setNewMaterial('');
+      setNewMaterialVisible(false);
+      setNextMaterialId(prevId => prevId + 1);
+    }
+  };
+
+  const handleCancelAddMaterial = () => {
     setNewMaterial('');
     setNewMaterialVisible(false);
+  };
+
+  const handleEditMaterial = (material: Material) => {
+    setEditMaterial(material);
+  };
+
+  const handleSaveMaterial = () => {
+    if (editMaterial) {
+      const updatedMaterials = tempMaterials.map(mat =>
+        mat.id === editMaterial.id ? { ...mat, materialText: editMaterial.materialText } : mat
+      );
+      setTempMaterials(updatedMaterials);
+
+      const dataMaterials = experimentData.materials.map((mat: any) =>
+        mat.id === editMaterial.id ? { ...mat, content: editMaterial.materialText } : mat
+      );
+      setExperimentData((prevData: any) => ({ ...prevData, materials: dataMaterials }));
+
+      setEditMaterial(null);
+    }
+  };
+
+  const handleDeleteMaterial = (id: number) => {
+    setTempMaterials(prevMaterials => prevMaterials.filter(mat => mat.id !== id));
+    setExperimentData(prevData => ({
+      ...prevData,
+      materials: prevData.materials.filter((mat: any) => mat.id !== id),
+    }));
+  };
+
+
+  interface Reference {
+    id: number;
+    referenceText: string;
+    content: string;
   }
-};
 
-const handleCancelAddMaterial = () => {
-  setNewMaterial('');
-  setNewMaterialVisible(false);
-};
+  const [tempReferences, setTempReferences] = useState<Reference[]>([]);
+  const [newReference, setNewReference] = useState('');
+  const [newReferenceVisible, setNewReferenceVisible] = useState(false);
+  const [editReference, setEditReference] = useState<Reference | null>(null);
 
-const handleEditMaterial = (index: number) => {
-  setEditIndexMaterial(index);
-  setEditedMaterial(tempMaterials[index].materialText);
-};
+  const [nextReferenceId, setNextReferenceId] = useState(1);
 
-const handleSaveMaterial = () => {
-  setTempMaterials((prevMaterials) => {
-    const updatedMaterials = [...prevMaterials];
-    updatedMaterials[editIndexMaterial].materialText = editedMaterial;
-    return updatedMaterials;
-  });
+  const handleReferenceTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setNewReference(value);
+  };
 
-  setExperimentData((prevData: any) => {
-    const updatedMaterials = [...prevData.materials];
-    updatedMaterials[editIndexMaterial].content = editedMaterial;
-    return { ...prevData, materials: updatedMaterials };
-  });
+  const handleAddReference = () => {
+    setNewReferenceVisible(true);
+  };
 
-  setEditIndexMaterial(-1);
-  setEditedMaterial('');
-};
+  const handleConfirmAddReference = () => {
+    if (newReference !== '') {
+      const newRef: Reference = { id: nextReferenceId, referenceText: newReference, content: '' };
+      setTempReferences((prevReferences) => [...prevReferences, newRef]);
+      setExperimentData((prevData: any) => {
+        const newReferences = [...prevData.references, { id: nextReferenceId, content: newReference }];
+        return { ...prevData, references: newReferences };
+      });
 
-const handleDeleteMaterial = (index: number) => {
-  setTempMaterials((prevMaterials) => {
-    const updatedMaterials = [...prevMaterials];
-    updatedMaterials.splice(index, 1);
-    return updatedMaterials;
-  });
+      setNewReference('');
+      setNewReferenceVisible(false);
+      setNextReferenceId(prevId => prevId + 1);
+    }
+  };
 
-  setExperimentData((prevData: any) => {
-    const updatedMaterials = [...prevData.materials];
-    updatedMaterials.splice(index, 1);
-    return { ...prevData, materials: updatedMaterials };
-  });
-};
-
-interface Reference {
-  referenceText: string;
-  content: string;
-}
-
-const [tempReferences, setTempReferences] = useState<Reference[]>([]);
-const [newReference, setNewReference] = useState('');
-const [newReferenceVisible, setNewReferenceVisible] = useState(false);
-const [editIndexReference, setEditIndexReference] = useState(-1);
-const [editedReference, setEditedReference] = useState('');
-
-const toggleReferenceFields = () => {
-  setNewReferenceVisible(!newReferenceVisible);
-};
-
-const handleReferenceTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const { value } = event.target;
-  setNewReference(value);
-};
-
-const handleAddReference = () => {
-  setNewReferenceVisible(true);
-};
-
-const handleConfirmAddReference = () => {
-  if (newReference !== '') {
-    setTempReferences((prevReferences) => [...prevReferences, { referenceText: newReference, content: '' }]);
-    setExperimentData((prevData: any) => {
-      const newReferences = [...prevData.references, { content: newReference }];
-      return { ...prevData, references: newReferences };
-    });
-
+  const handleCancelAddReference = () => {
     setNewReference('');
     setNewReferenceVisible(false);
-  }
-};
+  };
 
-const handleCancelAddReference = () => {
-  setNewReference('');
-  setNewReferenceVisible(false);
-};
+  const handleEditReference = (reference: Reference) => {
+    setEditReference(reference);
+  };
 
-const handleEditReference = (index: number) => {
-  setEditIndexReference(index);
-  setEditedReference(tempReferences[index].referenceText);
-};
+  const handleSaveReference = () => {
+    if (editReference) {
+      const updatedReferences = tempReferences.map(ref =>
+        ref.id === editReference.id ? { ...ref, referenceText: editReference.referenceText } : ref
+      );
+      setTempReferences(updatedReferences);
 
-const handleSaveReference = () => {
-  setTempReferences((prevReferences) => {
-    const updatedReferences = [...prevReferences];
-    updatedReferences[editIndexReference].referenceText = editedReference;
-    return updatedReferences;
-  });
+      const dataReferences = experimentData.references.map((ref: any) =>
+        ref.id === editReference.id ? { ...ref, content: editReference.referenceText } : ref
+      );
+      setExperimentData((prevData: any) => ({ ...prevData, references: dataReferences }));
 
-  setExperimentData((prevData: any) => {
-    const updatedReferences = [...prevData.references];
-    updatedReferences[editIndexReference].content = editedReference;
-    return { ...prevData, references: updatedReferences };
-  });
+      setEditReference(null);
+    }
+  };
 
-  setEditIndexReference(-1);
-  setEditedReference('');
-};
-
-const handleDeleteReference = (index: number) => {
-  setTempReferences((prevReferences) => {
-    const updatedReferences = [...prevReferences];
-    updatedReferences.splice(index, 1);
-    return updatedReferences;
-  });
-
-  setExperimentData((prevData: any) => {
-    const updatedReferences = [...prevData.references];
-    updatedReferences.splice(index, 1);
-    return { ...prevData, references: updatedReferences };
-  });
-};
+  const handleDeleteReference = (id: number) => {
+    setTempReferences(prevReferences => prevReferences.filter(ref => ref.id !== id));
+    setExperimentData(prevData => ({
+      ...prevData,
+      references: prevData.references.filter((ref: any) => ref.id !== id),
+    }));
+  };
 
 
 
@@ -1007,130 +989,167 @@ const handleDeleteReference = (index: number) => {
 
 
 
+  interface Method {
+    id: number;
+    content: string;
+    imagePath: string; // Adiciona a rota da imagem ao objeto Method
+  }
+  
+  
 
-
-  const [tempMethods, setTempMethods] = useState<{ methodText: string; methodImages: string }[]>([]);
-  const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [tempMethods, setTempMethods] = useState<Method[]>([]);
+  const [newMethod, setNewMethod] = useState('');
+  const [newMethodVisible, setNewMethodVisible] = useState(false);
+  const [editMethod, setEditMethod] = useState<Method | null>(null);
   const [imageInputsCount, setImageInputsCount] = useState(1);
-  const [disableInput, setDisableInput] = useState<boolean[]>([]);
-  const [editMode, setEditMode] = useState<boolean[]>([]);
-  const [showFields, setShowFields] = useState(false);
-  const [filledMethods, setFilledMethods] = useState<number[]>([]);
-
-  const toggleStepFields = () => {
-    setShowFields(!showFields);
-  };
-
-  const handleMethodTextChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+  const [nextMethodId, setNextMethodId] = useState(1);
+  
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
+  
+  const handleMethodTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-  
-    setTempMethods((prevMethods) => {
-      const updatedMethods = [...prevMethods];
-  
-      if (index < updatedMethods.length) {
-        updatedMethods[index] = { ...updatedMethods[index], methodText: value };
-      }
-  
-      const updatedFilledMethods = [...filledMethods];
-      if (value.trim() !== '') {
-        if (!updatedFilledMethods.includes(index)) {
-          updatedFilledMethods.push(index);
-        }
-      } else {
-        const indexToRemove = updatedFilledMethods.indexOf(index);
-        if (indexToRemove !== -1) {
-          updatedFilledMethods.splice(indexToRemove, 1);
-        }
-      }
-      setFilledMethods(updatedFilledMethods);
-  
-      return updatedMethods;
-    });
+    setNewMethod(value);
   };
+  
+  const handleAddMethod = () => {
+    setNewMethodVisible(true);
+  };
+  
+  const handleConfirmAddMethod = () => {
+    if (newMethod !== '') {
+      const newMethodObj: Method = { id: nextMethodId, content: newMethod, imagePath: '' }; // Inicializa imagePath como vazio
+      setTempMethods((prevMethods) => [...prevMethods, newMethodObj]);
+      setExperimentData((prevData: any) => {
+        const newMethods = [...prevData.methods, { id: nextMethodId, content: newMethod, imagePath: '' }]; // Inicializa imagePath como vazio
+        return { ...prevData, methods: newMethods };
+      });
+  
+      setNewMethod('');
+      setNewMethodVisible(false);
+      setNextMethodId((prevId) => prevId + 1);
+    }
+  };
+  
+  
+  const handleCancelAddMethod = () => {
+    setNewMethod('');
+    setNewMethodVisible(false);
+  };
+  
+  const handleEditMethod = (method: Method) => {
+    setEditMethod(method);
+  };
+  
+  const handleSaveMethod = () => {
+    if (editMethod) {
+      const updatedMethods = tempMethods.map((m) =>
+        m.id === editMethod.id ? { ...m, content: editMethod.content } : m
+      );
+      setTempMethods(updatedMethods);
+  
+      const dataMethods = experimentData.methods.map((m: any) =>
+        m.id === editMethod.id ? { ...m, content: editMethod.content } : m
+      );
+      setExperimentData((prevData: any) => ({ ...prevData, methods: dataMethods }));
+  
+      setEditMethod(null);
+    }
+  };
+  
+  const handleDeleteMethod = (id: number, index: number) => {
+    const methodToDelete = tempMethods.find(method => method.id === id);
+    const hasImage = methodToDelete && methodToDelete.imagePath !== '';
+    
+    // Remove a imagem se existir
+    if (hasImage) {
+      handleRemoveImageMethod(index);
+    }
+    
+    // Remove o método pelo ID
+    setTempMethods(prevMethods => prevMethods.filter(method => method.id !== id));
+  
+    // Atualiza os índices dos métodos restantes
+    setPreviewImages(prevImages => prevImages.filter((_, i) => i !== index));
+    setImageInputsCount(prevCount => prevCount - 1);
+  
+    // Remove o método em experimentData.methods
+    setExperimentData(prevData => ({
+      ...prevData,
+      methods: prevData.methods.filter((m: any) => m.id !== id),
+    }));
+  };
+  
   
   
 
   const handleMethodImageChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-
+  
     if (files) {
       const reader = new FileReader();
-
+  
       reader.onload = () => {
         const base64Data = reader.result as string;
-        const imagePath = `public/images/${experimentData.id}/${files[0].name}`;
-
-        const updatedMethods = [...tempMethods];
-
-        if (updatedMethods[index]) {
-          updatedMethods[index] = { ...updatedMethods[index], methodImages: imagePath };
-        } else {
-          updatedMethods[index] = { methodText: '', methodImages: imagePath };
-        }
-
+        const imageName = files[0].name;
+        const imagePath = `public/images/${experimentData.id}/${imageName}`;
+  
+        const updatedMethods = tempMethods.map((method, i) => {
+          if (i === index) {
+            return { ...method, imagePath: imagePath };
+          }
+          return method;
+        });
+  
         setTempMethods(updatedMethods);
-        setPreviewImages((prevImages) => {
+        setPreviewImages(prevImages => {
           const updatedImages = [...prevImages];
           updatedImages[index] = base64Data;
           return updatedImages;
         });
+  
+        // Atualiza o experimentData.methods com o caminho da imagem
+        setExperimentData(prevData => ({
+          ...prevData,
+          methods: prevData.methods.map(m => {
+            if (m.id === updatedMethods[index].id) {
+              return { ...m, imagePath: imagePath };
+            }
+            return m;
+          })
+        }));
       };
-
+  
       reader.readAsDataURL(files[0]);
     }
   };
-
-  const handleAddStep = () => {
-    setShowFields(true);
-    setTempMethods((prevMethods) => [...prevMethods, { methodText: '', methodImages: '' }]);
-    setDisableInput((prevDisableInput) => [...prevDisableInput, true]);
-    setEditMode((prevEditMode) => [...prevEditMode, true]);
-    setImageInputsCount((prevCount) => prevCount + 1);
-  };
-
-  const handleConfirmAdd = () => {
-    if (tempMethods.length > 6) {
-      // Limite de 5 inputs atingido
-      return;
-    }
   
-    const nonEmptyMethods = tempMethods.filter(
-      (method) => method.methodText.trim() !== '' || method.methodImages !== ''
-    );
   
-    if (nonEmptyMethods.length > 0) {
-      const lastMethod = nonEmptyMethods[nonEmptyMethods.length - 1];
   
-      setFilledMethods((prevFilledMethods) => [...prevFilledMethods, tempMethods.length - 1]);
+  const handleRemoveImageMethod = (index: number) => {
+    const updatedMethods = [...tempMethods];
+    updatedMethods[index] = { ...updatedMethods[index], imagePath: '' };
+    setTempMethods(updatedMethods);
   
-      setExperimentData((prevState: any) => ({
-        ...prevState,
-        methods: [...prevState.methods, lastMethod],
-      }));
-    }
+    setPreviewImages((prevImages) => {
+      const updatedImages = [...prevImages];
+      updatedImages[index] = '';
+      return updatedImages;
+    });
   
-    setShowFields(false);
-    setTempMethods((prevMethods) => [...prevMethods]);
-    setImageInputsCount((prevCount) => prevCount + 1);
+    setImageInputsCount((prevCount) => prevCount - 1); // Decremento ao remover uma imagem
+  
+    // Remova a imagem do método em experimentData.methods
+    setExperimentData((prevData: any) => ({
+      ...prevData,
+      methods: prevData.methods.map((m: any) => {
+        if (m.id === updatedMethods[index].id) {
+          return { ...m, imagePath: '' };
+        }
+        return m;
+      }),
+    }));
   };
   
-  const handleCancelAdd = () => {
-    setTempMethods((prevMethods) => prevMethods.slice(0, prevMethods.length - 1));
-    setDisableInput((prevDisableInput) => prevDisableInput.slice(0, prevDisableInput.length - 1));
-    setEditMode((prevEditMode) => prevEditMode.slice(0, prevEditMode.length - 1));
-    setImageInputsCount((prevCount) => prevCount - 1);
-    setShowFields(false);
-  };
-
-  const getFilledMethods = () => {
-    return tempMethods.filter(
-      (_, index) =>
-        filledMethods.includes(index) || (showFields && index === tempMethods.length - 1)
-    );
-  };
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
 
 
 
@@ -1479,187 +1498,201 @@ const handleDeleteReference = (index: number) => {
   
 
   <div className="mt-8">
-  <label htmlFor="title" className="block text-gray-700 mb-1">
-  Objetivos
-    </label>
+      <label htmlFor="title" className="block text-gray-700 mb-1">
+        Objetivos
+      </label>
 
-  {tempObjectives.map((objective, index) => (
-    <div key={index} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between"> {/* Usando flex para alinhar os elementos */}
-      <label className="mr-4 block mb-1">{`${index + 1}° Objetivo`}</label> {/* Ajuste do rótulo para incluir o número do objetivo */}
-      <div className="flex flex-col md:flex-row md:items-center flex-grow"> {/* Usando flex-grow para ocupar o espaço disponível */}
-        {editIndexObjectives === -1 || editIndexObjectives !== index ? (
-          <input
-            className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            type="text"
-            value={objective.objectiveText}
-            onChange={() => {}}
-            disabled
-          />
-        ) : (
-          <input
-            className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            type="text"
-            value={editedObjective}
-            onChange={(event) => setEditedObjective(event.target.value)}
-          />
-        )}
-        {editIndexObjectives === -1 || editIndexObjectives !== index ? (
-          <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditObjective(index)}>Editar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteObjective(index)}>Excluir</button>
-          </>
-        ) : (
-          <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveObjective}>Salvar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditIndexObjectives(-1)}>Cancelar</button>
-          </>
-        )}
-      </div>
-    </div>
-  ))}
-
-  {tempObjectives.length < 5 && !newObjectiveVisible && (
-    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddObjective}>Adicionar +1 Objetivo</button>
-  )}
-
-  {newObjectiveVisible && (
-    <div className="mb-4">
-      <input
-        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        type="text"
-        value={newObjective}
-        onChange={handleObjectiveTextChange}
-      />
-      <div className="mt-4 flex flex-col md:flex-row md:items-center"> {/* Usando flex para alinhar os botões */}
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddObjective}>Adicionar Objetivo</button>
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddObjective}>Cancelar</button>
-      </div>
-    </div>
-  )}
-</div>
-
-
-
-
-
-
-<div className="mt-8">
-<label htmlFor="title" className="block text-gray-700 mb-1">
-Materiais
-    </label>
-
-
-  {tempMaterials.map((material, index) => (
-    <div key={index} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
-      <label className="mr-4 block mb-1">{`${index + 1}° Material`}</label>
-      <div className="flex flex-col md:flex-row md:items-center flex-grow">
-        {editIndexMaterial === -1 || editIndexMaterial !== index ? (
-          <input
-            className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            type="text"
-            value={material.materialText}
-            onChange={() => {}}
-            disabled
-          />
-        ) : (
-          <input
-            className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            type="text"
-            value={editedMaterial}
-            onChange={(event) => setEditedMaterial(event.target.value)}
-          />
-        )}
-        {editIndexMaterial === -1 || editIndexMaterial !== index ? (
-          <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditMaterial(index)}>Editar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteMaterial(index)}>Excluir</button>
-          </>
-        ) : (
-          <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveMaterial}>Salvar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditIndexMaterial(-1)}>Cancelar</button>
-          </>
-        )}
-      </div>
-    </div>
-  ))}
-
-  {tempMaterials.length < 5 && !newMaterialVisible && (
-    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddMaterial}>Adicionar +1 Material</button>
-  )}
-
-  {newMaterialVisible && (
-    <div className="mb-4">
-      <input
-        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        type="text"
-        value={newMaterial}
-        onChange={handleMaterialTextChange}
-      />
-      <div className="mt-4 flex flex-col md:flex-row md:items-center">
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMaterial}>Adicionar Material</button>
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMaterial}>Cancelar</button>
-      </div>
-    </div>
-  )}
-</div>
-
-
-
-
-
-  <div className="mt-8">
-  <label htmlFor="title" className="block text-gray-700 mb-1">
-  Passos
-    </label>
-
-
-
-    {getFilledMethods().map((method, index) => (
-      <div key={index} className="mb-4">
-        <label className="block mb-1">Method Text:</label>
-        <input
-          type="text"
-          value={method.methodText}
-          onChange={(event) => handleMethodTextChange(index, event)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
-
-        <label htmlFor={`imageMethod${index + 1}Upload`} className="block mt-4 mb-1">Method Image:</label>
-        <div className="flex items-center">
-          <div className="flex-1">
-            <input
-              type="file"
-              accept="image/*"
-              id={`imageMethod${index + 1}Upload`}
-              onChange={(event) => handleMethodImageChange(index, event)}
-              ref={fileInputRef}
-              className="hidden"
-            />
-            <label htmlFor={`imageMethod${index + 1}Upload`} className="cursor-pointer px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-              <span>Clique aqui ou arraste o arquivo</span>
-            </label>
-          </div>
-          <div className="ml-4">
-            {previewImages[index] && (
-              <img src={previewImages[index]} alt={`Method ${index + 1} Preview`} className="w-24 h-auto" />
+      {tempObjectives.map((objective, index) => (
+        <div key={objective.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
+          <label className="mr-4 block mb-1">{`${index + 1}° Objetivo`}</label>
+          <div className="flex flex-col md:flex-row md:items-center flex-grow">
+            {editObjective && editObjective.id === objective.id ? (
+              <input
+                className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                type="text"
+                value={editObjective.objectiveText}
+                onChange={(event) => setEditObjective({ ...editObjective, objectiveText: event.target.value })}
+              />
+            ) : (
+              <input
+                className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                type="text"
+                value={objective.objectiveText}
+                readOnly
+              />
+            )}
+            {editObjective && editObjective.id === objective.id ? (
+              <>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveObjective}>Salvar</button>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditObjective(null)}>Cancelar</button>
+              </>
+            ) : (
+              <>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditObjective(objective)}>Editar</button>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteObjective(objective.id)}>Excluir</button>
+              </>
             )}
           </div>
         </div>
-      </div>
-    ))}
+      ))}
 
-    {tempMethods.length < 5 && !showFields && (
-      <button onClick={handleAddStep} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Adicionar +1 Passo</button>
-    )}
+      {tempObjectives.length < 5 && !newObjectiveVisible && (
+        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddObjective}>Adicionar +1 Objetivo</button>
+      )}
 
-    {showFields && (
-      <div className="mt-4">
-        <button onClick={handleConfirmAdd} className="mr-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">Adicionar Método</button>
-        <button onClick={handleCancelAdd} className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500">Cancelar</button>
+      {newObjectiveVisible && (
+        <div className="mb-4">
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            type="text"
+            value={newObjective}
+            onChange={handleObjectiveTextChange}
+          />
+          <div className="mt-4 flex flex-col md:flex-row md:items-center">
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddObjective}>Adicionar Objetivo</button>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddObjective}>Cancelar</button>
+          </div>
+        </div>
+      )}
+    </div>
+
+    <div className="mt-8">
+      <label htmlFor="title" className="block text-gray-700 mb-1">
+        Materiais
+      </label>
+
+      {tempMaterials.map((material, index) => (
+        <div key={material.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
+          <label className="mr-4 block mb-1">{`${index + 1}° Material`}</label>
+          <div className="flex flex-col md:flex-row md:items-center flex-grow">
+            {editMaterial && editMaterial.id === material.id ? (
+              <input
+                className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                type="text"
+                value={editMaterial.materialText}
+                onChange={(event) => setEditMaterial({ ...editMaterial, materialText: event.target.value })}
+              />
+            ) : (
+              <input
+                className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                type="text"
+                value={material.materialText}
+                readOnly
+              />
+            )}
+            {editMaterial && editMaterial.id === material.id ? (
+              <>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveMaterial}>Salvar</button>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditMaterial(null)}>Cancelar</button>
+              </>
+            ) : (
+              <>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditMaterial(material)}>Editar</button>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteMaterial(material.id)}>Excluir</button>
+              </>
+            )}
+          </div>
+        </div>
+      ))}
+
+      {tempMaterials.length < 5 && !newMaterialVisible && (
+        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddMaterial}>Adicionar +1 Material</button>
+      )}
+
+      {newMaterialVisible && (
+        <div className="mb-4">
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            type="text"
+            value={newMaterial}
+            onChange={handleMaterialTextChange}
+          />
+          <div className="mt-4 flex flex-col md:flex-row md:items-center">
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMaterial}>Adicionar Material</button>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMaterial}>Cancelar</button>
+          </div>
+        </div>
+      )}
+    </div>
+
+    <div className="mt-8">
+  <label htmlFor="title" className="block text-gray-700 mb-1">
+    Métodos
+  </label>
+
+  {tempMethods.map((method, index) => (
+    <div key={method.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
+      <label className="mr-4 block mb-1">{`${index + 1}° Método`}</label>
+      <div className="flex flex-col md:flex-row md:items-center flex-grow">
+        <input
+          className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          type="text"
+          value={method.content}
+          readOnly={!editMethod || editMethod.id !== method.id}
+          onChange={(event) => {
+            const updatedMethods = [...tempMethods];
+            updatedMethods[index] = { ...updatedMethods[index], content: event.target.value };
+            setTempMethods(updatedMethods);
+          }}
+        />
+        <div>
+          <input
+            type="file"
+            accept="image/*"
+            id={`imageMethod${index + 1}Upload`}
+            onChange={(event) => handleMethodImageChange(index, event)}
+            className="hidden"
+          />
+          <label htmlFor={`imageMethod${index + 1}Upload`} className="cursor-pointer">
+            {previewImages[index] ? (
+              <img src={previewImages[index]} alt={`Imagem do método ${index + 1}`} className="w-24 h-24 object-cover rounded-md mr-2" />
+            ) : (
+              <div className="w-24 h-24 border border-dashed border-gray-300 rounded-md flex items-center justify-center mr-2">
+                Arraste ou clique para adicionar a imagem
+              </div>
+            )}
+          </label>
+          {previewImages[index] && (
+            <button className="text-red-500 mt-2 focus:outline-none" onClick={() => handleRemoveImageMethod(index)}>Remover imagem</button>
+          )}
+        </div>
+        {editMethod && editMethod.id === method.id ? (
+          <>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveMethod}>Salvar</button>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditMethod(null)}>Cancelar</button>
+          </>
+        ) : (
+          <>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditMethod(method)}>Editar</button>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteMethod(method.id, index)}>Excluir</button>
+          </>
+        )}
       </div>
-    )}
-  </div>
+    </div>
+  ))}
+
+  {tempMethods.length < 5 && !newMethodVisible && (
+    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddMethod}>Adicionar +1 Método</button>
+  )}
+
+  {newMethodVisible && (
+    <div className="mb-4">
+      <input
+        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        type="text"
+        value={newMethod}
+        onChange={handleMethodTextChange}
+      />
+
+      <div className="mt-4 flex flex-col md:flex-row md:items-center">
+        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMethod}>Adicionar Método</button>
+        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMethod}>Cancelar</button>
+      </div>
+    </div>
+  )}
+</div>
+
+
 
   <div className="mt-8">
   <label htmlFor="title" className="block text-gray-700 mb-1">
@@ -1679,62 +1712,61 @@ Materiais
 
 
 <div className="mt-8">
-  <h1 className="text-xl font-semibold mb-2">Referências</h1>
+      <h1 className="text-xl font-semibold mb-2">Referências</h1>
 
-  {tempReferences.map((reference, index) => (
-    <div key={index} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
-      <label className="mr-4 block mb-1">{`${index + 1}° Referência`}</label>
-      <div className="flex flex-col md:flex-row md:items-center flex-grow">
-        {editIndexReference === -1 || editIndexReference !== index ? (
+      {tempReferences.map((reference, index) => (
+        <div key={reference.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
+          <label className="mr-4 block mb-1">{`${index + 1}° Referência`}</label>
+          <div className="flex flex-col md:flex-row md:items-center flex-grow">
+            {editReference && editReference.id === reference.id ? (
+              <input
+                className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                type="text"
+                value={editReference.referenceText}
+                onChange={(event) => setEditReference({ ...editReference, referenceText: event.target.value })}
+              />
+            ) : (
+              <input
+                className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                type="text"
+                value={reference.referenceText}
+                readOnly
+              />
+            )}
+            {editReference && editReference.id === reference.id ? (
+              <>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveReference}>Salvar</button>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditReference(null)}>Cancelar</button>
+              </>
+            ) : (
+              <>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditReference(reference)}>Editar</button>
+                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteReference(reference.id)}>Excluir</button>
+              </>
+            )}
+          </div>
+        </div>
+      ))}
+
+      {tempReferences.length < 5 && !newReferenceVisible && (
+        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddReference}>Adicionar +1 Referência</button>
+      )}
+
+      {newReferenceVisible && (
+        <div className="mb-4">
           <input
-            className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             type="text"
-            value={reference.referenceText}
-            onChange={() => {}}
-            disabled
+            value={newReference}
+            onChange={handleReferenceTextChange}
           />
-        ) : (
-          <input
-            className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            type="text"
-            value={editedReference}
-            onChange={(event) => setEditedReference(event.target.value)}
-          />
-        )}
-        {editIndexReference === -1 || editIndexReference !== index ? (
-          <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditReference(index)}>Editar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteReference(index)}>Excluir</button>
-          </>
-        ) : (
-          <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveReference}>Salvar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditIndexReference(-1)}>Cancelar</button>
-          </>
-        )}
-      </div>
+          <div className="mt-4 flex flex-col md:flex-row md:items-center">
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddReference}>Adicionar Referência</button>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddReference}>Cancelar</button>
+          </div>
+        </div>
+      )}
     </div>
-  ))}
-
-  {tempReferences.length < 5 && !newReferenceVisible && (
-    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddReference}>Adicionar +1 Referência</button>
-  )}
-
-  {newReferenceVisible && (
-    <div className="mb-4">
-      <input
-        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        type="text"
-        value={newReference}
-        onChange={handleReferenceTextChange}
-      />
-      <div className="mt-4 flex flex-col md:flex-row md:items-center">
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddReference}>Adicionar Referência</button>
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddReference}>Cancelar</button>
-      </div>
-    </div>
-  )}
-</div>
 
 
 </div>
