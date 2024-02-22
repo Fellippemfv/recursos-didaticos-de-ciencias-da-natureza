@@ -1107,16 +1107,21 @@ export default function Experiment() {
           return updatedImages;
         });
   
-        // Atualiza o experimentData.methods com o caminho da imagem
-        setExperimentData(prevData => ({
-          ...prevData,
-          methods: prevData.methods.map(m => {
-            if (m.id === updatedMethods[index].id) {
-              return { ...m, imagePath: imagePath };
-            }
-            return m;
-          })
-        }));
+// Atualiza o experimentData.methods com o caminho da imagem
+setExperimentData((prevData: any) => {
+  const updatedData = {
+    ...prevData,
+    methods: (prevData.methods as any[]).map(m => {
+      if (m.id === updatedMethods[index].id) {
+        return { ...m, imagePath: imagePath };
+      }
+      return m;
+    })
+  };
+  return updatedData;
+});
+
+
       };
   
       reader.readAsDataURL(files[0]);
