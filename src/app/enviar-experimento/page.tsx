@@ -512,10 +512,6 @@ export default function Experiment() {
     const filePath = "src/app/api/data/experimentos.json";
     const fileContent = JSON.stringify(experimentData, null, 2);
 
-    //Img
-    const filePathImg = "public/images/${experimentId}";
-    const fileContentImg = JSON.stringify(experimentData, null, 2);
-
     const passosRealizados = document.getElementById("passos-realizados");
    
 
