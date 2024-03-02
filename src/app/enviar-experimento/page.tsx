@@ -236,18 +236,18 @@ export default function Experiment() {
   const [newObjective, setNewObjective] = useState('');
   const [newObjectiveVisible, setNewObjectiveVisible] = useState(false);
   const [editObjective, setEditObjective] = useState<Objective | null>(null);
-
+  
   const [nextId, setNextId] = useState(1);
-
-  const handleObjectiveTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  
+  const handleObjectiveTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
     setNewObjective(value);
   };
-
+  
   const handleAddObjective = () => {
     setNewObjectiveVisible(true);
   };
-
+  
   const handleConfirmAddObjective = () => {
     if (newObjective !== '') {
       const newObj: Objective = { id: nextId, objectiveText: newObjective, content: '' };
@@ -256,22 +256,22 @@ export default function Experiment() {
         const newObjectives = [...prevData.objectives, { id: nextId, content: newObjective }];
         return { ...prevData, objectives: newObjectives };
       });
-
+  
       setNewObjective('');
       setNewObjectiveVisible(false);
       setNextId(prevId => prevId + 1);
     }
   };
-
+  
   const handleCancelAddObjective = () => {
     setNewObjective('');
     setNewObjectiveVisible(false);
   };
-
+  
   const handleEditObjective = (objective: Objective) => {
     setEditObjective(objective);
   };
-
+  
   const handleSaveObjective = () => {
     if (editObjective) {
       const updatedObjectives = tempObjectives.map(obj =>
@@ -288,7 +288,6 @@ export default function Experiment() {
     }
   };
   
-
   const handleDeleteObjective = (id: number) => {
     setTempObjectives(prevObjectives => prevObjectives.filter(obj => obj.id !== id));
     setExperimentData(prevData => ({
@@ -296,7 +295,6 @@ export default function Experiment() {
       objectives: prevData.objectives.filter((obj: any) => obj.id !== id),
     }));
   };
-  
   interface Material {
     id: number;
     materialText: string;
@@ -505,8 +503,11 @@ export default function Experiment() {
       auth: apiToken
     });
   
-    const baseBranchName = "test";
     const newBranchName = `experiment-update-${experimentId}`;
+
+    const baseRepositoryOwnerName = "fellippemfv";
+    const baseRepositoryName = "my-science-project";
+    const baseBranchName = "add-experiment";
 
     //Json
     const filePath = "src/app/api/data/experimentos.json";
@@ -531,8 +532,8 @@ export default function Experiment() {
     // Cria o fork do repositório original
     console.log("Criando o fork do repositório original...");
     const { data: fork } = await octokitClient.repos.createFork({
-      owner: "Science-projects",
-      repo: "testing",
+      owner: baseRepositoryOwnerName,
+      repo: baseRepositoryName,
     });
     adicionarPasso("Fork criado com sucesso!", true);
     console.log("Fork criado com sucesso!");
@@ -543,30 +544,30 @@ export default function Experiment() {
     // Espera alguns segundos para garantir que as informações do fork estejam atualizadas
     await new Promise(resolve => setTimeout(resolve, 5000));
   
-    // Verifica se a branch "test" existe no fork
+    // Verifica se a branch "new-experiment" existe no fork
     adicionarPasso(`Verificando a existência da branch "${baseBranchName}" no fork...`, true);
     console.log(`Verificando a existência da branch "${baseBranchName}" no fork...`);
     let { data } = await octokitClient.repos.getBranch({
       owner: forkOwner,
-      repo: "testing",
+      repo: baseRepositoryName,
       branch: baseBranchName
     });
   
     if (!data) {
-      // Cria a branch "test" no fork se ela não existir
+      // Cria a branch "new-experiment" no fork se ela não existir
     adicionarPasso(`A branch "${baseBranchName}" não existe no fork. Criando a branch...`, true);
 
       console.log(`A branch "${baseBranchName}" não existe no fork. Criando a branch...`);
       const baseBranch = await octokitClient.repos.getBranch({
-        owner: "Science-projects",
-        repo: "testing",
+        owner: baseRepositoryOwnerName,
+        repo: baseRepositoryName,
         branch: baseBranchName
       });
       const baseCommitSha = baseBranch.data.commit.sha;
   
       await octokitClient.git.createRef({
         owner: forkOwner,
-        repo: "testing",
+        repo: baseRepositoryName,
         ref: `refs/heads/${baseBranchName}`,
         sha: baseCommitSha
       });
@@ -582,7 +583,7 @@ export default function Experiment() {
       // Obtém novamente as informações da branch no fork
       ({ data } = await octokitClient.repos.getBranch({
         owner: forkOwner,
-        repo: "testing",
+        repo: baseRepositoryName,
         branch: baseBranchName
       }));
     }
@@ -596,7 +597,7 @@ export default function Experiment() {
 
     const { data: newBranch } = await octokitClient.git.createRef({
       owner: forkOwner,
-      repo: "testing",
+      repo: baseRepositoryName,
       ref: `refs/heads/${newBranchName}`,
       sha: baseCommitSha
     });
@@ -611,78 +612,111 @@ export default function Experiment() {
     // Busca o conteúdo atual do arquivo na branch "test" do fork
     const fileInfo = await octokitClient.repos.getContent({
       owner: forkOwner,
-      repo: "testing",
+      repo: baseRepositoryName,
       path: filePath,
       ref: baseBranchName,
     });
 
     adicionarPasso(`Busca pelo conteúdo atual realizada com sucesso!`, true);
 
+    console.log("selectedImage na funcao de upload" + selectedImage)
 
-    //Devo permitir apenas jpg, jpeg e png.
-    const handleImageUpload = async (imageFile: File) => {
-      if (imageFile) {
-        const imageContent = await readFileAsBase64(imageFile);
-        const imagePath = `public/images/${experimentId}/${imageFile.name}`;
+
+    console.log("iniciando a adicao de imagem")
+
+
+    const handleImageUpload = async () => {
+      console.log("Conteúdo de selectedImage:", selectedImage);
     
-        // Upload da imagem
-        adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
-        await octokitClient.repos.createOrUpdateFileContents({
-          owner: forkOwner,
-          repo: "testing",
-          path: imagePath,
-          message: `Add image for experiment N° ${experimentId}`,
-          content: imageContent,
-          branch: newBranchName,
-        });
+      if (selectedImage) {
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          const base64String = reader.result as string | null;
+          if (base64String !== null) {
+            // Remover o prefixo do URI de dados
+            const base64Content = base64String.split(",")[1];
+            console.log("Base64 da imagem:", base64Content);
+            
+            const imagePath = `public/images/${experimentId}/${selectedImage.name}`;
+            
+            // Upload da imagem
+            adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
+            await octokitClient.repos.createOrUpdateFileContents({
+              owner: forkOwner,
+              repo: baseRepositoryName,
+              path: imagePath,
+              message: `Add image for experiment N° ${experimentId}`,
+              content: base64Content,
+              branch: newBranchName,
+            });
     
-        adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
+            adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
+          } else {
+            adicionarPasso("Erro ao converter imagem para base64.", false);
+          }
+        };
+        reader.onerror = () => {
+          adicionarPasso("Erro ao ler o arquivo.", false);
+        };
+        reader.readAsDataURL(selectedImage);
       } else {
         adicionarPasso("Nenhuma imagem selecionada.", false);
       }
     };
     
-    const readFileAsBase64 = (file: File) => {
-      return new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          const base64String = reader.result as string | null;
-          if (base64String !== null) {
-            const [, base64Content] = base64String.split(",");
-            resolve(base64Content);
-          } else {
-            reject("Erro ao ler o arquivo.");
-          }
-        };
-        reader.onerror = () => {
-          reject("Erro ao ler o arquivo.");
-        };
-        reader.readAsDataURL(file);
-      });
-    };
-
-    adicionarPasso("Realizando o upload da imagem de preview...", true);
-    const imageUploadElement = document.getElementById("imageUpload") as HTMLInputElement | null;
-    if (imageUploadElement && imageUploadElement.files && imageUploadElement.files[0]) {
-    const imageFile = imageUploadElement.files[0];
-    await handleImageUpload(imageFile);
-    adicionarPasso("Upload da imagem concluído.", true);
-    } else {
-    adicionarPasso("Nenhuma imagem selecionada.", false); 
-    }
-
-    for (let i = 1; i < imageInputsCount; i++) {
-      adicionarPasso(`Realizando o upload da imagem de método parte ${i}...`, true);
     
-      const imageInputElement = document.getElementById(`imageMethod${i}Upload`) as HTMLInputElement | null;
-      if (imageInputElement && imageInputElement.files && imageInputElement.files[0]) {
-        const imageFile = imageInputElement.files[0];
-        await handleImageUpload(imageFile);
-        adicionarPasso(`Upload da imagem de método parte ${i} concluído.`, true);
-      } else {
-        adicionarPasso(`Nenhuma imagem selecionada para o método parte ${i}.`, false);
-      }
+    
+    
+    
+    // Chama a função handleImageUpload
+await handleImageUpload();
+    
+    
+const handleImageUploadMethod = async () => {
+  console.log("Iniciando o upload de imagens...");
+  
+  // Iterar sobre cada imagem em previewImages
+  for (let i = 0; i < previewImages.length; i++) {
+    const base64String = previewImages[i];
+    
+    // Remover o prefixo do URI de dados
+    const base64Content = base64String.split(",")[1];
+    console.log("Base64 da imagem:", base64Content);
+    
+    // Obter o nome da imagem usando a mesma lógica que você já tem
+    const imageName = tempMethods[i].imagePath.split("/").pop() || "";
+    
+    // Montar o caminho da imagem
+    const imagePath = `public/images/${experimentId}/${imageName}`;
+    
+    // Upload da imagem
+    adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
+    try {
+      await octokitClient.repos.createOrUpdateFileContents({
+        owner: forkOwner,
+        repo: baseRepositoryName,
+        path: imagePath,
+        message: `Add image for experiment N° ${experimentId}`,
+        content: base64Content,
+        branch: newBranchName,
+      });
+      
+      adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
+    } catch (error) {
+      console.error("Erro ao fazer upload da imagem:", error);
+      adicionarPasso(`Erro ao fazer upload da imagem ${imagePath}`, false);
     }
+  }
+  
+  console.log("Upload de imagens concluído!");
+};
+
+// Chama a função handleImageUploadMethod
+await handleImageUploadMethod();
+
+
+
+
     
 
     adicionarPasso("Adicionando sugestão de novo experimento...", true);
@@ -711,7 +745,7 @@ export default function Experiment() {
     // Cria um novo commit com os dados atualizados
     const { data: newCommit } = await octokitClient.git.createCommit({
       owner: forkOwner,
-      repo: "testing",
+      repo: baseRepositoryName,
       message: `Send experiment N° ${experimentId}`,
       tree: data.commit.commit.tree.sha,
       parents: [baseCommitSha],
@@ -743,7 +777,7 @@ export default function Experiment() {
       adicionarPasso("Atualizando o conteúdo do arquivo na nova branch do fork...", true);
       await octokitClient.repos.createOrUpdateFileContents({
         owner: forkOwner,
-        repo: "testing",
+        repo: baseRepositoryName,
         path: filePath,
         message: `Update experiment data for experiment N° ${experimentId}`,
         content: Buffer.from(updatedContent).toString("base64"),
@@ -767,7 +801,7 @@ export default function Experiment() {
     // Mescla os commits da branch de destino do fork na nova branch do fork
     const mergeResponse = await octokitClient.repos.merge({
       owner: forkOwner,
-      repo: "testing",
+      repo: baseRepositoryName,
       base: newBranchName,
       head: baseBranchName
     });
@@ -778,8 +812,8 @@ export default function Experiment() {
     adicionarPasso("Criando uma pull request para mesclar as alterações da nova branch do fork na branch 'test' do repositório original...", true);
     // Cria uma pull request para mesclar as alterações da nova branch do fork na branch "test" do repositório original
     const pullRequest = await octokitClient.pulls.create({
-      owner: "Science-projects",
-      repo: "testing",
+      owner: baseRepositoryOwnerName,
+      repo: baseRepositoryName,
       title: `Update experiment data for experiment N° ${experimentId}`,
       body: "Please review and approve this update to the experiment data.",
       head: `${forkOwner}:${newBranchName}`,
@@ -879,6 +913,8 @@ export default function Experiment() {
 
       // Simulando o progresso do upload
       uploadProgress = setInterval(() => {
+        console.log("imagem selecionada: " + selectedImage?.name);
+
         setUploadStatus((prevStatus) => {
           const progress = parseInt(prevStatus.split(' ')[1]);
           const newProgress = progress + 100;
@@ -900,9 +936,12 @@ export default function Experiment() {
   
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    console.log(file)
+
   
     if (file) {
       setSelectedImage(file);
+      console.log(selectedImage)
       const imageURL = URL.createObjectURL(file);
       setImagePreviewURL(imageURL);
       setIsImageConfirmed(true);
@@ -991,8 +1030,6 @@ export default function Experiment() {
     imagePath: string; // Adiciona a rota da imagem ao objeto Method
   }
   
-  
-
   const [tempMethods, setTempMethods] = useState<Method[]>([]);
   const [newMethod, setNewMethod] = useState('');
   const [newMethodVisible, setNewMethodVisible] = useState(false);
@@ -1002,10 +1039,11 @@ export default function Experiment() {
   
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   
-  const handleMethodTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMethodTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
     setNewMethod(value);
   };
+  
   
   const handleAddMethod = () => {
     setNewMethodVisible(true);
@@ -1013,10 +1051,10 @@ export default function Experiment() {
   
   const handleConfirmAddMethod = () => {
     if (newMethod !== '') {
-      const newMethodObj: Method = { id: nextMethodId, content: newMethod, imagePath: '' }; // Inicializa imagePath como vazio
+      const newMethodObj: Method = { id: nextMethodId, content: newMethod, imagePath: '' };
       setTempMethods((prevMethods) => [...prevMethods, newMethodObj]);
       setExperimentData((prevData: any) => {
-        const newMethods = [...prevData.methods, { id: nextMethodId, content: newMethod, imagePath: '' }]; // Inicializa imagePath como vazio
+        const newMethods = [...prevData.methods, { id: nextMethodId, content: newMethod, imagePath: '' }];
         return { ...prevData, methods: newMethods };
       });
   
@@ -1026,7 +1064,6 @@ export default function Experiment() {
     }
   };
   
-  
   const handleCancelAddMethod = () => {
     setNewMethod('');
     setNewMethodVisible(false);
@@ -1035,9 +1072,10 @@ export default function Experiment() {
   const handleEditMethod = (method: Method) => {
     setEditMethod(method);
   };
-  
+ 
   const handleSaveMethod = () => {
     if (editMethod) {
+
       const updatedMethods = tempMethods.map((m) =>
         m.id === editMethod.id ? { ...m, content: editMethod.content } : m
       );
@@ -1051,6 +1089,8 @@ export default function Experiment() {
       setEditMethod(null);
     }
   };
+  
+  
   
   const handleDeleteMethod = (id: number, index: number) => {
     const methodToDelete = tempMethods.find(method => method.id === id);
@@ -1074,9 +1114,6 @@ export default function Experiment() {
       methods: prevData.methods.filter((m: any) => m.id !== id),
     }));
   };
-  
-  
-  
 
   const handleMethodImageChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -1504,63 +1541,60 @@ setExperimentData((prevData: any) => {
   
 
   <div className="mt-8">
-      <label htmlFor="title" className="block text-gray-700 mb-1">
-        Objetivos
-      </label>
+    <label htmlFor="title" className="block text-gray-700 mb-1">
+      Objetivos
+    </label>
 
-      {tempObjectives.map((objective, index) => (
-        <div key={objective.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="mr-4 block mb-1">{`${index + 1}° Objetivo`}</label>
-          <div className="flex flex-col md:flex-row md:items-center flex-grow">
-            {editObjective && editObjective.id === objective.id ? (
-              <input
-                className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                type="text"
-                value={editObjective.objectiveText}
-                onChange={(event) => setEditObjective({ ...editObjective, objectiveText: event.target.value })}
-              />
-            ) : (
-              <input
-                className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                type="text"
-                value={objective.objectiveText}
-                readOnly
-              />
-            )}
-            {editObjective && editObjective.id === objective.id ? (
-              <>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveObjective}>Salvar</button>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditObjective(null)}>Cancelar</button>
-              </>
-            ) : (
-              <>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditObjective(objective)}>Editar</button>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteObjective(objective.id)}>Excluir</button>
-              </>
-            )}
-          </div>
+    {tempObjectives.map((objective, index) => (
+      <div key={objective.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
+        <label className="mr-4 block mb-1">{`${index + 1}° Objetivo`}</label>
+        <div className="flex flex-col md:flex-row md:items-center flex-grow">
+          {editObjective && editObjective.id === objective.id ? (
+            <textarea
+              className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              value={editObjective.objectiveText}
+              onChange={(event) => setEditObjective({ ...editObjective, objectiveText: event.target.value })}
+            />
+          ) : (
+            <textarea
+              className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              value={objective.objectiveText}
+              readOnly
+            />
+          )}
+          {editObjective && editObjective.id === objective.id ? (
+            <>
+              <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveObjective}>Salvar</button>
+              <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditObjective(null)}>Cancelar</button>
+            </>
+          ) : (
+            <>
+              <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditObjective(objective)}>Editar</button>
+              <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteObjective(objective.id)}>Excluir</button>
+            </>
+          )}
         </div>
-      ))}
+      </div>
+    ))}
 
-      {tempObjectives.length < 5 && !newObjectiveVisible && (
-        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddObjective}>Adicionar +1 Objetivo</button>
-      )}
+    {tempObjectives.length < 5 && !newObjectiveVisible && (
+      <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddObjective}>Adicionar +1 Objetivo</button>
+    )}
 
-      {newObjectiveVisible && (
-        <div className="mb-4">
-          <input
-            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            type="text"
-            value={newObjective}
-            onChange={handleObjectiveTextChange}
-          />
-          <div className="mt-4 flex flex-col md:flex-row md:items-center">
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddObjective}>Adicionar Objetivo</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddObjective}>Cancelar</button>
-          </div>
+    {newObjectiveVisible && (
+      <div className="mb-4">
+        <textarea
+          className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          value={newObjective}
+          onChange={handleObjectiveTextChange}
+        />
+        <div className="mt-4 flex flex-col md:flex-row md:items-center">
+          <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddObjective}>Adicionar Objetivo</button>
+          <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddObjective}>Cancelar</button>
         </div>
-      )}
-    </div>
+      </div>
+    )}
+  </div>
 
     <div className="mt-8">
       <label htmlFor="title" className="block text-gray-700 mb-1">
@@ -1630,9 +1664,8 @@ setExperimentData((prevData: any) => {
     <div key={method.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
       <label className="mr-4 block mb-1">{`${index + 1}° Método`}</label>
       <div className="flex flex-col md:flex-row md:items-center flex-grow">
-        <input
+        <textarea
           className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          type="text"
           value={method.content}
           readOnly={!editMethod || editMethod.id !== method.id}
           onChange={(event) => {
@@ -1683,9 +1716,8 @@ setExperimentData((prevData: any) => {
 
   {newMethodVisible && (
     <div className="mb-4">
-      <input
+      <textarea
         className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        type="text"
         value={newMethod}
         onChange={handleMethodTextChange}
       />
@@ -1697,6 +1729,7 @@ setExperimentData((prevData: any) => {
     </div>
   )}
 </div>
+
 
 
 
@@ -1778,7 +1811,7 @@ setExperimentData((prevData: any) => {
 </div>
 
 
-<button className="flex items-center justify-center mt-4 px-6 py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+<button onClick={handleSend} className="flex items-center justify-center mt-4 px-6 py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
   <span>Enviar Experimento</span>
   <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
