@@ -18,6 +18,7 @@ import { Octokit } from "@octokit/rest";
 import bnccData from "../../app/api/data/bncc.json"
 import locationData from "../../app/api/data/location.json"
 import topicGeneralData from "../../app/api/data/experimentGeneralData.json"
+import targetAudience from "../../app/api/data/targetAudience.json"
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -45,10 +46,17 @@ interface LocalizationTopic {
   slug: string;
 }
 
+interface TargetAudienceTopic {
+  id: number;
+  title: string;
+  slug: string;
+}
+
 export default function Experiment() { 
   
   const [experimentLocationData] = useState(locationData);
   const [experimentGeneralData] = useState(topicGeneralData);
+  const [experimentTargetAudienceData] = useState(targetAudience);
   const [copied, setCopied] = useState(false); 
   const [apiToken, setApiToken] = useState('');
   const [username, setUsername] = useState('');
@@ -73,6 +81,7 @@ export default function Experiment() {
     results: '',
     scientificExplanation: '',
     references: [],
+    targetAudience: [],
   });
   
   const handleGeneralSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -162,6 +171,33 @@ export default function Experiment() {
   
     event.target.value = ""; // Limpa o valor selecionado
   };
+
+  const handleSelectAudienceChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    const selectedAudience = experimentTargetAudienceData.find((audience: TargetAudienceTopic) => audience.slug === value);
+
+    if (selectedAudience) {
+      const isAudienceAlreadySelected = experimentData.targetAudience.some(
+        (audience: any) => audience.title === selectedAudience.title
+      );
+
+      if (!isAudienceAlreadySelected) {
+        setExperimentData((prevData: any) => ({
+          ...prevData,
+          targetAudience: [
+            ...prevData.targetAudience,
+            {
+              id: selectedAudience.id,
+              title: selectedAudience.title,
+              slug: selectedAudience.slug,
+            },
+          ],
+        }));
+      }
+    }
+
+    event.target.value = ""; // Limpa o valor selecionado
+  };
   
   const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -203,6 +239,13 @@ export default function Experiment() {
       topicLocation: prevData.topicLocation.filter((topic: Topic) => topic.id !== id), // Remove a div com o id correspondente
     }));
   };
+
+  const handleRemoveAudience = (id: number) => {
+    setExperimentData((prevData) => ({
+      ...prevData,
+      targetAudience: prevData.targetAudience.filter((audience: TargetAudienceTopic) => audience.id !== id),
+    }));
+  };
   
   const isGeneralTopicSelected = (slug: any) => {
     return experimentData.topicGeneral.some((topic: Topic) => topic.slug === slug);
@@ -216,6 +259,10 @@ export default function Experiment() {
 
   const isTopicSelectedLocalization = (slug: any) => {
     return experimentData.topicLocation.some((topic: LocalizationTopic) => topic.slug === slug);
+  };
+
+  const isAudienceSelected = (slug: any) => {
+    return experimentData.targetAudience.some((audience: TargetAudienceTopic) => audience.slug === slug);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -1463,7 +1510,52 @@ setExperimentData((prevData: any) => {
   </div>
 </div>
 
+
+<div className="mb-4">
+      <label htmlFor="topicAudience" className="block text-gray-700 mb-1">
+        Target Audience Topic
+      </label>
+      <select
+        id="topicAudience"
+        onChange={handleSelectAudienceChange}
+        name="topicAudience"
+        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
+        defaultValue=""
+      >
+        <option value="">Selecione um tópico</option>
+        {experimentTargetAudienceData.map((audience) => (
+          <option
+            key={audience.id}
+            value={audience.slug}
+            disabled={isAudienceSelected(audience.slug)}
+            className="bg-white"
+          >
+            {audience.title}
+          </option>
+        ))}
+      </select>
+
+      <div className="mt-2">
+        {experimentData.targetAudience.map((audience: TargetAudienceTopic) => (
+          <div key={audience.id} className="bg-gray-100 p-2 rounded-md inline-block mb-2">
+            {audience.title}
+            <button onClick={() => handleRemoveAudience(audience.id)} className="ml-2 text-red-500 focus:outline-none">
+              X
+            </button>
+          </div>
+        ))}
+
+        {experimentData.targetAudience.length === 0 && (
+          <div className="text-red-500 mt-2">
+            Selecione pelo menos um tópico sobre o público-alvo do experimento.
+          </div>
+        )}
+      </div>
+    </div>
 </div>
+
+
+
 
 <div className="border border-gray-200 rounded-lg p-6 mb-6">
   <h2 className="text-lg font-semibold mb-4">Etapa 3: Informações Básicas</h2>
@@ -1773,7 +1865,9 @@ setExperimentData((prevData: any) => {
 
 
 <div className="mt-8">
-      <h1 className="text-xl font-semibold mb-2">Referências</h1>
+   
+    <span className="text-gray-700">Referências</span>
+
 
       {tempReferences.map((reference, index) => (
         <div key={reference.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
