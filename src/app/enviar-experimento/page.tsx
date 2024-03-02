@@ -1067,27 +1067,43 @@ await handleImageUploadMethod();
   const handleCancelAddMethod = () => {
     setNewMethod('');
     setNewMethodVisible(false);
+    setEditMethod(null);
+    // Voltar para o valor anterior ao clicar em editar
+    if (editMethod) {
+      setTempMethods(prevMethods => {
+        const updatedMethods = prevMethods.map(method => {
+          if (method.id === editMethod.id) {
+            return { ...method, content: editMethod.content };
+          }
+          return method;
+        });
+        return updatedMethods;
+      });
+    }
   };
+  
   
   const handleEditMethod = (method: Method) => {
     setEditMethod(method);
   };
  
-  const handleSaveMethod = () => {
-    if (editMethod) {
-
-      const updatedMethods = tempMethods.map((m) =>
-        m.id === editMethod.id ? { ...m, content: editMethod.content } : m
+  const handleSaveMethod = (index: any) => {
+    const methodToSave = tempMethods[index];
+  
+    // Verifica se experimentData e experimentData.methods estão definidos
+    if (experimentData && experimentData.methods) {
+      const updatedMethods = tempMethods.map((m, i) =>
+        i === index ? { ...m, content: methodToSave.content } : m
       );
       setTempMethods(updatedMethods);
   
       const dataMethods = experimentData.methods.map((m: any) =>
-        m.id === editMethod.id ? { ...m, content: editMethod.content } : m
+        m.id === methodToSave.id ? { ...m, content: methodToSave.content } : m
       );
       setExperimentData((prevData: any) => ({ ...prevData, methods: dataMethods }));
-  
-      setEditMethod(null);
     }
+    
+    setEditMethod(null)
   };
   
   
@@ -1673,8 +1689,10 @@ setExperimentData((prevData: any) => {
             updatedMethods[index] = { ...updatedMethods[index], content: event.target.value };
             setTempMethods(updatedMethods);
           }}
+          style={{ cursor: !editMethod ? 'not-allowed' : 'auto' }}
         />
         <div>
+          {/* Parte da imagem */}
           <input
             type="file"
             accept="image/*"
@@ -1697,8 +1715,8 @@ setExperimentData((prevData: any) => {
         </div>
         {editMethod && editMethod.id === method.id ? (
           <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveMethod}>Salvar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditMethod(null)}>Cancelar</button>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={() => handleSaveMethod(index)}>Salvar</button>
+            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMethod}>Cancelar</button>
           </>
         ) : (
           <>
@@ -1729,6 +1747,10 @@ setExperimentData((prevData: any) => {
     </div>
   )}
 </div>
+
+
+
+
 
 
 
