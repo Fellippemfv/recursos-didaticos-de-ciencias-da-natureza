@@ -6,6 +6,7 @@ import { ptBR } from 'date-fns/locale';
 import styles from './page.module.css' 
 import { GrNext } from 'react-icons/gr';
 import { MdCheck } from 'react-icons/md';
+import { RiAddLine } from 'react-icons/ri';
 
 import { FiUploadCloud } from 'react-icons/fi';
 import { ImFilePicture } from 'react-icons/im';
@@ -22,6 +23,10 @@ import targetAudience from "../../app/api/data/targetAudience.json"
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 // Crie uma instância do Octokit
 const octokit = new Octokit();
@@ -1265,34 +1270,8 @@ setExperimentData((prevData: any) => {
   return ( 
     <>
 
-    <div className={`${styles.container} ${isSending ? styles.hide : ""}`}>
-
-    <div>
-
-
-    <div className={`${styles.container} ${isSending ? styles.hide : ''}`}>
-      <div>
-        {isLoading ? ( // Verificar se isLoading é verdadeiro para exibir o indicador de carregamento
-         <div className={styles.loading}>
-         <div className={styles.spinner}></div>
-         <p>Carregando...</p>
-       </div>
-        ) : username ? (
-          <div>
-<div className="flex justify-center">
-  <div className="flex flex-col justify-center items-center w-full bg-green-500 text-white p-4 rounded-lg">
-    <p className="mb-2">
-      Agora você está habilitado para enviar seu experimento!
-    </p>
-    <button onClick={handleBackToHome} className="px-4 py-2 bg-white text-green-500 rounded-md focus:outline-none hover:bg-gray-200">
-      Mudar usuário
-    </button>
-  </div>
-</div>
-
-
-            
-            <div className={styles.form}>
+    <div className='' >
+    <div className={styles.form}>
 
 
 
@@ -1307,10 +1286,11 @@ setExperimentData((prevData: any) => {
   <h2 className="text-lg font-semibold mb-4">Etapa 1: Informações Gerais</h2>
 
   <div className="mb-4">
-    <label htmlFor="id" className="block text-gray-700 mb-1">
-      ID:
-    </label>
-    <input
+  <Label htmlFor="message-2">ID Único</Label>
+  <p className="mt-2 mb-4 text-sm text-muted-foreground">
+    O "ID" é gerado automaticamente, seria o numero de identificação do experimento e deve servir para adicionar e editar o experimento na plataforma do github.
+  </p>
+    <Input
       id="id"
       type="text"
       name="id"
@@ -1322,10 +1302,11 @@ setExperimentData((prevData: any) => {
   </div>
 
   <div className="mb-4">
-    <label htmlFor="postDate" className="block text-gray-700 mb-1">
-      Post Date:
-    </label>
-    <input
+  <Label htmlFor="message-2">Data de postagem</Label>
+  <p className="mt-2 mb-4 text-sm text-muted-foreground">
+    A data é gerada automaticamente, deve servir para adicionar a pagina do experimento o dia e hora que ele foi enviado.
+  </p>
+    <Input
       id="postDate"
       type="text"
       name="postDate"
@@ -1337,17 +1318,22 @@ setExperimentData((prevData: any) => {
   </div>
 
   <div className="mb-4">
-    <label htmlFor="profileName" className="block text-gray-700 mb-1">
-      Profile Name:
-    </label>
-    <input
+  <Label htmlFor="message-2">Nome do autor/da autora</Label>
+  <p className="mt-2 mb-4 text-sm text-muted-foreground">
+    O nome do autor/da autora, é a identificação de quem enviou os dados do experimento, vai aparecer dentro da pagina do experimento para sabermos quem enviou.
+  </p>
+    <Input
+    placeholder='Clique e escreva seu nome.'
       id="profileName"
       type="text"
       name="profileName"
       value={experimentData.profileName}
       onChange={handleInputChange}
-      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+      className="max-w-40rem px-4 mb-2 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
     />
+    <p className="text-sm text-muted-foreground">
+    Insira entre 10-300 caracteres.
+  </p>
   </div>
 </div>
 
@@ -1558,26 +1544,34 @@ setExperimentData((prevData: any) => {
 
 
 <div className="border border-gray-200 rounded-lg p-6 mb-6">
-  <h2 className="text-lg font-semibold mb-4">Etapa 3: Informações Básicas</h2>
+  <h2 className="text-lg font-semibold mb-4">Etapa 3: Informações Básicas do experimento</h2>
 
   <div className="mb-4">
-    <label htmlFor="title" className="block text-gray-700 mb-1">
-      Title:
-    </label>
-    <input
-      id="title"
-      type="text"
-      name="title"
-      onChange={handleInputChange}
-      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-    />
-  </div>
+  <Label htmlFor="title">Título:</Label>
+  <p className="mt-2 mb-4 text-sm text-muted-foreground">
+    O título é uma parte crucial da identificação do seu experimento. Por favor, seja claro e descritivo, de preferência faça algo chamativo.
+  </p>
+  <Input
+    placeholder='Insira o título aqui.'
+    id="title"
+    type="text"
+    name="title"
+    onChange={handleInputChange}
+    className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+    
+  />
+   <p className="text-sm text-muted-foreground">
+    Insira entre 10-300 caracteres.
+  </p>
+</div>
+
 
   <div className="mb-4">
-    <label htmlFor="slug" className="block text-gray-700 mb-1">
-      Slug:
-    </label>
-    <input
+  <Label htmlFor="title">Slug</Label>
+  <p className="mt-2 mb-4 text-sm text-muted-foreground">
+    O slug é gerado atomaticamente, e ele é basicamente o endereço onde vamos encontrar o experimento, por isso ele não deve ser igual a nenhum já cadastrado.
+  </p>
+    <Input
       id="slug"
       type="text"
       name="slug"
@@ -1588,203 +1582,275 @@ setExperimentData((prevData: any) => {
     />
   </div>
 
-  <label className="block mb-4">
-  <span className="text-gray-700">Imagem de preview:</span>
-</label>
+  <Label>
+    Imagem de Preview
+  </Label>
 
-<div className="bg-white rounded-lg p-4 mb-4">
-  <div className="flex flex-col items-center">
-    {imagePreviewURL && (
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold mb-2">Preview:</h3>
-        <img className="max-h-40  w-full max-w-lg h-auto mb-2" src={imagePreviewURL} alt="Preview" />
-      </div>
-    )}
+  <p className="mt-2 mb-4 text-sm text-muted-foreground">
+      Insira uma imagem para visualização prévia. Esta imagem será exibida como um preview do seu experimento. Escolha uma imagem que represente o experiment como um todo para aparecer na página de busca, veja algo bem chamativo.
+    </p>
 
-    <div className="flex flex-col items-center mb-4">
-      {selectedImage && (
-        <div className="flex flex-col items-center">
-          <div className="flex items-center mb-2">
-            <ImFilePicture className="text-2xl mr-2" />
-            <div>
-              <h2 className="text-lg font-semibold">{selectedImage.name}</h2>
-              <span>{`${selectedImage.size} bytes`}</span>
-            </div>
-          </div>
-          <div className="w-full bg-gray-200 rounded-lg">
-            <div className="bg-blue-500 rounded-lg" style={{ width: getProgressBarWidth(), height: '4px' }}></div>
-          </div>
-          <span className="mt-2">{uploadStatus}</span>
+
+
+    <div className="flex flex-col items-center">
+  <div className="flex flex-col md:flex-row items-start justify-center md:justify-center w-full">
+    <div className="mb-4 md:mb-0">
+      {imagePreviewURL && (
+        <div className="mb-4 mr-8">
+          <h3 className="text-lg font-semibold mb-2">Preview:</h3>
+          <img className="max-h-40 w-auto mb-2" src={imagePreviewURL} alt="Preview" />
         </div>
       )}
 
-      {selectedImage && (
-        <div className="mt-4">
-          <button className="px-4 py-2 bg-red-500 text-white rounded-lg" onClick={handleRemoveImage}>Remover Imagem</button>
+      {!imagePreviewURL && (
+        <div className="flex flex-col items-center cursor-pointer" id={styles.upload}>
+          <FiUploadCloud className="text-4xl mb-2" />
+          <h1 className="text-lg font-semibold mb-1">Importe sua imagem</h1>
+          <p className="mb-2 px-8 text-sm">Arraste ou clique para fazer upload</p>
+          <input type="file" className="hidden" id="imageUpload" accept="image/*" onChange={handleImageChange} disabled={isImageConfirmed} />
         </div>
       )}
     </div>
 
-    {!imagePreviewURL && (
-      <div className="flex flex-col items-center" id={styles.upload}>
-        <FiUploadCloud className="text-4xl mb-2" />
-        <h1 className="text-lg font-semibold mb-1">Importe seus arquivos</h1>
-        <p className="mb-2">Arraste ou clique para fazer upload</p>
-        <input type="file" className="hidden" id="imageUpload" accept="image/*" onChange={handleImageChange} disabled={isImageConfirmed} />
+    <div className="">
+      <div className="flex flex-col items-center">
+        {selectedImage && (
+          <div className="flex flex-col items-center border border-gray-300 rounded-lg p-4">
+            <ImFilePicture className="text-4xl mb-2 text-gray-700" />
+            <h2 className="text-lg font-semibold text-gray-900">{selectedImage.name}</h2>
+            <span className="mt-2 text-gray-500">{uploadStatus}</span>
+            <Button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600" onClick={handleRemoveImage}>Remover Imagem</Button>
+            
+          </div> 
+        )}
       </div>
-    )}
+    </div>
   </div>
 </div>
 
 
 
-  <label className="block mb-4">
-    <span className="text-gray-700">Description:</span>
-    <textarea className="block w-full h-32 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" name="description" onChange={handleInputChange} />
-  </label>
+
+
+
+
+<div className="grid w-full gap-1.5">
+<Label className='mb-2' htmlFor="message-2">Descrição</Label>
+<p className="mb-2 text-sm text-muted-foreground">
+    Forneça uma descrição objetiva, detalhada e concisa do seu experimento, escreva de forma que fique chamativo e atraia as pessoas a acessarem. Essa descrição vai aparecer na página de procurar experimentos, logo, seja breve.
+</p>
+
+  <Textarea
+    placeholder="Clique e escreva a sua descrição."
+    id="message-2"
+    className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+ name="description"
+    onChange={handleInputChange}
+    minLength={10}
+    maxLength={300}
+  />
+  <p className="text-sm text-muted-foreground">
+    Insira entre 10-300 caracteres.
+  </p>
+ 
+    </div>
+
 </div>
+
+
 
 <div className="border border-gray-200 rounded-lg p-6 mb-6">
   <h2 className="text-lg font-semibold mb-4">Etapa 4: Informações Complementares</h2>
   
 
   <div className="mt-8">
-    <label htmlFor="title" className="block text-gray-700 mb-1">
-      Objetivos
-    </label>
+  <Label className='mb-2' htmlFor="objectives">Objetivos</Label>
+<p className="mb-2 text-sm text-muted-foreground">
+    Liste os objetivos do experimento no infinitivo, ou seja, descreva o que se pretende alcançar de forma clara e sucinta. Certifique-se de incluir todos os objetivos que o experimento visa alcançar. Por exemplo, "analisar", "comparar", "avaliar", entre outros. Cada objetivo deve estar descrito no infinitivo e de forma distinta.
+</p>
 
-    {tempObjectives.map((objective, index) => (
-      <div key={objective.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
-        <label className="mr-4 block mb-1">{`${index + 1}° Objetivo`}</label>
-        <div className="flex flex-col md:flex-row md:items-center flex-grow">
-          {editObjective && editObjective.id === objective.id ? (
-            <textarea
-              className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              value={editObjective.objectiveText}
-              onChange={(event) => setEditObjective({ ...editObjective, objectiveText: event.target.value })}
-            />
-          ) : (
-            <textarea
-              className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              value={objective.objectiveText}
-              readOnly
-            />
-          )}
-          {editObjective && editObjective.id === objective.id ? (
-            <>
-              <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveObjective}>Salvar</button>
-              <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditObjective(null)}>Cancelar</button>
-            </>
-          ) : (
-            <>
-              <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditObjective(objective)}>Editar</button>
-              <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteObjective(objective.id)}>Excluir</button>
-            </>
-          )}
-        </div>
+
+  {tempObjectives.map((objective, index) => (
+    <div key={objective.id} className="border border-solid border-gray-300 rounded-md p-4 mb-4">
+      <div className="flex items-center mb-2">
+        <Label className="mr-4 block font-semibold">{`${index + 1}° Objetivo:`}</Label>
       </div>
-    ))}
-
-    {tempObjectives.length < 5 && !newObjectiveVisible && (
-      <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddObjective}>Adicionar +1 Objetivo</button>
-    )}
-
-    {newObjectiveVisible && (
-      <div className="mb-4">
-        <textarea
-          className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          value={newObjective}
-          onChange={handleObjectiveTextChange}
-        />
-        <div className="mt-4 flex flex-col md:flex-row md:items-center">
-          <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddObjective}>Adicionar Objetivo</button>
-          <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddObjective}>Cancelar</button>
-        </div>
-      </div>
-    )}
-  </div>
-
-    <div className="mt-8">
-      <label htmlFor="title" className="block text-gray-700 mb-1">
-        Materiais
-      </label>
-
-      {tempMaterials.map((material, index) => (
-        <div key={material.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="mr-4 block mb-1">{`${index + 1}° Material`}</label>
-          <div className="flex flex-col md:flex-row md:items-center flex-grow">
-            {editMaterial && editMaterial.id === material.id ? (
-              <input
-                className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                type="text"
-                value={editMaterial.materialText}
-                onChange={(event) => setEditMaterial({ ...editMaterial, materialText: event.target.value })}
-              />
-            ) : (
-              <input
-                className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                type="text"
-                value={material.materialText}
-                readOnly
-              />
-            )}
-            {editMaterial && editMaterial.id === material.id ? (
-              <>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveMaterial}>Salvar</button>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditMaterial(null)}>Cancelar</button>
-              </>
-            ) : (
-              <>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditMaterial(material)}>Editar</button>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteMaterial(material.id)}>Excluir</button>
-              </>
-            )}
-          </div>
-        </div>
-      ))}
-
-      {tempMaterials.length < 5 && !newMaterialVisible && (
-        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddMaterial}>Adicionar +1 Material</button>
-      )}
-
-      {newMaterialVisible && (
-        <div className="mb-4">
-          <input
-            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            type="text"
-            value={newMaterial}
-            onChange={handleMaterialTextChange}
+      <div>
+        {editObjective && editObjective.id === objective.id ? (
+          <>
+           <Textarea
+            placeholder="Clique e escreva um objetivo."
+            className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+ value={editObjective.objectiveText}
+            onChange={(event) => setEditObjective({ ...editObjective, objectiveText: event.target.value })}
           />
-          <div className="mt-4 flex flex-col md:flex-row md:items-center">
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMaterial}>Adicionar Material</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMaterial}>Cancelar</button>
-          </div>
-        </div>
-      )}
+          <p className="text-sm text-muted-foreground">
+          Insira entre 10-300 caracteres.
+          </p>
+          </>
+         
+          
+        ) : (
+          <>
+           <Textarea
+            placeholder="Clique e escreva um objetivo."
+            className="mb-2 cursor-not-allowed max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+ value={objective.objectiveText}
+            readOnly
+          />
+          <p className="text-sm text-muted-foreground">
+          Insira entre 10-300 caracteres.
+          </p>
+          </>
+         
+        )}
+      </div>
+
+      <div className="flex justify-end">
+        {editObjective && editObjective.id === objective.id ? (
+          <>
+            <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleSaveObjective}>Salvar</Button>
+            <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={() => setEditObjective(null)}>Cancelar</Button>
+          </>
+        ) : (
+          <>
+            <Button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditObjective(objective)}>Editar</Button>
+            <Button className="px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteObjective(objective.id)}>Excluir</Button>
+          </>
+        )}
+      </div>
     </div>
+  ))}
+
+  {tempObjectives.length < 5 && !newObjectiveVisible && (
+    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddObjective}>
+      <RiAddLine className="h-5 w-5 mr-2" />
+      <span>Adicionar novo Objetivo</span>
+    </Button>
+  )}
+
+  {newObjectiveVisible && (
+    <div className="border border-solid border-gray-300 rounded-md p-4 mb-4">
+      <Textarea
+        placeholder="Clique e escreva um objetivo."
+        className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+ value={newObjective}
+        onChange={handleObjectiveTextChange}
+      />
+      <p className="text-sm text-muted-foreground">
+          Insira entre 10-300 caracteres.
+          </p>
+      <div className="mt-4 flex justify-end">
+        <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleConfirmAddObjective}>Adicionar Objetivo</Button>
+        <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddObjective}>Cancelar</Button>
+      </div>
+    </div>
+  )}
+</div>
+
+
+<div className="mt-8">
+<Label className='mb-2' htmlFor="materials">Materiais Necessários</Label>
+<p className="mb-2 text-sm text-muted-foreground">
+    Liste os materiais essenciais para a realização do experimento. Certifique-se de incluir tudo o que os participantes precisarão para realizar o experimento com sucesso. Por exemplo, inclua computador, tablet ou smartphone com acesso à internet, bem como qualquer outro material. Adicione a quantidade e o nome de cada material.
+</p>
+
+  {tempMaterials.map((material, index) => (
+    <div key={material.id} className="border-b border-solid border-darkgray pb-2 mb-4">
+      <label className="block mb-1">{`${index + 1}° Material`}</label>
+      <div className="flex flex-col">
+        {editMaterial && editMaterial.id === material.id ? (
+          <Input
+            className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none mb-2"
+            type="text"
+            value={editMaterial.materialText}
+            onChange={(event) => setEditMaterial({ ...editMaterial, materialText: event.target.value })}
+          />
+        ) : (
+          <Input
+            className="cursor-not-allowed max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none mb-2"
+            type="text"
+            value={material.materialText}
+            readOnly
+          />
+        )}
+        <p className="text-sm text-muted-foreground mb-2">Insira entre 10-300 caracteres.</p>
+        <div className="flex justify-end">
+          {editMaterial && editMaterial.id === material.id ? (
+            <>
+              <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleSaveMaterial}>Salvar</Button>
+              <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={() => setEditMaterial(null)}>Cancelar</Button>
+            </>
+          ) : (
+            <>
+              <Button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditMaterial(material)}>Editar</Button>
+              <Button className="px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMaterial(material.id)}>Excluir</Button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  ))}
+
+  {tempMaterials.length < 5 && !newMaterialVisible && (
+    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddMaterial}>
+    <RiAddLine className="h-5 w-5 mr-2" />
+    <span>Adicionar novo Material</span>
+  </Button>
+  
+  )}
+
+  {newMaterialVisible && (
+    <div className="mb-4">
+      <Input
+        className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none mb-2"
+        type="text"
+        value={newMaterial}
+        onChange={handleMaterialTextChange}
+      />
+      <p className="text-sm text-muted-foreground mb-2">Insira entre 10-300 caracteres.</p>
+      <div className="flex justify-end">
+        <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleConfirmAddMaterial}>Adicionar Material</Button>
+        <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddMaterial}>Cancelar</Button>
+      </div>
+    </div>
+  )}
+</div>
+
+
+
+
+
 
     <div className="mt-8">
-  <label htmlFor="title" className="block text-gray-700 mb-1">
-    Métodos
-  </label>
+    <Label className='mb-2' htmlFor="message-2">Passo a passo</Label>
+<p className="mb-2 text-sm text-muted-foreground">
+    Forneça uma descrição objetiva, detalhada e concisa de cada passo para a realização do seu experimento, escreva de forma que fique claro o que devemos realizar, por isso, separe em passos.
+</p>
 
   {tempMethods.map((method, index) => (
-    <div key={method.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
-      <label className="mr-4 block mb-1">{`${index + 1}° Método`}</label>
-      <div className="flex flex-col md:flex-row md:items-center flex-grow">
-        <textarea
-          className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          value={method.content}
-          readOnly={!editMethod || editMethod.id !== method.id}
-          onChange={(event) => {
-            const updatedMethods = [...tempMethods];
-            updatedMethods[index] = { ...updatedMethods[index], content: event.target.value };
-            setTempMethods(updatedMethods);
-          }}
-          style={{ cursor: !editMethod ? 'not-allowed' : 'auto' }}
-        />
-        <div>
-          {/* Parte da imagem */}
+    <div key={method.id} className="border border-solid border-darkgray rounded-md p-4 mb-4">
+      <div className="flex items-center mb-2">
+        <label className="block mb-1">{`${index + 1}° Passo`}</label>
+      </div>
+      <div className="flex flex-col md:flex-column md:items-center">
+        <div className="w-full flex-grow mb-4 md:mb-0 md:mr-4">
+          <Textarea
+            className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+            value={method.content}
+            readOnly={!editMethod || editMethod.id !== method.id}
+            onChange={(event) => {
+              const updatedMethods = [...tempMethods];
+              updatedMethods[index] = { ...updatedMethods[index], content: event.target.value };
+              setTempMethods(updatedMethods);
+            }}
+            style={{ cursor: !editMethod ? 'not-allowed' : 'auto' }}
+          />
+            <p className="text-sm text-muted-foreground">
+              Insira entre 10-300 caracteres.
+            </p>
+        </div>
+        <div className='w-full'>
           <input
             type="file"
             accept="image/*"
@@ -1792,28 +1858,42 @@ setExperimentData((prevData: any) => {
             onChange={(event) => handleMethodImageChange(index, event)}
             className="hidden"
           />
-          <label htmlFor={`imageMethod${index + 1}Upload`} className="cursor-pointer">
+          <label htmlFor={`imageMethod${index + 1}Upload`} className="cursor-pointer w-full flex justify-center mt-8">
             {previewImages[index] ? (
-              <img src={previewImages[index]} alt={`Imagem do método ${index + 1}`} className="w-24 h-24 object-cover rounded-md mr-2" />
+              <img src={previewImages[index]} alt={`Imagem do método ${index + 1}`} className="w-auto max-w-48 object-cover rounded-md mr-2" />
             ) : (
-              <div className="w-24 h-24 border border-dashed border-gray-300 rounded-md flex items-center justify-center mr-2">
-                Arraste ou clique para adicionar a imagem
-              </div>
+              
+              <div className="max-w-80 p-4 w-400 h-200 border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer">
+              <FiUploadCloud className="text-4xl mb-2" />
+              <h1 className="text-lg font-semibold mb-1">Importe sua imagem</h1>
+              <p className="mb-2 px-8 text-sm">Arraste ou clique para fazer upload</p>
+              <input type="file" className="hidden" id="imageUpload" accept="image/*"  onChange={(event) => handleMethodImageChange(index, event)} disabled={isImageConfirmed} />
+            </div>
+            
+            
             )}
           </label>
           {previewImages[index] && (
-            <button className="text-red-500 mt-2 focus:outline-none" onClick={() => handleRemoveImageMethod(index)}>Remover imagem</button>
+            
+            <Button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600" onClick={() => handleRemoveImageMethod(index)}>Remover imagem</Button>
           )}
         </div>
         {editMethod && editMethod.id === method.id ? (
+
           <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={() => handleSaveMethod(index)}>Salvar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMethod}>Cancelar</button>
+            <div className='w-full flex justify-end mt-4'>
+            <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={() => handleSaveMethod(index)}>Salvar</Button>
+            <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddMethod}>Cancelar</Button>
+            </div>
+           
           </>
         ) : (
           <>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditMethod(method)}>Editar</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteMethod(method.id, index)}>Excluir</button>
+            <div className='w-full flex justify-end mt-4'>
+            <Button className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditMethod(method)}>Editar</Button>
+            <Button className="mt-2 ml-2 md:mt-0 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>Excluir</Button>
+            </div>
+            
           </>
         )}
       </div>
@@ -1821,16 +1901,22 @@ setExperimentData((prevData: any) => {
   ))}
 
   {tempMethods.length < 5 && !newMethodVisible && (
-    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddMethod}>Adicionar +1 Método</button>
+     <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddMethod}>
+     <RiAddLine className="h-5 w-5 mr-2" />
+     <span>Adicionar novo Passo</span>
+   </Button>
   )}
 
   {newMethodVisible && (
     <div className="mb-4">
-      <textarea
-        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+      <Textarea
+        className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
         value={newMethod}
         onChange={handleMethodTextChange}
       />
+       <p className="text-sm text-muted-foreground">
+    Insira entre 10-300 caracteres.
+  </p>
 
       <div className="mt-4 flex flex-col md:flex-row md:items-center">
         <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMethod}>Adicionar Método</button>
@@ -1847,81 +1933,119 @@ setExperimentData((prevData: any) => {
 
 
 
-  <div className="mt-8">
-  <label htmlFor="title" className="block text-gray-700 mb-1">
-  Results
-    </label>
 
-  <textarea className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" name="results" onChange={handleInputChange} />
+<div className="grid w-full gap-1.5 mt-8 ">
+  <Label className='mb-2' htmlFor="message-2">Resultados do Experimento</Label>
+  <p className="mb-2 text-sm text-muted-foreground">
+    Insira os resultados obtidos a partir da realização do experimento. Seja claro e objetivo para que outros usuários possam entender facilmente o que deve ocorrer ao final da sua realização, mais especificamente o que devemos observar após o realizar todas as etapas da metodologia.
+  </p>
+
+  <Textarea
+    placeholder="Clique e escreva os resultados do seu experimento."
+    id="message-2"
+    className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+    name="results"
+    onChange={handleInputChange}
+    minLength={10}
+    maxLength={300}
+  />
+  <p className="text-sm text-muted-foreground">
+    Insira entre 10-300 caracteres.
+  </p>
+</div>
+
+
+
+
+<div className="grid w-full gap-1.5 mt-8">
+  <Label className='mb-2' htmlFor="message-2">Explicação Científica</Label>
+  <p className="mb-2 text-sm text-muted-foreground">
+    Insira uma explicação científica detalhada do seu experimento. Utilize terminologia apropriada e seja claro para que outros usuários possam compreender facilmente como a ciência explica este experimento.
+  </p>
+
+  <Textarea
+    placeholder="Clique e escreva a explicação científica do seu experimento."
+    id="message-2"
+    className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+    name="scientificExplanation"
+    onChange={handleInputChange}
+    minLength={10}
+    maxLength={300}
+  />
+  <p className="text-sm text-muted-foreground">
+    Insira entre 10-300 caracteres.
+  </p>
 </div>
 
 
 <div className="mt-8">
-<label className="block mb-4">
-    <span className="text-gray-700">Scientific Explanation:</span>
-    <textarea className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" name="scientificExplanation" onChange={handleInputChange} />
-  </label>
-</div>
+  <Label htmlFor="references" className="block text-gray-700 mb-2">
+    Referências
+  </Label>
+  <p className="text-sm text-gray-500 mb-4">
+    Liste as referências utilizadas no experimento. Certifique-se de incluir todas as fontes e materiais consultados para realizar o experimento.
+  </p>
 
-
-<div className="mt-8">
-   
-    <span className="text-gray-700">Referências</span>
-
-
-      {tempReferences.map((reference, index) => (
-        <div key={reference.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="mr-4 block mb-1">{`${index + 1}° Referência`}</label>
-          <div className="flex flex-col md:flex-row md:items-center flex-grow">
-            {editReference && editReference.id === reference.id ? (
-              <input
-                className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                type="text"
-                value={editReference.referenceText}
-                onChange={(event) => setEditReference({ ...editReference, referenceText: event.target.value })}
-              />
-            ) : (
-              <input
-                className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                type="text"
-                value={reference.referenceText}
-                readOnly
-              />
-            )}
-            {editReference && editReference.id === reference.id ? (
-              <>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleSaveReference}>Salvar</button>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={() => setEditReference(null)}>Cancelar</button>
-              </>
-            ) : (
-              <>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditReference(reference)}>Editar</button>
-                <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => handleDeleteReference(reference.id)}>Excluir</button>
-              </>
-            )}
-          </div>
-        </div>
-      ))}
-
-      {tempReferences.length < 5 && !newReferenceVisible && (
-        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleAddReference}>Adicionar +1 Referência</button>
-      )}
-
-      {newReferenceVisible && (
-        <div className="mb-4">
-          <input
-            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+  {tempReferences.map((reference, index) => (
+    <div key={reference.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
+      <Label className="mr-4 block mb-1">{`${index + 1}° Referência`}</Label>
+      <div className="flex flex-col md:flex-row md:items-center flex-grow">
+        {editReference && editReference.id === reference.id ? (
+          <Input
+            className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             type="text"
-            value={newReference}
-            onChange={handleReferenceTextChange}
+            value={editReference.referenceText}
+            onChange={(event) => setEditReference({ ...editReference, referenceText: event.target.value })}
           />
-          <div className="mt-4 flex flex-col md:flex-row md:items-center">
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddReference}>Adicionar Referência</button>
-            <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddReference}>Cancelar</button>
-          </div>
+        ) : (
+          <Input
+            className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            type="text"
+            value={reference.referenceText}
+            readOnly
+          />
+        )}
+        <div>
+          {editReference && editReference.id === reference.id ? (
+            <>
+              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleSaveReference}>Salvar</Button>
+              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={() => setEditReference(null)}>Cancelar</Button>
+            </>
+          ) : (
+            <>
+              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditReference(reference)}>Editar</Button>
+              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteReference(reference.id)}>Excluir</Button>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </div>
+  ))}
+
+  {tempReferences.length < 5 && !newReferenceVisible && (
+    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddReference}>
+      <RiAddLine className="h-5 w-5 mr-2" />
+      <span>Adicionar nova Referência</span>
+    </Button>
+  )}
+
+  {newReferenceVisible && (
+    <div className="mb-4">
+      <Input
+        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        type="text"
+        value={newReference}
+        onChange={handleReferenceTextChange}
+      />
+      <div className="mt-4 flex flex-col md:flex-row md:items-center">
+        <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleConfirmAddReference}>Adicionar Referência</Button>
+        <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddReference}>Cancelar</Button>
+      </div>
+    </div>
+  )}
+</div>
+
+
 
 
 </div>
@@ -1935,7 +2059,12 @@ setExperimentData((prevData: any) => {
 </button>
 
 
-{Object.keys(experimentData).length > 0 && (
+
+  </div>
+
+</form>
+</div>
+{/* {Object.keys(experimentData).length > 0 && (
   <>
     <div className="d-flex justify-content-end">
       <button className="btn btn-outline-primary me-2" onClick={handleCopy}>
@@ -1947,79 +2076,8 @@ setExperimentData((prevData: any) => {
       {JSON.stringify(experimentData, null, 2)}
     </pre>
   </>
-)}
-
-
-  </div>
-
-</form>
-</div>
-          </div>
-        ) : (
-          <div className="flex justify-center items-center mt-32">
-          <form onSubmit={handleFormSubmit} className="max-w-sm">
-            <p className="mb-4">
-              Insira sua chave API do GitHub
-            </p>
-            <input
-              type="text"
-              id="apiTokenInput"
-              value={apiToken}
-              onChange={(event) => {
-                const token = event.target.value;
-                setApiToken(token);
-                localStorage.setItem('githubApiToken', token);
-              }}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            />
-            <div className="flex justify-center">
-              <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600">
-                Adicionar chave
-              </button>
-            </div>
-          </form>
-        </div>
-        
-        )}
-      </div>
+)} */}
     </div>
-
-     
-
-      
-
-
-    </div>
-
-
-
-
-
-
-
-
-    </div>
-
-
-    <div className={`${styles.experimentContainer} ${isSending ? "" : styles.hide}`}>
-      {isDivHidden &&  <div className={`${styles.successDiv} ${isDivHidden ? styles.hidden : ''}`}>
-        <h2 id="mensagem-final">Experimento enviado com sucesso!</h2>
-        <p>Seu experimento foi enviado para análise.</p>
-        <Link href="/">Clique aqui para ir a pagina inicial</Link>
-      </div>} 
-
-      {!isDivHidden &&  <div className={`${styles.successDiv} ${isDivHidden ? styles.hidden : ''}`}>
-        <h2 id="mensagem-final">Enviando seu experimento, aguarde um momento...</h2>
-        <p>Seu experimento esta sendo enviado pelo github, acompanhe abaixo o passo a passo</p>
-      </div>}
-   
-
-
-  <p className={styles.stepsLabel}>Passos realizados:</p>
-  <ul id="passos-realizados" className={styles.stepsList}>
-    {/* Passos vão aqui */}
-  </ul>
-</div>
 
 
 

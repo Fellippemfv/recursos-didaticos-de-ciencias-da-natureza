@@ -28,9 +28,19 @@ const config = {
           to: { height: "0" },
         },
       },
+      colors: {
+        'muted-foreground': 'hsl(215.4, 16.3%, 46.9%)',
+        'hsl-ring': 'hsl(240, 5%, 64.9%)',
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      borderWidth: {
+        DEFAULT: '1px', // Define a largura padrão da borda
+      },
+      ringWidth: {
+        DEFAULT: '0px', // Define a largura padrão do anel de foco como 0px
       },
     },
   },
