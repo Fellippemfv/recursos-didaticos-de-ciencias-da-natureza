@@ -1088,7 +1088,6 @@ await handleImageUploadMethod();
   const [editMethod, setEditMethod] = useState<Method | null>(null);
   const [imageInputsCount, setImageInputsCount] = useState(1);
   const [nextMethodId, setNextMethodId] = useState(1);
-  
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   
   const handleMethodTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -1161,6 +1160,8 @@ await handleImageUploadMethod();
   
   
   const handleDeleteMethod = (id: number, index: number) => {
+    
+
     const methodToDelete = tempMethods.find(method => method.id === id);
     const hasImage = methodToDelete && methodToDelete.imagePath !== '';
     
@@ -1231,6 +1232,7 @@ setExperimentData((prevData: any) => {
   
   
   const handleRemoveImageMethod = (index: number) => {
+    
     const updatedMethods = [...tempMethods];
     updatedMethods[index] = { ...updatedMethods[index], imagePath: '' };
     setTempMethods(updatedMethods);
@@ -1817,16 +1819,11 @@ setExperimentData((prevData: any) => {
   )}
 </div>
 
-
-
-
-
-
-    <div className="mt-8">
-    <Label className='mb-2' htmlFor="message-2">Passo a passo</Label>
-<p className="mb-2 text-sm text-muted-foreground">
+<div className="mt-8">
+  <Label className='mb-2' htmlFor="message-2">Passo a passo</Label>
+  <p className="mb-2 text-sm text-muted-foreground">
     Forneça uma descrição objetiva, detalhada e concisa de cada passo para a realização do seu experimento, escreva de forma que fique claro o que devemos realizar, por isso, separe em passos.
-</p>
+  </p>
 
   {tempMethods.map((method, index) => (
     <div key={method.id} className="border border-solid border-darkgray rounded-md p-4 mb-4">
@@ -1846,54 +1843,66 @@ setExperimentData((prevData: any) => {
             }}
             style={{ cursor: !editMethod ? 'not-allowed' : 'auto' }}
           />
-            <p className="text-sm text-muted-foreground">
-              Insira entre 10-300 caracteres.
-            </p>
+          <p className="text-sm text-muted-foreground">
+            Insira entre 10-300 caracteres.
+          </p>
         </div>
-        <div className='w-full'>
-          <input
-            type="file"
-            accept="image/*"
-            id={`imageMethod${index + 1}Upload`}
-            onChange={(event) => handleMethodImageChange(index, event)}
-            className="hidden"
-          />
-          <label htmlFor={`imageMethod${index + 1}Upload`} className="cursor-pointer w-full flex justify-center mt-8">
-            {previewImages[index] ? (
-              <img src={previewImages[index]} alt={`Imagem do método ${index + 1}`} className="w-auto max-w-48 object-cover rounded-md mr-2" />
-            ) : (
-              
-              <div className="max-w-80 p-4 w-400 h-200 border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer">
-              <FiUploadCloud className="text-4xl mb-2" />
-              <h1 className="text-lg font-semibold mb-1">Importe sua imagem</h1>
-              <p className="mb-2 px-8 text-sm">Arraste ou clique para fazer upload</p>
-              <input type="file" className="hidden" id="imageUpload" accept="image/*"  onChange={(event) => handleMethodImageChange(index, event)} disabled={isImageConfirmed} />
+        {editMethod && editMethod.id === method.id ? (
+          <>
+            <div className='w-full flex justify-end mt-4'>
+              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={() => handleSaveMethod(index)}>Salvar</Button>
+              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddMethod}>Cancelar</Button>
             </div>
-            
-            
+          </>
+        ) : (
+          <>
+            <div className='w-full flex justify-end mr-4'>
+              <Button className="mt-2 md:mt-0 md:ml-2 px-2 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditMethod(method)}>Editar Texto</Button>
+            </div>
+          </>
+        )}
+        <div className='w-full'>
+          {!previewImages[index] && (
+            <input
+              type="file"
+              accept="image/*"
+              id={`imageMethod${index + 1}Upload`}
+              onChange={(event) => handleMethodImageChange(index, event)}
+              className="hidden"
+            />
+          )}
+          <label htmlFor={`imageMethod${index + 1}Upload`} className={`cursor-${previewImages[index] ? 'default' : 'pointer'} w-full flex justify-center mt-8 `}>
+
+            {previewImages[index] ? (
+              <img src={previewImages[index]} alt={`Imagem do método ${index + 1}`} className="h-auto max-h-48 object-cover rounded-md mr-2" />
+            ) : (
+              <>
+                <div className="max-w-40rem p-4 w-full h-200 border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer">
+                  <FiUploadCloud className="text-4xl mb-2" />
+                  <h1 className="text-lg font-semibold mb-1">Importe sua imagem</h1>
+                  <p className="mb-2 px-8 text-sm">Arraste ou clique para fazer upload</p>
+                  <p className="mb-2 px-8 text-sm">Aceita PNG, JPG, JPEG e SVG.</p>
+                </div>
+              </>
             )}
           </label>
           {previewImages[index] && (
-            
-            <Button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600" onClick={() => handleRemoveImageMethod(index)}>Remover imagem</Button>
+            <div className='w-full flex justify-center mt-4'>
+              <Button className="flex justify-center mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600" onClick={() => handleRemoveImageMethod(index)}>Remover imagem</Button>
+            </div>
           )}
         </div>
         {editMethod && editMethod.id === method.id ? (
-
           <>
             <div className='w-full flex justify-end mt-4'>
-            <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={() => handleSaveMethod(index)}>Salvar</Button>
-            <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddMethod}>Cancelar</Button>
+              <Button className="mt-2 ml-2 md:mt-0 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>Excluir este passo</Button>
             </div>
-           
           </>
         ) : (
           <>
             <div className='w-full flex justify-end mt-4'>
-            <Button className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => handleEditMethod(method)}>Editar</Button>
-            <Button className="mt-2 ml-2 md:mt-0 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>Excluir</Button>
+              <Button className="mt-2 ml-2 md:mt-0 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>Excluir este passo</Button>
             </div>
-            
           </>
         )}
       </div>
@@ -1901,10 +1910,10 @@ setExperimentData((prevData: any) => {
   ))}
 
   {tempMethods.length < 5 && !newMethodVisible && (
-     <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddMethod}>
-     <RiAddLine className="h-5 w-5 mr-2" />
-     <span>Adicionar novo Passo</span>
-   </Button>
+    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddMethod}>
+      <RiAddLine className="h-5 w-5 mr-2" />
+      <span>Adicionar novo Passo</span>
+    </Button>
   )}
 
   {newMethodVisible && (
@@ -1914,9 +1923,9 @@ setExperimentData((prevData: any) => {
         value={newMethod}
         onChange={handleMethodTextChange}
       />
-       <p className="text-sm text-muted-foreground">
-    Insira entre 10-300 caracteres.
-  </p>
+      <p className="text-sm text-muted-foreground">
+        Insira entre 10-300 caracteres.
+      </p>
 
       <div className="mt-4 flex flex-col md:flex-row md:items-center">
         <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMethod}>Adicionar Método</button>
@@ -1925,13 +1934,6 @@ setExperimentData((prevData: any) => {
     </div>
   )}
 </div>
-
-
-
-
-
-
-
 
 
 <div className="grid w-full gap-1.5 mt-8 ">
