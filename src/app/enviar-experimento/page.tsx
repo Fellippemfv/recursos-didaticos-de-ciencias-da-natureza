@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import styles from './page.module.css' 
 import { GrNext } from 'react-icons/gr';
-import { MdCheck } from 'react-icons/md';
+import { MdCheck, MdError } from 'react-icons/md';
 import { RiAddLine } from 'react-icons/ri';
 
 import { FiTool, FiUploadCloud } from 'react-icons/fi';
@@ -1344,9 +1344,10 @@ setExperimentData((prevData: any) => {
   <h2 className="text-lg font-semibold mb-4">Etapa 2: Tópicos</h2>
 
   <div className="mb-4">
-    <label htmlFor="topicGeneral" className="block text-gray-700 mb-1">
-      Tópico Geral:
-    </label>
+  <Label htmlFor="title">Tópico geral:</Label>
+  <p className="mt-2 mb-4 text-sm text-muted-foreground">
+        Selecione um tópico geral para o seu experimento entre Biologia, Física e Química. Escolha cuidadosamente, pois isso ajudará na identificação e classificação do seu experimento.
+      </p>
     <select
       id="topicGeneral"
       onChange={handleGeneralSelectChange}
@@ -1368,23 +1369,27 @@ setExperimentData((prevData: any) => {
     </select>
 
     <div className="mt-2 flex flex-wrap">
-      {experimentData.topicGeneral.map((topic: Topic) => (
-        <div key={topic.id} className="bg-gray-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
-          {topic.title}
+    {experimentData.topicGeneral.map((topic: any) => (
+        <div key={topic.id} className="bg-purple-600 p-2 rounded-md inline-flex items-center mr-2 mb-2 text-white shadow-lg relative">
+          <span className="mr-2">{topic.title}</span>
           <button
             onClick={() => handleRemoveGeneralTopic(topic.id, topic.slug)}
-            className="ml-2 text-red-500 focus:outline-none"
+            className="text-red-500 focus:outline-none hover:text-red-700 transition-colors duration-300 ease-in-out relative"
           >
-            X
+            <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+              <span className="text-white">X</span>
+            </div>
           </button>
         </div>
       ))}
 
-      {experimentData.topicGeneral.length === 0 && (
-        <div className="text-red-500 mt-2">
-          Selecione pelo menos um tópico geral
+{experimentData.topicGeneral.length === 0 && (
+        <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+          <MdError className="mr-2" />
+          <span>Selecione pelo menos um tópico geral</span>
         </div>
       )}
+
     </div>
   </div>
 
@@ -1401,9 +1406,12 @@ setExperimentData((prevData: any) => {
 
         return (
           <div key={generalTopic.slug} className="mb-4">
-            <label htmlFor={`topicSpecific-${generalTopic.slug}`} className="block text-gray-700 mb-1">
-              Tópico Específico de {generalTopic.title}:
-            </label>
+          <Label htmlFor={`topicSpecific-${generalTopic.slug}`} className="block text-gray-700 mb-1">
+        Tópico Específico de {generalTopic.title}:
+      </Label>
+      <p className="mt-2 mb-4 text-sm text-muted-foreground">
+        Selecione um tópico específico dentro da {generalTopic.title} para o seu experimento. Escolha cuidadosamente, pois isso ajudará na identificação e classificação do seu experimento.
+      </p>
             <select
               id={`topicSpecific-${generalTopic.slug}`}
               onChange={(event) => handleSpecificSelectChange(event, generalTopic.slug)}
@@ -1432,23 +1440,25 @@ setExperimentData((prevData: any) => {
             </select>
 
             <div className="mt-2 flex flex-wrap">
-              {selectedSpecificTopics.map((topic: any) => (
-                <div key={topic.id} className="bg-gray-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
-                  {topic.title}
-                  <button
-                    onClick={() => handleRemoveSpecificTopic(topic.id, generalTopic.slug)}
-                    className="ml-2 text-red-500 focus:outline-none"
-                  >
-                    X
-                  </button>
-                </div>
-              ))}
-
+            {selectedSpecificTopics.map((topic: any) => (
+        <div key={topic.id} className="bg-purple-600 p-2 rounded-md inline-flex items-center mr-2 mb-2 text-white shadow-lg relative">
+          <span className="mr-2">{topic.title}</span>
+          <button
+            onClick={() => handleRemoveSpecificTopic(topic.id, generalTopic.slug)}
+            className="text-red-500 focus:outline-none hover:text-red-700 transition-colors duration-300 ease-in-out relative"
+          >
+            <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+              <span className="text-white">X</span>
+            </div>
+          </button>
+        </div>
+      ))}
               {selectedSpecificTopics.length === 0 && (
-                <div className="text-red-500 mt-2">
-                  Escolha pelo menos um tópico de {generalTopic.title}
-                </div>
-              )}
+        <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+          <MdError className="mr-2" />
+          <span>Escolha pelo menos um tópico de {generalTopic.title}</span>
+        </div>
+      )}
             </div>
           </div>
         );
@@ -1457,9 +1467,12 @@ setExperimentData((prevData: any) => {
   )}
 
   <div className="mb-4">
-    <label htmlFor="topicLocalization" className="block text-gray-700 mb-1">
-      Tópico de Localização:
-    </label>
+  <Label htmlFor="topicLocalization" className="block text-gray-700 mb-1">
+        Tópico de Localização:
+      </Label>
+      <p className="mt-2 mb-4 text-sm text-muted-foreground">
+        Selecione os lugares onde é possível realizar o experimento. Escolha cuidadosamente, pois isso ajudará na identificação e classificação do seu experimento.
+      </p>
     <select
       id="topicLocalization"
       onChange={handleSelectLocationChange}
@@ -1481,27 +1494,36 @@ setExperimentData((prevData: any) => {
     </select>
 
     <div className="mt-2 flex flex-wrap">
-      {experimentData.topicLocation.map((topic: LocalizationTopic) => (
-        <div key={topic.id} className="bg-gray-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
-          {topic.title}
-          <button onClick={() => handleRemoveDivLocalization(topic.id)} className="ml-2 text-red-500 focus:outline-none">
-            X
+    {experimentData.topicLocation.map((topic: any) => (
+        <div key={topic.id} className="bg-purple-600 p-2 rounded-md inline-flex items-center mr-2 mb-2 text-white shadow-lg relative">
+          <span className="mr-2">{topic.title}</span>
+          <button
+            onClick={() => handleRemoveDivLocalization(topic.id)}
+            className="text-red-500 focus:outline-none hover:text-red-700 transition-colors duration-300 ease-in-out relative"
+          >
+            <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+              <span className="text-white">X</span>
+            </div>
           </button>
         </div>
       ))}
 
-      {experimentData.topicLocation.length === 0 && (
-        <div className="text-red-500 mt-2">
-          Selecione pelo menos um tópico sobre a localização onde o experimento pode ser realizado.
+{experimentData.topicLocation.length === 0 && (
+        <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+          <MdError className="mr-2" />
+          <span>Selecione pelo menos um tópico sobre a localização onde o experimento pode ser realizado.</span>
         </div>
       )}
     </div>
   </div>
 
   <div className="mb-4">
-    <label htmlFor="topicAudience" className="block text-gray-700 mb-1">
-      Tópico de Público-Alvo:
-    </label>
+  <Label htmlFor="topicAudience" className="block text-gray-700 mb-1">
+        Tópico de Público-Alvo:
+      </Label>
+      <p className="mt-2 mb-4 text-sm text-muted-foreground">
+        Selecione o público-alvo para o qual o experimento é destinado: Ensino Fundamental, Ensino Médio ou Ensino Superior. Escolha cuidadosamente, pois isso ajudará na identificação e classificação do seu experimento.
+      </p>
     <select
       id="topicAudience"
       onChange={handleSelectAudienceChange}
@@ -1523,18 +1545,24 @@ setExperimentData((prevData: any) => {
     </select>
 
     <div className="mt-2 flex flex-wrap">
-      {experimentData.targetAudience.map((audience: TargetAudienceTopic) => (
-        <div key={audience.id} className="bg-gray-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
-          {audience.title}
-          <button onClick={() => handleRemoveAudience(audience.id)} className="ml-2 text-red-500 focus:outline-none">
-            X
+    {experimentData.targetAudience.map((audience: any) => (
+        <div key={audience.id} className="bg-purple-600 p-2 rounded-md inline-flex items-center mr-2 mb-2 text-white shadow-lg relative">
+          <span className="mr-2">{audience.title}</span>
+          <button
+            onClick={() => handleRemoveAudience(audience.id)}
+            className="text-red-500 focus:outline-none hover:text-red-700 transition-colors duration-300 ease-in-out relative"
+          >
+            <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+              <span className="text-white">X</span>
+            </div>
           </button>
         </div>
       ))}
 
-      {experimentData.targetAudience.length === 0 && (
-        <div className="text-red-500 mt-2">
-          Selecione pelo menos um tópico sobre o público-alvo do experimento.
+{experimentData.targetAudience.length === 0 && (
+        <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+          <MdError className="mr-2" />
+          <span>Selecione pelo menos um tópico sobre o público-alvo do experimento.</span>
         </div>
       )}
     </div>
@@ -2063,7 +2091,7 @@ setExperimentData((prevData: any) => {
 
 </form>
 </div>
- {Object.keys(experimentData).length > 0 && (
+{/*  {Object.keys(experimentData).length > 0 && (
   <>
     <div className="d-flex justify-content-end">
       <button className="btn btn-outline-primary me-2" onClick={handleCopy}>
@@ -2075,7 +2103,7 @@ setExperimentData((prevData: any) => {
       {JSON.stringify(experimentData, null, 2)}
     </pre>
   </>
-)} 
+)}  */}
     </div>
 
 
