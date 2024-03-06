@@ -1369,17 +1369,16 @@ setExperimentData((prevData: any) => {
 
     <div className="mt-2 flex flex-wrap">
       {experimentData.topicGeneral.map((topic: Topic) => (
-        <div key={topic.id} className="bg-blue-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
+        <div key={topic.id} className="bg-gray-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
           {topic.title}
           <button
             onClick={() => handleRemoveGeneralTopic(topic.id, topic.slug)}
-            className="ml-2 text-red-500 focus:outline-none hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out rounded-full px-2"
+            className="ml-2 text-red-500 focus:outline-none"
           >
             X
           </button>
         </div>
       ))}
-    
 
       {experimentData.topicGeneral.length === 0 && (
         <div className="text-red-500 mt-2">
@@ -1433,18 +1432,18 @@ setExperimentData((prevData: any) => {
             </select>
 
             <div className="mt-2 flex flex-wrap">
-              <p>Tópicos selecionados:</p>
-            {selectedSpecificTopics.map((topic: any) => (
-        <div key={topic.id} className="bg-blue-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
-          {topic.title}
-          <button
-            onClick={() => handleRemoveSpecificTopic(topic.id, topic.slug)}
-            className="ml-2 text-red-500 focus:outline-none hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out rounded-full px-2"
-          >
-            X
-          </button>
-        </div>
-      ))}
+              {selectedSpecificTopics.map((topic: any) => (
+                <div key={topic.id} className="bg-gray-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
+                  {topic.title}
+                  <button
+                    onClick={() => handleRemoveSpecificTopic(topic.id, generalTopic.slug)}
+                    className="ml-2 text-red-500 focus:outline-none"
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+
               {selectedSpecificTopics.length === 0 && (
                 <div className="text-red-500 mt-2">
                   Escolha pelo menos um tópico de {generalTopic.title}
@@ -1482,13 +1481,10 @@ setExperimentData((prevData: any) => {
     </select>
 
     <div className="mt-2 flex flex-wrap">
-    {experimentData.topicLocation.map((topic: any) => (
-        <div key={topic.id} className="bg-blue-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
+      {experimentData.topicLocation.map((topic: LocalizationTopic) => (
+        <div key={topic.id} className="bg-gray-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
           {topic.title}
-          <button
-            onClick={() => handleRemoveDivLocalization(topic.id)}
-            className="ml-2 text-red-500 focus:outline-none hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out rounded-full px-2"
-          >
+          <button onClick={() => handleRemoveDivLocalization(topic.id)} className="ml-2 text-red-500 focus:outline-none">
             X
           </button>
         </div>
@@ -1527,13 +1523,10 @@ setExperimentData((prevData: any) => {
     </select>
 
     <div className="mt-2 flex flex-wrap">
-    {experimentData.targetAudience.map((audience: TargetAudienceTopic) => (
-        <div key={audience.id} className="bg-blue-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
+      {experimentData.targetAudience.map((audience: TargetAudienceTopic) => (
+        <div key={audience.id} className="bg-gray-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
           {audience.title}
-          <button
-            onClick={() => handleRemoveAudience(audience.id)}
-            className="ml-2 text-red-500 focus:outline-none hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out rounded-full px-2"
-          >
+          <button onClick={() => handleRemoveAudience(audience.id)} className="ml-2 text-red-500 focus:outline-none">
             X
           </button>
         </div>
