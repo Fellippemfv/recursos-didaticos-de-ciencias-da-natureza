@@ -1406,7 +1406,7 @@ setExperimentData((prevData: any) => {
 
         return (
           <div key={generalTopic.slug} className="mb-4">
-          <Label htmlFor={`topicSpecific-${generalTopic.slug}`} className="block text-gray-700 mb-1">
+          <Label htmlFor={`topicSpecific-${generalTopic.slug}`}>
         Tópico Específico de {generalTopic.title}:
       </Label>
       <p className="mt-2 mb-4 text-sm text-muted-foreground">
@@ -1467,7 +1467,8 @@ setExperimentData((prevData: any) => {
   )}
 
   <div className="mb-4">
-  <Label htmlFor="topicLocalization" className="block text-gray-700 mb-1">
+    
+  <Label htmlFor="topicLocalization">
         Tópico de Localização:
       </Label>
       <p className="mt-2 mb-4 text-sm text-muted-foreground">
@@ -1518,7 +1519,7 @@ setExperimentData((prevData: any) => {
   </div>
 
   <div className="mb-4">
-  <Label htmlFor="topicAudience" className="block text-gray-700 mb-1">
+  <Label htmlFor="topicAudience" >
         Tópico de Público-Alvo:
       </Label>
       <p className="mt-2 mb-4 text-sm text-muted-foreground">
