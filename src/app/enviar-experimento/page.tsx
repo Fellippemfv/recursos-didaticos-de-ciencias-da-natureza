@@ -8,7 +8,7 @@ import { GrNext } from 'react-icons/gr';
 import { MdCheck } from 'react-icons/md';
 import { RiAddLine } from 'react-icons/ri';
 
-import { FiUploadCloud } from 'react-icons/fi';
+import { FiTool, FiUploadCloud } from 'react-icons/fi';
 import { ImFilePicture } from 'react-icons/im';
 
 import { FaCopy } from "react-icons/fa";
@@ -27,6 +27,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { FcInfo } from 'react-icons/fc';
 
 // Crie uma instância do Octokit
 const octokit = new Octokit();
@@ -1339,7 +1340,7 @@ setExperimentData((prevData: any) => {
   </div>
 </div>
 
-<div className="border border-gray-200 rounded-lg p-6 mb-6">
+<div className="border border-gray-300 rounded-lg p-6 mb-6">
   <h2 className="text-lg font-semibold mb-4">Etapa 2: Tópicos</h2>
 
   <div className="mb-4">
@@ -1366,25 +1367,26 @@ setExperimentData((prevData: any) => {
       ))}
     </select>
 
-    <div className="mt-2">
+    <div className="mt-2 flex flex-wrap">
       {experimentData.topicGeneral.map((topic: Topic) => (
-        <div key={topic.id} className="bg-gray-100 p-2 rounded-md inline-block mr-2 mb-2">
+        <div key={topic.id} className="bg-blue-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
           {topic.title}
           <button
             onClick={() => handleRemoveGeneralTopic(topic.id, topic.slug)}
-            className="ml-2 text-red-500 focus:outline-none"
+            className="ml-2 text-red-500 focus:outline-none hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out rounded-full px-2"
           >
             X
           </button>
         </div>
       ))}
-    </div>
+    
 
-    {experimentData.topicGeneral.length === 0 && (
-      <div className="text-red-500 mt-2">
-        Selecione pelo menos um tópico geral
-      </div>
-    )}
+      {experimentData.topicGeneral.length === 0 && (
+        <div className="text-red-500 mt-2">
+          Selecione pelo menos um tópico geral
+        </div>
+      )}
+    </div>
   </div>
 
   {experimentData.topicGeneral.length > 0 && (
@@ -1430,19 +1432,19 @@ setExperimentData((prevData: any) => {
               })}
             </select>
 
-            <div className="mt-2">
-              {selectedSpecificTopics.map((topic: any) => (
-                <div key={topic.id} className="bg-gray-100 p-2 rounded-md inline-block mr-2 mb-2">
-                  {topic.title}
-                  <button
-                    onClick={() => handleRemoveSpecificTopic(topic.id, generalTopic.slug)}
-                    className="ml-2 text-red-500 focus:outline-none"
-                  >
-                    X
-                  </button>
-                </div>
-              ))}
-
+            <div className="mt-2 flex flex-wrap">
+              <p>Tópicos selecionados:</p>
+            {selectedSpecificTopics.map((topic: any) => (
+        <div key={topic.id} className="bg-blue-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
+          {topic.title}
+          <button
+            onClick={() => handleRemoveSpecificTopic(topic.id, topic.slug)}
+            className="ml-2 text-red-500 focus:outline-none hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out rounded-full px-2"
+          >
+            X
+          </button>
+        </div>
+      ))}
               {selectedSpecificTopics.length === 0 && (
                 <div className="text-red-500 mt-2">
                   Escolha pelo menos um tópico de {generalTopic.title}
@@ -1455,92 +1457,97 @@ setExperimentData((prevData: any) => {
     </>
   )}
 
+  <div className="mb-4">
+    <label htmlFor="topicLocalization" className="block text-gray-700 mb-1">
+      Tópico de Localização:
+    </label>
+    <select
+      id="topicLocalization"
+      onChange={handleSelectLocationChange}
+      name="topicLocalization"
+      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
+      defaultValue=""
+    >
+      <option value="">Selecione um tópico</option>
+      {experimentLocationData.map((topic) => (
+        <option
+          key={topic.id}
+          value={topic.slug}
+          disabled={isTopicSelectedLocalization(topic.slug)}
+          className="bg-white"
+        >
+          {topic.title}
+        </option>
+      ))}
+    </select>
 
-<div className="mb-4">
-  <label htmlFor="topicLocalization" className="block text-gray-700 mb-1">
-    Localization Topic
-  </label>
-  <select
-    id="topicLocalization"
-    onChange={handleSelectLocationChange}
-    name="topicLocalization"
-    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
-    defaultValue=""
-  >
-    <option value="">Selecione um tópico</option>
-    {experimentLocationData.map((topic) => (
-      <option
-        key={topic.id}
-        value={topic.slug}
-        disabled={isTopicSelectedLocalization(topic.slug)}
-        className="bg-white"
-      >
-        {topic.title}
-      </option>
-    ))}
-  </select>
+    <div className="mt-2 flex flex-wrap">
+    {experimentData.topicLocation.map((topic: any) => (
+        <div key={topic.id} className="bg-blue-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
+          {topic.title}
+          <button
+            onClick={() => handleRemoveDivLocalization(topic.id)}
+            className="ml-2 text-red-500 focus:outline-none hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out rounded-full px-2"
+          >
+            X
+          </button>
+        </div>
+      ))}
 
-  <div className="mt-2">
-    {experimentData.topicLocation.map((topic: LocalizationTopic) => (
-      <div key={topic.id} className="bg-gray-100 p-2 rounded-md inline-block mb-2">
-        {topic.title}
-        <button onClick={() => handleRemoveDivLocalization(topic.id)} className="ml-2 text-red-500 focus:outline-none">
-          X
-        </button>
-      </div>
-    ))}
+      {experimentData.topicLocation.length === 0 && (
+        <div className="text-red-500 mt-2">
+          Selecione pelo menos um tópico sobre a localização onde o experimento pode ser realizado.
+        </div>
+      )}
+    </div>
+  </div>
 
-    {experimentData.topicLocation.length === 0 && (
-      <div className="text-red-500 mt-2">
-        Selecione pelo menos um tópico sobre a localização onde o experimento pode ser realizado.
-      </div>
-    )}
+  <div className="mb-4">
+    <label htmlFor="topicAudience" className="block text-gray-700 mb-1">
+      Tópico de Público-Alvo:
+    </label>
+    <select
+      id="topicAudience"
+      onChange={handleSelectAudienceChange}
+      name="topicAudience"
+      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
+      defaultValue=""
+    >
+      <option value="">Selecione um tópico</option>
+      {experimentTargetAudienceData.map((audience) => (
+        <option
+          key={audience.id}
+          value={audience.slug}
+          disabled={isAudienceSelected(audience.slug)}
+          className="bg-white"
+        >
+          {audience.title}
+        </option>
+      ))}
+    </select>
+
+    <div className="mt-2 flex flex-wrap">
+    {experimentData.targetAudience.map((audience: TargetAudienceTopic) => (
+        <div key={audience.id} className="bg-blue-200 p-2 rounded-md inline-flex items-center mr-2 mb-2">
+          {audience.title}
+          <button
+            onClick={() => handleRemoveAudience(audience.id)}
+            className="ml-2 text-red-500 focus:outline-none hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out rounded-full px-2"
+          >
+            X
+          </button>
+        </div>
+      ))}
+
+      {experimentData.targetAudience.length === 0 && (
+        <div className="text-red-500 mt-2">
+          Selecione pelo menos um tópico sobre o público-alvo do experimento.
+        </div>
+      )}
+    </div>
   </div>
 </div>
 
-
-<div className="mb-4">
-      <label htmlFor="topicAudience" className="block text-gray-700 mb-1">
-        Target Audience Topic
-      </label>
-      <select
-        id="topicAudience"
-        onChange={handleSelectAudienceChange}
-        name="topicAudience"
-        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
-        defaultValue=""
-      >
-        <option value="">Selecione um tópico</option>
-        {experimentTargetAudienceData.map((audience) => (
-          <option
-            key={audience.id}
-            value={audience.slug}
-            disabled={isAudienceSelected(audience.slug)}
-            className="bg-white"
-          >
-            {audience.title}
-          </option>
-        ))}
-      </select>
-
-      <div className="mt-2">
-        {experimentData.targetAudience.map((audience: TargetAudienceTopic) => (
-          <div key={audience.id} className="bg-gray-100 p-2 rounded-md inline-block mb-2">
-            {audience.title}
-            <button onClick={() => handleRemoveAudience(audience.id)} className="ml-2 text-red-500 focus:outline-none">
-              X
-            </button>
-          </div>
-        ))}
-
-        {experimentData.targetAudience.length === 0 && (
-          <div className="text-red-500 mt-2">
-            Selecione pelo menos um tópico sobre o público-alvo do experimento.
-          </div>
-        )}
-      </div>
-    </div>
-</div>
 
 
 
@@ -1598,10 +1605,14 @@ setExperimentData((prevData: any) => {
   <div className="flex flex-col md:flex-row items-start justify-center md:justify-center w-full">
     <div className="mb-4 md:mb-0">
       {imagePreviewURL && (
-        <div className="mb-4 mr-8">
-          <h3 className="text-lg font-semibold mb-2">Preview:</h3>
-          <img className="max-h-40 w-auto mb-2" src={imagePreviewURL} alt="Preview" />
-        </div>
+     <div className="mb-4 mr-8">
+     <h3 className="text-lg font-semibold mb-2">Preview:</h3>
+     <div className="flex flex-col items-center">
+       <img className="h-auto max-h-48 object-cover rounded-md mr-2 mb-2 md:mb-0" src={imagePreviewURL} alt="Preview" />
+       <Button onClick={handleRemoveImage} className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600">Remover Imagem</Button>
+     </div>
+   </div>
+   
       )}
 
       {!imagePreviewURL && (
@@ -1612,20 +1623,6 @@ setExperimentData((prevData: any) => {
           <input type="file" className="hidden" id="imageUpload" accept="image/*" onChange={handleImageChange} disabled={isImageConfirmed} />
         </div>
       )}
-    </div>
-
-    <div className="">
-      <div className="flex flex-col items-center">
-        {selectedImage && (
-          <div className="flex flex-col items-center border border-gray-300 rounded-lg p-4">
-            <ImFilePicture className="text-4xl mb-2 text-gray-700" />
-            <h2 className="text-lg font-semibold text-gray-900">{selectedImage.name}</h2>
-            <span className="mt-2 text-gray-500">{uploadStatus}</span>
-            <Button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600" onClick={handleRemoveImage}>Remover Imagem</Button>
-            
-          </div> 
-        )}
-      </div>
     </div>
   </div>
 </div>
@@ -1820,18 +1817,30 @@ setExperimentData((prevData: any) => {
 </div>
 
 <div className="mt-8">
-  <Label className='mb-2' htmlFor="message-2">Passo a passo</Label>
+  <Label className="mb-2" htmlFor="message-2">
+    Passo a passo
+  </Label>
   <p className="mb-2 text-sm text-muted-foreground">
     Forneça uma descrição objetiva, detalhada e concisa de cada passo para a realização do seu experimento, escreva de forma que fique claro o que devemos realizar, por isso, separe em passos.
   </p>
 
   {tempMethods.map((method, index) => (
-    <div key={method.id} className="border border-solid border-darkgray rounded-md p-4 mb-4">
-      <div className="flex items-center mb-2">
-        <label className="block mb-1">{`${index + 1}° Passo`}</label>
-      </div>
-      <div className="flex flex-col md:flex-column md:items-center">
-        <div className="w-full flex-grow mb-4 md:mb-0 md:mr-4">
+    <div key={method.id} className="border border-solid border-darkgray rounded-md p-4 mb-4 relative">
+    <div className="border-b border-gray-300 p-4 mb-4">
+  <div className="flex items-center justify-between mb-2">
+    <div className="flex items-center">
+      <FcInfo className="w-6 h-6 mr-2" /> {/* Ícone FiTool */}
+      <label className="block mb-1 font-bold">{`${index + 1}° Passo`}</label> {/* Passos em negrito */}
+    </div>
+    <Button className="px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>Excluir este passo</Button>
+  </div>
+</div>
+
+
+      <div className="flex flex-col md:flex-row md:items-center">
+       
+        <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-4">
+        <Label className='mb-2'>Texto deste passo:</Label>
           <Textarea
             className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
             value={method.content}
@@ -1846,66 +1855,52 @@ setExperimentData((prevData: any) => {
           <p className="text-sm text-muted-foreground">
             Insira entre 10-300 caracteres.
           </p>
+          {editMethod && editMethod.id === method.id ? (
+        <div className='w-full flex justify-end mt-4 bottom-0 right-0'>
+          <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={() => handleSaveMethod(index)}>Salvar</Button>
+          <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddMethod}>Cancelar</Button>
         </div>
-        {editMethod && editMethod.id === method.id ? (
-          <>
-            <div className='w-full flex justify-end mt-4'>
-              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={() => handleSaveMethod(index)}>Salvar</Button>
-              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddMethod}>Cancelar</Button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className='w-full flex justify-end mr-4'>
-              <Button className="mt-2 md:mt-0 md:ml-2 px-2 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditMethod(method)}>Editar Texto</Button>
-            </div>
-          </>
-        )}
-        <div className='w-full'>
-          {!previewImages[index] && (
-            <input
-              type="file"
-              accept="image/*"
-              id={`imageMethod${index + 1}Upload`}
-              onChange={(event) => handleMethodImageChange(index, event)}
-              className="hidden"
-            />
-          )}
-          <label htmlFor={`imageMethod${index + 1}Upload`} className={`cursor-${previewImages[index] ? 'default' : 'pointer'} w-full flex justify-center mt-8 `}>
+      ) : (
+        <div className='w-full flex justify-end mt-4 bottom-0 right-0'>
+          <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditMethod(method)}>Editar Texto</Button>
+        </div>
+      )}
+        </div>
+        <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-4">
+  <Label className='flex flex-col items-center md:items-center mb-2 md:mr-4'>Imagem deste passo:</Label>
 
-            {previewImages[index] ? (
-              <img src={previewImages[index]} alt={`Imagem do método ${index + 1}`} className="h-auto max-h-48 object-cover rounded-md mr-2" />
-            ) : (
-              <>
-                <div className="max-w-40rem p-4 w-full h-200 border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer">
-                  <FiUploadCloud className="text-4xl mb-2" />
-                  <h1 className="text-lg font-semibold mb-1">Importe sua imagem</h1>
-                  <p className="mb-2 px-8 text-sm">Arraste ou clique para fazer upload</p>
-                  <p className="mb-2 px-8 text-sm">Aceita PNG, JPG, JPEG e SVG.</p>
-                </div>
-              </>
-            )}
-          </label>
-          {previewImages[index] && (
-            <div className='w-full flex justify-center mt-4'>
-              <Button className="flex justify-center mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600" onClick={() => handleRemoveImageMethod(index)}>Remover imagem</Button>
-            </div>
-          )}
+  <div className="flex flex-col items-center md:items-center">
+    {!previewImages[index] ? (
+      <label htmlFor={`imageMethod${index + 1}Upload`} className={`cursor-pointer w-full md:w-auto flex justify-center md:justify-start mt-8`}>
+        <div className="max-w-40rem p-4 w-full h-200 border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center">
+          <FiUploadCloud className="text-4xl mb-2" />
+          <h1 className="text-lg font-semibold mb-1">Importe sua imagem</h1>
+          <p className="mb-2 px-8 text-sm">Arraste ou clique para fazer upload</p>
+          <p className="mb-2 px-8 text-sm">Aceita PNG, JPG, JPEG e SVG.</p>
         </div>
-        {editMethod && editMethod.id === method.id ? (
-          <>
-            <div className='w-full flex justify-end mt-4'>
-              <Button className="mt-2 ml-2 md:mt-0 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>Excluir este passo</Button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className='w-full flex justify-end mt-4'>
-              <Button className="mt-2 ml-2 md:mt-0 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>Excluir este passo</Button>
-            </div>
-          </>
-        )}
+        <input
+          type="file"
+          accept="image/*"
+          id={`imageMethod${index + 1}Upload`}
+          onChange={(event) => handleMethodImageChange(index, event)}
+          className="hidden"
+        />
+      </label>
+    ) : (
+      <div className="flex flex-col items-center">
+        <img src={previewImages[index]} alt={`Imagem do método ${index + 1}`} className="h-auto max-h-48 object-cover rounded-md mr-2 mb-2 md:mb-0" />
+        <Button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600" onClick={() => handleRemoveImageMethod(index)}>
+          Remover imagem
+        </Button>
       </div>
+    )}
+  </div>
+</div>
+
+
+      </div>
+    
+     
     </div>
   ))}
 
@@ -1918,6 +1913,12 @@ setExperimentData((prevData: any) => {
 
   {newMethodVisible && (
     <div className="mb-4">
+      <Label className="mb-2" htmlFor="message-2">
+        Escreva abaixo o próximo passo.
+      </Label>
+      <p className="mb-2 text-sm text-muted-foreground">
+        Depois de escrever, clique em 'Adicionar método', depois você vai conseguir editar o texto e adicionar uma imagem. Deve ser de APENAS UM PASSO, não se preocupe que posteriormente você vai conseguir adicionar novos passos.
+      </p>
       <Textarea
         className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
         value={newMethod}
@@ -1928,8 +1929,12 @@ setExperimentData((prevData: any) => {
       </p>
 
       <div className="mt-4 flex flex-col md:flex-row md:items-center">
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMethod}>Adicionar Método</button>
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMethod}>Cancelar</button>
+        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMethod}>
+          Adicionar Método
+        </button>
+        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMethod}>
+          Cancelar
+        </button>
       </div>
     </div>
   )}
@@ -1979,7 +1984,6 @@ setExperimentData((prevData: any) => {
   </p>
 </div>
 
-
 <div className="mt-8">
   <Label htmlFor="references" className="block text-gray-700 mb-2">
     Referências
@@ -1989,34 +1993,35 @@ setExperimentData((prevData: any) => {
   </p>
 
   {tempReferences.map((reference, index) => (
-    <div key={reference.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
-      <Label className="mr-4 block mb-1">{`${index + 1}° Referência`}</Label>
-      <div className="flex flex-col md:flex-row md:items-center flex-grow">
+    <div key={reference.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col">
+      <Label className="block mb-1">{`${index + 1}° Referência`}</Label>
+      <div className="flex flex-col">
         {editReference && editReference.id === reference.id ? (
           <Input
-            className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none mb-2"
             type="text"
             value={editReference.referenceText}
             onChange={(event) => setEditReference({ ...editReference, referenceText: event.target.value })}
           />
         ) : (
           <Input
-            className="cursor-not-allowed flex-grow w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="cursor-not-allowed max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none mb-2"
             type="text"
             value={reference.referenceText}
             readOnly
           />
         )}
-        <div>
+        <p className="text-sm text-gray-500 mb-2">Insira entre 10-300 caracteres.</p>
+        <div className="flex justify-end">
           {editReference && editReference.id === reference.id ? (
             <>
-              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleSaveReference}>Salvar</Button>
-              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={() => setEditReference(null)}>Cancelar</Button>
+              <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleSaveReference}>Salvar</Button>
+              <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={() => setEditReference(null)}>Cancelar</Button>
             </>
           ) : (
             <>
-              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditReference(reference)}>Editar</Button>
-              <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteReference(reference.id)}>Excluir</Button>
+              <Button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditReference(reference)}>Editar</Button>
+              <Button className="px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteReference(reference.id)}>Excluir</Button>
             </>
           )}
         </div>
@@ -2025,7 +2030,7 @@ setExperimentData((prevData: any) => {
   ))}
 
   {tempReferences.length < 5 && !newReferenceVisible && (
-    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddReference}>
+    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddReference}>
       <RiAddLine className="h-5 w-5 mr-2" />
       <span>Adicionar nova Referência</span>
     </Button>
@@ -2034,20 +2039,19 @@ setExperimentData((prevData: any) => {
   {newReferenceVisible && (
     <div className="mb-4">
       <Input
-        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none mb-2"
         type="text"
         value={newReference}
         onChange={handleReferenceTextChange}
       />
-      <div className="mt-4 flex flex-col md:flex-row md:items-center">
-        <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleConfirmAddReference}>Adicionar Referência</Button>
-        <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddReference}>Cancelar</Button>
+      <p className="text-sm text-gray-500 mb-2">Insira entre 10-300 caracteres.</p>
+      <div className="flex justify-end">
+        <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleConfirmAddReference}>Adicionar Referência</Button>
+        <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddReference}>Cancelar</Button>
       </div>
     </div>
   )}
 </div>
-
-
 
 
 </div>
@@ -2066,7 +2070,7 @@ setExperimentData((prevData: any) => {
 
 </form>
 </div>
-{/* {Object.keys(experimentData).length > 0 && (
+ {Object.keys(experimentData).length > 0 && (
   <>
     <div className="d-flex justify-content-end">
       <button className="btn btn-outline-primary me-2" onClick={handleCopy}>
@@ -2078,7 +2082,7 @@ setExperimentData((prevData: any) => {
       {JSON.stringify(experimentData, null, 2)}
     </pre>
   </>
-)} */}
+)} 
     </div>
 
 
