@@ -63,12 +63,55 @@ export default function Experiment() {
   const [experimentLocationData] = useState(locationData);
   const [experimentGeneralData] = useState(topicGeneralData);
   const [experimentTargetAudienceData] = useState(targetAudience);
-  const [copied, setCopied] = useState(false); 
-  const [apiToken, setApiToken] = useState('');
-  const [username, setUsername] = useState('');
-  
-  
-  
+  const [apiToken, setApiToken] = useState<string>('');
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [testResult, setTestResult] = useState<{ success: boolean, message: string } | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('githubApiToken');
+    if (storedToken) {
+      setApiToken(storedToken);
+    }
+  }, []);
+
+  const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const token = e.target.value;
+    setApiToken(token);
+    localStorage.setItem('githubApiToken', token);
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const testApiToken = async (token: string) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get('https://api.github.com/user', {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      });
+      setTestResult({ success: true, message: `Teste bem-sucedido. Usuário: ${response.data.login}` });
+    } catch (error) {
+      console.error('Erro ao testar a chave da API. Chave inválida.', error);
+      setTestResult({ success: false, message: 'Erro ao testar a chave da API. Chave inválida.' });
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => {
+        setTestResult(null);
+      }, 10000);
+    }
+  };
+
+  const handleTestClick = async () => {
+    await testApiToken(apiToken);
+  };
+
+  const handleCloseClick = () => {
+    setTestResult(null);
+  };
   
   const [experimentData, setExperimentData] = useState({
     id: '',
@@ -507,45 +550,6 @@ export default function Experiment() {
   }, []);
 
 
-
-
-
-  const [isLoading, setIsLoading] = useState(true); // Iniciar com isLoading como true
-
-  useEffect(() => {
-    const storedApiToken = localStorage.getItem('githubApiToken');
-    if (storedApiToken) {
-      setApiToken(storedApiToken);
-      setUsername('nome de usuário');
-      setIsLoading(false); // Parar o indicador de carregamento quando a chave estiver disponível
-    } else {
-      setIsLoading(false); // Parar o indicador de carregamento se a chave não estiver disponível
-    }
-  }, []);
-
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsLoading(true); // Iniciar o indicador de carregamento
-
-    const user = await testApiToken(apiToken);
-
-    setIsLoading(false); // Parar o indicador de carregamento
-
-    if (user) {
-      localStorage.setItem('githubApiToken', apiToken);
-      setUsername(user);
-    }
-  };
-
-  const handleBackToHome = () => {
-    setUsername('');
-  };
-
-  const handleCopy = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000); // limpa o estado após 2 segundos
-  };
-
   const [isSending, setIsSending] = useState(false);
   const [isDivHidden, setIsDivHidden] = useState(false);
 
@@ -935,22 +939,6 @@ await handleImageUploadMethod();
   useEffect(() => {
     handleGenerateId();
   }, [handleGenerateId]);
-  
-  async function testApiToken(apiToken: string) {
-    try {
-      const response = await axios.get('https://api.github.com/user', {
-        headers: {
-          Authorization: `token ${apiToken}`,
-        },
-      }); 
-      return response.data.login;
-    } catch (error) {
-      console.error('Erro ao testar a chave da API:', error);
-      return null;
-    }
-  }
-
-
 
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -1286,10 +1274,46 @@ setExperimentData((prevData: any) => {
   <div>
 
   <div className="border border-gray-300 rounded-lg p-6 mb-6">
-  <h2 className="text-lg font-semibold mb-4">Codigo da API do Github</h2>
+      <h2 className="text-lg font-semibold mb-4">Chave da API do Github</h2>
+      <input
+        type="text"
+        value={apiToken}
+        onChange={handleTokenChange}
+        placeholder="Digite o token da API do Github"
+        className={`border border-gray-300 rounded-lg p-2 mb-2 w-full ${isEditing ? '' : 'opacity-50 cursor-not-allowed'}`}
+        disabled={!isEditing}
+      />
+      <div className="flex justify-end">
+        <button
+          onClick={handleEditClick}
+          className={`bg-blue-600 ${isEditing ? 'hover:bg-blue-700' : ''} text-white py-2 px-4 rounded-lg mr-2 ${isEditing ? 'px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600' : ''}`}
+        >
+          {isEditing ? 'Concluir' : 'Editar código'}
+        </button>
+        <button
+          onClick={handleTestClick}
+          className={`bg-purple-600 ${isEditing ? 'opacity-50 cursor-not-allowed' : 'hover:bg-purple-700'} 
+                     text-white py-2 px-4 rounded-lg ${isEditing || isLoading ? 'disabled:opacity-50 disabled:cursor-not-allowed' : ''}`}
+          disabled={isEditing || isLoading}
+        >
+          {isLoading ? (
+            <div className="flex items-center">
+              <div className="w-4 h-4 mr-2 border-t-2 border-b-2 border-purple-500 rounded-full animate-spin opacity-50 cursor-not-allowed"></div>
+              <span>Aguarde</span>
+            </div>
+          ) : (
+            'Testar'
+          )}
+        </button>
+      </div>
+      {testResult && (
+        <div className={`mt-4 p-2 ${testResult.success ? 'bg-green-100' : 'bg-red-100'} rounded-md flex justify-between items-center`}>
+          <span>{testResult.message}</span>
+          <button onClick={handleCloseClick} className="text-red-600 ml-2 focus:outline-none hover:text-red-800">x</button>
+        </div>
+      )}
+    </div>
 
-
-</div>
   
   <div className="border border-gray-300 rounded-lg p-6 mb-6">
   <h2 className="text-lg font-semibold mb-4">Etapa 1: Informações Gerais</h2>
