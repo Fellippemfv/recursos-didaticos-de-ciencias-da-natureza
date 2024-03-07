@@ -4,14 +4,14 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import styles from './page.module.css' 
-import { GrNext } from 'react-icons/gr';
-import { MdCheck, MdError } from 'react-icons/md';
-import { RiAddLine } from 'react-icons/ri';
+import { MdAddchart, MdBarChart, MdBook, MdBookmarkBorder, MdLibraryBooks, MdMenuBook, MdOutlineInsertChartOutlined, MdOutlineLibraryBooks, MdOutlineLocationOn, MdOutlinePinch, MdPeopleOutline, MdPlaylistPlay } from 'react-icons/md';
+import { MdBuild, MdCheck, MdDateRange, MdError, MdFingerprint, MdFormatColorText, MdImage, MdImageSearch, MdLocationOn, MdOutlineBuild, MdOutlineDescription, MdOutlineFileOpen, MdPeople, MdPlaylistAddCheck, MdTitle, MdViewModule } from 'react-icons/md';
+import { RiAddLine, RiUserLine } from 'react-icons/ri';
 
-import { FiTool, FiUploadCloud } from 'react-icons/fi';
-import { ImFilePicture } from 'react-icons/im';
+import { FiHash, FiTool, FiUploadCloud } from 'react-icons/fi';
+import { IoIosFlask } from 'react-icons/io';
 
-import { FaCopy } from "react-icons/fa";
+import { FaBookmark, FaCopy, FaHashtag, FaHeading } from "react-icons/fa";
 
 import { Octokit } from "@octokit/rest";
 /* import Octokit from "@octokit/rest"; */
@@ -1284,15 +1284,27 @@ setExperimentData((prevData: any) => {
 
 <form onSubmit={handleSubmit}>
   <div>
+
+  <div className="border border-gray-300 rounded-lg p-6 mb-6">
+  <h2 className="text-lg font-semibold mb-4">Codigo da API do Github</h2>
+
+
+</div>
   
-  <div className="border border-gray-200 rounded-lg p-6 mb-6">
+  <div className="border border-gray-300 rounded-lg p-6 mb-6">
   <h2 className="text-lg font-semibold mb-4">Etapa 1: Informações Gerais</h2>
 
-  <div className="mb-4">
-  <Label htmlFor="message-2">ID Único</Label>
-  <p className="mt-2 mb-4 text-sm text-muted-foreground">
-    O "ID" é gerado automaticamente, seria o numero de identificação do experimento e deve servir para adicionar e editar o experimento na plataforma do github.
-  </p>
+  <div className="mb-4 flex flex-col">
+  <div className='flex flex-row'>
+  <MdFingerprint style={{ marginRight: '5px' }} />
+    <Label htmlFor="message-2">
+      ID Único
+    </Label>
+  </div>
+  <div className="flex flex-col">
+    <p className="mt-2 mb-4 text-sm text-muted-foreground flex-1">
+      O "ID" é gerado automaticamente, seria o numero de identificação do experimento e deve servir para adicionar e editar o experimento na plataforma do github.
+    </p>
     <Input
       id="id"
       type="text"
@@ -1300,15 +1312,22 @@ setExperimentData((prevData: any) => {
       value={experimentData.id}
       onChange={handleInputChange}
       disabled
-      className="cursor-not-allowed w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
+      className="cursor-not-allowed w-full md:w-auto px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
     />
   </div>
+</div>
 
-  <div className="mb-4">
-  <Label htmlFor="message-2">Data de postagem</Label>
-  <p className="mt-2 mb-4 text-sm text-muted-foreground">
-    A data é gerada automaticamente, deve servir para adicionar a pagina do experimento o dia e hora que ele foi enviado.
-  </p>
+<div className="mb-4 flex flex-col">
+  <div className='flex flex-row items-center'>
+    <MdDateRange style={{ marginRight: '5px' }} />
+    <Label htmlFor="message-2">
+      Data de postagem
+    </Label>
+  </div>
+  <div className="flex flex-col">
+    <p className="mt-2 mb-4 text-sm text-muted-foreground flex-1">
+      A data é gerada automaticamente, deve servir para adicionar a pagina do experimento o dia e hora que ele foi enviado.
+    </p>
     <Input
       id="postDate"
       type="text"
@@ -1316,35 +1335,44 @@ setExperimentData((prevData: any) => {
       value={experimentData.postDate}
       onChange={handleInputChange}
       disabled
-      className="cursor-not-allowed w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
+      className="cursor-not-allowed w-full md:w-auto px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
     />
   </div>
+</div>
 
-  <div className="mb-4">
-  <Label htmlFor="message-2">Nome do autor/da autora</Label>
+<div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <RiUserLine style={{ marginRight: '5px' }} /> {/* Adicionando o ícone RiUserLine */}
+    <Label htmlFor="message-2">Nome do autor/da autora</Label>
+  </div>
   <p className="mt-2 mb-4 text-sm text-muted-foreground">
-    O nome do autor/da autora, é a identificação de quem enviou os dados do experimento, vai aparecer dentro da pagina do experimento para sabermos quem enviou.
+    O nome do autor/da autora é a identificação de quem enviou os dados do experimento e aparecerá dentro da página do experimento para sabermos quem enviou.
   </p>
-    <Input
+  <Input
     placeholder='Clique e escreva seu nome.'
-      id="profileName"
-      type="text"
-      name="profileName"
-      value={experimentData.profileName}
-      onChange={handleInputChange}
-      className="max-w-40rem px-4 mb-2 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
-    />
-    <p className="text-sm text-muted-foreground">
+    id="profileName"
+    type="text"
+    name="profileName"
+    value={experimentData.profileName}
+    onChange={handleInputChange}
+    className="mb-4 max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent outline-none resize-none"
+  />
+  <p className="text-sm text-muted-foreground">
     Insira entre 10-300 caracteres.
   </p>
-  </div>
+</div>
 </div>
 
 <div className="border border-gray-300 rounded-lg p-6 mb-6">
   <h2 className="text-lg font-semibold mb-4">Etapa 2: Tópicos</h2>
 
   <div className="mb-4">
-  <Label htmlFor="title">Tópico geral:</Label>
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <FiHash style={{ marginRight: '5px' }} /> {/* Adicionando o ícone FaHashtag dentro de uma div */}
+    </div>
+    <Label htmlFor="title">Tópico geral:</Label>
+  </div>
   <p className="mt-2 mb-4 text-sm text-muted-foreground">
         Selecione um tópico geral para o seu experimento entre Biologia, Física e Química. Escolha cuidadosamente, pois isso ajudará na identificação e classificação do seu experimento.
       </p>
@@ -1406,9 +1434,17 @@ setExperimentData((prevData: any) => {
 
         return (
           <div key={generalTopic.slug} className="mb-4">
-          <Label htmlFor={`topicSpecific-${generalTopic.slug}`}>
-        Tópico Específico de {generalTopic.title}:
-      </Label>
+         <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+    <MdBookmarkBorder style={{ marginRight: '5px' }} />
+    </div>
+    <Label htmlFor={`topicSpecific-${generalTopic.slug}`}>
+      Tópico Específico de {generalTopic.title}:
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
       <p className="mt-2 mb-4 text-sm text-muted-foreground">
         Selecione um tópico específico dentro da {generalTopic.title} para o seu experimento. Escolha cuidadosamente, pois isso ajudará na identificação e classificação do seu experimento.
       </p>
@@ -1468,9 +1504,17 @@ setExperimentData((prevData: any) => {
 
   <div className="mb-4">
     
-  <Label htmlFor="topicLocalization">
-        Tópico de Localização:
-      </Label>
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdOutlineLocationOn style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdLocationOn dentro de uma div */}
+    </div>
+    <Label htmlFor="topicLocalization">
+      Tópico de Localização:
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
       <p className="mt-2 mb-4 text-sm text-muted-foreground">
         Selecione os lugares onde é possível realizar o experimento. Escolha cuidadosamente, pois isso ajudará na identificação e classificação do seu experimento.
       </p>
@@ -1519,9 +1563,17 @@ setExperimentData((prevData: any) => {
   </div>
 
   <div className="mb-4">
-  <Label htmlFor="topicAudience" >
-        Tópico de Público-Alvo:
-      </Label>
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdPeopleOutline  style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdPeople dentro de uma div */}
+    </div>
+    <Label htmlFor="topicAudience">
+      Tópico de Público-Alvo:
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
       <p className="mt-2 mb-4 text-sm text-muted-foreground">
         Selecione o público-alvo para o qual o experimento é destinado: Ensino Fundamental, Ensino Médio ou Ensino Superior. Escolha cuidadosamente, pois isso ajudará na identificação e classificação do seu experimento.
       </p>
@@ -1574,11 +1626,21 @@ setExperimentData((prevData: any) => {
 
 
 
-<div className="border border-gray-200 rounded-lg p-6 mb-6">
+<div className="border border-gray-300 rounded-lg p-6 mb-6">
   <h2 className="text-lg font-semibold mb-4">Etapa 3: Informações Básicas do experimento</h2>
 
   <div className="mb-4">
-  <Label htmlFor="title">Título:</Label>
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdOutlineFileOpen  style={{ marginRight: '5px' }} /> {/* Adicionando o ícone FaHeading dentro de uma div */}
+    </div>
+    <Label htmlFor="title">
+      Título:
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
   <p className="mt-2 mb-4 text-sm text-muted-foreground">
     O título é uma parte crucial da identificação do seu experimento. Por favor, seja claro e descritivo, de preferência faça algo chamativo.
   </p>
@@ -1597,7 +1659,7 @@ setExperimentData((prevData: any) => {
 </div>
 
 
-  <div className="mb-4">
+{/*   <div className="mb-4">
   <Label htmlFor="title">Slug</Label>
   <p className="mt-2 mb-4 text-sm text-muted-foreground">
     O slug é gerado atomaticamente, e ele é basicamente o endereço onde vamos encontrar o experimento, por isso ele não deve ser igual a nenhum já cadastrado.
@@ -1611,11 +1673,19 @@ setExperimentData((prevData: any) => {
       disabled
       className="cursor-not-allowed w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
     />
-  </div>
+  </div> */}
 
-  <Label>
-    Imagem de Preview
-  </Label>
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdImageSearch style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    </div>
+    <Label htmlFor="previewImage">
+      Imagem de Preview
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
 
   <p className="mt-2 mb-4 text-sm text-muted-foreground">
       Insira uma imagem para visualização prévia. Esta imagem será exibida como um preview do seu experimento. Escolha uma imagem que represente o experiment como um todo para aparecer na página de busca, veja algo bem chamativo.
@@ -1656,7 +1726,17 @@ setExperimentData((prevData: any) => {
 
 
 <div className="grid w-full gap-1.5">
-<Label className='mb-2' htmlFor="message-2">Descrição</Label>
+<div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdOutlineDescription style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    </div>
+    <Label htmlFor="previewImage">
+      Descrição
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
 <p className="mb-2 text-sm text-muted-foreground">
     Forneça uma descrição objetiva, detalhada e concisa do seu experimento, escreva de forma que fique chamativo e atraia as pessoas a acessarem. Essa descrição vai aparecer na página de procurar experimentos, logo, seja breve.
 </p>
@@ -1680,12 +1760,22 @@ setExperimentData((prevData: any) => {
 
 
 
-<div className="border border-gray-200 rounded-lg p-6 mb-6">
+<div className="border border-gray-300 rounded-lg p-6 mb-6">
   <h2 className="text-lg font-semibold mb-4">Etapa 4: Informações Complementares</h2>
   
 
   <div className="mt-8">
-  <Label className='mb-2' htmlFor="objectives">Objetivos</Label>
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdPlaylistAddCheck  style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    </div>
+    <Label htmlFor="previewImage">
+      Objetivos
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
 <p className="mb-2 text-sm text-muted-foreground">
     Liste os objetivos do experimento no infinitivo, ou seja, descreva o que se pretende alcançar de forma clara e sucinta. Certifique-se de incluir todos os objetivos que o experimento visa alcançar. Por exemplo, "analisar", "comparar", "avaliar", entre outros. Cada objetivo deve estar descrito no infinitivo e de forma distinta.
 </p>
@@ -1771,7 +1861,17 @@ setExperimentData((prevData: any) => {
 
 
 <div className="mt-8">
-<Label className='mb-2' htmlFor="materials">Materiais Necessários</Label>
+<div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdOutlineBuild style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    </div>
+    <Label htmlFor="previewImage">
+    Materiais Necessários
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
 <p className="mb-2 text-sm text-muted-foreground">
     Liste os materiais essenciais para a realização do experimento. Certifique-se de incluir tudo o que os participantes precisarão para realizar o experimento com sucesso. Por exemplo, inclua computador, tablet ou smartphone com acesso à internet, bem como qualquer outro material. Adicione a quantidade e o nome de cada material.
 </p>
@@ -1839,9 +1939,18 @@ setExperimentData((prevData: any) => {
 </div>
 
 <div className="mt-8">
-  <Label className="mb-2" htmlFor="message-2">
+
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdOutlinePinch  style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    </div>
+    <Label htmlFor="previewImage">
     Passo a passo
-  </Label>
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
   <p className="mb-2 text-sm text-muted-foreground">
     Forneça uma descrição objetiva, detalhada e concisa de cada passo para a realização do seu experimento, escreva de forma que fique claro o que devemos realizar, por isso, separe em passos.
   </p>
@@ -1964,7 +2073,18 @@ setExperimentData((prevData: any) => {
 
 
 <div className="grid w-full gap-1.5 mt-8 ">
-  <Label className='mb-2' htmlFor="message-2">Resultados do Experimento</Label>
+
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdAddchart  style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    </div>
+    <Label htmlFor="previewImage">
+    Resultados do Experimento
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
   <p className="mb-2 text-sm text-muted-foreground">
     Insira os resultados obtidos a partir da realização do experimento. Seja claro e objetivo para que outros usuários possam entender facilmente o que deve ocorrer ao final da sua realização, mais especificamente o que devemos observar após o realizar todas as etapas da metodologia.
   </p>
@@ -1987,7 +2107,18 @@ setExperimentData((prevData: any) => {
 
 
 <div className="grid w-full gap-1.5 mt-8">
-  <Label className='mb-2' htmlFor="message-2">Explicação Científica</Label>
+
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdMenuBook  style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    </div>
+    <Label htmlFor="previewImage">
+    Explicação Científica
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
   <p className="mb-2 text-sm text-muted-foreground">
     Insira uma explicação científica detalhada do seu experimento. Utilize terminologia apropriada e seja claro para que outros usuários possam compreender facilmente como a ciência explica este experimento.
   </p>
@@ -2007,9 +2138,19 @@ setExperimentData((prevData: any) => {
 </div>
 
 <div className="mt-8">
-  <Label htmlFor="references" className="block text-gray-700 mb-2">
+ 
+
+  <div className="mb-4">
+  <div className="flex flex-row items-center mb-2">
+    <div>
+      <MdOutlineLibraryBooks   style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    </div>
+    <Label htmlFor="previewImage">
     Referências
-  </Label>
+    </Label>
+  </div>
+  {/* Restante do código... */}
+</div>
   <p className="text-sm text-gray-500 mb-4">
     Liste as referências utilizadas no experimento. Certifique-se de incluir todas as fontes e materiais consultados para realizar o experimento.
   </p>
