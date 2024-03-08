@@ -11,7 +11,10 @@ import { RiAddLine, RiUserLine } from 'react-icons/ri';
 import { FiHash, FiTool, FiUploadCloud } from 'react-icons/fi';
 import { IoIosFlask } from 'react-icons/io';
 
-import { FaBookmark, FaCopy, FaHashtag, FaHeading } from "react-icons/fa";
+import { FaBookmark, FaCopy, FaHashtag, FaHeading, FaTrash } from "react-icons/fa";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
 import { Octokit } from "@octokit/rest";
 /* import Octokit from "@octokit/rest"; */
@@ -28,6 +31,23 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { FcInfo } from 'react-icons/fc';
+import { toast } from '@/components/ui/use-toast';
+
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+
+const FormSchema = z.object({
+  username: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+})
 
 // Crie uma instância do Octokit
 const octokit = new Octokit();
@@ -59,6 +79,24 @@ interface TargetAudienceTopic {
 }
 
 export default function Experiment() { 
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      username: "",
+    },
+  })
+ 
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    })
+  }
   
   const [experimentLocationData] = useState(locationData);
   const [experimentGeneralData] = useState(topicGeneralData);
@@ -113,6 +151,7 @@ export default function Experiment() {
     setTestResult(null);
   };
   
+  
   const [experimentData, setExperimentData] = useState({
     id: '',
     topicGeneral: [],
@@ -158,6 +197,7 @@ export default function Experiment() {
             [selectedTopic.slug]: [],
           },
         }));
+        event.target.blur(); // Remove o foco do select
       }
     }
   
@@ -189,6 +229,7 @@ export default function Experiment() {
           topicSpecific: updatedTopicSpecific,
         };
       });
+      event.target.blur(); // Remove o foco do select
     }
   
     event.target.value = ''; // Limpa o valor selecionado
@@ -215,6 +256,7 @@ export default function Experiment() {
             },
           ],
         }));
+        event.target.blur(); // Remove o foco do select
       }
     }
   
@@ -242,6 +284,8 @@ export default function Experiment() {
             },
           ],
         }));
+
+        event.target.blur(); // Remove o foco do select
       }
     }
 
@@ -1078,19 +1122,29 @@ await handleImageUploadMethod();
   const [imageInputsCount, setImageInputsCount] = useState(1);
   const [nextMethodId, setNextMethodId] = useState(1);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [methodContent, setMethodContent] = useState<string>('');
   
-  const handleMethodTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleMethodTextChange = (index: number, event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
-    setNewMethod(value);
+  
+    // Atualiza o conteúdo do método em tempMethods
+    const updatedMethods = [...tempMethods];
+    updatedMethods[index] = { ...updatedMethods[index], content: value };
+    setTempMethods(updatedMethods);
+  
+    // Atualiza experimentData.methods com o novo conteúdo
+    setExperimentData((prevData: any) => {
+      const updatedData = {
+        ...prevData,
+        methods: updatedMethods,
+      };
+      return updatedData;
+    });
   };
   
   
   const handleAddMethod = () => {
-    setNewMethodVisible(true);
-  };
-  
-  const handleConfirmAddMethod = () => {
-    if (newMethod !== '') {
+
       const newMethodObj: Method = { id: nextMethodId, content: newMethod, imagePath: '' };
       setTempMethods((prevMethods) => [...prevMethods, newMethodObj]);
       setExperimentData((prevData: any) => {
@@ -1101,52 +1155,10 @@ await handleImageUploadMethod();
       setNewMethod('');
       setNewMethodVisible(false);
       setNextMethodId((prevId) => prevId + 1);
-    }
+
+
+
   };
-  
-  const handleCancelAddMethod = () => {
-    setNewMethod('');
-    setNewMethodVisible(false);
-    setEditMethod(null);
-    // Voltar para o valor anterior ao clicar em editar
-    if (editMethod) {
-      setTempMethods(prevMethods => {
-        const updatedMethods = prevMethods.map(method => {
-          if (method.id === editMethod.id) {
-            return { ...method, content: editMethod.content };
-          }
-          return method;
-        });
-        return updatedMethods;
-      });
-    }
-  };
-  
-  
-  const handleEditMethod = (method: Method) => {
-    setEditMethod(method);
-  };
- 
-  const handleSaveMethod = (index: any) => {
-    const methodToSave = tempMethods[index];
-  
-    // Verifica se experimentData e experimentData.methods estão definidos
-    if (experimentData && experimentData.methods) {
-      const updatedMethods = tempMethods.map((m, i) =>
-        i === index ? { ...m, content: methodToSave.content } : m
-      );
-      setTempMethods(updatedMethods);
-  
-      const dataMethods = experimentData.methods.map((m: any) =>
-        m.id === methodToSave.id ? { ...m, content: methodToSave.content } : m
-      );
-      setExperimentData((prevData: any) => ({ ...prevData, methods: dataMethods }));
-    }
-    
-    setEditMethod(null)
-  };
-  
-  
   
   const handleDeleteMethod = (id: number, index: number) => {
     
@@ -1218,7 +1230,6 @@ setExperimentData((prevData: any) => {
       reader.readAsDataURL(files[0]);
     }
   };
-  
   
   const handleRemoveImageMethod = (index: number) => {
     
@@ -1962,69 +1973,52 @@ setExperimentData((prevData: any) => {
   )}
 </div>
 
+
 <div className="mt-8">
+      <div className="mb-4">
+        <div className="flex flex-row items-center mb-2">
+          <div>
+            <MdOutlinePinch style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+          </div>
+          <Label htmlFor="previewImage">
+            Passo a passo
+          </Label>
+        </div>
+      </div>
+      <p className="mb-2 text-sm text-muted-foreground">
+        Forneça uma descrição objetiva, detalhada e concisa de cada passo para a realização do seu experimento, escreva de forma que fique claro o que devemos realizar, por isso, separe em passos.
+      </p>
 
-  <div className="mb-4">
-  <div className="flex flex-row items-center mb-2">
-    <div>
-      <MdOutlinePinch  style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
-    </div>
-    <Label htmlFor="previewImage">
-    Passo a passo
-    </Label>
-  </div>
-  {/* Restante do código... */}
+      {tempMethods.map((method, index) => (
+        <div key={method.id} className="mt-4 border border-solid border-darkgray rounded-md relative">
+          <div className="border-b border-gray-300 p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <FcInfo className="w-6 h-6 mr-2" /> {/* Ícone FiTool */}
+                <label className="block mb-1 font-bold">{`${index + 1}° Passo`}</label> {/* Passos em negrito */}
+              </div>
+              <Button className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>
+    <FaTrash className="mr-2" /> Excluir este passo
+</Button>
 </div>
-  <p className="mb-2 text-sm text-muted-foreground">
-    Forneça uma descrição objetiva, detalhada e concisa de cada passo para a realização do seu experimento, escreva de forma que fique claro o que devemos realizar, por isso, separe em passos.
-  </p>
+          </div>
 
-  {tempMethods.map((method, index) => (
-    <div key={method.id} className="border border-solid border-darkgray rounded-md p-4 mb-4 relative">
-    <div className="border-b border-gray-300 p-4 mb-4">
-  <div className="flex items-center justify-between mb-2">
-    <div className="flex items-center">
-      <FcInfo className="w-6 h-6 mr-2" /> {/* Ícone FiTool */}
-      <label className="block mb-1 font-bold">{`${index + 1}° Passo`}</label> {/* Passos em negrito */}
-    </div>
-    <Button className="px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>Excluir este passo</Button>
-  </div>
-</div>
+          <div className="m-4 flex flex-col md:flex-row md:items-baseline">
+            <div key={method.id} className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-4">
+              <Label className='mb-2'>Texto deste passo:</Label>
+              <Textarea
+                className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+                value={method.content}
+                onChange={(event) => handleMethodTextChange(index, event)}
+              />
+              <p className="text-sm text-muted-foreground">
+                Insira entre 10-300 caracteres.
+              </p>
+            </div>
 
-
-      <div className="flex flex-col md:flex-row md:items-center">
-       
-        <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-4">
-        <Label className='mb-2'>Texto deste passo:</Label>
-          <Textarea
-            className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
-            value={method.content}
-            readOnly={!editMethod || editMethod.id !== method.id}
-            onChange={(event) => {
-              const updatedMethods = [...tempMethods];
-              updatedMethods[index] = { ...updatedMethods[index], content: event.target.value };
-              setTempMethods(updatedMethods);
-            }}
-            style={{ cursor: !editMethod ? 'not-allowed' : 'auto' }}
-          />
-          <p className="text-sm text-muted-foreground">
-            Insira entre 10-300 caracteres.
-          </p>
-          {editMethod && editMethod.id === method.id ? (
-        <div className='w-full flex justify-end mt-4 bottom-0 right-0'>
-          <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={() => handleSaveMethod(index)}>Salvar</Button>
-          <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddMethod}>Cancelar</Button>
-        </div>
-      ) : (
-        <div className='w-full flex justify-end mt-4 bottom-0 right-0'>
-          <Button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditMethod(method)}>Editar Texto</Button>
-        </div>
-      )}
-        </div>
-        <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-4">
-  <Label className='flex flex-col items-center md:items-center mb-2 md:mr-4'>Imagem deste passo:</Label>
-
-  <div className="flex flex-col items-center md:items-center">
+            <div className=" w-full md:w-1/2 mb-4 md:mb-0 md:mr-4">
+              <Label className='flex flex-col items-center md:items-center mb-2 md:mr-4'>Imagem deste passo:</Label>
+              <div className="flex flex-col items-center md:items-center">
     {!previewImages[index] ? (
       <label htmlFor={`imageMethod${index + 1}Upload`} className={`cursor-pointer w-full md:w-auto flex justify-center md:justify-start mt-8`}>
         <div className="max-w-40rem p-4 w-full h-200 border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center">
@@ -2049,51 +2043,23 @@ setExperimentData((prevData: any) => {
         </Button>
       </div>
     )}
-  </div>
-</div>
+              </div>
 
 
-      </div>
-    
-     
+
+      
+            </div>
+          </div>
+        </div>
+      ))}
+
+      {tempMethods.length < 5 && !newMethodVisible && (
+        <Button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddMethod}>
+          <RiAddLine className="h-5 w-5 mr-2" />
+          <span>Adicionar novo Passo</span>
+        </Button>
+      )}
     </div>
-  ))}
-
-  {tempMethods.length < 5 && !newMethodVisible && (
-    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddMethod}>
-      <RiAddLine className="h-5 w-5 mr-2" />
-      <span>Adicionar novo Passo</span>
-    </Button>
-  )}
-
-  {newMethodVisible && (
-    <div className="mb-4">
-      <Label className="mb-2" htmlFor="message-2">
-        Escreva abaixo o próximo passo.
-      </Label>
-      <p className="mb-2 text-sm text-muted-foreground">
-        Depois de escrever, clique em 'Adicionar método', depois você vai conseguir editar o texto e adicionar uma imagem. Deve ser de APENAS UM PASSO, não se preocupe que posteriormente você vai conseguir adicionar novos passos.
-      </p>
-      <Textarea
-        className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
-        value={newMethod}
-        onChange={handleMethodTextChange}
-      />
-      <p className="text-sm text-muted-foreground">
-        Insira entre 10-300 caracteres.
-      </p>
-
-      <div className="mt-4 flex flex-col md:flex-row md:items-center">
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleConfirmAddMethod}>
-          Adicionar Método
-        </button>
-        <button className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" onClick={handleCancelAddMethod}>
-          Cancelar
-        </button>
-      </div>
-    </div>
-  )}
-</div>
 
 
 <div className="grid w-full gap-1.5 mt-8 ">
@@ -2256,12 +2222,34 @@ setExperimentData((prevData: any) => {
   </div>
 
 </form>
+
+<Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
 </div>
-{/*  {Object.keys(experimentData).length > 0 && (
+  {Object.keys(experimentData).length > 0 && (
   <>
     <div className="d-flex justify-content-end">
-      <button className="btn btn-outline-primary me-2" onClick={handleCopy}>
-        {copied ? "Copiado!" : "Copiar"}
+      <button className="btn btn-outline-primary me-2">
+        
         <FaCopy className="ms-2" />
       </button>
     </div>
@@ -2269,7 +2257,7 @@ setExperimentData((prevData: any) => {
       {JSON.stringify(experimentData, null, 2)}
     </pre>
   </>
-)}  */}
+)}  
     </div>
 
 
