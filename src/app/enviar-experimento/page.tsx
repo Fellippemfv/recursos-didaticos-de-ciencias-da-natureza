@@ -372,138 +372,85 @@ export default function Experiment() {
     content: string;
   }
   
-  const [tempObjectives, setTempObjectives] = useState<Objective[]>([]);
-  const [newObjective, setNewObjective] = useState('');
-  const [newObjectiveVisible, setNewObjectiveVisible] = useState(false);
-  const [editObjective, setEditObjective] = useState<Objective | null>(null);
-  
+  const [tempObjectives, setTempObjectives] = useState<Objective[]>([]);  
   const [nextId, setNextId] = useState(1);
   
-  const handleObjectiveTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = event.target;
-    setNewObjective(value);
-  };
-  
-  const handleAddObjective = () => {
-    setNewObjectiveVisible(true);
-  };
-  
-  const handleConfirmAddObjective = () => {
-    if (newObjective !== '') {
-      const newObj: Objective = { id: nextId, objectiveText: newObjective, content: '' };
-      setTempObjectives((prevObjectives) => [...prevObjectives, newObj]);
-      setExperimentData((prevData: any) => {
-        const newObjectives = [...prevData.objectives, { id: nextId, content: newObjective }];
-        return { ...prevData, objectives: newObjectives };
-      });
-  
-      setNewObjective('');
-      setNewObjectiveVisible(false);
-      setNextId(prevId => prevId + 1);
-    }
-  };
-  
-  const handleCancelAddObjective = () => {
-    setNewObjective('');
-    setNewObjectiveVisible(false);
-  };
-  
-  const handleEditObjective = (objective: Objective) => {
-    setEditObjective(objective);
-  };
-  
-  const handleSaveObjective = () => {
-    if (editObjective) {
-      const updatedObjectives = tempObjectives.map(obj =>
-        obj.id === editObjective.id ? { ...obj, objectiveText: editObjective.objectiveText } : obj
-      );
-      setTempObjectives(updatedObjectives);
-  
-      const dataObjectives = experimentData.objectives.map((obj: any) =>
-        obj.id === editObjective.id ? { ...obj, content: editObjective.objectiveText } : obj
-      );
-      setExperimentData((prevData: any) => ({ ...prevData, objectives: dataObjectives }));
-  
-      setEditObjective(null);
-    }
-  };
-  
   const handleDeleteObjective = (id: number) => {
-    setTempObjectives(prevObjectives => prevObjectives.filter(obj => obj.id !== id));
-    setExperimentData(prevData => ({
+    setTempObjectives((prevObjectives) => prevObjectives.filter(obj => obj.id !== id));
+    setExperimentData((prevData: any) => ({
       ...prevData,
       objectives: prevData.objectives.filter((obj: any) => obj.id !== id),
     }));
   };
+  
+  const handleAddEmptyObjective = () => {
+    if (tempObjectives.length < 5) {
+      const newObj: Objective = { id: nextId, objectiveText: '', content: '' };
+      setTempObjectives((prevObjectives) => [...prevObjectives, newObj]);
+      setExperimentData((prevData: any) => ({
+        ...prevData,
+        objectives: [...prevData.objectives, { id: nextId, content: '' }],
+      }));
+      setNextId(prevId => prevId + 1);
+    }
+  };
+  
+  const handleObjectiveChange = (event: React.ChangeEvent<HTMLTextAreaElement>, id: number) => {
+    const { value } = event.target;
+    const updatedObjectives = tempObjectives.map(obj =>
+      obj.id === id ? { ...obj, objectiveText: value } : obj
+    );
+    setTempObjectives(updatedObjectives);
+    setExperimentData((prevData: any) => ({
+      ...prevData,
+      objectives: prevData.objectives.map((obj: any) => obj.id === id ? { ...obj, content: value } : obj),
+    }));
+  };
+  
+  
+  
+  
   interface Material {
     id: number;
     materialText: string;
     content: string;
   }
 
-  const [tempMaterials, setTempMaterials] = useState<Material[]>([]);
-  const [newMaterial, setNewMaterial] = useState('');
-  const [newMaterialVisible, setNewMaterialVisible] = useState(false);
-  const [editMaterial, setEditMaterial] = useState<Material | null>(null);
-
+  const [tempMaterials, setTempMaterials] = useState<Material[]>([]);  
   const [nextMaterialId, setNextMaterialId] = useState(1);
-
-  const handleMaterialTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setNewMaterial(value);
+  
+  const handleDeleteMaterial = (id: number) => {
+    setTempMaterials((prevMaterials) => prevMaterials.filter(material => material.id !== id));
+    setExperimentData((prevData: any) => ({
+      ...prevData,
+      materials: prevData.materials.filter((material: any) => material.id !== id),
+    }));
   };
-
-  const handleAddMaterial = () => {
-    setNewMaterialVisible(true);
-  };
-
-  const handleConfirmAddMaterial = () => {
-    if (newMaterial !== '') {
-      const newMat: Material = { id: nextMaterialId, materialText: newMaterial, content: '' };
-      setTempMaterials((prevMaterials) => [...prevMaterials, newMat]);
-      setExperimentData((prevData: any) => {
-        const newMaterials = [...prevData.materials, { id: nextMaterialId, content: newMaterial }];
-        return { ...prevData, materials: newMaterials };
-      });
-
-      setNewMaterial('');
-      setNewMaterialVisible(false);
+  
+  const handleAddEmptyMaterial = () => {
+    if (tempMaterials.length < 5) {
+      const newMaterial: Material = { id: nextMaterialId, materialText: '', content: '' };
+      setTempMaterials((prevMaterials) => [...prevMaterials, newMaterial]);
+      setExperimentData((prevData: any) => ({
+        ...prevData,
+        materials: [...prevData.materials, { id: nextMaterialId, content: '' }],
+      }));
       setNextMaterialId(prevId => prevId + 1);
     }
   };
-
-  const handleCancelAddMaterial = () => {
-    setNewMaterial('');
-    setNewMaterialVisible(false);
-  };
-
-  const handleEditMaterial = (material: Material) => {
-    setEditMaterial(material);
-  };
-
-  const handleSaveMaterial = () => {
-    if (editMaterial) {
-      const updatedMaterials = tempMaterials.map(mat =>
-        mat.id === editMaterial.id ? { ...mat, materialText: editMaterial.materialText } : mat
-      );
-      setTempMaterials(updatedMaterials);
-
-      const dataMaterials = experimentData.materials.map((mat: any) =>
-        mat.id === editMaterial.id ? { ...mat, content: editMaterial.materialText } : mat
-      );
-      setExperimentData((prevData: any) => ({ ...prevData, materials: dataMaterials }));
-
-      setEditMaterial(null);
-    }
-  };
-
-  const handleDeleteMaterial = (id: number) => {
-    setTempMaterials(prevMaterials => prevMaterials.filter(mat => mat.id !== id));
-    setExperimentData(prevData => ({
+  
+  const handleMaterialChange = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
+    const { value } = event.target;
+    const updatedMaterials = tempMaterials.map(material =>
+      material.id === id ? { ...material, materialText: value } : material
+    );
+    setTempMaterials(updatedMaterials);
+    setExperimentData((prevData: any) => ({
       ...prevData,
-      materials: prevData.materials.filter((mat: any) => mat.id !== id),
+      materials: prevData.materials.map((material: any) => material.id === id ? { ...material, content: value } : material),
     }));
   };
+  
 
 
   interface Reference {
@@ -511,68 +458,39 @@ export default function Experiment() {
     referenceText: string;
     content: string;
   }
-
-  const [tempReferences, setTempReferences] = useState<Reference[]>([]);
-  const [newReference, setNewReference] = useState('');
-  const [newReferenceVisible, setNewReferenceVisible] = useState(false);
-  const [editReference, setEditReference] = useState<Reference | null>(null);
-
+  
+  const [tempReferences, setTempReferences] = useState<Reference[]>([]);  
   const [nextReferenceId, setNextReferenceId] = useState(1);
-
-  const handleReferenceTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setNewReference(value);
+  
+  const handleDeleteReference = (id: number) => {
+    setTempReferences((prevReferences) => prevReferences.filter(reference => reference.id !== id));
+    setExperimentData((prevData: any) => ({
+      ...prevData,
+      references: prevData.references.filter((reference: any) => reference.id !== id),
+    }));
   };
-
-  const handleAddReference = () => {
-    setNewReferenceVisible(true);
-  };
-
-  const handleConfirmAddReference = () => {
-    if (newReference !== '') {
-      const newRef: Reference = { id: nextReferenceId, referenceText: newReference, content: '' };
-      setTempReferences((prevReferences) => [...prevReferences, newRef]);
-      setExperimentData((prevData: any) => {
-        const newReferences = [...prevData.references, { id: nextReferenceId, content: newReference }];
-        return { ...prevData, references: newReferences };
-      });
-
-      setNewReference('');
-      setNewReferenceVisible(false);
+  
+  const handleAddEmptyReference = () => {
+    if (tempReferences.length < 5) {
+      const newReference: Reference = { id: nextReferenceId, referenceText: '', content: '' };
+      setTempReferences((prevReferences) => [...prevReferences, newReference]);
+      setExperimentData((prevData: any) => ({
+        ...prevData,
+        references: [...prevData.references, { id: nextReferenceId, content: '' }],
+      }));
       setNextReferenceId(prevId => prevId + 1);
     }
   };
-
-  const handleCancelAddReference = () => {
-    setNewReference('');
-    setNewReferenceVisible(false);
-  };
-
-  const handleEditReference = (reference: Reference) => {
-    setEditReference(reference);
-  };
-
-  const handleSaveReference = () => {
-    if (editReference) {
-      const updatedReferences = tempReferences.map(ref =>
-        ref.id === editReference.id ? { ...ref, referenceText: editReference.referenceText } : ref
-      );
-      setTempReferences(updatedReferences);
-
-      const dataReferences = experimentData.references.map((ref: any) =>
-        ref.id === editReference.id ? { ...ref, content: editReference.referenceText } : ref
-      );
-      setExperimentData((prevData: any) => ({ ...prevData, references: dataReferences }));
-
-      setEditReference(null);
-    }
-  };
-
-  const handleDeleteReference = (id: number) => {
-    setTempReferences(prevReferences => prevReferences.filter(ref => ref.id !== id));
-    setExperimentData(prevData => ({
+  
+  const handleReferenceChange = (event: React.ChangeEvent<HTMLTextAreaElement>, id: number) => {
+    const { value } = event.target;
+    const updatedReferences = tempReferences.map(reference =>
+      reference.id === id ? { ...reference, referenceText: value } : reference
+    );
+    setTempReferences(updatedReferences);
+    setExperimentData((prevData: any) => ({
       ...prevData,
-      references: prevData.references.filter((ref: any) => ref.id !== id),
+      references: prevData.references.map((reference: any) => reference.id === id ? { ...reference, content: value } : reference),
     }));
   };
 
@@ -1782,8 +1700,6 @@ setExperimentData((prevData: any) => {
     className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
  name="description"
     onChange={handleInputChange}
-    minLength={10}
-    maxLength={300}
   />
   <p className="text-sm text-muted-foreground">
     Insira entre 10-300 caracteres.
@@ -1801,177 +1717,112 @@ setExperimentData((prevData: any) => {
 
   <div className="mt-8">
   <div className="mb-4">
-  <div className="flex flex-row items-center mb-2">
-    <div>
-      <MdPlaylistAddCheck  style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    <div className="flex flex-row items-center mb-2">
+      <div>
+        <MdPlaylistAddCheck style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+      </div>
+      <Label htmlFor="previewImage">
+        Objetivos
+      </Label>
     </div>
-    <Label htmlFor="previewImage">
-      Objetivos
-    </Label>
+    {/* Restante do código... */}
   </div>
-  {/* Restante do código... */}
-</div>
-<p className="mb-2 text-sm text-muted-foreground">
+  <p className="mb-2 text-sm text-muted-foreground">
     Liste os objetivos do experimento no infinitivo, ou seja, descreva o que se pretende alcançar de forma clara e sucinta. Certifique-se de incluir todos os objetivos que o experimento visa alcançar. Por exemplo, "analisar", "comparar", "avaliar", entre outros. Cada objetivo deve estar descrito no infinitivo e de forma distinta.
-</p>
-
+  </p>
 
   {tempObjectives.map((objective, index) => (
-    <div key={objective.id} className="border border-solid border-gray-300 rounded-md p-4 mb-4">
-      <div className="flex items-center mb-2">
-        <Label className="mr-4 block font-semibold">{`${index + 1}° Objetivo:`}</Label>
-      </div>
-      <div>
-        {editObjective && editObjective.id === objective.id ? (
-          <>
-           <Textarea
-            placeholder="Clique e escreva um objetivo."
-            className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
- value={editObjective.objectiveText}
-            onChange={(event) => setEditObjective({ ...editObjective, objectiveText: event.target.value })}
-          />
-          <p className="text-sm text-muted-foreground">
-          Insira entre 10-300 caracteres.
-          </p>
-          </>
-         
-          
-        ) : (
-          <>
-           <Textarea
-            placeholder="Clique e escreva um objetivo."
-            className="mb-2 cursor-not-allowed max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
- value={objective.objectiveText}
-            readOnly
-          />
-          <p className="text-sm text-muted-foreground">
-          Insira entre 10-300 caracteres.
-          </p>
-          </>
-         
-        )}
-      </div>
+    <div key={objective.id} className="border border-solid border-gray-300 rounded-md mb-4 relative">
+     
 
-      <div className="flex justify-end">
-        {editObjective && editObjective.id === objective.id ? (
-          <>
-            <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleSaveObjective}>Salvar</Button>
-            <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={() => setEditObjective(null)}>Cancelar</Button>
-          </>
-        ) : (
-          <>
-            <Button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditObjective(objective)}>Editar</Button>
-            <Button className="px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteObjective(objective.id)}>Excluir</Button>
-          </>
-        )}
+
+      <div className="flex items-center justify-between border-b border-gray-300 p-4">
+              <div className="flex items-center">
+                <FcInfo className="w-6 h-6 mr-2" /> {/* Ícone FiTool */}
+                <Label className="mr-4 block font-semibold">{`${index + 1}° Objetivo:`}</Label>
+
+              </div>
+              <Button className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteObjective(objective.id)}>
+    <FaTrash className="mr-2" /> Excluir este Objetivo
+              </Button>
+      </div>
+              
+      <div className='p-4'>
+        <Textarea
+          placeholder="Clique e escreva um objetivo."
+          className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+          value={objective.objectiveText}
+          onChange={(event) => handleObjectiveChange(event, objective.id)}
+          
+        />
+        <p className="text-sm text-muted-foreground">
+          Insira entre 10-300 caracteres.
+        </p>
       </div>
     </div>
   ))}
 
-  {tempObjectives.length < 5 && !newObjectiveVisible && (
-    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddObjective}>
+  {tempObjectives.length < 5 && (
+    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddEmptyObjective}>
       <RiAddLine className="h-5 w-5 mr-2" />
       <span>Adicionar novo Objetivo</span>
     </Button>
   )}
-
-  {newObjectiveVisible && (
-    <div className="border border-solid border-gray-300 rounded-md p-4 mb-4">
-      <Textarea
-        placeholder="Clique e escreva um objetivo."
-        className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
- value={newObjective}
-        onChange={handleObjectiveTextChange}
-      />
-      <p className="text-sm text-muted-foreground">
-          Insira entre 10-300 caracteres.
-          </p>
-      <div className="mt-4 flex justify-end">
-        <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleConfirmAddObjective}>Adicionar Objetivo</Button>
-        <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddObjective}>Cancelar</Button>
-      </div>
-    </div>
-  )}
 </div>
+
+
 
 
 <div className="mt-8">
-<div className="mb-4">
-  <div className="flex flex-row items-center mb-2">
-    <div>
-      <MdOutlineBuild style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+  <div className="mb-4">
+    <div className="flex flex-row items-center mb-2">
+      <div>
+        <MdOutlineBuild style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+      </div>
+      <Label htmlFor="previewImage">
+        Materiais Necessários
+      </Label>
     </div>
-    <Label htmlFor="previewImage">
-    Materiais Necessários
-    </Label>
+    {/* Restante do código... */}
   </div>
-  {/* Restante do código... */}
-</div>
-<p className="mb-2 text-sm text-muted-foreground">
+  <p className="mb-2 text-sm text-muted-foreground">
     Liste os materiais essenciais para a realização do experimento. Certifique-se de incluir tudo o que os participantes precisarão para realizar o experimento com sucesso. Por exemplo, inclua computador, tablet ou smartphone com acesso à internet, bem como qualquer outro material. Adicione a quantidade e o nome de cada material.
-</p>
+  </p>
 
   {tempMaterials.map((material, index) => (
-    <div key={material.id} className="border-b border-solid border-darkgray pb-2 mb-4">
-      <label className="block mb-1">{`${index + 1}° Material`}</label>
-      <div className="flex flex-col">
-        {editMaterial && editMaterial.id === material.id ? (
-          <Input
-            className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none mb-2"
-            type="text"
-            value={editMaterial.materialText}
-            onChange={(event) => setEditMaterial({ ...editMaterial, materialText: event.target.value })}
-          />
-        ) : (
-          <Input
-            className="cursor-not-allowed max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none mb-2"
-            type="text"
-            value={material.materialText}
-            readOnly
-          />
-        )}
-        <p className="text-sm text-muted-foreground mb-2">Insira entre 10-300 caracteres.</p>
-        <div className="flex justify-end">
-          {editMaterial && editMaterial.id === material.id ? (
-            <>
-              <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleSaveMaterial}>Salvar</Button>
-              <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={() => setEditMaterial(null)}>Cancelar</Button>
-            </>
-          ) : (
-            <>
-              <Button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditMaterial(material)}>Editar</Button>
-              <Button className="px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMaterial(material.id)}>Excluir</Button>
-            </>
-          )}
-        </div>
+  <div key={material.id} className="border border-solid border-gray-300 rounded-md mb-4 relative">
+    <div className="flex items-center justify-between border-b border-gray-300 p-4">
+      <div className="flex items-center">
+        <FcInfo className="w-6 h-6 mr-2" /> {/* Ícone FiTool */}
+        <Label className="mr-4 block font-semibold">{`${index + 1}° Material:`}</Label>
       </div>
+      <Button className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMaterial(material.id)}>
+        <FaTrash className="mr-2" /> Excluir este Material
+      </Button>
     </div>
-  ))}
-
-  {tempMaterials.length < 5 && !newMaterialVisible && (
-    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddMaterial}>
-    <RiAddLine className="h-5 w-5 mr-2" />
-    <span>Adicionar novo Material</span>
-  </Button>
-  
-  )}
-
-  {newMaterialVisible && (
-    <div className="mb-4">
+    <div className='p-4'>
       <Input
-        className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none mb-2"
         type="text"
-        value={newMaterial}
-        onChange={handleMaterialTextChange}
+        placeholder="Clique e escreva um material."
+        className="mb-2 max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none"
+        defaultValue={material.materialText}
+        onChange={(event) => handleMaterialChange(event, material.id)}
       />
-      <p className="text-sm text-muted-foreground mb-2">Insira entre 10-300 caracteres.</p>
-      <div className="flex justify-end">
-        <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleConfirmAddMaterial}>Adicionar Material</Button>
-        <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddMaterial}>Cancelar</Button>
-      </div>
+      <p className="text-sm text-muted-foreground">
+        Insira entre 10-300 caracteres.
+      </p>
     </div>
+  </div>
+))}
+
+  {tempMaterials.length < 5 && (
+    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddEmptyMaterial}>
+      <RiAddLine className="h-5 w-5 mr-2" />
+      <span>Adicionar novo Material</span>
+    </Button>
   )}
 </div>
+
 
 
 <div className="mt-8">
@@ -1990,7 +1841,7 @@ setExperimentData((prevData: any) => {
       </p>
 
       {tempMethods.map((method, index) => (
-        <div key={method.id} className="mt-4 border border-solid border-darkgray rounded-md relative">
+        <div key={method.id} className="border border-solid border-gray-300 rounded-md mb-4 relative">
           <div className="border-b border-gray-300 p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -1999,15 +1850,15 @@ setExperimentData((prevData: any) => {
               </div>
               <Button className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteMethod(method.id, index)}>
     <FaTrash className="mr-2" /> Excluir este passo
-</Button>
-</div>
+              </Button>
+              </div>
           </div>
 
           <div className="m-4 flex flex-col md:flex-row md:items-baseline">
             <div key={method.id} className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-4">
               <Label className='mb-2'>Texto deste passo:</Label>
               <Textarea
-                className="mb-2 max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+                className="mb-2 max-w-40rem h-52 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
                 value={method.content}
                 onChange={(event) => handleMethodTextChange(index, event)}
               />
@@ -2085,8 +1936,6 @@ setExperimentData((prevData: any) => {
     className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
     name="results"
     onChange={handleInputChange}
-    minLength={10}
-    maxLength={300}
   />
   <p className="text-sm text-muted-foreground">
     Insira entre 10-300 caracteres.
@@ -2119,8 +1968,6 @@ setExperimentData((prevData: any) => {
     className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
     name="scientificExplanation"
     onChange={handleInputChange}
-    minLength={10}
-    maxLength={300}
   />
   <p className="text-sm text-muted-foreground">
     Insira entre 10-300 caracteres.
@@ -2128,83 +1975,58 @@ setExperimentData((prevData: any) => {
 </div>
 
 <div className="mt-8">
- 
-
   <div className="mb-4">
-  <div className="flex flex-row items-center mb-2">
-    <div>
-      <MdOutlineLibraryBooks   style={{ marginRight: '5px' }} /> {/* Adicionando o ícone MdImage dentro de uma div */}
+    <div className="flex flex-row items-center mb-2">
+      <div>
+        <MdOutlineLibraryBooks style={{ marginRight: '5px' }} /> {/* Ícone MdOutlineLibraryBooks */}
+      </div>
+      <Label htmlFor="previewImage">
+        Referências
+      </Label>
     </div>
-    <Label htmlFor="previewImage">
-    Referências
-    </Label>
+    <p className="text-sm text-gray-500 mb-4">
+      Liste as referências utilizadas no experimento. Certifique-se de incluir todas as fontes e materiais consultados para realizar o experimento.
+    </p>
   </div>
-  {/* Restante do código... */}
-</div>
-  <p className="text-sm text-gray-500 mb-4">
-    Liste as referências utilizadas no experimento. Certifique-se de incluir todas as fontes e materiais consultados para realizar o experimento.
-  </p>
 
   {tempReferences.map((reference, index) => (
-    <div key={reference.id} className="border-b border-solid border-darkgray pb-2 mb-4 flex flex-col">
-      <Label className="block mb-1">{`${index + 1}° Referência`}</Label>
-      <div className="flex flex-col">
-        {editReference && editReference.id === reference.id ? (
-          <Input
-            className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none mb-2"
-            type="text"
-            value={editReference.referenceText}
-            onChange={(event) => setEditReference({ ...editReference, referenceText: event.target.value })}
-          />
-        ) : (
-          <Input
-            className="cursor-not-allowed max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none mb-2"
-            type="text"
-            value={reference.referenceText}
-            readOnly
-          />
-        )}
+    <div key={reference.id} className="border border-solid border-gray-300 rounded-md mb-4 relative">
+      
+
+
+        <div className="flex items-center justify-between border-b border-gray-300 p-4">
+              <div className="flex items-center">
+                <FcInfo className="w-6 h-6 mr-2" /> {/* Ícone FiTool */}
+                <Label className="block mb-1">{`${index + 1}° Referência`}</Label>
+
+              </div>
+              <Button className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteReference(reference.id)}>
+    <FaTrash className="mr-2" /> Excluir esta Referência
+              </Button>
+      </div>
+
+
+      <div className="p-4">
+        <Textarea
+          placeholder="Clique e escreva uma referência."
+          className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none mb-2"
+          value={reference.referenceText}
+          onChange={(event) => handleReferenceChange(event, reference.id)}
+        />
         <p className="text-sm text-gray-500 mb-2">Insira entre 10-300 caracteres.</p>
-        <div className="flex justify-end">
-          {editReference && editReference.id === reference.id ? (
-            <>
-              <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleSaveReference}>Salvar</Button>
-              <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={() => setEditReference(null)}>Cancelar</Button>
-            </>
-          ) : (
-            <>
-              <Button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={() => handleEditReference(reference)}>Editar</Button>
-              <Button className="px-4 py-2 bg-red-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600" onClick={() => handleDeleteReference(reference.id)}>Excluir</Button>
-            </>
-          )}
-        </div>
+       
       </div>
     </div>
   ))}
 
-  {tempReferences.length < 5 && !newReferenceVisible && (
-    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddReference}>
+  {tempReferences.length < 5 && (
+    <Button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600" onClick={handleAddEmptyReference}>
       <RiAddLine className="h-5 w-5 mr-2" />
       <span>Adicionar nova Referência</span>
     </Button>
   )}
-
-  {newReferenceVisible && (
-    <div className="mb-4">
-      <Input
-        className="max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none mb-2"
-        type="text"
-        value={newReference}
-        onChange={handleReferenceTextChange}
-      />
-      <p className="text-sm text-gray-500 mb-2">Insira entre 10-300 caracteres.</p>
-      <div className="flex justify-end">
-        <Button className="px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" onClick={handleConfirmAddReference}>Adicionar Referência</Button>
-        <Button className="px-4 py-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-600" onClick={handleCancelAddReference}>Cancelar</Button>
-      </div>
-    </div>
-  )}
 </div>
+
 
 
 </div>
