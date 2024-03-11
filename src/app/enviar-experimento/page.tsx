@@ -9,6 +9,7 @@ import React, {
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import styles from "./page.module.css";
+import { IoKeyOutline } from "react-icons/io5";
 import {
   MdAddchart,
   MdBookmarkBorder,
@@ -193,7 +194,41 @@ export default function Experiment() {
     scientificExplanation: "",
     references: [],
     targetAudience: [],
+    keywords: [], // Estado para armazenar as palavras-chave em experimentData
   });
+
+  const [keyword, setKeyword] = useState(""); // Estado para armazenar a palavra-chave digitada
+
+  const handleAddKeyword = () => {
+    if (keyword.trim() !== "") {
+      const slug = generateKeySlug(keyword);
+      setExperimentData((prevData: any) => ({
+        ...prevData,
+        keywords: [
+          ...prevData.keywords,
+          { id: prevData.keywords.length + 1, title: keyword, slug },
+        ],
+      }));
+      setKeyword(""); // Limpa o input após adicionar
+    }
+  };
+
+  const generateKeySlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9 -]/g, "")
+      .replace(/\s+/g, "-")
+      .slice(0, 50); // Limitando o tamanho do slug a 50 caracteres
+  };
+
+  const handleRemoveKeyword = (id: number) => {
+    setExperimentData((prevData: any) => ({
+      ...prevData,
+      keywords: prevData.keywords.filter((keyword: any) => keyword.id !== id),
+    }));
+  };
 
   const handleGeneralSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
@@ -1668,7 +1703,7 @@ export default function Experiment() {
                   </div>
                 </div>
 
-                <div className="mb-4">
+                <div className="mb-8">
                   <div className="mb-4">
                     <div className="flex flex-row items-center mb-2">
                       <div>
@@ -1732,6 +1767,73 @@ export default function Experiment() {
                         <MdError className="mr-2" />
                         <span>
                           Selecione pelo menos um tópico sobre o público-alvo do
+                          experimento.
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <div className="mb-4">
+                    <div className="flex flex-col items-baseline mb-2">
+                      <div className="flex flex-row items-center justify-center">
+                        <IoKeyOutline style={{ marginRight: "5px" }} />
+                        <Label htmlFor="keywordInput">Palavras-chave:</Label>
+                      </div>
+                      <div>
+                        <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                          Palavras-chave, também conhecidas como "keywords" em
+                          inglês, são termos que descrevem o conteúdo principal.
+                          Neste caso elas irão atuar como marcadores que ajudam
+                          os motores de busca e os leitores a entenderem sobre o
+                          que se trata seu experimento em seu blog. Escolha
+                          cuidadosamente palavras-chave relevantes e
+                          significativas relacionadas ao seu conteúdo para
+                          melhorar a visibilidade e a descoberta do seu
+                          experimento online.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <Input
+                        type="text"
+                        id="keywordInput"
+                        value={keyword}
+                        onChange={(e) => setKeyword(e.target.value)}
+                        className="mr-2 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent outline-none resize-none"
+                        placeholder="Digite uma palavra-chave"
+                      />
+                      <button
+                        onClick={handleAddKeyword}
+                        className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"
+                      >
+                        Adicionar
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-wrap">
+                    {experimentData.keywords.map((keyword: any) => (
+                      <div
+                        key={keyword.id}
+                        className="bg-purple-600 p-2 rounded-md inline-flex items-center mr-2 mb-2 text-white shadow-lg relative"
+                      >
+                        <span className="mr-2">{keyword.title}</span>
+                        <button
+                          onClick={() => handleRemoveKeyword(keyword.id)}
+                          className="text-red-500 focus:outline-none hover:text-red-700 transition-colors duration-300 ease-in-out relative"
+                        >
+                          <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                            <span className="text-white">X</span>
+                          </div>
+                        </button>
+                      </div>
+                    ))}
+                    {experimentData.keywords.length === 0 && (
+                      <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                        <MdError className="mr-2" />
+                        <span>
+                          Adicione pelo menos uma palavra-chave relacionada ao
                           experimento.
                         </span>
                       </div>
