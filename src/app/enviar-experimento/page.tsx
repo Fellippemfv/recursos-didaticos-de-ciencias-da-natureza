@@ -9,7 +9,8 @@ import React, {
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import styles from "./page.module.css";
-import { IoKeyOutline } from "react-icons/io5";
+import { IoFlask, IoFlaskOutline, IoKeyOutline } from "react-icons/io5";
+import { PiGitDiffLight } from "react-icons/pi";
 import {
   MdAddchart,
   MdBookmarkBorder,
@@ -26,6 +27,8 @@ import {
   MdPlaylistAddCheck,
   MdMenuBook,
   MdOutlineLibraryBooks,
+  MdDoneOutline,
+  MdOutlineAttachMoney,
 } from "react-icons/md";
 
 import { RiAddLine, RiUserLine } from "react-icons/ri";
@@ -49,16 +52,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FcInfo } from "react-icons/fc";
 import { toast } from "@/components/ui/use-toast";
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -95,25 +88,30 @@ interface TargetAudienceTopic {
   slug: string;
 }
 
+interface DifficultyTopic {
+  id: number;
+  title: string;
+  slug: string;
+  steps: string;
+  explanation: string;
+}
+
+interface CostTopic {
+  id: number;
+  title: string;
+  slug: string;
+  steps: string;
+  explanation: string;
+}
+
+interface ExperimentType {
+  id: number;
+  title: string;
+  slug: string;
+  steps: string;
+}
+
 export default function Experiment() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      username: "",
-    },
-  });
-
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
-
   const [experimentLocationData] = useState(locationData);
   const [experimentGeneralData] = useState(topicGeneralData);
   const [experimentTargetAudienceData] = useState(targetAudience);
@@ -194,8 +192,150 @@ export default function Experiment() {
     scientificExplanation: "",
     references: [],
     targetAudience: [],
-    keywords: [], // Estado para armazenar as palavras-chave em experimentData
+    keywords: [],
+    difficulty: [],
+    cost: [],
+    experimentType: [], // Alterado para uma string simples
   });
+
+  const abntRules = [
+    {
+      source: "Livro",
+      rule: "SOBRENOME, Nome. <em>Título do livro</em>: subtítulo. Edição (se houver). Local de publicação: Editora, Ano de publicação.",
+    },
+    {
+      source: "Site",
+      rule: "NOME DO SITE. Disponível em: <URL>. Acesso em: Data.",
+    },
+    {
+      source: "Artigo",
+      rule: "AUTOR. Título do artigo. <em>Nome da Revista</em>, Local de publicação, volume, número, página inicial-final, mês, ano.",
+    },
+    // Adicione outras regras conforme necessário
+  ];
+
+  const handleSelectDifficultyChange = (
+    selectedDifficulty: DifficultyTopic,
+  ) => {
+    setExperimentData((prevData: any) => ({
+      ...prevData,
+      difficulty: selectedDifficulty,
+    }));
+  };
+
+  const difficulties: DifficultyTopic[] = [
+    {
+      id: 1,
+      title: "Fácil",
+      slug: "facil",
+      steps: "1 - 5",
+      explanation: "De 1 a 5 passos são necessários para completar.",
+    },
+    {
+      id: 2,
+      title: "Médio",
+      slug: "medio",
+      steps: "6 - 10",
+      explanation: "De 6 a 10 passos são necessários para completar.",
+    },
+    {
+      id: 3,
+      title: "Difícil",
+      slug: "dificil",
+      steps: "11+",
+      explanation: "11 ou mais passos são necessários para completar.",
+    },
+  ];
+
+  const handleSelectCostChange = (selectedCost: CostTopic) => {
+    setExperimentData((prevData: any) => ({
+      ...prevData,
+      cost: selectedCost,
+    }));
+  };
+
+  const costs: CostTopic[] = [
+    {
+      id: 1,
+      title: "Barato",
+      slug: "barato",
+      steps: "Entre R$00,00 e R$15,00",
+      explanation: "Experimentos de baixo custo.",
+    },
+    {
+      id: 2,
+      title: "Caro",
+      slug: "caro",
+      steps: "De R$15,00 em diante",
+      explanation: "Experimentos de alto custo.",
+    },
+  ];
+
+  const handleSelectExperimentTypeChange = (selectedType: ExperimentType) => {
+    setExperimentData((prevData: any) => ({
+      ...prevData,
+      experimentType: selectedType,
+    }));
+  };
+
+  const experimentTypes: ExperimentType[] = [
+    {
+      id: 1,
+      title: "Experimentos Demonstrativos",
+      slug: "demonstrativos",
+      steps:
+        "São experimentos realizados pelo professor para demonstrar um conceito específico aos alunos. Por exemplo, uma experiência de eletrólise para mostrar a decomposição da água em hidrogênio e oxigênio.",
+    },
+    {
+      id: 2,
+      title: "Experimentos Controlados",
+      slug: "controlados",
+      steps:
+        "Os alunos conduzem experimentos em que todas as variáveis são controladas para testar uma hipótese específica. Por exemplo, um experimento para investigar como a temperatura afeta a taxa de crescimento de plantas.",
+    },
+    {
+      id: 3,
+      title: "Experimentos de Observação",
+      slug: "observacao",
+      steps:
+        "Os alunos observam fenômenos naturais ou processos em ação e fazem anotações sobre suas observações. Por exemplo, observar e registrar mudanças climáticas ao longo de várias semanas.",
+    },
+    {
+      id: 4,
+      title: "Experimentos de Campo",
+      slug: "campo",
+      steps:
+        "Os alunos realizam experimentos fora da sala de aula, muitas vezes em ambientes naturais, para coletar dados e realizar observações. Por exemplo, estudar a biodiversidade em um ecossistema local.",
+    },
+    {
+      id: 5,
+      title: "Experimentos Virtuais ou Simulações",
+      slug: "virtuais",
+      steps:
+        "Os alunos usam software ou simulações computacionais para realizar experimentos que podem ser difíceis ou impossíveis de realizar na vida real. Por exemplo, simular o lançamento de um foguete espacial.",
+    },
+    {
+      id: 6,
+      title: "Experimentos Quase-Experimentais",
+      slug: "quase-experimentais",
+      steps:
+        "Estes envolvem a manipulação de uma variável independente, mas nem sempre incluem o controle completo de todas as variáveis. Por exemplo, investigar se a música melhora o desempenho acadêmico, mas sem controlar todos os outros fatores que podem influenciar o desempenho.",
+    },
+    {
+      id: 7,
+      title: "Experimentos de Modelagem Matemática",
+      slug: "modelagem",
+      steps:
+        "Os alunos usam equações matemáticas para modelar fenômenos do mundo real e prever resultados. Por exemplo, modelar o crescimento populacional de uma espécie ao longo do tempo.",
+    },
+    {
+      id: 8,
+      title: "Experimentos de Replicação",
+      slug: "replicacao",
+      steps:
+        "Os alunos tentam replicar experimentos científicos famosos para entender o método científico e ganhar experiência prática. Por exemplo, replicar o experimento de Pavlov sobre condicionamento clássico em cães.",
+    },
+  ];
 
   const [keyword, setKeyword] = useState(""); // Estado para armazenar a palavra-chave digitada
 
@@ -1452,6 +1592,13 @@ export default function Experiment() {
                       Insira entre 10-300 caracteres.
                     </p>
                   </div>
+
+                  {experimentData.profileName.length === 0 && (
+                    <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <MdError className="mr-2" />
+                      <span>Escreva um nome de identificação</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -1513,7 +1660,7 @@ export default function Experiment() {
                     ))}
 
                     {experimentData.topicGeneral.length === 0 && (
-                      <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>Selecione pelo menos um tópico geral</span>
                       </div>
@@ -1692,7 +1839,7 @@ export default function Experiment() {
                     ))}
 
                     {experimentData.topicLocation.length === 0 && (
-                      <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
                           Selecione pelo menos um tópico sobre a localização
@@ -1763,7 +1910,7 @@ export default function Experiment() {
                     ))}
 
                     {experimentData.targetAudience.length === 0 && (
-                      <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
                           Selecione pelo menos um tópico sobre o público-alvo do
@@ -1830,11 +1977,328 @@ export default function Experiment() {
                       </div>
                     ))}
                     {experimentData.keywords.length === 0 && (
-                      <div className="mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
                           Adicione pelo menos uma palavra-chave relacionada ao
                           experimento.
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <div className="mb-4">
+                    <div className="flex flex-col items-initial mb-2">
+                      <div className="flex flex-row items-center justify-initial mb-2">
+                        <PiGitDiffLight style={{ marginRight: "5px" }} />{" "}
+                        <Label htmlFor="topicDifficulty">Dificuldade:</Label>
+                      </div>
+                      <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                        Essa classificação auxilia na seleção adequada de
+                        experimentos, considerando o nível de habilidade e a
+                        disponibilidade de tempo dos participantes. A definição
+                        precisa da dificuldade também facilita a identificação
+                        de áreas que possam requerer assistência adicional ou
+                        recursos complementares, contribuindo assim para uma
+                        execução mais eficiente e satisfatória do experimento.
+                      </p>
+                      <div className="mt-4 mb-8">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead className="bg-gray-50">
+                            <tr>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Classificação
+                              </th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Passos
+                              </th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Descrição
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="bg-white divide-y divide-gray-200">
+                            {difficulties.map((difficulty) => (
+                              <tr key={difficulty.id}>
+                                <td className="px-6 py-4">
+                                  {difficulty.title}
+                                </td>
+                                <td className="px-6 py-4">
+                                  {difficulty.steps}
+                                </td>
+                                <td className="px-6 py-4">
+                                  {difficulty.explanation}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div className="mt-2 flex flex-col justify-center p-4 border border-solid border-gray-300 rounded-md mb-4 relative">
+                      <table className="custom-table">
+                        <tbody>
+                          {difficulties.map(
+                            (difficulty, index) =>
+                              index % 3 === 0 && (
+                                <tr key={index} className="text-center">
+                                  {" "}
+                                  {/* Adicionando classe para centralizar */}
+                                  {difficulties
+                                    .slice(index, index + 3)
+                                    .map((diff, subIndex) => (
+                                      <td key={diff.id} className="p-2">
+                                        <label>
+                                          <input
+                                            type="radio"
+                                            name="difficulty"
+                                            value={diff.slug}
+                                            checked={
+                                              (experimentData.difficulty as any)
+                                                ?.slug === diff.slug
+                                            }
+                                            onChange={() =>
+                                              handleSelectDifficultyChange(diff)
+                                            }
+                                            className="mr-1"
+                                          />
+                                          {diff.title}
+                                        </label>
+                                      </td>
+                                    ))}
+                                </tr>
+                              ),
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {experimentData.difficulty.length === 0 && (
+                      <div className="flex flex-row justify-center mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                        <MdError className="mr-2" />
+                        <span>
+                          Selecione pelo menos uma dificuldade relacionado ao
+                          experimento.
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <div className="mb-4">
+                    <div className="flex flex-col items-initial mb-2">
+                      <div className="flex flex-row items-center justify-initial mb-2">
+                        <MdOutlineAttachMoney style={{ marginRight: "5px" }} />{" "}
+                        <label htmlFor="topicCost">
+                          Custo para a realização:
+                        </label>
+                      </div>
+                      <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                        Esta classificação auxilia na seleção adequada de
+                        experimentos, considerando o custo associado à
+                        realização deles. A definição precisa do custo também
+                        pode facilitar a identificação de recursos necessários e
+                        ajudar na tomada de decisões sobre alocação de
+                        orçamento. Classifique em: Barato (baixo custo) e Caro
+                        (alto custo).
+                      </p>
+
+                      <div className="mt-4 mb-8">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead className="bg-gray-50">
+                            <tr>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Classificação
+                              </th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Custo
+                              </th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Descrição
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="bg-white divide-y divide-gray-200">
+                            {costs.map((cost) => (
+                              <tr key={cost.id}>
+                                <td className="px-6 py-4">{cost.title}</td>
+                                <td className="px-6 py-4">{cost.steps}</td>
+                                <td className="px-6 py-4">
+                                  {cost.explanation}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div className="mt-2 flex flex-col justify-center p-4 border border-solid border-gray-300 rounded-md mb-4 relative">
+                      <table className="custom-table">
+                        <tbody>
+                          {costs.map((cost, index) =>
+                            index % 2 === 0 ? (
+                              <tr className="flex justify-around" key={cost.id}>
+                                <td>
+                                  <label>
+                                    <input
+                                      type="radio"
+                                      name="cost"
+                                      value={cost.slug}
+                                      checked={
+                                        (experimentData.cost as any)?.slug ===
+                                        cost.slug
+                                      }
+                                      onChange={() =>
+                                        handleSelectCostChange(cost)
+                                      }
+                                      className="mr-1"
+                                    />
+                                    {cost.title}
+                                  </label>
+                                </td>
+                                {costs[index + 1] && (
+                                  <td>
+                                    <label>
+                                      <input
+                                        type="radio"
+                                        name="cost"
+                                        value={costs[index + 1].slug}
+                                        checked={
+                                          (experimentData.cost as any)?.slug ===
+                                          costs[index + 1].slug
+                                        }
+                                        onChange={() =>
+                                          handleSelectCostChange(
+                                            costs[index + 1],
+                                          )
+                                        }
+                                        className="mr-1"
+                                      />
+                                      {costs[index + 1].title}
+                                    </label>
+                                  </td>
+                                )}
+                              </tr>
+                            ) : null,
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {experimentData.cost.length === 0 && (
+                      <div className="flex flex-row justify-center mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                        <MdError className="mr-2" />
+                        <span>
+                          Selecione pelo menos um custo relacionado ao
+                          experimento.
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <div className="mb-4">
+                    <div className="flex flex-col items-initial mb-2">
+                      <div className="flex flex-row items-center justify-initial mb-2">
+                        <IoFlask style={{ marginRight: "5px" }} />{" "}
+                        <label htmlFor="experimentType">
+                          Tipo de Experimento:
+                        </label>
+                      </div>
+                      <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                        Esta classificação ajuda a definir o tipo de experimento
+                        que será realizado. Cada tipo tem características e
+                        objetivos específicos.
+                      </p>
+                      <div className="mt-4 mb-8">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead className="bg-gray-50">
+                            <tr>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Tipo de Experimento
+                              </th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Descrição
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="bg-white divide-y divide-gray-200">
+                            {experimentTypes.map((type) => (
+                              <tr key={type.id}>
+                                <td className="px-6 py-4">{type.title}</td>
+                                <td className="px-6 py-4">{type.steps}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div className="mt-2 flex flex-col justfy-center p-4 border border-solid border-gray-300 rounded-md mb-4 relative">
+                      <table className="custom-table">
+                        <tbody>
+                          {experimentTypes.map((type, index) =>
+                            index % 2 === 0 ? (
+                              <tr className="flex justify-around" key={type.id}>
+                                <td>
+                                  <label>
+                                    <input
+                                      type="radio"
+                                      name="experimentType"
+                                      value={type.slug}
+                                      checked={
+                                        // @ts-ignore
+                                        experimentData.experimentType.slug ===
+                                        type.slug
+                                      }
+                                      onChange={() =>
+                                        handleSelectExperimentTypeChange(type)
+                                      }
+                                      className="mr-1"
+                                    />
+                                    {type.title}
+                                  </label>
+                                </td>
+                                {experimentTypes[index + 1] && (
+                                  <td>
+                                    <label>
+                                      <input
+                                        type="radio"
+                                        name="experimentType"
+                                        value={experimentTypes[index + 1].slug}
+                                        checked={
+                                          // @ts-ignore
+                                          experimentData.experimentType.slug ===
+                                          experimentTypes[index + 1].slug
+                                        }
+                                        onChange={() =>
+                                          handleSelectExperimentTypeChange(
+                                            experimentTypes[index + 1],
+                                          )
+                                        }
+                                        className="mr-1"
+                                      />
+                                      {experimentTypes[index + 1].title}
+                                    </label>
+                                  </td>
+                                )}
+                              </tr>
+                            ) : null,
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {experimentData.experimentType.length === 0 && (
+                      <div className="flex flex-row justify-center mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                        <MdError className="mr-2" />
+                        <span>
+                          Selecione pelo menos um tipo de experimento.
                         </span>
                       </div>
                     )}
@@ -1874,6 +2338,13 @@ export default function Experiment() {
                   <p className="text-sm text-muted-foreground">
                     Insira entre 10-300 caracteres.
                   </p>
+
+                  {experimentData.title.length === 0 && (
+                    <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <MdError className="mr-2" />
+                      <span>Escreva um Título para o experimento</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-8">
@@ -1943,6 +2414,15 @@ export default function Experiment() {
                           )}
                         </div>
                       </div>
+
+                      {experimentData.imagePreview.length === 0 && (
+                        <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                          <MdError className="mr-2" />
+                          <span>
+                            Adicione uma imagem relacionado ao experimento
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1973,6 +2453,15 @@ export default function Experiment() {
                     <p className="text-sm text-muted-foreground">
                       Insira entre 10-300 caracteres.
                     </p>
+
+                    {experimentData.description.length === 0 && (
+                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                        <MdError className="mr-2" />
+                        <span>
+                          Escreva uma descrição relacionada ao experimento
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -2038,6 +2527,15 @@ export default function Experiment() {
                       </div>
                     </div>
                   ))}
+
+                  {experimentData.objectives.length === 0 && (
+                    <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <MdError className="mr-2" />
+                      <span>
+                        Adicione ao menos um objetivo relacionado ao experimento
+                      </span>
+                    </div>
+                  )}
 
                   {tempObjectives.length < 5 && (
                     <Button
@@ -2108,6 +2606,15 @@ export default function Experiment() {
                       </div>
                     </div>
                   ))}
+
+                  {experimentData.materials.length === 0 && (
+                    <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <MdError className="mr-2" />
+                      <span>
+                        Adicione ao menos um material relacionado ao experimento
+                      </span>
+                    </div>
+                  )}
 
                   {tempMaterials.length < 5 && (
                     <Button
@@ -2236,6 +2743,15 @@ export default function Experiment() {
                     </div>
                   ))}
 
+                  {experimentData.methods.length === 0 && (
+                    <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <MdError className="mr-2" />
+                      <span>
+                        Adicione ao menos um Passo relacionado ao experimento
+                      </span>
+                    </div>
+                  )}
+
                   {tempMethods.length < 5 && !newMethodVisible && (
                     <Button
                       className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600"
@@ -2278,6 +2794,15 @@ export default function Experiment() {
                   <p className="text-sm text-muted-foreground">
                     Insira entre 10-300 caracteres.
                   </p>
+
+                  {experimentData.results.length === 0 && (
+                    <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <MdError className="mr-2" />
+                      <span>
+                        Escreva o resultado esperado ao realizar o experimento
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid w-full gap-1.5 mt-8">
@@ -2310,6 +2835,16 @@ export default function Experiment() {
                   <p className="text-sm text-muted-foreground">
                     Insira entre 10-300 caracteres.
                   </p>
+
+                  {experimentData.scientificExplanation.length === 0 && (
+                    <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <MdError className="mr-2" />
+                      <span>
+                        Escreva uma explicação ciêntifica relacionado ao
+                        experimento
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-8">
@@ -2326,6 +2861,32 @@ export default function Experiment() {
                       Certifique-se de incluir todas as fontes e materiais
                       consultados para realizar o experimento.
                     </p>
+
+                    <div className="mt-2 flex flex-col justfy-center p-4 border border-solid border-gray-300 rounded-md mb-4 relative">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
+                          <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Tipo de Fonte
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Exemplo
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {abntRules.map((rule, index) => (
+                            <tr key={index}>
+                              <td className="px-6 py-4">{rule.source}</td>
+                              <td
+                                className="px-6 py-4"
+                                dangerouslySetInnerHTML={{ __html: rule.rule }}
+                              />
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
 
                   {tempReferences.map((reference, index) => (
@@ -2365,6 +2926,16 @@ export default function Experiment() {
                     </div>
                   ))}
 
+                  {experimentData.references.length === 0 && (
+                    <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                      <MdError className="mr-2" />
+                      <span>
+                        Adicione ao menos uma referência relacionada ao
+                        experimento
+                      </span>
+                    </div>
+                  )}
+
                   {tempReferences.length < 5 && (
                     <Button
                       className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600"
@@ -2399,31 +2970,6 @@ export default function Experiment() {
               </button>
             </div>
           </form>
-
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="w-2/3 space-y-6"
-            >
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input placeholder="shadcn" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This is your public display name.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Submit</Button>
-            </form>
-          </Form>
         </div>
         {Object.keys(experimentData).length > 0 && (
           <>
