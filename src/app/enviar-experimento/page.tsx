@@ -34,7 +34,7 @@ import {
 import { RiAddLine, RiUserLine } from "react-icons/ri";
 import { FiHash, FiUploadCloud } from "react-icons/fi";
 
-import { FaCopy, FaTrash } from "react-icons/fa";
+import { FaCopy, FaFlask, FaTrash } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -52,6 +52,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FcInfo } from "react-icons/fc";
 import { toast } from "@/components/ui/use-toast";
+import { BiLoaderAlt } from "react-icons/bi";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -771,24 +772,12 @@ export default function Experiment() {
   }, []);
 
   const [isSending, setIsSending] = useState(false);
-  const [isDivHidden, setIsDivHidden] = useState(false);
+  const [passos, setPassos] = useState([]);
+  const [pullRequestUrl, setPullRequestUrl] = useState(""); // Definindo o estado inicial como uma string vazia
 
   async function handleSend() {
     setIsSending(true);
-
-    const octokitClient = new Octokit({
-      auth: apiToken,
-    });
-
-    const newBranchName = `experiment-update-${experimentId}`;
-
-    const baseRepositoryOwnerName = "fellippemfv";
-    const baseRepositoryName = "my-science-project";
-    const baseBranchName = "add-experiment";
-
-    // Json
-    const filePath = "src/app/api/data/experimentos.json";
-    const fileContent = JSON.stringify(experimentData, null, 2);
+    setPassos([]);
 
     const passosRealizados = document.getElementById("passos-realizados");
 
@@ -801,147 +790,212 @@ export default function Experiment() {
       }
     };
 
-    adicionarPasso("Criando o fork do repositório original...", true);
-    // Cria o fork do repositório original
-    console.log("Criando o fork do repositório original...");
-    const { data: fork } = await octokitClient.repos.createFork({
-      owner: baseRepositoryOwnerName,
-      repo: baseRepositoryName,
-    });
-    adicionarPasso("Fork criado com sucesso!", true);
-    console.log("Fork criado com sucesso!");
+    try {
+      // Lógica para enviar os dados e obter os passos
+      const octokitClient = new Octokit({
+        auth: apiToken,
+      });
 
-    const forkOwner = fork.owner.login;
+      const newBranchName = `experiment-update-${experimentId}`;
 
-    adicionarPasso(
-      "Esperando alguns segundos para garantir que as informações do fork estejam atualizadas...",
-      true,
-    );
-    // Espera alguns segundos para garantir que as informações do fork estejam atualizadas
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+      const baseRepositoryOwnerName = "fellippemfv";
+      const baseRepositoryName = "my-science-project";
+      const baseBranchName = "add-experiment";
 
-    // Verifica se a branch "new-experiment" existe no fork
-    adicionarPasso(
-      `Verificando a existência da branch "${baseBranchName}" no fork...`,
-      true,
-    );
-    console.log(
-      `Verificando a existência da branch "${baseBranchName}" no fork...`,
-    );
-    let { data } = await octokitClient.repos.getBranch({
-      owner: forkOwner,
-      repo: baseRepositoryName,
-      branch: baseBranchName,
-    });
+      // Json
+      const filePath = "src/app/api/data/experimentos.json";
+      const fileContent = JSON.stringify(experimentData, null, 2);
 
-    if (!data) {
-      // Cria a branch "new-experiment" no fork se ela não existir
+      adicionarPasso("Criando o fork do repositório original...", true);
+      // Cria o fork do repositório original
+      console.log("Criando o fork do repositório original...");
+      const { data: fork } = await octokitClient.repos.createFork({
+        owner: baseRepositoryOwnerName,
+        repo: baseRepositoryName,
+      });
+      adicionarPasso("Fork criado com sucesso!", true);
+      console.log("Fork criado com sucesso!");
+
+      const forkOwner = fork.owner.login;
+
       adicionarPasso(
-        `A branch "${baseBranchName}" não existe no fork. Criando a branch...`,
+        "Esperando alguns segundos para garantir que as informações do fork estejam atualizadas...",
         true,
       );
+      // Espera alguns segundos para garantir que as informações do fork estejam atualizadas
+      await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      console.log(
-        `A branch "${baseBranchName}" não existe no fork. Criando a branch...`,
+      // Verifica se a branch "new-experiment" existe no fork
+      adicionarPasso(
+        `Verificando a existência da branch "${baseBranchName}" no fork...`,
+        true,
       );
-      const baseBranch = await octokitClient.repos.getBranch({
-        owner: baseRepositoryOwnerName,
+      console.log(
+        `Verificando a existência da branch "${baseBranchName}" no fork...`,
+      );
+      let { data } = await octokitClient.repos.getBranch({
+        owner: forkOwner,
         repo: baseRepositoryName,
         branch: baseBranchName,
       });
-      const baseCommitSha = baseBranch.data.commit.sha;
 
-      await octokitClient.git.createRef({
+      if (!data) {
+        // Cria a branch "new-experiment" no fork se ela não existir
+        adicionarPasso(
+          `A branch "${baseBranchName}" não existe no fork. Criando a branch...`,
+          true,
+        );
+
+        console.log(
+          `A branch "${baseBranchName}" não existe no fork. Criando a branch...`,
+        );
+        const baseBranch = await octokitClient.repos.getBranch({
+          owner: baseRepositoryOwnerName,
+          repo: baseRepositoryName,
+          branch: baseBranchName,
+        });
+        const baseCommitSha = baseBranch.data.commit.sha;
+
+        await octokitClient.git.createRef({
+          owner: forkOwner,
+          repo: baseRepositoryName,
+          ref: `refs/heads/${baseBranchName}`,
+          sha: baseCommitSha,
+        });
+
+        // Aguarda alguns segundos para garantir que a branch seja criada no fork
+        adicionarPasso(
+          "Aguardando alguns segundos para garantir que a branch já esteja criada no fork...",
+          true,
+        );
+
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+
+        adicionarPasso(
+          `Verificando se existe a branche '${baseBranchName}' no fork...`,
+          true,
+        );
+
+        // Obtém novamente as informações da branch no fork
+        ({ data } = await octokitClient.repos.getBranch({
+          owner: forkOwner,
+          repo: baseRepositoryName,
+          branch: baseBranchName,
+        }));
+      }
+
+      adicionarPasso(`Branch "${baseBranchName}" encontrada no fork!`, true);
+      console.log(
+        `Branch "${baseBranchName}" encontrada no fork. Continuando com o código...`,
+      );
+      const baseCommitSha = data.commit.sha;
+
+      // Cria a nova branch com base na branch "test" do fork
+      adicionarPasso(
+        "Criando a nova branch com base na branch 'test' do fork...",
+        true,
+      );
+
+      const { data: newBranch } = await octokitClient.git.createRef({
         owner: forkOwner,
         repo: baseRepositoryName,
-        ref: `refs/heads/${baseBranchName}`,
+        ref: `refs/heads/${newBranchName}`,
         sha: baseCommitSha,
       });
 
-      // Aguarda alguns segundos para garantir que a branch seja criada no fork
-      adicionarPasso(
-        "Aguardando alguns segundos para garantir que a branch já esteja criada no fork...",
-        true,
+      adicionarPasso("Branch nova do fork criada com sucesso!", true);
+      console.log(
+        "Branch nova do fork, usando como base 'test', criada com sucesso!",
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 5000));
+      /* const newBranchSha = newBranch.object.sha; */
 
       adicionarPasso(
-        `Verificando se existe a branche '${baseBranchName}' no fork...`,
+        `Buscando o conteúdo atual do arquivo na branch '${baseBranchName}' do fork...`,
         true,
       );
-
-      // Obtém novamente as informações da branch no fork
-      ({ data } = await octokitClient.repos.getBranch({
+      // Busca o conteúdo atual do arquivo na branch "test" do fork
+      const fileInfo = await octokitClient.repos.getContent({
         owner: forkOwner,
         repo: baseRepositoryName,
-        branch: baseBranchName,
-      }));
-    }
+        path: filePath,
+        ref: baseBranchName,
+      });
 
-    adicionarPasso(`Branch "${baseBranchName}" encontrada no fork!`, true);
-    console.log(
-      `Branch "${baseBranchName}" encontrada no fork. Continuando com o código...`,
-    );
-    const baseCommitSha = data.commit.sha;
+      adicionarPasso("Busca pelo conteúdo atual realizada com sucesso!", true);
 
-    // Cria a nova branch com base na branch "test" do fork
-    adicionarPasso(
-      "Criando a nova branch com base na branch 'test' do fork...",
-      true,
-    );
+      console.log("selectedImage na funcao de upload" + selectedImage);
 
-    const { data: newBranch } = await octokitClient.git.createRef({
-      owner: forkOwner,
-      repo: baseRepositoryName,
-      ref: `refs/heads/${newBranchName}`,
-      sha: baseCommitSha,
-    });
+      console.log("iniciando a adicao de imagem");
 
-    adicionarPasso("Branch nova do fork criada com sucesso!", true);
-    console.log(
-      "Branch nova do fork, usando como base 'test', criada com sucesso!",
-    );
+      const handleImageUpload = async () => {
+        console.log("Conteúdo de selectedImage:", selectedImage);
 
-    /* const newBranchSha = newBranch.object.sha; */
+        if (selectedImage) {
+          const reader = new FileReader();
+          reader.onloadend = async () => {
+            const base64String = reader.result as string | null;
+            if (base64String !== null) {
+              // Remover o prefixo do URI de dados
+              const base64Content = base64String.split(",")[1];
+              console.log("Base64 da imagem:", base64Content);
 
-    adicionarPasso(
-      `Buscando o conteúdo atual do arquivo na branch '${baseBranchName}' do fork...`,
-      true,
-    );
-    // Busca o conteúdo atual do arquivo na branch "test" do fork
-    const fileInfo = await octokitClient.repos.getContent({
-      owner: forkOwner,
-      repo: baseRepositoryName,
-      path: filePath,
-      ref: baseBranchName,
-    });
+              const imagePath = `public/images/${experimentId}/${selectedImage.name}`;
 
-    adicionarPasso("Busca pelo conteúdo atual realizada com sucesso!", true);
+              // Upload da imagem
+              adicionarPasso(
+                `Realizando o upload da imagem ${imagePath}...`,
+                true,
+              );
+              await octokitClient.repos.createOrUpdateFileContents({
+                owner: forkOwner,
+                repo: baseRepositoryName,
+                path: imagePath,
+                message: `Add image for experiment N° ${experimentId}`,
+                content: base64Content,
+                branch: newBranchName,
+              });
 
-    console.log("selectedImage na funcao de upload" + selectedImage);
+              adicionarPasso(
+                `Imagem ${imagePath} adicionada com sucesso!`,
+                true,
+              );
+            } else {
+              adicionarPasso("Erro ao converter imagem para base64.", false);
+            }
+          };
+          reader.onerror = () => {
+            adicionarPasso("Erro ao ler o arquivo.", false);
+          };
+          reader.readAsDataURL(selectedImage);
+        } else {
+          adicionarPasso("Nenhuma imagem selecionada.", false);
+        }
+      };
 
-    console.log("iniciando a adicao de imagem");
+      // Chama a função handleImageUpload
+      await handleImageUpload();
 
-    const handleImageUpload = async () => {
-      console.log("Conteúdo de selectedImage:", selectedImage);
+      const handleImageUploadMethod = async () => {
+        console.log("Iniciando o upload de imagens...");
 
-      if (selectedImage) {
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          const base64String = reader.result as string | null;
-          if (base64String !== null) {
-            // Remover o prefixo do URI de dados
-            const base64Content = base64String.split(",")[1];
-            console.log("Base64 da imagem:", base64Content);
+        // Iterar sobre cada imagem em previewImages
+        for (let i = 0; i < previewImages.length; i++) {
+          const base64String = previewImages[i];
 
-            const imagePath = `public/images/${experimentId}/${selectedImage.name}`;
+          // Remover o prefixo do URI de dados
+          const base64Content = base64String.split(",")[1];
+          console.log("Base64 da imagem:", base64Content);
 
-            // Upload da imagem
-            adicionarPasso(
-              `Realizando o upload da imagem ${imagePath}...`,
-              true,
-            );
+          // Obter o nome da imagem usando a mesma lógica que você já tem
+          const imageName = tempMethods[i].imagePath.split("/").pop() || "";
+
+          // Montar o caminho da imagem
+          const imagePath = `public/images/${experimentId}/${imageName}`;
+
+          // Upload da imagem
+          adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
+          try {
             await octokitClient.repos.createOrUpdateFileContents({
               owner: forkOwner,
               repo: baseRepositoryName,
@@ -952,183 +1006,149 @@ export default function Experiment() {
             });
 
             adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
-          } else {
-            adicionarPasso("Erro ao converter imagem para base64.", false);
+          } catch (error) {
+            console.error("Erro ao fazer upload da imagem:", error);
+            adicionarPasso(
+              `Erro ao fazer upload da imagem ${imagePath}`,
+              false,
+            );
           }
-        };
-        reader.onerror = () => {
-          adicionarPasso("Erro ao ler o arquivo.", false);
-        };
-        reader.readAsDataURL(selectedImage);
-      } else {
-        adicionarPasso("Nenhuma imagem selecionada.", false);
-      }
-    };
-
-    // Chama a função handleImageUpload
-    await handleImageUpload();
-
-    const handleImageUploadMethod = async () => {
-      console.log("Iniciando o upload de imagens...");
-
-      // Iterar sobre cada imagem em previewImages
-      for (let i = 0; i < previewImages.length; i++) {
-        const base64String = previewImages[i];
-
-        // Remover o prefixo do URI de dados
-        const base64Content = base64String.split(",")[1];
-        console.log("Base64 da imagem:", base64Content);
-
-        // Obter o nome da imagem usando a mesma lógica que você já tem
-        const imageName = tempMethods[i].imagePath.split("/").pop() || "";
-
-        // Montar o caminho da imagem
-        const imagePath = `public/images/${experimentId}/${imageName}`;
-
-        // Upload da imagem
-        adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
-        try {
-          await octokitClient.repos.createOrUpdateFileContents({
-            owner: forkOwner,
-            repo: baseRepositoryName,
-            path: imagePath,
-            message: `Add image for experiment N° ${experimentId}`,
-            content: base64Content,
-            branch: newBranchName,
-          });
-
-          adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
-        } catch (error) {
-          console.error("Erro ao fazer upload da imagem:", error);
-          adicionarPasso(`Erro ao fazer upload da imagem ${imagePath}`, false);
         }
-      }
-      console.log("Upload de imagens concluído!");
-    };
+        console.log("Upload de imagens concluído!");
+      };
 
-    // Chama a função handleImageUploadMethod
-    await handleImageUploadMethod();
+      // Chama a função handleImageUploadMethod
+      await handleImageUploadMethod();
 
-    adicionarPasso("Adicionando sugestão de novo experimento...", true);
-    // Decodifica o conteúdo atual para uma string
-    const currentContent = Array.isArray(fileInfo.data)
-      ? undefined
-      : fileInfo.data.type === "file" && fileInfo.data.content
-        ? Buffer.from(fileInfo.data.content, "base64").toString()
-        : undefined;
+      adicionarPasso("Adicionando sugestão de novo experimento...", true);
+      // Decodifica o conteúdo atual para uma string
+      const currentContent = Array.isArray(fileInfo.data)
+        ? undefined
+        : fileInfo.data.type === "file" && fileInfo.data.content
+          ? Buffer.from(fileInfo.data.content, "base64").toString()
+          : undefined;
 
-    // Converte o conteúdo atual em um array de objetos JSON
-    const currentArray = currentContent ? JSON.parse(currentContent) : [];
+      // Converte o conteúdo atual em um array de objetos JSON
+      const currentArray = currentContent ? JSON.parse(currentContent) : [];
 
-    // Converte o novo conteúdo em um objeto JSON
-    const newObject = JSON.parse(fileContent);
+      // Converte o novo conteúdo em um objeto JSON
+      const newObject = JSON.parse(fileContent);
 
-    // Adiciona o novo objeto ao array existente
-    currentArray.push(newObject);
+      // Adiciona o novo objeto ao array existente
+      currentArray.push(newObject);
 
-    // Converte o array atualizado de volta em uma string JSON
-    const updatedContent = JSON.stringify(currentArray, null, 2);
-    adicionarPasso("Sugestão adicionada com sucesso!", true);
+      // Converte o array atualizado de volta em uma string JSON
+      const updatedContent = JSON.stringify(currentArray, null, 2);
+      adicionarPasso("Sugestão adicionada com sucesso!", true);
 
-    adicionarPasso("Criando um novo commit...", true);
-    // Cria um novo commit com os dados atualizados
-    const { data: newCommit } = await octokitClient.git.createCommit({
-      owner: forkOwner,
-      repo: baseRepositoryName,
-      message: `Send experiment N° ${experimentId}`,
-      tree: data.commit.commit.tree.sha,
-      parents: [baseCommitSha],
-      author: {
-        name: "Your Name",
-        email: "your.email@example.com",
-      },
-      committer: {
-        name: "Your Name",
-        email: "your.email@example.com",
-      },
-      content: Buffer.from(updatedContent).toString("base64"),
-    });
-
-    adicionarPasso("Novo commit realizado com sucesso!", true);
-
-    const newCommitSha = newCommit.sha;
-
-    // Verifica se fileInfo é um objeto único ou uma matriz de objetos
-    const fileInfoArray = Array.isArray(fileInfo.data)
-      ? fileInfo.data
-      : [fileInfo.data];
-
-    // Verifica se o primeiro elemento do array possui a propriedade 'sha'
-    if (fileInfoArray.length > 0 && "sha" in fileInfoArray[0]) {
-      // Acessa a propriedade 'sha' do primeiro elemento do array
-      const sha = fileInfoArray[0].sha;
-
-      // Atualiza o conteúdo do arquivo na nova branch do fork
-      adicionarPasso(
-        "Atualizando o conteúdo do arquivo na nova branch do fork...",
-        true,
-      );
-      await octokitClient.repos.createOrUpdateFileContents({
+      adicionarPasso("Criando um novo commit...", true);
+      // Cria um novo commit com os dados atualizados
+      const { data: newCommit } = await octokitClient.git.createCommit({
         owner: forkOwner,
         repo: baseRepositoryName,
-        path: filePath,
-        message: `Update experiment data for experiment N° ${experimentId}`,
+        message: `Send experiment N° ${experimentId}`,
+        tree: data.commit.commit.tree.sha,
+        parents: [baseCommitSha],
+        author: {
+          name: "Your Name",
+          email: "your.email@example.com",
+        },
+        committer: {
+          name: "Your Name",
+          email: "your.email@example.com",
+        },
         content: Buffer.from(updatedContent).toString("base64"),
-        branch: newBranchName,
-        sha,
       });
 
-      adicionarPasso("Conteúdo do arquivo atualizado com sucesso!", true);
-      console.log("Dados adicionados à nova branch do fork com sucesso!");
-    } else {
-      // Trata o caso em que a propriedade 'sha' não está presente
-      console.error(
-        "A propriedade 'sha' não está presente no objeto fileInfo.",
-      );
+      adicionarPasso("Novo commit realizado com sucesso!", true);
+
+      const newCommitSha = newCommit.sha;
+
+      // Verifica se fileInfo é um objeto único ou uma matriz de objetos
+      const fileInfoArray = Array.isArray(fileInfo.data)
+        ? fileInfo.data
+        : [fileInfo.data];
+
+      // Verifica se o primeiro elemento do array possui a propriedade 'sha'
+      if (fileInfoArray.length > 0 && "sha" in fileInfoArray[0]) {
+        // Acessa a propriedade 'sha' do primeiro elemento do array
+        const sha = fileInfoArray[0].sha;
+
+        // Atualiza o conteúdo do arquivo na nova branch do fork
+        adicionarPasso(
+          "Atualizando o conteúdo do arquivo na nova branch do fork...",
+          true,
+        );
+        await octokitClient.repos.createOrUpdateFileContents({
+          owner: forkOwner,
+          repo: baseRepositoryName,
+          path: filePath,
+          message: `Update experiment data for experiment N° ${experimentId}`,
+          content: Buffer.from(updatedContent).toString("base64"),
+          branch: newBranchName,
+          sha,
+        });
+
+        adicionarPasso("Conteúdo do arquivo atualizado com sucesso!", true);
+        console.log("Dados adicionados à nova branch do fork com sucesso!");
+      } else {
+        // Trata o caso em que a propriedade 'sha' não está presente
+        console.error(
+          "A propriedade 'sha' não está presente no objeto fileInfo.",
+        );
+        adicionarPasso(
+          "A propriedade 'sha' não está presente no objeto fileInfo.",
+          false,
+        );
+      }
+
       adicionarPasso(
-        "A propriedade 'sha' não está presente no objeto fileInfo.",
-        false,
+        "Mesclando os commits da branch de destino do fork na nova branch do fork...",
+        true,
       );
+      // Mescla os commits da branch de destino do fork na nova branch do fork
+      const mergeResponse = await octokitClient.repos.merge({
+        owner: forkOwner,
+        repo: baseRepositoryName,
+        base: newBranchName,
+        head: baseBranchName,
+      });
+
+      adicionarPasso("Commits mesclados com sucesso!", true);
+      console.log("Commits mesclados com sucesso!");
+
+      adicionarPasso(
+        "Criando uma pull request para mesclar as alterações da nova branch do fork na branch 'test' do repositório original...",
+        true,
+      );
+      // Cria uma pull request para mesclar as alterações da nova branch do fork na branch "test" do repositório original
+      const pullRequest = await octokitClient.pulls.create({
+        owner: baseRepositoryOwnerName,
+        repo: baseRepositoryName,
+        title: `Update experiment data for experiment N° ${experimentId}`,
+        body: "Please review and approve this update to the experiment data.",
+        head: `${forkOwner}:${newBranchName}`,
+        base: baseBranchName,
+      });
+
+      adicionarPasso("Pull request criada com sucesso!", true);
+      console.log("Pull request criada com sucesso!");
+
+      adicionarPasso("Pronto você enviou seu experimento!", true);
+
+      // Exibe o link para a pull request criada
+      const pullRequestUrl = pullRequest.data.html_url;
+      adicionarPasso(`Link da pull request: ${pullRequestUrl}`, true);
+
+      // Exemplo de setar a URL da pull request no final
+      setPullRequestUrl(`${pullRequestUrl}`);
+    } catch (error) {
+      console.error("Erro ao enviar experimento.", error);
+      adicionarPasso("Erro ao enviar experimento." + `${error}`, false);
+      // Lidar com erros
+    } finally {
+      setIsSending(false);
     }
-
-    adicionarPasso(
-      "Mesclando os commits da branch de destino do fork na nova branch do fork...",
-      true,
-    );
-    // Mescla os commits da branch de destino do fork na nova branch do fork
-    const mergeResponse = await octokitClient.repos.merge({
-      owner: forkOwner,
-      repo: baseRepositoryName,
-      base: newBranchName,
-      head: baseBranchName,
-    });
-
-    adicionarPasso("Commits mesclados com sucesso!", true);
-    console.log("Commits mesclados com sucesso!");
-
-    adicionarPasso(
-      "Criando uma pull request para mesclar as alterações da nova branch do fork na branch 'test' do repositório original...",
-      true,
-    );
-    // Cria uma pull request para mesclar as alterações da nova branch do fork na branch "test" do repositório original
-    const pullRequest = await octokitClient.pulls.create({
-      owner: baseRepositoryOwnerName,
-      repo: baseRepositoryName,
-      title: `Update experiment data for experiment N° ${experimentId}`,
-      body: "Please review and approve this update to the experiment data.",
-      head: `${forkOwner}:${newBranchName}`,
-      base: baseBranchName,
-    });
-
-    adicionarPasso("Pull request criada com sucesso!", true);
-    console.log("Pull request criada com sucesso!");
-
-    adicionarPasso("Pronto você enviou seu experimento!", true);
-    setIsDivHidden(true);
-
-    // Exibe o link para a pull request criada
-    const pullRequestUrl = pullRequest.data.html_url;
-    adicionarPasso(`Link da pull request: ${pullRequestUrl}`, true);
   }
 
   const generateSlug = useCallback(() => {
@@ -1280,15 +1300,6 @@ export default function Experiment() {
     };
 
     reader.readAsDataURL(file);
-  };
-
-  const getProgressBarWidth = () => {
-    if (uploadStatus.includes("100%")) {
-      return "100%";
-    } else {
-      const progress = parseInt(uploadStatus.split(" ")[1]);
-      return `${progress}%`;
-    }
   };
 
   interface Method {
@@ -2946,28 +2957,73 @@ export default function Experiment() {
                     </Button>
                   )}
                 </div>
+
+                <div className="mt-16">
+                  <button
+                    onClick={handleSend}
+                    disabled={isSending}
+                    className={`flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${isSending ? "cursor-not-allowed opacity-50" : "hover:bg-green-600"}`}
+                  >
+                    {isSending ? (
+                      <>
+                        <span className="mr-4">Enviando Experimento</span>
+                        <div className="w-6 h-6 border-4 border-t-4 border-green-400 rounded-full animate-spin mr-3"></div>
+                      </>
+                    ) : (
+                      <>
+                        <span>Enviar Experimento</span>
+                        <svg
+                          className="w-6 h-6 ml-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 5l7 7-7 7"
+                          ></path>
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
 
-              <button
-                onClick={handleSend}
-                className="flex items-center justify-center mt-4 px-6 py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-              >
-                <span>Enviar Experimento</span>
-                <svg
-                  className="w-6 h-6 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </button>
+              <div className="flex flex-col items-start p-8 space-y-4">
+                {isSending && (
+                  <>
+                    <div className="p-8 border border-solid border-gray-300  w-full flex items-center justify-center space-x-2">
+                      <FaFlask className="w-8 h-8 animate-wiggle text-purple-500" />
+                      <p className="text-lg font-bold text-purple-500">
+                        Enviando experimento...
+                      </p>
+                      <BiLoaderAlt className="w-6 h-6 animate-spin text-purple-500" />
+                    </div>
+                  </>
+                )}
+
+                {pullRequestUrl && (
+                  <>
+                    <div className="w-full bg-green-100 border border-green-400 text-green-900 px-4 py-2 rounded-md shadow-md">
+                      <p className="text-lg font-bold">
+                        Experimento enviado com sucesso!
+                      </p>
+                      <p className="text-lg">
+                        Link da pull request:{" "}
+                        <a
+                          href={pullRequestUrl}
+                          className="text-green-600 hover:underline"
+                        >
+                          {pullRequestUrl}
+                        </a>
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </form>
         </div>

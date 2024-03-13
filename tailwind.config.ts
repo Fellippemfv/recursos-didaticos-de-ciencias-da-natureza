@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -19,6 +19,10 @@ const config = {
     },
     extend: {
       keyframes: {
+        "wiggle": {
+          "0%, 100%": { transform: "rotate(0deg)" },
+          "50%": { transform: "rotate(10deg)" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -35,6 +39,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "wiggle": "wiggle 1s ease-in-out infinite",
       },
       borderWidth: {
         DEFAULT: '1px', // Define a largura padrão da borda
@@ -45,6 +50,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+};
 
-export default config
+export default config;
