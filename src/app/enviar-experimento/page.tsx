@@ -177,11 +177,16 @@ export default function Experiment() {
 
   const [experimentData, setExperimentData] = useState({
     id: "",
+    postDate: "",
+    profileName: "",
     topicGeneral: [],
     topicSpecific: [],
     topicLocation: [],
-    profileName: "",
-    postDate: "",
+    targetAudience: [],
+    keywords: [],
+    difficulty: [],
+    cost: [],
+    experimentType: [],
     title: "",
     slug: "",
     imagePreview: "",
@@ -192,17 +197,12 @@ export default function Experiment() {
     results: "",
     scientificExplanation: "",
     references: [],
-    targetAudience: [],
-    keywords: [],
-    difficulty: [],
-    cost: [],
-    experimentType: [], // Alterado para uma string simples
   });
 
   const abntRules = [
     {
       source: "Livro",
-      rule: "SOBRENOME, Nome. <em>Título do livro</em>: subtítulo. Edição (se houver). Local de publicação: Editora, Ano de publicação.",
+      rule: "SOBRENOME, Nome. <em>Título do livro</em>: subtítulo. Edição (se houver). Local de ação: Editora, Ano de ação.",
     },
     {
       source: "Site",
@@ -210,7 +210,7 @@ export default function Experiment() {
     },
     {
       source: "Artigo",
-      rule: "AUTOR. Título do artigo. <em>Nome da Revista</em>, Local de publicação, volume, número, página inicial-final, mês, ano.",
+      rule: "AUTOR. Título do artigo. <em>Nome da Revista</em>, Local de ação, volume, número, página inicial-final, mês, ano.",
     },
     // Adicione outras regras conforme necessário
   ];
@@ -663,7 +663,7 @@ export default function Experiment() {
   };
 
   const handleAddEmptyMaterial = () => {
-    if (tempMaterials.length < 5) {
+    if (tempMaterials.length < 25) {
       const newMaterial: Material = {
         id: nextMaterialId,
         materialText: "",
@@ -757,11 +757,9 @@ export default function Experiment() {
 
   const handleGenerateId = useCallback(() => {
     const date = new Date();
-    const formattedDate = format(
-      date,
-      "dd 'de' MMMM 'de' yyyy 'às' HH:mm 'horário local.'",
-      { locale: ptBR },
-    );
+    const formattedDate = format(date, "dd 'de' MMMM 'de' yyyy 'às' HH:mm", {
+      locale: ptBR,
+    });
     const generatedId = Date.now().toString();
     setExperimentData((prevData) => ({
       ...prevData,
@@ -940,7 +938,7 @@ export default function Experiment() {
               const base64Content = base64String.split(",")[1];
               console.log("Base64 da imagem:", base64Content);
 
-              const imagePath = `public/images/${experimentId}/${selectedImage.name}`;
+              const imagePath = `/images/${experimentId}/${selectedImage.name}`;
 
               // Upload da imagem
               adicionarPasso(
@@ -991,7 +989,7 @@ export default function Experiment() {
           const imageName = tempMethods[i].imagePath.split("/").pop() || "";
 
           // Montar o caminho da imagem
-          const imagePath = `public/images/${experimentId}/${imageName}`;
+          const imagePath = `/images/${experimentId}/${imageName}`;
 
           // Upload da imagem
           adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
@@ -1290,7 +1288,7 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico da imagem
-      const imagePath = `public/images/${experimentId}/${file.name}`;
+      const imagePath = `/images/${experimentId}/${file.name}`;
 
       // Atualiza o estado imagePath com o link dinâmico da imagem
       setExperimentData((prevState: any) => ({
@@ -1395,7 +1393,7 @@ export default function Experiment() {
       reader.onload = () => {
         const base64Data = reader.result as string;
         const imageName = files[0].name;
-        const imagePath = `public/images/${experimentData.id}/${imageName}`;
+        const imagePath = `/images/${experimentData.id}/${imageName}`;
 
         const updatedMethods = tempMethods.map((method, i) => {
           if (i === index) {
@@ -2627,7 +2625,7 @@ export default function Experiment() {
                     </div>
                   )}
 
-                  {tempMaterials.length < 5 && (
+                  {tempMaterials.length < 25 && (
                     <Button
                       className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600"
                       onClick={handleAddEmptyMaterial}
@@ -2763,7 +2761,7 @@ export default function Experiment() {
                     </div>
                   )}
 
-                  {tempMethods.length < 5 && !newMethodVisible && (
+                  {tempMethods.length < 25 && !newMethodVisible && (
                     <Button
                       className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600"
                       onClick={handleAddMethod}
