@@ -144,11 +144,11 @@
     "materials": [
       {
         "id": 1,
-        "content": "01, Bacia."
+        "content": "01 Bacia."
       },
       {
         "id": 2,
-        "content": "01, Bom ar (aerossol)."
+        "content": "01 Bom ar (aerossol)."
       },
       {
         "id": 3,
@@ -156,11 +156,11 @@
       },
       {
         "id": 4,
-        "content": "01, Caixa de fósforo ou 01, isqueiro."
+        "content": "01 Caixa de fósforo ou isqueiro."
       },
       {
         "id": 5,
-        "content": "01, Detergente."
+        "content": "01 Detergente."
       }
     ],
     "methods": [
@@ -326,31 +326,31 @@
     "materials": [
       {
         "id": 1,
-        "content": "01, CD ou DVD Velho."
+        "content": "01 CD ou DVD Velho."
       },
       {
         "id": 2,
-        "content": "01, Agulha."
+        "content": "01 Agulha."
       },
       {
         "id": 3,
-        "content": "01, Arame quente ou furadeira."
+        "content": "01 Arame quente ou furadeira."
       },
       {
         "id": 4,
-        "content": "01, Barbante."
+        "content": "01 Barbante."
       },
       {
         "id": 5,
-        "content": "01, Folha de papel colorido em formato de círculo."
+        "content": "01 Folha de papel colorido em formato de círculo."
       },
       {
         "id": 6,
-        "content": "01, Tesoura."
+        "content": "01 Tesoura."
       },
       {
         "id": 7,
-        "content": "01, Cola."
+        "content": "01 Cola."
       }
     ],
     "methods": [

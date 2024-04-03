@@ -16,7 +16,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="container max-w-screen-xl bg-white rounded-lg shadow-lg p-8">
+    <div className="container max-w-screen-xl bg-white rounded-lg p-8  border border-gray-300 rounded p-4">
       <div className="">
         <div
           className="h-40 bg-cover bg-center relative"
@@ -31,7 +31,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="container border border-gray-300 rounded p-4 bg-white">
-          <div className="flex justify-between items-initial mb-6">
+          <div className="flex justify-between items-initial">
             <div>
               <p className="text-gray-600">
                 Publicado em: {experimentInfo.postDate}
@@ -44,13 +44,26 @@ export default function Experiment({ params }: { params: { slug: string } }) {
               ID: {experimentInfo.id}
             </p>
           </div>
-          <h2>{experimentInfo.title}</h2>
-          <p className="mt-4 text-lg text-gray-700">
-            {experimentInfo.description}
-          </p>
         </div>
       </div>
 
+      <div className="mt-8 border border-gray-300 rounded p-4">
+        <h2 className="text-sm font-semibold">Sobre o experimento</h2>
+        <p className="mt-4 text-lg text-gray-700">
+          {experimentInfo.description}
+        </p>
+        <div className="flex flex-wrap items-center mt-2">
+          <h2 className="text-sm font-semibold mr-4">Palavras-chave:</h2>
+          {experimentInfo.keywords.map((keyword) => (
+            <div
+              key={keyword.id}
+              className="bg-gray-700 text-white px-3 py-1 rounded-lg mr-2 mb-2"
+            >
+              {keyword.title}
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="mt-8 border border-gray-300 rounded p-4">
         <h2 className="text-sm font-semibold">Ficha técnica</h2>
 
@@ -113,7 +126,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
                     {Object.keys(experimentInfo.topicSpecific).map(
                       (topicKey, index) => (
                         <li
-                          key={topicKey}
+                          key={index}
                           className="bg-gray-200 p-4 mt-4 mb-4 mr-8 flex justify-around"
                         >
                           <div className="flex justify-center items-center flex-initial w-1/3">
@@ -174,11 +187,12 @@ export default function Experiment({ params }: { params: { slug: string } }) {
       </div>
 
       <div className="w-full mt-8 flex justify-center items-center flex-col">
-        <div className="w-full mt-8 flex items-center justify-center flex-col  border border-gray-300 rounded p-4">
-          <h2 className="mb-4 text-xl font-semibold">
-            Lista de materiais utilizados:
+        <div className="w-full mt-8 flex flex-col  border border-gray-300 rounded p-4">
+          <h2 className="text-sm font-semibold mb-6">
+            Lista de materiais utilizados
           </h2>
-          <ul className="list-disc pl-8">
+
+          <ul className="list-disc">
             {experimentInfo.materials.map((material) => (
               <li key={material.id} className="flex items-center">
                 <FaCheckCircle className="mr-2 text-green-500" />
@@ -189,16 +203,22 @@ export default function Experiment({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="mt-8 w-full border border-gray-300 rounded p-4">
-          <h2 className="text-xl font-semibold text-center">
+          <h2 className="text-sm font-semibold mb-6">
             Métodologia / Passo a passo
           </h2>
+
           {experimentInfo.methods.map((method, index) => (
             <>
-              <p className="mt-8 text-2xl font-bold">{index + 1}° Passo</p>
+              <p
+                key={method.id}
+                className="text-sm font-semibold mb-4 font-bold"
+              >
+                {index + 1}° Passo
+              </p>
 
               <div
                 key={method.id}
-                className="p-3 sm:p-6 flex flex-col lg:flex-row items-center"
+                className="p-3 sm:p-6 flex flex-col items-center"
               >
                 <div className="max-w-md overflow-hidden mb-4 lg:mb-0 lg:mr-4 lg:w-1/2">
                   {method.imagePath && (
@@ -218,35 +238,25 @@ export default function Experiment({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-      <div className="mt-4 p-4">
-        <h2 className="text-xl font-semibold">Resultados esperados</h2>
+      <div className="mt-4  border border-gray-300 rounded p-4 ">
+        <h2 className="text-sm font-semibold mb-4">
+          Quais os resultados esperados?
+        </h2>
         <p className="mt-2">{experimentInfo.results}</p>
       </div>
-      <div className="mt-4 p-4">
-        <h2 className="text-xl font-semibold">Explicação Científica:</h2>
+      <div className="mt-4  border border-gray-300 rounded p-4">
+        <h2 className="text-sm font-semibold mb-4">
+          Qual a explicação científica?
+        </h2>
         <p className="mt-2">{experimentInfo.scientificExplanation}</p>
       </div>
-      <div className="mt-4 p-4">
-        <h2 className="text-xl font-semibold">Referências</h2>
+      <div className="mt-4  border border-gray-300 rounded p-4">
+        <h2 className="text-sm font-semibold mb-4">Referências</h2>
         <ul className="list-disc pl-4 mt-2">
           {experimentInfo.references.map((reference) => (
             <li key={reference.id}>{reference.content}</li>
           ))}
         </ul>
-      </div>
-
-      <div className="mt-4 p-4">
-        <h2 className="text-xl font-semibold">Palavras-chave</h2>
-        <div className="flex flex-wrap mt-2">
-          {experimentInfo.keywords.map((keyword) => (
-            <div
-              key={keyword.id}
-              className="bg-gray-700 text-white px-3 py-1 rounded-lg mr-2 mb-2"
-            >
-              {keyword.title}
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Adicione mais seções conforme necessário para os outros dados */}
