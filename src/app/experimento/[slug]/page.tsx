@@ -65,17 +65,14 @@ export default function Experiment({ params }: { params: { slug: string } }) {
         </div>
       </div>
       <div className="mt-8 border border-gray-300 rounded p-4">
+        <div className="bg-gray-50 px-4 py-2 text-center font-medium text-gray-500 uppercase tracking-wider">
         <h2 className="text-sm font-semibold">Ficha técnica</h2>
+
+        </div>
 
         <div className="mt-4">
           <table className="min-w-full text-xs divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-4 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">
-                  Detalhes do Tipo de Experimento
-                </th>
-              </tr>
-            </thead>
+           
             <tbody className="bg-white divide-y divide-gray-200">
               <tr>
                 <td className="px-4 py-2 font-semibold">
@@ -202,40 +199,42 @@ export default function Experiment({ params }: { params: { slug: string } }) {
           </ul>
         </div>
 
+   
         <div className="mt-8 w-full border border-gray-300 rounded p-4">
-          <h2 className="text-sm font-semibold mb-6">
-            Métodologia / Passo a passo
-          </h2>
+  <h2 className="text-lg font-semibold mb-6">
+    Métodologia / Passo a passo
+  </h2>
 
-          {experimentInfo.methods.map((method, index) => (
-            <>
-              <p
-                key={method.id}
-                className="text-sm font-semibold mb-4 font-bold"
-              >
-                {index + 1}° Passo
-              </p>
+  {experimentInfo.methods.map((method, index) => (
+    <div key={method.id} className="mb-8">
+      <h3 className="text-lg font-semibold mb-2">
+        {index + 1}° Passo
+      </h3>
 
-              <div
-                key={method.id}
-                className="p-3 sm:p-6 flex flex-col items-center"
-              >
-                <div className="max-w-md overflow-hidden mb-4 lg:mb-0 lg:mr-4 lg:w-1/2">
-                  {method.imagePath && (
-                    <img
-                      src={method.imagePath}
-                      alt=""
-                      className="max-w-full h-auto rounded-lg"
-                    />
-                  )}
-                </div>
-                <div className="flex-1 text-justify">
-                  <p className="text-sm lg:text-md">{method.content}</p>
-                </div>
-              </div>
-            </>
-          ))}
+      <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start">
+        <div className="w-full sm:w-1/2 sm:mr-4 mb-4 sm:mb-0">
+          <div className="max-w-full">
+            {method.imagePath && (
+              <img
+                src={method.imagePath}
+                alt=""
+                className="w-full h-auto rounded-lg"
+              />
+            )}
+          </div>
         </div>
+
+        <div className="w-full text-justify">
+          <p className="text-sm lg:text-base">{method.content}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+
+
+
       </div>
 
       <div className="mt-4  border border-gray-300 rounded p-4 ">
