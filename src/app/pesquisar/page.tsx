@@ -3,11 +3,16 @@
 import React, { useState } from "react";
 import experimentData from "../.././app/api/data/experimentos.json";
 import topicGeneralData from "../.././app/api/data/experimentGeneralData.json";
+import Link from "next/link"; // Importando o componente Link do Next.js
 
 export default function Search() {
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedGeneralTopics, setSelectedGeneralTopics] = useState(new Set());
+  const [selectedSpecificTopics, setSelectedSpecificTopics] = useState(new Set());
   const [filteredExperiments, setFilteredExperiments] = useState([]);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [previousFilters, setPreviousFilters] = useState({ general: new Set(), specific: new Set() });
+  const [appliedFilters, setAppliedFilters] = useState([]);
 
   const handleGeneralTopicChange = (id) => {
     const updatedTopics = new Set(selectedGeneralTopics);
@@ -21,17 +26,37 @@ export default function Search() {
       ...prevCheckboxes,
       [id]: !prevCheckboxes[id],
     }));
+    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
   };
 
   const handleSpecificTopicChange = (generalId, specificId) => {
     const key = `${generalId}-${specificId}`;
+    const updatedSpecificTopics = new Set(selectedSpecificTopics);
+    if (updatedSpecificTopics.has(key)) {
+      updatedSpecificTopics.delete(key);
+    } else {
+      updatedSpecificTopics.add(key);
+    }
+    setSelectedSpecificTopics(updatedSpecificTopics);
     setCheckboxes((prevCheckboxes) => ({
       ...prevCheckboxes,
       [key]: !prevCheckboxes[key],
     }));
+    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
   };
 
   const filterExperiments = () => {
+    if (selectedGeneralTopics.size === 0 && selectedSpecificTopics.size === 0) {
+      setStatusMessage("Nenhum filtro aplicado. Por favor, selecione um filtro.");
+      return;
+    }
+
+    if (areFiltersSame(previousFilters.general, selectedGeneralTopics) &&
+        areFiltersSame(previousFilters.specific, selectedSpecificTopics)) {
+      setStatusMessage("Você já aplicou esses filtros. Por favor, altere os filtros para uma nova pesquisa.");
+      return;
+    }
+
     const filtered = experimentData.filter((experiment) => {
       return Array.from(selectedGeneralTopics).some((generalTopicId) => {
         const generalTopic = topicGeneralData.find(
@@ -58,10 +83,17 @@ export default function Search() {
     });
 
     setFilteredExperiments(filtered);
+    setPreviousFilters({ general: new Set(selectedGeneralTopics), specific: new Set(selectedSpecificTopics) });
+    setAppliedFilters(Array.from(selectedGeneralTopics));
+    setStatusMessage("Filtros aplicados com sucesso!");
   };
 
-  const handleAccessExperiment = (slug) => {
-    window.open(`/experimento/${slug}`, "_blank");
+  const areFiltersSame = (prevFilters, currentFilters) => {
+    if (prevFilters.size !== currentFilters.size) return false;
+    for (let filter of currentFilters) {
+      if (!prevFilters.has(filter)) return false;
+    }
+    return true;
   };
 
   return (
@@ -69,67 +101,49 @@ export default function Search() {
       <div className="p-6 bg-white rounded-lg shadow-md w-full">
         <h2 className="text-2xl font-bold mb-4">Filtros</h2>
         <div className="flex flex-wrap -mx-2">
-          {/* Tema */}
-          <div className="w-full flex flex-col sm:flex-row lg:flex-row items-start">
-            {topicGeneralData.map((generalTopic) => (
-              <div key={generalTopic.id} className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-4">
-                <div className="flex items-center mb-2">
-                  <input
-                    type="checkbox"
-                    id={`general-${generalTopic.id}`}
-                    onChange={() => handleGeneralTopicChange(generalTopic.id)}
-                    checked={checkboxes[generalTopic.id] || false}
-                    className="mr-2"
-                  />
-                  <label
-                    htmlFor={`general-${generalTopic.id}`}
-                    className="text-sm lg:text-xs"
-                  >
-                    {generalTopic.title}
-                  </label>
-                </div>
+          {topicGeneralData.map((generalTopic) => (
+            <div key={generalTopic.id} className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-4">
+              <div className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  id={`general-${generalTopic.id}`}
+                  onChange={() => handleGeneralTopicChange(generalTopic.id)}
+                  checked={checkboxes[generalTopic.id] || false}
+                  className="mr-2"
+                />
+                <label
+                  htmlFor={`general-${generalTopic.id}`}
+                  className="text-sm lg:text-xs"
+                >
+                  {generalTopic.title}
+                </label>
               </div>
-            ))}
-          </div>
-
-          {/* Tópicos Específicos */}
-          <div className="w-full flex flex-col sm:flex-row lg:flex-row items-start">
-            {Array.from(selectedGeneralTopics).map((generalTopicId) => {
-              const generalTopic = topicGeneralData.find(
-                (topic) => topic.id === generalTopicId
-              );
-              if (!generalTopic) return null;
-              return (
-                <div key={generalTopic.id} className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-4">
-                  <h3 className="text-xs font-semibold mb-2">
-                    {generalTopic.title} (opcional)
-                  </h3>
-                  {generalTopic.topicSpecific.map((specificTopic) => (
-                    <div key={specificTopic.id} className="flex items-center mb-2">
-                      <input
-                        type="checkbox"
-                        id={`specific-${specificTopic.id}`}
-                        onChange={() =>
-                          handleSpecificTopicChange(generalTopic.id, specificTopic.id)
-                        }
-                        checked={checkboxes[`${generalTopic.id}-${specificTopic.id}`] || false}
-                        className="mr-2"
-                      />
-                      <label
-                        htmlFor={`specific-${specificTopic.id}`}
-                        className="text-sm lg:text-xs"
-                      >
-                        {specificTopic.title}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
+              <div className="ml-4">
+                {generalTopic.topicSpecific.map((specificTopic) => (
+                  <div key={specificTopic.id} className="flex items-center mb-2">
+                    <input
+                      type="checkbox"
+                      id={`specific-${specificTopic.id}`}
+                      onChange={() =>
+                        handleSpecificTopicChange(generalTopic.id, specificTopic.id)
+                      }
+                      checked={checkboxes[`${generalTopic.id}-${specificTopic.id}`] || false}
+                      disabled={!selectedGeneralTopics.has(generalTopic.id)}
+                      className="mr-2"
+                    />
+                    <label
+                      htmlFor={`specific-${specificTopic.id}`}
+                      className={`text-sm lg:text-xs ${!selectedGeneralTopics.has(generalTopic.id) ? 'text-gray-400' : ''}`}
+                    >
+                      {specificTopic.title}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Botão para filtrar */}
         <div className="flex justify-center mt-6">
           <button
             onClick={filterExperiments}
@@ -138,11 +152,43 @@ export default function Search() {
             Filtrar
           </button>
         </div>
+        {statusMessage && (
+          <div className={`mt-4 text-center ${statusMessage.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
+            {statusMessage}
+          </div>
+        )}
       </div>
 
-      {/* Resultados da pesquisa */}
       <section className="w-full mt-8">
         <h2 className="text-2xl font-bold mb-4">Experimentos Filtrados</h2>
+        <div className="flex flex-wrap gap-2 mb-4">
+          <span className="font-bold">Filtros atualmente aplicados:</span>
+          {appliedFilters.length > 0 ? (
+
+            appliedFilters.map((filterId) => {
+              const generalTopic = topicGeneralData.find((topic) => topic.id === filterId);
+              return generalTopic ? (
+                <>
+                <span
+                  key={generalTopic.id}
+                  className="px-2 py-1 bg-blue-200 text-blue-800 rounded-lg text-sm"
+                >
+                  {generalTopic.title}
+                </span>
+
+                </>
+                
+                
+              ) : null;
+            })
+
+
+          ) : (
+            <span className="text-sm text-gray-500">Nenhum filtro aplicado.</span>
+          )}
+
+          
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {filteredExperiments.map((experiment) => (
             <div key={experiment.id} className="border rounded-lg shadow-md p-4 bg-white">
@@ -152,15 +198,17 @@ export default function Search() {
                 alt={experiment.title}
                 className="w-full h-40 object-cover rounded-md mb-4"
               />
-              <button
-                onClick={() => handleAccessExperiment(experiment.slug)}
-                className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              <Link
+                className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-center block"
+                href={`/experimento/${experiment.slug}`}
+                target="_blank"
               >
                 Acessar
-              </button>
+              </Link>
             </div>
           ))}
         </div>
+
       </section>
     </main>
   );
