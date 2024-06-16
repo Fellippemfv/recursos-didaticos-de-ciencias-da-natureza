@@ -133,7 +133,7 @@ export default function Search() {
   
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-4">
+    <main className="flex min-h-screen flex-col items-center justify-between sm:m-4">
       <div className="p-6 bg-white rounded-lg shadow-md w-full">
         <h2 className="text-2xl font-bold mb-4">Filtros</h2>
         <div className="flex flex-wrap -mx-2">

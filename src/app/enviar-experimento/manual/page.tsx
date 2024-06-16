@@ -1355,7 +1355,7 @@ export default function Experiment() {
       <div className="">
       <div className="flex flex-col gap-10">
           <form onSubmit={handleSubmit}>
-            <div>
+            <div className="m-4 sm:m-0">
               <div className="border border-gray-300 rounded-lg p-6 mb-6">
                 <h2 className="text-lg font-semibold mb-4">
                   Chave da API do Github

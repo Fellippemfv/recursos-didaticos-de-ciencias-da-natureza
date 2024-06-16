@@ -2,6 +2,7 @@ import React, { useState, ReactNode } from 'react';
 import Link from 'next/link';
 import { FcHome, FcSearch, FcInfo, FcFinePrint } from 'react-icons/fc';
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
+import { FaUpload } from 'react-icons/fa';
 
 interface NavItemProps {
   icon: ReactNode; // Tipo ReactNode para aceitar qualquer elemento React (como ícones)
@@ -42,7 +43,7 @@ const Navbar = () => {
             </Link>
             <Link href="/enviar-experimento">
               <div className="cursor-pointer flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                <FcFinePrint className="inline-block mr-2" />
+              <FaUpload className="mr-2" />
                 <span>Enviar experimento</span>
               </div>
             </Link>
