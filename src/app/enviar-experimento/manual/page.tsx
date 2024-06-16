@@ -39,8 +39,14 @@ import { z } from "zod";
 import { Octokit } from "@octokit/rest";
 /* import Octokit from "@octokit/rest"; */
 
+
+import experimentTypes from "../../api/data/experimentTypes.json"
+import abntRules from "../../api/data/abntRules.json"
+import difficulties from "../../api/data/difficulties.json"
 import locationData from "../../api/data/location.json";
 import topicGeneralData from "../../api/data/experimentGeneralData.json";
+
+
 import axios from "axios";
 import { Textarea } from "../../../components/ui/textarea";
 import { Label } from "../../../components/ui/label";
@@ -79,21 +85,7 @@ interface LocalizationTopic {
   slug: string;
 }
 
-interface TargetAudienceTopic {
-  id: number;
-  title: string;
-  slug: string;
-}
-
 interface DifficultyTopic {
-  id: number;
-  title: string;
-  slug: string;
-  steps: string;
-  explanation: string;
-}
-
-interface CostTopic {
   id: number;
   title: string;
   slug: string;
@@ -194,21 +186,7 @@ export default function Experiment() {
     references: [],
   });
 
-  const abntRules = [
-    {
-      source: "Livro",
-      rule: "SOBRENOME, Nome. <em>Título do livro</em>: subtítulo. Edição (se houver). Local de ação: Editora, Ano de ação.",
-    },
-    {
-      source: "Site",
-      rule: "NOME DO SITE. Disponível em: <URL>. Acesso em: Data.",
-    },
-    {
-      source: "Artigo",
-      rule: "AUTOR. Título do artigo. <em>Nome da Revista</em>, Local de ação, volume, número, página inicial-final, mês, ano.",
-    },
-    // Adicione outras regras conforme necessário
-  ];
+
 
   const handleSelectDifficultyChange = (
     selectedDifficulty: DifficultyTopic,
@@ -219,83 +197,12 @@ export default function Experiment() {
     }));
   };
 
-  const difficulties: DifficultyTopic[] = [
-    {
-      id: 1,
-      title: "Fácil",
-      slug: "facil",
-      steps: "1 - 5",
-      explanation: "De 1 a 5 passos são necessários para completar.",
-    },
-    {
-      id: 2,
-      title: "Médio",
-      slug: "medio",
-      steps: "6 - 10",
-      explanation: "De 6 a 10 passos são necessários para completar.",
-    },
-    {
-      id: 3,
-      title: "Difícil",
-      slug: "dificil",
-      steps: "11+",
-      explanation: "11 ou mais passos são necessários para completar.",
-    },
-  ];
-
   const handleSelectExperimentTypeChange = (selectedType: ExperimentType) => {
     setExperimentData((prevData: any) => ({
       ...prevData,
       experimentType: selectedType,
     }));
   };
-
-  const experimentTypes: ExperimentType[] = [
-    {
-      id: 1,
-      title: "Experimentos Demonstrativos",
-      slug: "demonstrativos",
-      steps:
-        "São experimentos realizados para demonstrar um conceito específico.",
-    },
-    {
-      id: 2,
-      title: "Experimentos Controlados",
-      slug: "controlados",
-      steps:
-        "Os alunos conduzem experimentos em que todas as variáveis são controladas para testar uma hipótese específica. ",
-    },
-    {
-      id: 3,
-      title: "Experimentos de Observação",
-      slug: "observacao",
-      steps:
-        "Os alunos observam fenômenos naturais ou processos em ação e fazem anotações sobre suas observações. ",
-    },
-    {
-      id: 4,
-      title: "Experimentos de Campo",
-      slug: "campo",
-      steps:
-        "Os alunos realizam experimentos fora da sala de aula, muitas vezes em ambientes naturais, para coletar dados e realizar observações. ",
-    },
-    {
-      id: 5,
-      title: "Experimentos Virtuais ou Simulações",
-      slug: "virtuais",
-      steps:
-        "Os alunos usam software ou simulações computacionais para realizar experimentos que podem ser difíceis ou impossíveis de realizar na vida real. ",
-    },
-    {
-      id: 6,
-      title: "Experimentos de Replicação",
-      slug: "replicacao",
-      steps:
-        "Os alunos tentam replicar experimentos científicos famosos para entender o método científico e ganhar experiência prática.",
-    },
-  ];
-
-  
 
   const handleGeneralSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
@@ -397,7 +304,6 @@ export default function Experiment() {
     event.target.value = ""; // Limpa o valor selecionado
   };
 
-
   const handleInputChange = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
@@ -442,15 +348,6 @@ export default function Experiment() {
       topicLocation: prevData.topicLocation.filter(
         (topic: Topic) => topic.id !== id,
       ), // Remove a div com o id correspondente
-    }));
-  };
-
-  const handleRemoveAudience = (id: number) => {
-    setExperimentData((prevData) => ({
-      ...prevData,
-      targetAudience: prevData.targetAudience.filter(
-        (audience: TargetAudienceTopic) => audience.id !== id,
-      ),
     }));
   };
 
@@ -1822,7 +1719,7 @@ export default function Experiment() {
                                                 ?.slug === diff.slug
                                             }
                                             onChange={() =>
-                                              handleSelectDifficultyChange(diff)
+                                              handleSelectDifficultyChange(diff as any)
                                             }
                                             className="mr-1"
                                           />

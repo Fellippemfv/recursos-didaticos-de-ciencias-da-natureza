@@ -1,0 +1,45 @@
+[
+    {
+        "id": 1,
+        "title": "Experimentos Demonstrativosa",
+        "slug": "demonstrativos",
+        "steps":
+          "São experimentos realizados para demonstrar um conceito específico."
+      },
+      {
+        "id": 2,
+        "title": "Experimentos Controlados",
+        "slug": "controlados",
+        "steps":
+          "Os alunos conduzem experimentos em que todas as variáveis são controladas para testar uma hipótese específica. "
+      },
+      {
+        "id": 3,
+        "title": "Experimentos de Observação",
+        "slug": "observacao",
+        "steps":
+          "Os alunos observam fenômenos naturais ou processos em ação e fazem anotações sobre suas observações. "
+      },
+      {
+        "id": 4,
+        "title": "Experimentos de Campo",
+        "slug": "campo",
+        "steps":
+          "Os alunos realizam experimentos fora da sala de aula, muitas vezes em ambientes naturais, para coletar dados e realizar observações. "
+      },
+      {
+        "id": 5,
+        "title": "Experimentos Virtuais ou Simulações",
+        "slug": "virtuais",
+        "steps":
+          "Os alunos usam software ou simulações computacionais para realizar experimentos que podem ser difíceis ou impossíveis de realizar na vida real. "
+      },
+      {
+        "id": 6,
+        "title": "Experimentos de Replicação",
+        "slug": "replicacao",
+        "steps":
+          "Os alunos tentam replicar experimentos científicos famosos para entender o método científico e ganhar experiência prática."
+      }
+  ]
+  
