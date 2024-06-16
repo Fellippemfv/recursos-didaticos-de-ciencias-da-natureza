@@ -1176,7 +1176,8 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico da imagem
-      const imagePath = `/images/${file.name}`;
+      const imagePath = `/images/${experimentData.id}/${file.name}`;
+      
 
       // Atualiza o estado imagePath com o link dinâmico da imagem
        setExperimentData((prevState: any) => ({
