@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import Link from 'next/link';
-import { FcHome, FcSearch, FcInfo, FcDocument, FcImageFile, FcFinePrint } from 'react-icons/fc';
+import { FcHome, FcSearch, FcInfo, FcFinePrint } from 'react-icons/fc';
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
-import { FaRegFileImage } from 'react-icons/fa';
+
+interface NavItemProps {
+  icon: ReactNode; // Tipo ReactNode para aceitar qualquer elemento React (como ícones)
+  text: string; // Tipo string para o texto do item de navegação
+  path: string; // Tipo string para a rota do item de navegação
+}
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +42,7 @@ const Navbar = () => {
             </Link>
             <Link href="/enviar-experimento">
               <div className="cursor-pointer flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                <FcFinePrint   className="inline-block mr-2" />
+                <FcFinePrint className="inline-block mr-2" />
                 <span>Enviar experimento</span>
               </div>
             </Link>
@@ -48,7 +53,7 @@ const Navbar = () => {
   );
 };
 
-const NavItem = ({ icon, text, path }) => (
+const NavItem = ({ icon, text, path }: NavItemProps) => (
   <li className="nav-item">
     <Link href={path}>
       <div className="relative flex items-center py-2 pr-2 border-b-2 border-transparent hover:border-gray-300">
