@@ -5,17 +5,17 @@ import ThemeSwitch from './ThemeSwitch'
 import Navbar from './Navbar'
 import { FcBiohazard, FcGlobe, FcSearch } from 'react-icons/fc'
 import { BiSolidFlask } from 'react-icons/bi'
+import logo from "../../public/logo.png"
+import { FaVial } from 'react-icons/fa'
 
 const Header = () => {
     return (
       <header className="flex items-center justify-between py-10">
-<div className="flex items-center">
-  <BiSolidFlask className="text-green-600 h-14 w-14" />
-  <div className="text-center">
-    <p className="font-serif font-extrabold text-3xl text-green-800">Ciências</p>
-    <p className="font-sans font-normal text-lg text-gray-600">para todos</p>
-  </div>
-</div>
+  <div className="flex items-center">
+        <FaVial className="h-10 w-10 text-blue-500" />
+        <span className="ml-2 text-xl font-medium">Experimentos</span>
+      </div>
+
 
 
       <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
