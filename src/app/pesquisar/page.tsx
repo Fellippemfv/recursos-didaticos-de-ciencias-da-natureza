@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import experimentData from "../../app/api/data/experimentos.json";
 import topicGeneralData from "../../app/api/data/experimentGeneralData.json";
 import Link from "next/link"; // Importando o componente Link do Next.js
+import { BiSearch } from "react-icons/bi";
 
 export default function Search() {
   const [checkboxes, setCheckboxes] = useState<{ [key: string]: boolean }>({});
@@ -180,13 +181,14 @@ export default function Search() {
         </div>
 
         <div className="flex justify-center mt-6">
-          <button
-            onClick={filterExperiments}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Filtrar
-          </button>
-        </div>
+      <button
+        onClick={filterExperiments}
+        className="flex items-center px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+      >
+        <BiSearch className="text-white mr-2" /> {/* Ícone de lupa com margem à direita */}
+        Filtrar experimentos
+      </button>
+    </div>
         {statusMessage && (
           <div className={`mt-4 text-center ${statusMessage.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
             {statusMessage}
