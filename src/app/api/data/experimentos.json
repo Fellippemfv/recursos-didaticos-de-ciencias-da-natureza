@@ -1,7 +1,7 @@
 [
   {
     "id": "1710363294372",
-    "postDate": "13 de março de 2024 às 16:54 horário local.",
+    "postDate": "13 de março de 2024 às 16:54",
     "profileName": "Fellippe Matheus",
     "topicGeneral": [
       {
@@ -63,50 +63,6 @@
         "slug": "laboratorio-de-ciencias"
       }
     ],
-    "targetAudience": [
-      {
-        "id": 1,
-        "title": "Ensino fundamental",
-        "slug": "ensino-fundamental"
-      },
-      {
-        "id": 2,
-        "title": "Ensino médio",
-        "slug": "ensino-medio"
-      },
-      {
-        "id": 3,
-        "title": "Ensino superior",
-        "slug": "ensino-superior"
-      }
-    ],
-    "keywords": [
-      {
-        "id": 1,
-        "title": "Fogo",
-        "slug": "fogo"
-      },
-      {
-        "id": 2,
-        "title": "Mão",
-        "slug": "mao"
-      },
-      {
-        "id": 3,
-        "title": "Balde",
-        "slug": "balde"
-      },
-      {
-        "id": 4,
-        "title": "Detergente",
-        "slug": "detergente"
-      },
-      {
-        "id": 5,
-        "title": "Experimento",
-        "slug": "experimento"
-      }
-    ],
     "difficulty": {
       "id": 1,
       "title": "Fácil",
@@ -114,18 +70,11 @@
       "steps": "1 - 5",
       "explanation": "De 1 a 5 passos são necessários para completar."
     },
-    "cost": {
-      "id": 1,
-      "title": "Barato",
-      "slug": "barato",
-      "steps": "Entre R$00,00 e R$15,00",
-      "explanation": "Experimentos de baixo custo."
-    },
     "experimentType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
       "slug": "demonstrativos",
-      "steps": "São experimentos realizados pelo professor para demonstrar um conceito específico aos alunos. Por exemplo, uma experiência de eletrólise para mostrar a decomposição da água em hidrogênio e oxigênio."
+      "steps": "São experimentos realizados para demonstrar um conceito específico."
     },
     "title": "Fogo na mão",
     "slug": "fogo-na-mao",
@@ -205,7 +154,7 @@
   },
   {
     "id": "1710365323075",
-    "postDate": "13 de março de 2024 às 17:28 horário local.",
+    "postDate": "13 de março de 2024 às 17:28",
     "profileName": "Fellippe Matheus",
     "topicGeneral": [
       {
@@ -250,45 +199,7 @@
         "slug": "ambiente-aberto"
       }
     ],
-    "targetAudience": [
-      {
-        "id": 1,
-        "title": "Ensino fundamental",
-        "slug": "ensino-fundamental"
-      },
-      {
-        "id": 2,
-        "title": "Ensino médio",
-        "slug": "ensino-medio"
-      },
-      {
-        "id": 3,
-        "title": "Ensino superior",
-        "slug": "ensino-superior"
-      }
-    ],
-    "keywords": [
-      {
-        "id": 1,
-        "title": "Disco de newton",
-        "slug": "disco-de-newton"
-      },
-      {
-        "id": 2,
-        "title": "Fácil de fazer",
-        "slug": "facil-de-fazer"
-      },
-      {
-        "id": 3,
-        "title": "Cds",
-        "slug": "cds"
-      },
-      {
-        "id": 4,
-        "title": "Barbantes",
-        "slug": "barbantes"
-      }
-    ],
+  
     "difficulty": {
       "id": 2,
       "title": "Médio",
@@ -296,18 +207,12 @@
       "steps": "6 - 10",
       "explanation": "De 6 a 10 passos são necessários para completar."
     },
-    "cost": {
-      "id": 1,
-      "title": "Barato",
-      "slug": "barato",
-      "steps": "Entre R$00,00 e R$15,00",
-      "explanation": "Experimentos de baixo custo."
-    },
+  
     "experimentType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
       "slug": "demonstrativos",
-      "steps": "São experimentos realizados pelo professor para demonstrar um conceito específico aos alunos. Por exemplo, uma experiência de eletrólise para mostrar a decomposição da água em hidrogênio e oxigênio."
+      "steps": "São experimentos realizados para demonstrar um conceito específico."
     },
     "title": "Disco de newton",
     "slug": "disco-de-newton",

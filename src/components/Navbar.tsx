@@ -13,33 +13,30 @@ const Navbar = () => {
   }, []);
 
   return (
-    <ul className="hidden sm:flex flex items-center space-x-4 leading-5 sm:space-x-6">
+    <ul className="hidden sm:flex items-center space-x-4 leading-5 sm:space-x-6">
       <li className="nav-item">
-        <Link href="/" passHref>
-
-        <div className="relative flex items-center py-2 pr-2 transition-all duration-300 transform-gpu hover:shadow-md">
-        <FcHome className="mr-2" />
-          <span className="text-base leading-6 font-medium text-secondary-500">
-            Início
-          </span>
-        </div>
-         
+        <Link href="/">
+          <div className="relative flex items-center py-2 pr-2 transition-all duration-300 transform-gpu hover:shadow-md hover:border-b-2 border-primary-500">
+            <FcHome className="mr-2" />
+            <span className="text-base leading-6 font-medium text-secondary-500">
+              Início
+            </span>
+          </div>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/pesquisar" passHref>
-        <div className="relative flex items-center py-2 pr-2 transition-all duration-300 transform-gpu hover:shadow-md">
-        <FcSearch className="mr-2" />
-          <span className="text-base leading-6 font-medium text-secondary-500">
-            Pesquisar
-          </span>
-        </div>
-        
+        <Link href="/pesquisar">
+          <div className="relative flex items-center py-2 pr-2 transition-all duration-300 transform-gpu hover:shadow-md hover:border-b-2 border-primary-500">
+            <FcSearch className="mr-2" />
+            <span className="text-base leading-6 font-medium text-secondary-500">
+              Pesquisar
+            </span>
+          </div>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/sobre" passHref>
-          <div className="relative flex items-center py-2 pr-2 transition-all duration-300 transform-gpu hover:shadow-md">
+        <Link href="/sobre">
+          <div className="relative flex items-center py-2 pr-2 transition-all duration-300 transform-gpu hover:shadow-md hover:border-b-2 border-primary-500">
             <FcInfo className="mr-2" />
             <span className="text-base leading-6 font-medium text-secondary-500">
               Sobre
@@ -47,12 +44,10 @@ const Navbar = () => {
           </div>
         </Link>
       </li>
-      <li className="nav-item">
-      <ThemeSwitch />
-      </li>
-
     </ul>
   );
+  
+  
 };
 
 export default Navbar;

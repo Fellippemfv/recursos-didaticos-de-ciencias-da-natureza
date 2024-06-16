@@ -44,26 +44,17 @@ export default function Experiment({ params }: { params: { slug: string } }) {
               ID: {experimentInfo.id}
             </p>
           </div>
-        </div>
-      </div>
 
-      <div className="mt-8 border border-gray-300 rounded p-4">
-        <h2 className="text-sm font-semibold">Sobre o experimento</h2>
+          <h2 className="text-sm font-semibold mt-8">Sobre o experimento</h2>
         <p className="mt-4 text-lg text-gray-700">
           {experimentInfo.description}
         </p>
-        <div className="flex flex-wrap items-center mt-2">
-          <h2 className="text-sm font-semibold mr-4">Palavras-chave:</h2>
-          {experimentInfo.keywords.map((keyword) => (
-            <div
-              key={keyword.id}
-              className="bg-gray-700 text-white px-3 py-1 rounded-lg mr-2 mb-2"
-            >
-              {keyword.title}
-            </div>
-          ))}
         </div>
+
+        
       </div>
+
+    
       <div className="mt-8 border border-gray-300 rounded p-4">
         <div className="bg-gray-50 px-4 py-2 text-center font-medium text-gray-500 uppercase tracking-wider">
         <h2 className="text-sm font-semibold">Ficha técnica</h2>
@@ -102,18 +93,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
                   </ul>
                 </td>
               </tr>
-              <tr>
-                <td className="px-4 py-2 font-semibold">
-                  Qual o público alvo?
-                </td>
-                <td className="px-4 py-2">
-                  <ul className="list-disc ">
-                    {experimentInfo.targetAudience.map((audience) => (
-                      <li key={audience.id}>{audience.title}</li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
+             
               <tr>
                 <td className="px-4 py-2 font-semibold">
                   Sobre o que é este experimento?
@@ -133,13 +113,14 @@ export default function Experiment({ params }: { params: { slug: string } }) {
                           </div>
                           <div className="flex-initial w-2/3">
                             <ul className="list-disc">
-                              {experimentInfo.topicSpecific[topicKey].map(
-                                (topic: any) => (
-                                  <li key={topic.id} className="ml-4">
-                                    {topic.title}
-                                  </li>
-                                ),
-                              )}
+                            {experimentInfo.topicSpecific[topicKey as keyof typeof experimentInfo.topicSpecific]?.map(
+  (topic: any) => (
+    <li key={topic.id} className="ml-4">
+      {topic.title}
+    </li>
+  ),
+)}
+
                             </ul>
                           </div>
                         </li>
@@ -158,15 +139,6 @@ export default function Experiment({ params }: { params: { slug: string } }) {
                 </td>
               </tr>
 
-              <tr>
-                <td className="px-4 py-2 font-semibold">Custo</td>
-                <td className="px-4 py-2">
-                  {" "}
-                  É classificado como{" "}
-                  <strong>{experimentInfo.cost.title}</strong>, com um custo
-                  estimado entre {experimentInfo.cost.steps}.
-                </td>
-              </tr>
 
               <tr>
                 <td className="px-4 py-2 font-semibold">Objetivos</td>

@@ -35,8 +35,6 @@ import { RiAddLine, RiUserLine } from "react-icons/ri";
 import { FiHash, FiUploadCloud } from "react-icons/fi";
 
 import { FaCopy, FaFlask, FaTrash } from "react-icons/fa";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Octokit } from "@octokit/rest";
@@ -44,7 +42,6 @@ import { Octokit } from "@octokit/rest";
 
 import locationData from "../../app/api/data/location.json";
 import topicGeneralData from "../../app/api/data/experimentGeneralData.json";
-import targetAudience from "../../app/api/data/targetAudience.json";
 import axios from "axios";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -115,7 +112,6 @@ interface ExperimentType {
 export default function Experiment() {
   const [experimentLocationData] = useState(locationData);
   const [experimentGeneralData] = useState(topicGeneralData);
-  const [experimentTargetAudienceData] = useState(targetAudience);
   const [apiToken, setApiToken] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [testResult, setTestResult] = useState<{
@@ -248,30 +244,6 @@ export default function Experiment() {
     },
   ];
 
-  const handleSelectCostChange = (selectedCost: CostTopic) => {
-    setExperimentData((prevData: any) => ({
-      ...prevData,
-      cost: selectedCost,
-    }));
-  };
-
-  const costs: CostTopic[] = [
-    {
-      id: 1,
-      title: "Barato",
-      slug: "barato",
-      steps: "Entre R$00,00 e R$15,00",
-      explanation: "Experimentos de baixo custo.",
-    },
-    {
-      id: 2,
-      title: "Caro",
-      slug: "caro",
-      steps: "De R$15,00 em diante",
-      explanation: "Experimentos de alto custo.",
-    },
-  ];
-
   const handleSelectExperimentTypeChange = (selectedType: ExperimentType) => {
     setExperimentData((prevData: any) => ({
       ...prevData,
@@ -285,91 +257,46 @@ export default function Experiment() {
       title: "Experimentos Demonstrativos",
       slug: "demonstrativos",
       steps:
-        "São experimentos realizados pelo professor para demonstrar um conceito específico aos alunos. Por exemplo, uma experiência de eletrólise para mostrar a decomposição da água em hidrogênio e oxigênio.",
+        "São experimentos realizados para demonstrar um conceito específico.",
     },
     {
       id: 2,
       title: "Experimentos Controlados",
       slug: "controlados",
       steps:
-        "Os alunos conduzem experimentos em que todas as variáveis são controladas para testar uma hipótese específica. Por exemplo, um experimento para investigar como a temperatura afeta a taxa de crescimento de plantas.",
+        "Os alunos conduzem experimentos em que todas as variáveis são controladas para testar uma hipótese específica. ",
     },
     {
       id: 3,
       title: "Experimentos de Observação",
       slug: "observacao",
       steps:
-        "Os alunos observam fenômenos naturais ou processos em ação e fazem anotações sobre suas observações. Por exemplo, observar e registrar mudanças climáticas ao longo de várias semanas.",
+        "Os alunos observam fenômenos naturais ou processos em ação e fazem anotações sobre suas observações. ",
     },
     {
       id: 4,
       title: "Experimentos de Campo",
       slug: "campo",
       steps:
-        "Os alunos realizam experimentos fora da sala de aula, muitas vezes em ambientes naturais, para coletar dados e realizar observações. Por exemplo, estudar a biodiversidade em um ecossistema local.",
+        "Os alunos realizam experimentos fora da sala de aula, muitas vezes em ambientes naturais, para coletar dados e realizar observações. ",
     },
     {
       id: 5,
       title: "Experimentos Virtuais ou Simulações",
       slug: "virtuais",
       steps:
-        "Os alunos usam software ou simulações computacionais para realizar experimentos que podem ser difíceis ou impossíveis de realizar na vida real. Por exemplo, simular o lançamento de um foguete espacial.",
+        "Os alunos usam software ou simulações computacionais para realizar experimentos que podem ser difíceis ou impossíveis de realizar na vida real. ",
     },
     {
       id: 6,
-      title: "Experimentos Quase-Experimentais",
-      slug: "quase-experimentais",
-      steps:
-        "Estes envolvem a manipulação de uma variável independente, mas nem sempre incluem o controle completo de todas as variáveis. Por exemplo, investigar se a música melhora o desempenho acadêmico, mas sem controlar todos os outros fatores que podem influenciar o desempenho.",
-    },
-    {
-      id: 7,
-      title: "Experimentos de Modelagem Matemática",
-      slug: "modelagem",
-      steps:
-        "Os alunos usam equações matemáticas para modelar fenômenos do mundo real e prever resultados. Por exemplo, modelar o crescimento populacional de uma espécie ao longo do tempo.",
-    },
-    {
-      id: 8,
       title: "Experimentos de Replicação",
       slug: "replicacao",
       steps:
-        "Os alunos tentam replicar experimentos científicos famosos para entender o método científico e ganhar experiência prática. Por exemplo, replicar o experimento de Pavlov sobre condicionamento clássico em cães.",
+        "Os alunos tentam replicar experimentos científicos famosos para entender o método científico e ganhar experiência prática.",
     },
   ];
 
-  const [keyword, setKeyword] = useState(""); // Estado para armazenar a palavra-chave digitada
-
-  const handleAddKeyword = () => {
-    if (keyword.trim() !== "") {
-      const slug = generateKeySlug(keyword);
-      setExperimentData((prevData: any) => ({
-        ...prevData,
-        keywords: [
-          ...prevData.keywords,
-          { id: prevData.keywords.length + 1, title: keyword, slug },
-        ],
-      }));
-      setKeyword(""); // Limpa o input após adicionar
-    }
-  };
-
-  const generateKeySlug = (title: string) => {
-    return title
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9 -]/g, "")
-      .replace(/\s+/g, "-")
-      .slice(0, 50); // Limitando o tamanho do slug a 50 caracteres
-  };
-
-  const handleRemoveKeyword = (id: number) => {
-    setExperimentData((prevData: any) => ({
-      ...prevData,
-      keywords: prevData.keywords.filter((keyword: any) => keyword.id !== id),
-    }));
-  };
+  
 
   const handleGeneralSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
@@ -471,38 +398,6 @@ export default function Experiment() {
     event.target.value = ""; // Limpa o valor selecionado
   };
 
-  const handleSelectAudienceChange = (
-    event: ChangeEvent<HTMLSelectElement>,
-  ) => {
-    const { name, value } = event.target;
-    const selectedAudience = experimentTargetAudienceData.find(
-      (audience: TargetAudienceTopic) => audience.slug === value,
-    );
-
-    if (selectedAudience) {
-      const isAudienceAlreadySelected = experimentData.targetAudience.some(
-        (audience: any) => audience.title === selectedAudience.title,
-      );
-
-      if (!isAudienceAlreadySelected) {
-        setExperimentData((prevData: any) => ({
-          ...prevData,
-          targetAudience: [
-            ...prevData.targetAudience,
-            {
-              id: selectedAudience.id,
-              title: selectedAudience.title,
-              slug: selectedAudience.slug,
-            },
-          ],
-        }));
-
-        event.target.blur(); // Remove o foco do select
-      }
-    }
-
-    event.target.value = ""; // Limpa o valor selecionado
-  };
 
   const handleInputChange = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
@@ -579,11 +474,6 @@ export default function Experiment() {
     );
   };
 
-  const isAudienceSelected = (slug: any) => {
-    return experimentData.targetAudience.some(
-      (audience: TargetAudienceTopic) => audience.slug === slug,
-    );
-  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -1861,144 +1751,6 @@ export default function Experiment() {
 
                 <div className="mb-8">
                   <div className="mb-4">
-                    <div className="flex flex-row items-center mb-2">
-                      <div>
-                        <MdPeopleOutline style={{ marginRight: "5px" }} />{" "}
-                        {/* Adicionando o ícone MdPeople dentro de uma div */}
-                      </div>
-                      <Label htmlFor="topicAudience">
-                        Tópico de Público-Alvo:
-                      </Label>
-                    </div>
-                    {/* Restante do código... */}
-                  </div>
-                  <p className="mt-2 mb-4 text-sm text-muted-foreground">
-                    Selecione o público-alvo para o qual o experimento é
-                    destinado: Ensino Fundamental, Ensino Médio ou Ensino
-                    Superior. Escolha cuidadosamente, pois isso ajudará na
-                    identificação e classificação do seu experimento.
-                  </p>
-                  <select
-                    id="topicAudience"
-                    onChange={handleSelectAudienceChange}
-                    name="topicAudience"
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
-                    defaultValue=""
-                  >
-                    <option value="">Selecione um tópico</option>
-                    {experimentTargetAudienceData.map((audience) => (
-                      <option
-                        key={audience.id}
-                        value={audience.slug}
-                        disabled={isAudienceSelected(audience.slug)}
-                        className="bg-white"
-                      >
-                        {audience.title}
-                      </option>
-                    ))}
-                  </select>
-
-                  <div className="mt-2 flex flex-wrap">
-                    {experimentData.targetAudience.map((audience: any) => (
-                      <div
-                        key={audience.id}
-                        className="bg-purple-600 p-2 rounded-md inline-flex items-center mr-2 mb-2 text-white shadow-lg relative"
-                      >
-                        <span className="mr-2">{audience.title}</span>
-                        <button
-                          onClick={() => {
-                            handleRemoveAudience(audience.id);
-                          }}
-                          className="text-red-500 focus:outline-none hover:text-red-700 transition-colors duration-300 ease-in-out relative"
-                        >
-                          <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                            <span className="text-white">X</span>
-                          </div>
-                        </button>
-                      </div>
-                    ))}
-
-                    {experimentData.targetAudience.length === 0 && (
-                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
-                        <MdError className="mr-2" />
-                        <span>
-                          Selecione pelo menos um tópico sobre o público-alvo do
-                          experimento.
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="mb-8">
-                  <div className="mb-4">
-                    <div className="flex flex-col items-baseline mb-2">
-                      <div className="flex flex-row items-center justify-center">
-                        <IoKeyOutline style={{ marginRight: "5px" }} />
-                        <Label htmlFor="keywordInput">Palavras-chave:</Label>
-                      </div>
-                      <div>
-                        <p className="mt-2 mb-4 text-sm text-muted-foreground">
-                          Palavras-chave, também conhecidas como "keywords" em
-                          inglês, são termos que descrevem o conteúdo principal.
-                          Neste caso elas irão atuar como marcadores que ajudam
-                          os motores de busca e os leitores a entenderem sobre o
-                          que se trata seu experimento em seu blog. Escolha
-                          cuidadosamente palavras-chave relevantes e
-                          significativas relacionadas ao seu conteúdo para
-                          melhorar a visibilidade e a descoberta do seu
-                          experimento online.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center">
-                      <Input
-                        type="text"
-                        id="keywordInput"
-                        value={keyword}
-                        onChange={(e) => setKeyword(e.target.value)}
-                        className="mr-2 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent outline-none resize-none"
-                        placeholder="Digite uma palavra-chave"
-                      />
-                      <button
-                        onClick={handleAddKeyword}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"
-                      >
-                        Adicionar
-                      </button>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-wrap">
-                    {experimentData.keywords.map((keyword: any) => (
-                      <div
-                        key={keyword.id}
-                        className="bg-purple-600 p-2 rounded-md inline-flex items-center mr-2 mb-2 text-white shadow-lg relative"
-                      >
-                        <span className="mr-2">{keyword.title}</span>
-                        <button
-                          onClick={() => handleRemoveKeyword(keyword.id)}
-                          className="text-red-500 focus:outline-none hover:text-red-700 transition-colors duration-300 ease-in-out relative"
-                        >
-                          <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                            <span className="text-white">X</span>
-                          </div>
-                        </button>
-                      </div>
-                    ))}
-                    {experimentData.keywords.length === 0 && (
-                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
-                        <MdError className="mr-2" />
-                        <span>
-                          Adicione pelo menos uma palavra-chave relacionada ao
-                          experimento.
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="mb-8">
-                  <div className="mb-4">
                     <div className="flex flex-col items-initial mb-2">
                       <div className="flex flex-row items-center justify-initial mb-2">
                         <PiGitDiffLight style={{ marginRight: "5px" }} />{" "}
@@ -2090,120 +1842,6 @@ export default function Experiment() {
                         <MdError className="mr-2" />
                         <span>
                           Selecione pelo menos uma dificuldade relacionado ao
-                          experimento.
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="mb-8">
-                  <div className="mb-4">
-                    <div className="flex flex-col items-initial mb-2">
-                      <div className="flex flex-row items-center justify-initial mb-2">
-                        <MdOutlineAttachMoney style={{ marginRight: "5px" }} />{" "}
-                        <label htmlFor="topicCost">
-                          Custo para a realização:
-                        </label>
-                      </div>
-                      <p className="mt-2 mb-4 text-sm text-muted-foreground">
-                        Esta classificação auxilia na seleção adequada de
-                        experimentos, considerando o custo associado à
-                        realização deles. A definição precisa do custo também
-                        pode facilitar a identificação de recursos necessários e
-                        ajudar na tomada de decisões sobre alocação de
-                        orçamento. Classifique em: Barato (baixo custo) e Caro
-                        (alto custo).
-                      </p>
-
-                      <div className="mt-4 mb-8">
-                        <table className="min-w-full divide-y divide-gray-200">
-                          <thead className="bg-gray-50">
-                            <tr>
-                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Classificação
-                              </th>
-                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Custo
-                              </th>
-                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Descrição
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody className="bg-white divide-y divide-gray-200">
-                            {costs.map((cost) => (
-                              <tr key={cost.id}>
-                                <td className="px-6 py-4">{cost.title}</td>
-                                <td className="px-6 py-4">{cost.steps}</td>
-                                <td className="px-6 py-4">
-                                  {cost.explanation}
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div className="mt-2 flex flex-col justify-center p-4 border border-solid border-gray-300 rounded-md mb-4 relative">
-                      <table className="custom-table">
-                        <tbody>
-                          {costs.map((cost, index) =>
-                            index % 2 === 0 ? (
-                              <tr className="flex justify-around" key={cost.id}>
-                                <td>
-                                  <label>
-                                    <input
-                                      type="radio"
-                                      name="cost"
-                                      value={cost.slug}
-                                      checked={
-                                        (experimentData.cost as any)?.slug ===
-                                        cost.slug
-                                      }
-                                      onChange={() =>
-                                        handleSelectCostChange(cost)
-                                      }
-                                      className="mr-1"
-                                    />
-                                    {cost.title}
-                                  </label>
-                                </td>
-                                {costs[index + 1] && (
-                                  <td>
-                                    <label>
-                                      <input
-                                        type="radio"
-                                        name="cost"
-                                        value={costs[index + 1].slug}
-                                        checked={
-                                          (experimentData.cost as any)?.slug ===
-                                          costs[index + 1].slug
-                                        }
-                                        onChange={() =>
-                                          handleSelectCostChange(
-                                            costs[index + 1],
-                                          )
-                                        }
-                                        className="mr-1"
-                                      />
-                                      {costs[index + 1].title}
-                                    </label>
-                                  </td>
-                                )}
-                              </tr>
-                            ) : null,
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-
-                    {experimentData.cost.length === 0 && (
-                      <div className="flex flex-row justify-center mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
-                        <MdError className="mr-2" />
-                        <span>
-                          Selecione pelo menos um custo relacionado ao
                           experimento.
                         </span>
                       </div>
