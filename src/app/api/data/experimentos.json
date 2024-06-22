@@ -888,124 +888,217 @@
     ]
   },
   {
-  "id": "1687384348486",
-  "topicGeneral": [
-    {
-      "id": 1,
-      "title": "Física",
-      "slug": "fisica"
-    },
-    {
-      "id": 2,
-      "title": "Biologia",
-      "slug": "biologia"
-    },
-    {
-      "id": 3,
-      "title": "Química",
-      "slug": "quimica"
-    }
-  ],
-  "topicSpecific": {
-    "fisica": [
+    "id": "1687384348486",
+    "topicGeneral": [
       {
         "id": 1,
-        "title": "Física - Anatomia humana",
-        "slug": "fisica-anatomia-humana"
+        "title": "Física",
+        "slug": "fisica"
       },
       {
         "id": 2,
-        "title": "Física - Fisiologia humana",
-        "slug": "fisica-fisiologia-humana"
+        "title": "Biologia",
+        "slug": "biologia"
+      },
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
       }
     ],
-    "biologia": [
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 1,
+          "title": "Física - Anatomia humana",
+          "slug": "fisica-anatomia-humana"
+        },
+        {
+          "id": 2,
+          "title": "Física - Fisiologia humana",
+          "slug": "fisica-fisiologia-humana"
+        }
+      ],
+      "biologia": [
+        {
+          "id": 2,
+          "title": "Biologia - Fisiologia humana",
+          "slug": "biologia-fisiologia-humana"
+        },
+        {
+          "id": 1,
+          "title": "Biologia - Anatomia humana",
+          "slug": "biologia-anatomia-humana"
+        }
+      ],
+      "quimica": [
+        {
+          "id": 1,
+          "title": "Química - Anatomia humana",
+          "slug": "quimica-anatomia-humana"
+        },
+        {
+          "id": 2,
+          "title": "Química - Fisiologia humana",
+          "slug": "quimica-fisiologia-humana"
+        }
+      ]
+    },
+    "topicBncc": [
       {
-        "id": 2,
-        "title": "Biologia - Fisiologia humana",
-        "slug": "biologia-fisiologia-humana"
+        "id": 13,
+        "title": "Matéria e energia - Misturas homogêneas e heterogêneas",
+        "slug": "materia-e-energia-misturas-homogeneas-e-heterogeneas"
       },
       {
-        "id": 1,
-        "title": "Biologia - Anatomia humana",
-        "slug": "biologia-anatomia-humana"
+        "id": 11,
+        "title": "Matéria e energia - Consumo consciente",
+        "slug": "materia-e-energia-consumo-consciente"
       }
     ],
-    "quimica": [
+    "topicLocation": [
       {
         "id": 1,
-        "title": "Química - Anatomia humana",
-        "slug": "quimica-anatomia-humana"
+        "title": "Em casa",
+        "slug": "em-casa"
       },
       {
         "id": 2,
-        "title": "Química - Fisiologia humana",
-        "slug": "quimica-fisiologia-humana"
+        "title": "Sala de aula",
+        "slug": "sala-de-aula"
+      },
+      {
+        "id": 3,
+        "title": "Quadra da escola",
+        "slug": "quadra-da-escola"
       }
+    ],
+    "profileName": "meu nome de teste",
+    "postDate": "21 de junho de 2023 às 17:52 horário local.",
+    "title": "titulo de tsete",
+    "slug": "titulo-de-tsete",
+    "imagePreview": "/images/exp-4/img-0.jpg",
+    "description": "descricao de test",
+    "literature": "liter de test",
+    "objectives": [
+      "objetivo1",
+      "objetivo2",
+      "objetivo3"
+    ],
+    "materials": [
+      "lapis",
+      "caneta",
+      "tinta",
+      "copo decartavel"
+    ],
+    "methods": [
+      "metodo1",
+      "metodo2"
+    ],
+    "methodsImages": [
+      "/images/exp-1/img-1.jpg",
+      "/images/exp-1/img-1.jpg"
+    ],
+    "results": "resultado123",
+    "scientificExplanation": "edplicacao de etst",
+    "references": [
+      "https://github.com/Fellippemfv/project-science-1/pulls",
+      "https://chat.openai.com/c/671ae384-3094-4f39-8791-1e90398f8c57",
+      "https://github.com/Fellippemfv/project-science-1/pulls",
+      "https://chat.openai.com/c/671ae384-3094-4f39-8791-1e90398f8c57"
     ]
   },
-  "topicBncc": [
-    {
-      "id": 13,
-      "title": "Matéria e energia - Misturas homogêneas e heterogêneas",
-      "slug": "materia-e-energia-misturas-homogeneas-e-heterogeneas"
+  {
+    "id": "1719074204183",
+    "postDate": "22 de junho de 2024 às 12:36",
+    "profileName": "nome1",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 1,
+          "title": "Movimento e deslocamento",
+          "slug": "movimento-e-deslocamento"
+        }
+      ]
     },
-    {
-      "id": 11,
-      "title": "Matéria e energia - Consumo consciente",
-      "slug": "materia-e-energia-consumo-consciente"
-    }
-  ],
-  "topicLocation": [
-    {
+    "topicLocation": [
+      {
+        "id": 1,
+        "title": "Sala de aula",
+        "slug": "sala-de-aula"
+      }
+    ],
+    "difficulty": {
       "id": 1,
-      "title": "Em casa",
-      "slug": "em-casa"
+      "title": "Fácil",
+      "slug": "facil",
+      "steps": "1 - 5",
+      "explanation": "De 1 a 5 passos são necessários para completar."
     },
-    {
-      "id": 2,
-      "title": "Sala de aula",
-      "slug": "sala-de-aula"
+    "experimentType": {
+      "id": 1,
+      "title": "Experimentos Demonstrativos",
+      "slug": "demonstrativos",
+      "steps": "São experimentos realizados para demonstrar um conceito específico."
     },
-    {
-      "id": 3,
-      "title": "Quadra da escola",
-      "slug": "quadra-da-escola"
-    }
-  ],
-  "profileName": "meu nome de teste",
-  "postDate": "21 de junho de 2023 às 17:52 horário local.",
-  "title": "titulo de tsete",
-  "slug": "titulo-de-tsete",
-  "imagePreview": "/images/exp-4/img-0.jpg",
-  "description": "descricao de test",
-  "literature": "liter de test",
-  "objectives": [
-    "objetivo1",
-    "objetivo2",
-    "objetivo3"
-  ],
-  "materials": [
-    "lapis",
-    "caneta",
-    "tinta",
-    "copo decartavel"
-  ],
-  "methods": [
-    "metodo1",
-    "metodo2"
-  ],
-  "methodsImages": [
-    "/images/exp-1/img-1.jpg",
-    "/images/exp-1/img-1.jpg"
-  ],
-  "results": "resultado123",
-  "scientificExplanation": "edplicacao de etst",
-  "references": [
-    "https://github.com/Fellippemfv/project-science-1/pulls",
-    "https://chat.openai.com/c/671ae384-3094-4f39-8791-1e90398f8c57",
-    "https://github.com/Fellippemfv/project-science-1/pulls",
-    "https://chat.openai.com/c/671ae384-3094-4f39-8791-1e90398f8c57"
-  ]
-}
+    "title": "experimento grande teste",
+    "slug": "experimento-grande-teste",
+    "imagePreview": "/images/1719074204183/mapa_provincias_mongolia-XL.webp",
+    "description": "apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste apenas teste ",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "objetivo 1"
+      },
+      {
+        "id": 2,
+        "content": "objetivo 2"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "1 caixa de lapis de cor."
+      },
+      {
+        "id": 2,
+        "content": "01 caneta."
+      },
+      {
+        "id": 3,
+        "content": "05 papeis A4."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "passo 1 de ste passo 1 de ste passo 1 de ste passo 1 de ste passo 1 de ste passo 1 de ste passo 1 de ste ",
+        "imagePath": "/images/1719074204183/exp-home-page.png"
+      },
+      {
+        "id": 2,
+        "content": "passo 2 de test passo 2 de test passo 2 de test passo 2 de test passo 2 de test passo 2 de test passo 2 de test passo 2 de test passo 2 de test passo 2 de test passo 2 de test ",
+        "imagePath": "/images/1719074204183/imagem_2024-05-15_205338364-removebg-preview.png"
+      }
+    ],
+    "results": "deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste deve ocorrer o teste ",
+    "scientificExplanation": "explicacao de teste explicacao de teste explicacao de teste explicacao de teste explicacao de teste explicacao de teste explicacao de teste explicacao de teste explicacao de teste explicacao de teste explicacao de teste explicacao de teste ",
+    "references": [
+      {
+        "id": 1,
+        "content": "NOME DO SITE. Disponível em: . Acesso em: Data."
+      },
+      {
+        "id": 2,
+        "content": "AUTOR. Título do artigo. Nome da Revista, Local de ação, volume, número, página inicial-final, mês, ano."
+      }
+    ]
+  }
 ]
