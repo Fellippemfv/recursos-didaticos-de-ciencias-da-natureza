@@ -181,6 +181,7 @@ export default function Experiment() {
     results: "",
     scientificExplanation: "",
     references: [],
+    activitySheet: "", // Adicionando campo para o preview do documento
   });
 
 
@@ -721,7 +722,7 @@ export default function Experiment() {
               const base64Content = base64String.split(",")[1];
               console.log("Base64 da imagem:", base64Content);
       
-              const imagePath = `images/${experimentId}/${selectedImage.name}`;
+              const imagePath = `${experimentId}/images/${selectedImage.name}`;
       
               // Verificar se o arquivo já existe no repositório
               let fileSha;
@@ -734,8 +735,8 @@ export default function Experiment() {
                 });
       
                 // Verificar se é um arquivo (type === "file")
-                if (Array.isArray(response.data) && response.data.length > 0 && response.data[0].type === "file") {
-                  fileSha = response.data[0].sha;
+                if (response.data && !Array.isArray(response.data) && response.data.type === "file") {
+                  fileSha = response.data.sha;
                 } else {
                   // Não é um arquivo válido (pode ser um diretório ou outro tipo)
                   throw new Error("O conteúdo obtido não é um arquivo válido.");
@@ -758,7 +759,7 @@ export default function Experiment() {
                   message: `Add image for experiment N° ${experimentId}`,
                   content: base64Content,
                   branch: newBranchName,
-                  sha: fileSha,  // Incluir SHA se o arquivo já existir
+                  sha: fileSha, // Incluir SHA se o arquivo já existir
                 });
                 adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
               } catch (error: any) {
@@ -778,12 +779,10 @@ export default function Experiment() {
         }
       };
       
-      
       // Chama a função handleImageUpload
       await handleImageUpload();
       
       
-
       const handleImageUploadMethod = async () => {
         console.log("Iniciando o upload de imagens...");
       
@@ -799,7 +798,10 @@ export default function Experiment() {
           const imageName = tempMethods[i].imagePath.split("/").pop() || "";
       
           // Montar o caminho da imagem sem barra inicial
-          const imagePath = `images/${experimentId}/${imageName}`;
+          const imagePath = `${experimentId}/images/${imageName}`;
+
+
+
       
           // Upload da imagem
           adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
@@ -822,132 +824,274 @@ export default function Experiment() {
         console.log("Upload de imagens concluído!");
       };
       
-
       // Chama a função handleImageUploadMethod
       await handleImageUploadMethod();
 
-      adicionarPasso("Adicionando sugestão de novo experimento...", true);
-      // Decodifica o conteúdo atual para uma string
-      const currentContent = Array.isArray(fileInfo.data)
-        ? undefined
-        : fileInfo.data.type === "file" && fileInfo.data.content
-          ? Buffer.from(fileInfo.data.content, "base64").toString()
-          : undefined;
 
-      // Converte o conteúdo atual em um array de objetos JSON
-      const currentArray = currentContent ? JSON.parse(currentContent) : [];
+      const handleDocumentUpload = async () => {
+        console.log('Iniciando o upload de documentos...');
+      
+        if (!selectedDocument) {
+          console.error('Nenhum documento selecionado.');
+          return;
+        }
+      
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          const base64String = reader.result as string | null;
+          if (!base64String) {
+            console.error('Erro ao ler o arquivo.');
+            return;
+          }
+      
+          const base64Content = base64String.split(',')[1];
+          console.log('Base64 do documento:', base64Content);
+      
+          const documentPath = `${experimentData.id}/documents/${selectedDocument.name}`;
+      
+          let fileSha = '';
+      
+          // Função para obter a SHA mais recente do arquivo
+          const getFileSha = async (path: string) => {
+            try {
+              const { data } = await octokitClient.repos.getContent({
+                owner: forkOwner,
+                repo: baseRepositoryName,
+                path: path,
+                ref: newBranchName,
+              });
+      
+              if (Array.isArray(data)) {
+                console.error('O caminho especificado parece ser um diretório, não um arquivo.');
+                return '';
+              }
+      
+              return data.sha;
+            } catch (error: any) {  // Aqui foi alterado para `any`
+              if (error.status === 404) {
+                return ''; // Arquivo não existe
+              } else {
+                console.error('Erro ao verificar existência do arquivo no GitHub:', error);
+                throw error;
+              }
+            }
+          };
+      
+          try {
+            fileSha = await getFileSha(documentPath);
+          } catch (error: any) {  // Aqui foi alterado para `any`
+            console.error('Erro ao obter SHA do arquivo:', error);
+            return;
+          }
+      
+          try {
+            await octokitClient.repos.createOrUpdateFileContents({
+              owner: forkOwner,
+              repo: baseRepositoryName,
+              path: documentPath,
+              message: `Add document for experiment N° ${experimentData.id}`,
+              content: base64Content,
+              branch: newBranchName,
+              sha: fileSha, // Incluir SHA se o arquivo já existir
+            });
+      
+            console.log(`Documento ${documentPath} adicionado com sucesso!`);
+          } catch (error: any) {  // Aqui foi alterado para `any`
+            console.error('Erro ao fazer upload do documento para o GitHub:', error);
+          }
+        };
+      
+        reader.onerror = () => {
+          console.error('Erro ao ler o arquivo.');
+        };
+      
+        reader.readAsDataURL(selectedDocument);
+      };
+      
+      
+      // Chama a função handleDocumentUpload
+      await handleDocumentUpload();
+      
 
-      // Converte o novo conteúdo em um objeto JSON
-      const newObject = JSON.parse(fileContent);
-
-      // Adiciona o novo objeto ao array existente
-      currentArray.push(newObject);
-
-      // Converte o array atualizado de volta em uma string JSON
-      const updatedContent = JSON.stringify(currentArray, null, 2);
-      adicionarPasso("Sugestão adicionada com sucesso!", true);
-
-      adicionarPasso("Criando um novo commit...", true);
-      // Cria um novo commit com os dados atualizados
-      const { data: newCommit } = await octokitClient.git.createCommit({
-        owner: forkOwner,
-        repo: baseRepositoryName,
-        message: `Send experiment N° ${experimentId}`,
-        tree: data.commit.commit.tree.sha,
-        parents: [baseCommitSha],
-        author: {
-          name: "Your Name",
-          email: "your.email@example.com",
-        },
-        committer: {
-          name: "Your Name",
-          email: "your.email@example.com",
-        },
-        content: Buffer.from(updatedContent).toString("base64"),
-      });
-
-      adicionarPasso("Novo commit realizado com sucesso!", true);
-
-      const newCommitSha = newCommit.sha;
-
-      // Verifica se fileInfo é um objeto único ou uma matriz de objetos
-      const fileInfoArray = Array.isArray(fileInfo.data)
-        ? fileInfo.data
-        : [fileInfo.data];
-
-      // Verifica se o primeiro elemento do array possui a propriedade 'sha'
-      if (fileInfoArray.length > 0 && "sha" in fileInfoArray[0]) {
-        // Acessa a propriedade 'sha' do primeiro elemento do array
-        const sha = fileInfoArray[0].sha;
-
-        // Atualiza o conteúdo do arquivo na nova branch do fork
-        adicionarPasso(
-          "Atualizando o conteúdo do arquivo na nova branch do fork...",
-          true,
-        );
-        await octokitClient.repos.createOrUpdateFileContents({
+      const handleApplyingCommentsAndPullRequest = async () => {
+        adicionarPasso("Adicionando sugestão de novo experimento...", true);
+        // Decodifica o conteúdo atual para uma string
+        const currentContent = Array.isArray(fileInfo.data)
+          ? undefined
+          : fileInfo.data.type === "file" && fileInfo.data.content
+            ? Buffer.from(fileInfo.data.content, "base64").toString()
+            : undefined;
+  
+        // Converte o conteúdo atual em um array de objetos JSON
+        const currentArray = currentContent ? JSON.parse(currentContent) : [];
+  
+        // Converte o novo conteúdo em um objeto JSON
+        const newObject = JSON.parse(fileContent);
+  
+        // Adiciona o novo objeto ao array existente
+        currentArray.push(newObject);
+  
+        // Converte o array atualizado de volta em uma string JSON
+        const updatedContent = JSON.stringify(currentArray, null, 2);
+        adicionarPasso("Sugestão adicionada com sucesso!", true);
+  
+        adicionarPasso("Criando um novo commit...", true);
+        // Cria um novo commit com os dados atualizados
+        const { data: newCommit } = await octokitClient.git.createCommit({
           owner: forkOwner,
           repo: baseRepositoryName,
-          path: filePath,
-          message: `Update experiment data for experiment N° ${experimentId}`,
+          message: `Send experiment N° ${experimentId}`,
+          tree: data.commit.commit.tree.sha,
+          parents: [baseCommitSha],
+          author: {
+            name: "Your Name",
+            email: "your.email@example.com",
+          },
+          committer: {
+            name: "Your Name",
+            email: "your.email@example.com",
+          },
           content: Buffer.from(updatedContent).toString("base64"),
-          branch: newBranchName,
-          sha,
+        });
+  
+        adicionarPasso("Novo commit realizado com sucesso!", true);
+  
+        const newCommitSha = newCommit.sha;
+  
+        // Verifica se fileInfo é um objeto único ou uma matriz de objetos
+        const fileInfoArray = Array.isArray(fileInfo.data)
+          ? fileInfo.data
+          : [fileInfo.data];
+  
+        // Verifica se o primeiro elemento do array possui a propriedade 'sha'
+        if (fileInfoArray.length > 0 && "sha" in fileInfoArray[0]) {
+          // Acessa a propriedade 'sha' do primeiro elemento do array
+          const sha = fileInfoArray[0].sha;
+  
+          // Atualiza o conteúdo do arquivo na nova branch do fork
+          adicionarPasso(
+            "Atualizando o conteúdo do arquivo na nova branch do fork...",
+            true,
+          );
+          await octokitClient.repos.createOrUpdateFileContents({
+            owner: forkOwner,
+            repo: baseRepositoryName,
+            path: filePath,
+            message: `Update experiment data for experiment N° ${experimentId}`,
+            content: Buffer.from(updatedContent).toString("base64"),
+            branch: newBranchName,
+            sha,
+          });
+  
+          adicionarPasso("Conteúdo do arquivo atualizado com sucesso!", true);
+          console.log("Dados adicionados à nova branch do fork com sucesso!");
+        } else {
+          // Trata o caso em que a propriedade 'sha' não está presente
+          console.error(
+            "A propriedade 'sha' não está presente no objeto fileInfo.",
+          );
+          adicionarPasso(
+            "A propriedade 'sha' não está presente no objeto fileInfo.",
+            false,
+          );
+        }
+  
+        adicionarPasso(
+          "Mesclando os commits da branch de destino do fork na nova branch do fork...",
+          true,
+        );
+        // Mescla os commits da branch de destino do fork na nova branch do fork
+        const mergeResponse = await octokitClient.repos.merge({
+          owner: forkOwner,
+          repo: baseRepositoryName,
+          base: newBranchName,
+          head: baseBranchName,
+        });
+  
+        adicionarPasso("Commits mesclados com sucesso!", true);
+        console.log("Commits mesclados com sucesso!");
+  
+        adicionarPasso(
+          "Criando uma pull request para mesclar as alterações da nova branch do fork na branch 'test' do repositório original...",
+          true,
+        );
+        // Cria uma pull request para mesclar as alterações da nova branch do fork na branch "test" do repositório original
+        const pullRequest = await octokitClient.pulls.create({
+          owner: baseRepositoryOwnerName,
+          repo: baseRepositoryName,
+          title: `Update experiment data for experiment N° ${experimentId}`,
+          body: "Please review and approve this update to the experiment data.",
+          head: `${forkOwner}:${newBranchName}`,
+          base: baseBranchName,
+        });
+  
+        adicionarPasso("Pull request criada com sucesso!", true);
+        console.log("Pull request criada com sucesso!");
+  
+        adicionarPasso("Pronto você enviou seu experimento!", true);
+  
+        // Exibe o link para a pull request criada
+        const pullRequestUrl = pullRequest.data.html_url;
+        adicionarPasso(`Link da pull request: ${pullRequestUrl}`, true);
+  
+        // Exemplo de setar a URL da pull request no final
+        setPullRequestUrl(`${pullRequestUrl}`);
+      };
+
+      // Chama a função handleApplyingCommentsAndPullRequest
+      await handleApplyingCommentsAndPullRequest();
+
+      // Função assíncrona para resetar experimentData
+      const resetExperimentData = async () => {
+
+        await setExperimentData({
+          id: "",
+          postDate: "",
+          profileName: "",
+          topicGeneral: [],
+          topicSpecific: [],
+          topicLocation: [],
+          difficulty: [],
+          experimentType: [],
+          title: "",
+          slug: "",
+          imagePreview: "",
+          description: "",
+          objectives: [],
+          materials: [],
+          methods: [],
+          results: "",
+          scientificExplanation: "",
+          references: [],
+          activitySheet: "",
         });
 
-        adicionarPasso("Conteúdo do arquivo atualizado com sucesso!", true);
-        console.log("Dados adicionados à nova branch do fork com sucesso!");
-      } else {
-        // Trata o caso em que a propriedade 'sha' não está presente
-        console.error(
-          "A propriedade 'sha' não está presente no objeto fileInfo.",
-        );
-        adicionarPasso(
-          "A propriedade 'sha' não está presente no objeto fileInfo.",
-          false,
-        );
-      }
 
-      adicionarPasso(
-        "Mesclando os commits da branch de destino do fork na nova branch do fork...",
-        true,
-      );
-      // Mescla os commits da branch de destino do fork na nova branch do fork
-      const mergeResponse = await octokitClient.repos.merge({
-        owner: forkOwner,
-        repo: baseRepositoryName,
-        base: newBranchName,
-        head: baseBranchName,
-      });
 
-      adicionarPasso("Commits mesclados com sucesso!", true);
-      console.log("Commits mesclados com sucesso!");
+        // Aqui você pode fazer outras operações de reset, se necessário
+        // Resetar os campos de input
+        document.getElementById('profileName')!.setAttribute('value', '');
 
-      adicionarPasso(
-        "Criando uma pull request para mesclar as alterações da nova branch do fork na branch 'test' do repositório original...",
-        true,
-      );
-      // Cria uma pull request para mesclar as alterações da nova branch do fork na branch "test" do repositório original
-      const pullRequest = await octokitClient.pulls.create({
-        owner: baseRepositoryOwnerName,
-        repo: baseRepositoryName,
-        title: `Update experiment data for experiment N° ${experimentId}`,
-        body: "Please review and approve this update to the experiment data.",
-        head: `${forkOwner}:${newBranchName}`,
-        base: baseBranchName,
-      });
 
-      adicionarPasso("Pull request criada com sucesso!", true);
-      console.log("Pull request criada com sucesso!");
+      };
+      await resetExperimentData();
+      
 
-      adicionarPasso("Pronto você enviou seu experimento!", true);
+      // Função assíncrona para resetar experimentData
+      const resetExperimentInputs = async () => {
 
-      // Exibe o link para a pull request criada
-      const pullRequestUrl = pullRequest.data.html_url;
-      adicionarPasso(`Link da pull request: ${pullRequestUrl}`, true);
+      
+      
+      
+        // Aqui você pode fazer outras operações de reset, se necessário
+        // Resetar os campos de input
+        document.getElementById('profileName')!.setAttribute('value', '');
+       
 
-      // Exemplo de setar a URL da pull request no final
-      setPullRequestUrl(`${pullRequestUrl}`);
+      
+      };
+      await resetExperimentInputs();
+     
     } catch (error) {
       console.error("Erro ao enviar experimento.", error);
       adicionarPasso("Erro ao enviar experimento." + `${error}`, false);
@@ -1065,31 +1209,6 @@ export default function Experiment() {
     }
   };
 
-  const handleDragEnter = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    setIsImageConfirmed(true);
-  };
-
-  const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    setIsImageConfirmed(false);
-  };
-
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    setIsImageConfirmed(false);
-
-    const file = event.dataTransfer.files?.[0];
-
-    if (file) {
-      setSelectedImage(file);
-      const imageURL = URL.createObjectURL(file);
-      setImagePreviewURL(imageURL);
-      setIsImageConfirmed(true);
-      uploadImage(file);
-    }
-  };
-
   const uploadImage = (file: File) => {
     const reader = new FileReader();
 
@@ -1108,6 +1227,59 @@ export default function Experiment() {
     reader.readAsDataURL(file);
   };
 
+
+  const [selectedDocument, setSelectedDocument] = useState<File | null>(null);
+  const [documentPreviewURL, setDocumentPreviewURL] = useState<string | null>(null);
+  const [isDocumentConfirmed, setIsDocumentConfirmed] = useState(false);
+
+  const handleDocumentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    console.log(file);
+
+    if (file) {
+      setSelectedDocument(file);
+      const documentURL = URL.createObjectURL(file);
+      setDocumentPreviewURL(documentURL);
+      setIsDocumentConfirmed(true);
+      uploadDocument(file);
+    }
+  };
+
+  const handleRemoveDocument = () => {
+    setSelectedDocument(null);
+    setDocumentPreviewURL(null);
+    setIsDocumentConfirmed(false);
+    setUploadStatus('');
+    
+    // Limpe a propriedade activitySheet do estado experimentData
+    setExperimentData((prevState) => ({
+      ...prevState,
+      activitySheet: '',
+    }));
+
+    // Redefinir o valor do input file para null
+    const documentInputElement = document.getElementById('documentUpload') as HTMLInputElement;
+    if (documentInputElement) {
+      documentInputElement.value = '';
+    }
+  };
+
+  const uploadDocument = (file: File) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      // Cria o link dinâmico do documento
+      const documentPath = `documents/${experimentData.id}/${file.name}`;
+
+      // Atualiza o estado activitySheet com o link dinâmico do documento
+      setExperimentData((prevState) => ({
+        ...prevState,
+        activitySheet: documentPath,
+      }));
+    };
+
+    reader.readAsDataURL(file);
+  };
 
   interface Method {
     id: number;
@@ -1980,6 +2152,20 @@ export default function Experiment() {
         </div>
       </div>
     </div>
+    <div className="mt-8">
+    <div>
+      {/* Componente para permitir selecionar um arquivo .docx */}
+      <input type="file" id="documentUpload" onChange={handleDocumentChange} accept=".docx" />
+
+      {/* Botão para remover o documento selecionado */}
+      <button onClick={handleRemoveDocument}>Remover Documento</button>
+
+      
+
+      
+    </div>
+</div>
+   
 
                 <div className="mt-8">
                   <div className="mb-4">
@@ -1999,7 +2185,7 @@ export default function Experiment() {
 
                     <Textarea
                       placeholder="Clique e escreva a sua descrição."
-                      id="message-2"
+                      id="description"
                       className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
                       name="description"
                       onChange={handleInputChange}
@@ -2340,7 +2526,7 @@ export default function Experiment() {
 
                   <Textarea
                     placeholder="Clique e escreva os resultados do seu experimento."
-                    id="message-2"
+                    id="results"
                     className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
                     name="results"
                     onChange={handleInputChange}
@@ -2381,7 +2567,7 @@ export default function Experiment() {
 
                   <Textarea
                     placeholder="Clique e escreva a explicação científica do seu experimento."
-                    id="message-2"
+                    id="scientificExplanation"
                     className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
                     name="scientificExplanation"
                     onChange={handleInputChange}
@@ -2514,6 +2700,7 @@ export default function Experiment() {
                       </>
                     ) : (
                       <>
+                      
                         <span>Enviar Experimento</span>
                         <svg
                           className="w-6 h-6 ml-2"
@@ -2536,17 +2723,20 @@ export default function Experiment() {
               </div>
 
               <div className="flex flex-col items-start p-8 space-y-4">
-                {isSending && (
-                  <>
-                    <div className="p-8 border border-solid border-gray-300  w-full flex items-center justify-center space-x-2">
-                      <FaFlask className="w-8 h-8 animate-wiggle text-purple-500" />
-                      <p className="text-lg font-bold text-purple-500">
-                        Enviando experimento...
-                      </p>
-                      <BiLoaderAlt className="w-6 h-6 animate-spin text-purple-500" />
-                    </div>
-                  </>
-                )}
+              {isSending && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 border border-solid border-gray-300 w-auto flex flex-col items-center space-y-4 rounded-lg shadow-lg">
+            <FaFlask className="w-8 h-8 animate-wiggle text-purple-500" />
+            <p className="text-lg font-bold text-purple-500">
+              Enviando experimento...
+            </p>
+            <p className="text-sm text-gray-600">
+              Por favor, aguarde um momento. Isso pode demorar de 1 a 3 minutos.
+            </p>
+            <BiLoaderAlt className="w-6 h-6 animate-spin text-purple-500" />
+          </div>
+        </div>
+      )}
 
                 {pullRequestUrl && (
                   <>
