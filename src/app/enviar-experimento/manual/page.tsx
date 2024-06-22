@@ -169,10 +169,7 @@ export default function Experiment() {
     topicGeneral: [],
     topicSpecific: [],
     topicLocation: [],
-    targetAudience: [],
-    keywords: [],
     difficulty: [],
-    cost: [],
     experimentType: [],
     title: "",
     slug: "",
@@ -714,7 +711,7 @@ export default function Experiment() {
 
       const handleImageUpload = async () => {
         console.log("Conteúdo de selectedImage:", selectedImage);
-
+      
         if (selectedImage) {
           const reader = new FileReader();
           reader.onloadend = async () => {
@@ -723,27 +720,51 @@ export default function Experiment() {
               // Remover o prefixo do URI de dados
               const base64Content = base64String.split(",")[1];
               console.log("Base64 da imagem:", base64Content);
-
-              const imagePath = `/images/${experimentId}/${selectedImage.name}`;
-
+      
+              const imagePath = `images/${experimentId}/${selectedImage.name}`;
+      
+              // Verificar se o arquivo já existe no repositório
+              let fileSha;
+              try {
+                const response = await octokitClient.repos.getContent({
+                  owner: forkOwner,
+                  repo: baseRepositoryName,
+                  path: imagePath,
+                  ref: newBranchName,
+                });
+      
+                // Verificar se é um arquivo (type === "file")
+                if (Array.isArray(response.data) && response.data.length > 0 && response.data[0].type === "file") {
+                  fileSha = response.data[0].sha;
+                } else {
+                  // Não é um arquivo válido (pode ser um diretório ou outro tipo)
+                  throw new Error("O conteúdo obtido não é um arquivo válido.");
+                }
+              } catch (error: any) {
+                if (error.status !== 404) {
+                  adicionarPasso("Erro ao verificar existência do arquivo no GitHub.", false);
+                  console.error(error);
+                  return;
+                }
+              }
+      
               // Upload da imagem
-              adicionarPasso(
-                `Realizando o upload da imagem ${imagePath}...`,
-                true,
-              );
-              await octokitClient.repos.createOrUpdateFileContents({
-                owner: forkOwner,
-                repo: baseRepositoryName,
-                path: imagePath,
-                message: `Add image for experiment N° ${experimentId}`,
-                content: base64Content,
-                branch: newBranchName,
-              });
-
-              adicionarPasso(
-                `Imagem ${imagePath} adicionada com sucesso!`,
-                true,
-              );
+              adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
+              try {
+                await octokitClient.repos.createOrUpdateFileContents({
+                  owner: forkOwner,
+                  repo: baseRepositoryName,
+                  path: imagePath,
+                  message: `Add image for experiment N° ${experimentId}`,
+                  content: base64Content,
+                  branch: newBranchName,
+                  sha: fileSha,  // Incluir SHA se o arquivo já existir
+                });
+                adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
+              } catch (error: any) {
+                console.error(error);
+                adicionarPasso("Erro ao fazer upload da imagem para o GitHub.", false);
+              }
             } else {
               adicionarPasso("Erro ao converter imagem para base64.", false);
             }
@@ -756,27 +777,30 @@ export default function Experiment() {
           adicionarPasso("Nenhuma imagem selecionada.", false);
         }
       };
-
+      
+      
       // Chama a função handleImageUpload
       await handleImageUpload();
+      
+      
 
       const handleImageUploadMethod = async () => {
         console.log("Iniciando o upload de imagens...");
-
+      
         // Iterar sobre cada imagem em previewImages
         for (let i = 0; i < previewImages.length; i++) {
           const base64String = previewImages[i];
-
+      
           // Remover o prefixo do URI de dados
           const base64Content = base64String.split(",")[1];
           console.log("Base64 da imagem:", base64Content);
-
+      
           // Obter o nome da imagem usando a mesma lógica que você já tem
           const imageName = tempMethods[i].imagePath.split("/").pop() || "";
-
-          // Montar o caminho da imagem
-          const imagePath = `/images/${experimentId}/${imageName}`;
-
+      
+          // Montar o caminho da imagem sem barra inicial
+          const imagePath = `images/${experimentId}/${imageName}`;
+      
           // Upload da imagem
           adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
           try {
@@ -788,18 +812,16 @@ export default function Experiment() {
               content: base64Content,
               branch: newBranchName,
             });
-
+      
             adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
           } catch (error) {
             console.error("Erro ao fazer upload da imagem:", error);
-            adicionarPasso(
-              `Erro ao fazer upload da imagem ${imagePath}`,
-              false,
-            );
+            adicionarPasso(`Erro ao fazer upload da imagem ${imagePath}`, false);
           }
         }
         console.log("Upload de imagens concluído!");
       };
+      
 
       // Chama a função handleImageUploadMethod
       await handleImageUploadMethod();
