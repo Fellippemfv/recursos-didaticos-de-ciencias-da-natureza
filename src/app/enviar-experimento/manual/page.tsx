@@ -1170,7 +1170,7 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico da imagem
-      const imagePath = `/images/${experimentData.id}/${file.name}`;
+      const imagePath = `/${experimentData.id}/images/${file.name}`;
       
 
       // Atualiza o estado imagePath com o link dinâmico da imagem
@@ -1225,7 +1225,7 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico do documento
-      const documentPath = `documents/${experimentData.id}/${file.name}`;
+      const documentPath = `/${experimentData.id}/documents/${file.name}`
 
       // Atualiza o estado activitySheet com o link dinâmico do documento
       setExperimentData((prevState) => ({
@@ -1330,7 +1330,7 @@ export default function Experiment() {
       reader.onload = () => {
         const base64Data = reader.result as string;
         const imageName = files[0].name;
-        const imagePath = `/images/${experimentData.id}/${imageName}`;
+        const imagePath = `/${experimentData.id}/images/${imageName}`;
 
         const updatedMethods = tempMethods.map((method, i) => {
           if (i === index) {
@@ -2748,7 +2748,7 @@ export default function Experiment() {
             </div>
           </form>
         </div>
-    {/*     {Object.keys(experimentData).length > 0 && (
+         {Object.keys(experimentData).length > 0 && (
           <>
             <div className="d-flex justify-content-end">
               <button className="btn btn-outline-primary me-2">
@@ -2757,7 +2757,7 @@ export default function Experiment() {
             </div>
             <pre>{JSON.stringify(experimentData, null, 2)}</pre>
           </>
-        )} */}
+        )} 
       </div>
     </>
   );

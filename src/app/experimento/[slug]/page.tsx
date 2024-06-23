@@ -15,6 +15,16 @@ export default function Experiment({ params }: { params: { slug: string } }) {
     return <div>Experimento não encontrado</div>;
   }
 
+    // Função para download do arquivo
+    const downloadFile = (filePath: string, fileName: string) => {
+      const link = document.createElement('a');
+      link.href = filePath;
+      link.setAttribute('download', fileName);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
   return (
     <div className="container max-w-screen-xl bg-white rounded-lg p-8  border border-gray-300 rounded p-4">
       <div className="">
@@ -221,14 +231,25 @@ export default function Experiment({ params }: { params: { slug: string } }) {
         </h2>
         <p className="mt-2">{experimentInfo.scientificExplanation}</p>
       </div>
-      <div className="mt-4  border border-gray-300 rounded p-4">
-        <h2 className="text-sm font-semibold mb-4">Referências</h2>
-        <ul className="list-disc pl-4 mt-2">
-          {experimentInfo.references.map((reference) => (
-            <li key={reference.id}>{reference.content}</li>
-          ))}
-        </ul>
-      </div>
+
+      <div className="mt-4 border border-gray-300 rounded p-4">
+            <h2 className="text-sm font-semibold mb-4">Documentos para download</h2>
+            <p className="mt-2 cursor-pointer text-blue-600" onClick={() => downloadFile(experimentInfo.activitySheet, 'roteiro-de-atividade.docx')}>
+              roteiro-de-atividade.docx
+            </p>
+          </div>
+          
+          <div className="mt-4 border border-gray-300 rounded p-4">
+  <h2 className="text-sm font-semibold mb-4">Referências</h2>
+  <ul className="list-disc pl-4 mt-2">
+    {experimentInfo.references.map((reference) => (
+      <li key={reference.id} className="break-words">
+        {reference.content}
+      </li>
+    ))}
+  </ul>
+</div>
+
 
       {/* Adicione mais seções conforme necessário para os outros dados */}
     </div>
