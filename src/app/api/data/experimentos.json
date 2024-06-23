@@ -199,7 +199,6 @@
         "slug": "ambiente-aberto"
       }
     ],
-  
     "difficulty": {
       "id": 2,
       "title": "Médio",
@@ -207,7 +206,6 @@
       "steps": "6 - 10",
       "explanation": "De 6 a 10 passos são necessários para completar."
     },
-  
     "experimentType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
@@ -417,6 +415,167 @@
       }
     ],
     "activitySheet": "/1719173649995/documents/Roteiro-de-Lab-lampada-de-lava.docx"
-
+  },
+  {
+    "id": "1719177958522",
+    "postDate": "23 de junho de 2024 às 17:25",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      },
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 8,
+          "title": "Luz e óptica",
+          "slug": "luz-e-optica"
+        }
+      ],
+      "quimica": [
+        {
+          "id": 4,
+          "title": "Transformações da matéria",
+          "slug": "transformacoes-da-materia"
+        },
+        {
+          "id": 3,
+          "title": "Misturas e substâncias",
+          "slug": "misturas-e-substancias"
+        },
+        {
+          "id": 5,
+          "title": "Elementos, compostos e misturas",
+          "slug": "elementos-compostos-e-misturas"
+        },
+        {
+          "id": 8,
+          "title": "Reações químicas simples",
+          "slug": "reacoes-quimicas-simples"
+        }
+      ]
+    },
+    "topicLocation": [
+      {
+        "id": 1,
+        "title": "Sala de aula",
+        "slug": "sala-de-aula"
+      },
+      {
+        "id": 2,
+        "title": "Laboratório de ciências",
+        "slug": "laboratorio-de-ciencias"
+      },
+      {
+        "id": 3,
+        "title": "Ambiente aberto",
+        "slug": "ambiente-aberto"
+      },
+      {
+        "id": 4,
+        "title": "Quadra da escola",
+        "slug": "quadra-da-escola"
+      },
+      {
+        "id": 5,
+        "title": "Pátio da escola",
+        "slug": "patio-da-escola"
+      }
+    ],
+    "difficulty": {
+      "id": 1,
+      "title": "Fácil",
+      "slug": "facil",
+      "steps": "1 - 5",
+      "explanation": "De 1 a 5 passos são necessários para completar."
+    },
+    "experimentType": {
+      "id": 1,
+      "title": "Experimentos Demonstrativos",
+      "slug": "demonstrativos",
+      "steps": "São experimentos realizados para demonstrar um conceito específico."
+    },
+    "title": "Tinta dançante",
+    "slug": "tinta-dancante",
+    "imagePreview": "/1719177958522/images/exp-tinta-1.jpg",
+    "description": "Descrição\nForneça uma descrição objetiva, detalhada e concisa do seu experimento, escreva de forma que fique chamativo e atraia as pessoas a acessarem. Essa descrição vai aparecer na página de procurar experimentos, logo, seja breve.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Observar o efeito da interação entre o detergente e o leite colorido com corante alimentar."
+      },
+      {
+        "id": 2,
+        "content": "Estimular a curiosidade e o interesse das crianças pela ciência através de uma atividade lúdica."
+      },
+      {
+        "id": 3,
+        "content": "Promover a experimentação e a exploração sensorial com diferentes materiais."
+      },
+      {
+        "id": 4,
+        "content": "Facilitar a compreensão do conceito de tensão superficial e suas aplicações práticas."
+      },
+      {
+        "id": 5,
+        "content": "Incentivar a colaboração e a interação entre as crianças durante a realização da atividade."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 prato raso grande"
+      },
+      {
+        "id": 2,
+        "content": "01 garrafa de 500ml de leite liquido."
+      },
+      {
+        "id": 3,
+        "content": "01 corantes de alimentos (De cores variadas)"
+      },
+      {
+        "id": 4,
+        "content": "01 garrafa de detergente de cozinha."
+      },
+      {
+        "id": 5,
+        "content": "01 caixa de cotonetes."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Separe todos os materiais em uma superfície plana.",
+        "imagePath": "/1719177958522/images/exp-tinta-2.jpg"
+      },
+      {
+        "id": 2,
+        "content": "Coloque um pouco de leite no prato e pingue gotas de corante de alimento, deixando uma cor bem longe da outra. Utilize pelo mens três cores para ficar bem colorida, mas você pode fazer como achar melhor.",
+        "imagePath": "/1719177958522/images/exp-tinta-3.jpg"
+      },
+      {
+        "id": 3,
+        "content": "Dê a cada uma um cotonete e peça para mergulharem uma das pontas do algodão em um pouco de detergente. Contem até três e coloquem o cotonete bem na vertical no prato, e divirtam-se com a mistura linda que as tintas farão.",
+        "imagePath": "/1719177958522/images/exp-tinta-4.jpg"
+      }
+    ],
+    "results": "Os resultados esperados deste experimento incluem a observação de um efeito visual fascinante: ao adicionar detergente ao leite com corante alimentar, espera-se ver movimentos coloridos e dinâmicos, onde as cores se dispersam e se misturam de maneira não homogênea devido à interação entre as moléculas de gordura do leite e o detergente. As crianças poderão observar padrões de turbulência e movimento na superfície do líquido, proporcionando uma experiência sensorial divertida e educativa.",
+    "scientificExplanation": "A tinta dançante é um experimento que explora os princípios de tensão superficial e polaridade dos líquidos. O leite, que contém gorduras, é menos denso que a água e não se mistura com ela, criando camadas separadas. Quando se adiciona corante alimentar ao leite, ele se espalha formando gotículas coloridas. Ao introduzir detergente, que é um agente surfactante, ele quebra a tensão superficial do leite ao redor das gotículas de gordura. Isso faz com que as moléculas de gordura se movam e se misturem com a água, criando um movimento turbulento que faz as cores se espalharem e se misturarem de maneira dinâmica. O resultado é um espetáculo visual onde as cores se movem e dançam na superfície do leite, proporcionando uma experiência interativa e educativa sobre propriedades físicas dos líquidos.",
+    "references": [
+      {
+        "id": 1,
+        "content": "TEMPO JUNTO. Disponível em <https://www.tempojunto.com/2015/06/10/brincadeiras-magicas-com-as-tintas-dancantes/>: . Acesso em: 23 de JUN de 2024."
+      }
+    ],
+    "activitySheet": "/1719177958522/documents/Roteiro de Lab Tinta dancante.docx"
   }
 ]
