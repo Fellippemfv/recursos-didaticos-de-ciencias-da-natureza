@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useEffect,
   useState,
+  useRef,
 } from "react";
 
 import { format } from "date-fns";
@@ -33,7 +34,7 @@ import {
 import { RiAddLine, RiUserLine } from "react-icons/ri";
 import { FiHash, FiUploadCloud } from "react-icons/fi";
 
-import { FaCopy, FaFlask, FaTrash } from "react-icons/fa";
+import { FaCopy, FaExclamationTriangle, FaFlask, FaTrash } from "react-icons/fa";
 import { z } from "zod";
 
 import { Octokit } from "@octokit/rest";
@@ -101,6 +102,7 @@ interface ExperimentType {
 }
 
 export default function Experiment() {
+  const successRef = useRef<HTMLDivElement>(null); // Especifica o tipo HTMLDivElement
   const [experimentLocationData] = useState(locationData);
   const [experimentGeneralData] = useState(topicGeneralData);
   const [apiToken, setApiToken] = useState<string>("");
@@ -554,6 +556,7 @@ export default function Experiment() {
   }, []);
 
   const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
   const [passos, setPassos] = useState([]);
   const [pullRequestUrl, setPullRequestUrl] = useState(""); // Definindo o estado inicial como uma string vazia
 
@@ -1040,57 +1043,6 @@ export default function Experiment() {
 
       // Chama a função handleApplyingCommentsAndPullRequest
       await handleApplyingCommentsAndPullRequest();
-
-      // Função assíncrona para resetar experimentData
-      const resetExperimentData = async () => {
-
-        await setExperimentData({
-          id: "",
-          postDate: "",
-          profileName: "",
-          topicGeneral: [],
-          topicSpecific: [],
-          topicLocation: [],
-          difficulty: [],
-          experimentType: [],
-          title: "",
-          slug: "",
-          imagePreview: "",
-          description: "",
-          objectives: [],
-          materials: [],
-          methods: [],
-          results: "",
-          scientificExplanation: "",
-          references: [],
-          activitySheet: "",
-        });
-
-
-
-        // Aqui você pode fazer outras operações de reset, se necessário
-        // Resetar os campos de input
-        document.getElementById('profileName')!.setAttribute('value', '');
-
-
-      };
-      await resetExperimentData();
-      
-
-      // Função assíncrona para resetar experimentData
-      const resetExperimentInputs = async () => {
-
-      
-      
-      
-        // Aqui você pode fazer outras operações de reset, se necessário
-        // Resetar os campos de input
-        document.getElementById('profileName')!.setAttribute('value', '');
-       
-
-      
-      };
-      await resetExperimentInputs();
      
     } catch (error) {
       console.error("Erro ao enviar experimento.", error);
@@ -1098,6 +1050,10 @@ export default function Experiment() {
       // Lidar com erros
     } finally {
       setIsSending(false);
+      setIsSent(true);
+      if (successRef.current) {
+        successRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }
 
@@ -1447,7 +1403,9 @@ export default function Experiment() {
       <div className="flex flex-col gap-10">
           <form onSubmit={handleSubmit}>
             <div className="m-4 sm:m-0">
-              <div className="border border-gray-300 rounded-lg p-6 mb-6">
+            {!pullRequestUrl && (
+  <>
+                <div className="border border-gray-300 rounded-lg p-6 mb-6">
                 <h2 className="text-lg font-semibold mb-4">
                   Chave da API do Github
                 </h2>
@@ -2688,39 +2646,44 @@ export default function Experiment() {
                 </div>
 
                 <div className="mt-16">
-                  <button
-                    onClick={handleSend}
-                    disabled={isSending}
-                    className={`flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${isSending ? "cursor-not-allowed opacity-50" : "hover:bg-green-600"}`}
-                  >
-                    {isSending ? (
-                      <>
-                        <span className="mr-4">Enviando Experimento</span>
-                        <div className="w-6 h-6 border-4 border-t-4 border-green-400 rounded-full animate-spin mr-3"></div>
-                      </>
-                    ) : (
-                      <>
-                      
-                        <span>Enviar Experimento</span>
-                        <svg
-                          className="w-6 h-6 ml-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M9 5l7 7-7 7"
-                          ></path>
-                        </svg>
-                      </>
-                    )}
-                  </button>
-                </div>
+      <button
+        onClick={handleSend}
+        disabled={isSending || isSent}
+        className={`flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${isSending || isSent ? "cursor-not-allowed opacity-50" : "hover:bg-green-600"}`}
+      >
+        {isSending ? (
+          <>
+            <span className="mr-4">Enviando Experimento</span>
+            <div className="w-6 h-6 border-4 border-t-4 border-green-400 rounded-full animate-spin mr-3"></div>
+          </>
+        ) : (
+          <>
+          
+            <span>Enviar Experimento</span>
+            <svg
+              className="w-6 h-6 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </>
+        )}
+      </button>
+     
               </div>
+              </div>
+  </>
+
+)}
+
 
               <div className="flex flex-col items-start p-8 space-y-4">
               {isSending && (
@@ -2736,31 +2699,56 @@ export default function Experiment() {
             <BiLoaderAlt className="w-6 h-6 animate-spin text-purple-500" />
           </div>
         </div>
-      )}
+              )}
 
-                {pullRequestUrl && (
-                  <>
-                    <div className="w-full bg-green-100 border border-green-400 text-green-900 px-4 py-2 rounded-md shadow-md">
-                      <p className="text-lg font-bold">
-                        Experimento enviado com sucesso!
-                      </p>
-                      <p className="text-lg">
-                        Link da pull request:{" "}
-                        <a
-                          href={pullRequestUrl}
-                          className="text-green-600 hover:underline"
-                        >
-                          {pullRequestUrl}
-                        </a>
-                      </p>
-                    </div>
-                  </>
-                )}
+
+              {pullRequestUrl && (
+
+                <>
+                  <div ref={successRef} className="w-full mt-8 p-8 bg-gradient-to-r from-green-400 to-green-500 border border-green-400 text-white rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-105">
+            <div className="flex items-center mb-4">
+              <svg className="w-10 h-10 mr-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <p className="text-3xl font-extrabold">
+                Experimento enviado com sucesso!
+              </p>
+            </div>
+            <p className="text-lg">
+              Link da pull request:{" "}
+              <a
+                href={pullRequestUrl}
+                className="text-white font-semibold underline hover:text-green-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {pullRequestUrl}
+              </a>
+            </p>
+          </div>
+          <div className="w-full mt-4 text-center bg-red-700 text-white p-4 rounded-md">
+  <div className="flex items-center justify-center mb-2">
+    <FaExclamationTriangle className="w-6 h-6 mr-2" />
+    <p className="mr-4">Recarregue a página para enviar outro experimento!</p>
+    <button
+      onClick={() => window.location.reload()}
+      className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+    >
+      Recarregar Página
+    </button>
+  </div>
+</div>
+
+
+                </>
+            
+      
+              )}
               </div>
             </div>
           </form>
         </div>
-        {Object.keys(experimentData).length > 0 && (
+    {/*     {Object.keys(experimentData).length > 0 && (
           <>
             <div className="d-flex justify-content-end">
               <button className="btn btn-outline-primary me-2">
@@ -2769,7 +2757,7 @@ export default function Experiment() {
             </div>
             <pre>{JSON.stringify(experimentData, null, 2)}</pre>
           </>
-        )}
+        )} */}
       </div>
     </>
   );
