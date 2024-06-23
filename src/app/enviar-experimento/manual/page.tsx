@@ -725,7 +725,7 @@ export default function Experiment() {
               const base64Content = base64String.split(",")[1];
               console.log("Base64 da imagem:", base64Content);
       
-              const imagePath = `${experimentId}/images/${selectedImage.name}`;
+              const imagePath = `/public/${experimentId}/images/${selectedImage.name}`;
       
               // Verificar se o arquivo já existe no repositório
               let fileSha;
@@ -801,7 +801,7 @@ export default function Experiment() {
           const imageName = tempMethods[i].imagePath.split("/").pop() || "";
       
           // Montar o caminho da imagem sem barra inicial
-          const imagePath = `${experimentId}/images/${imageName}`;
+          const imagePath = `/public/${experimentId}/images/${imageName}`;
 
 
 
@@ -850,7 +850,7 @@ export default function Experiment() {
           const base64Content = base64String.split(',')[1];
           console.log('Base64 do documento:', base64Content);
       
-          const documentPath = `${experimentData.id}/documents/${selectedDocument.name}`;
+          const documentPath = `/public/${experimentData.id}/documents/${selectedDocument.name}`;
       
           let fileSha = '';
       
@@ -1170,7 +1170,7 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico da imagem
-      const imagePath = `/${experimentData.id}/images/${file.name}`;
+      const imagePath = `/public/${experimentData.id}/images/${file.name}`;
       
 
       // Atualiza o estado imagePath com o link dinâmico da imagem
@@ -1225,7 +1225,7 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico do documento
-      const documentPath = `/${experimentData.id}/documents/${file.name}`
+      const documentPath = `/public/${experimentData.id}/documents/${file.name}`
 
       // Atualiza o estado activitySheet com o link dinâmico do documento
       setExperimentData((prevState) => ({
@@ -1330,7 +1330,7 @@ export default function Experiment() {
       reader.onload = () => {
         const base64Data = reader.result as string;
         const imageName = files[0].name;
-        const imagePath = `/${experimentData.id}/images/${imageName}`;
+        const imagePath = `/public/${experimentData.id}/images/${imageName}`;
 
         const updatedMethods = tempMethods.map((method, i) => {
           if (i === index) {
