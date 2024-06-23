@@ -888,124 +888,297 @@
     ]
   },
   {
-  "id": "1687384348486",
-  "topicGeneral": [
-    {
-      "id": 1,
-      "title": "Física",
-      "slug": "fisica"
-    },
-    {
-      "id": 2,
-      "title": "Biologia",
-      "slug": "biologia"
-    },
-    {
-      "id": 3,
-      "title": "Química",
-      "slug": "quimica"
-    }
-  ],
-  "topicSpecific": {
-    "fisica": [
+    "id": "1687384348486",
+    "topicGeneral": [
       {
         "id": 1,
-        "title": "Física - Anatomia humana",
-        "slug": "fisica-anatomia-humana"
+        "title": "Física",
+        "slug": "fisica"
       },
       {
         "id": 2,
-        "title": "Física - Fisiologia humana",
-        "slug": "fisica-fisiologia-humana"
+        "title": "Biologia",
+        "slug": "biologia"
+      },
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
       }
     ],
-    "biologia": [
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 1,
+          "title": "Física - Anatomia humana",
+          "slug": "fisica-anatomia-humana"
+        },
+        {
+          "id": 2,
+          "title": "Física - Fisiologia humana",
+          "slug": "fisica-fisiologia-humana"
+        }
+      ],
+      "biologia": [
+        {
+          "id": 2,
+          "title": "Biologia - Fisiologia humana",
+          "slug": "biologia-fisiologia-humana"
+        },
+        {
+          "id": 1,
+          "title": "Biologia - Anatomia humana",
+          "slug": "biologia-anatomia-humana"
+        }
+      ],
+      "quimica": [
+        {
+          "id": 1,
+          "title": "Química - Anatomia humana",
+          "slug": "quimica-anatomia-humana"
+        },
+        {
+          "id": 2,
+          "title": "Química - Fisiologia humana",
+          "slug": "quimica-fisiologia-humana"
+        }
+      ]
+    },
+    "topicBncc": [
       {
-        "id": 2,
-        "title": "Biologia - Fisiologia humana",
-        "slug": "biologia-fisiologia-humana"
+        "id": 13,
+        "title": "Matéria e energia - Misturas homogêneas e heterogêneas",
+        "slug": "materia-e-energia-misturas-homogeneas-e-heterogeneas"
       },
       {
-        "id": 1,
-        "title": "Biologia - Anatomia humana",
-        "slug": "biologia-anatomia-humana"
+        "id": 11,
+        "title": "Matéria e energia - Consumo consciente",
+        "slug": "materia-e-energia-consumo-consciente"
       }
     ],
-    "quimica": [
+    "topicLocation": [
       {
         "id": 1,
-        "title": "Química - Anatomia humana",
-        "slug": "quimica-anatomia-humana"
+        "title": "Em casa",
+        "slug": "em-casa"
       },
       {
         "id": 2,
-        "title": "Química - Fisiologia humana",
-        "slug": "quimica-fisiologia-humana"
+        "title": "Sala de aula",
+        "slug": "sala-de-aula"
+      },
+      {
+        "id": 3,
+        "title": "Quadra da escola",
+        "slug": "quadra-da-escola"
       }
+    ],
+    "profileName": "meu nome de teste",
+    "postDate": "21 de junho de 2023 às 17:52 horário local.",
+    "title": "titulo de tsete",
+    "slug": "titulo-de-tsete",
+    "imagePreview": "/images/exp-4/img-0.jpg",
+    "description": "descricao de test",
+    "literature": "liter de test",
+    "objectives": [
+      "objetivo1",
+      "objetivo2",
+      "objetivo3"
+    ],
+    "materials": [
+      "lapis",
+      "caneta",
+      "tinta",
+      "copo decartavel"
+    ],
+    "methods": [
+      "metodo1",
+      "metodo2"
+    ],
+    "methodsImages": [
+      "/images/exp-1/img-1.jpg",
+      "/images/exp-1/img-1.jpg"
+    ],
+    "results": "resultado123",
+    "scientificExplanation": "edplicacao de etst",
+    "references": [
+      "https://github.com/Fellippemfv/project-science-1/pulls",
+      "https://chat.openai.com/c/671ae384-3094-4f39-8791-1e90398f8c57",
+      "https://github.com/Fellippemfv/project-science-1/pulls",
+      "https://chat.openai.com/c/671ae384-3094-4f39-8791-1e90398f8c57"
     ]
   },
-  "topicBncc": [
-    {
-      "id": 13,
-      "title": "Matéria e energia - Misturas homogêneas e heterogêneas",
-      "slug": "materia-e-energia-misturas-homogeneas-e-heterogeneas"
+  {
+    "id": "1719171558675",
+    "postDate": "23 de junho de 2024 às 15:39",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      },
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 6,
+          "title": "Pressão e densidade",
+          "slug": "pressao-e-densidade"
+        },
+        {
+          "id": 15,
+          "title": "Transformações de energia",
+          "slug": "transformacoes-de-energia"
+        }
+      ],
+      "quimica": [
+        {
+          "id": 1,
+          "title": "Propriedades da matéria",
+          "slug": "propriedades-da-materia"
+        },
+        {
+          "id": 3,
+          "title": "Misturas e substâncias",
+          "slug": "misturas-e-substancias"
+        },
+        {
+          "id": 8,
+          "title": "Reações químicas simples",
+          "slug": "reacoes-quimicas-simples"
+        },
+        {
+          "id": 10,
+          "title": "Soluções e concentração",
+          "slug": "solucoes-e-concentracao"
+        },
+        {
+          "id": 5,
+          "title": "Elementos, compostos e misturas",
+          "slug": "elementos-compostos-e-misturas"
+        }
+      ]
     },
-    {
-      "id": 11,
-      "title": "Matéria e energia - Consumo consciente",
-      "slug": "materia-e-energia-consumo-consciente"
-    }
-  ],
-  "topicLocation": [
-    {
+    "topicLocation": [
+      {
+        "id": 1,
+        "title": "Sala de aula",
+        "slug": "sala-de-aula"
+      },
+      {
+        "id": 2,
+        "title": "Laboratório de ciências",
+        "slug": "laboratorio-de-ciencias"
+      },
+      {
+        "id": 3,
+        "title": "Ambiente aberto",
+        "slug": "ambiente-aberto"
+      },
+      {
+        "id": 4,
+        "title": "Quadra da escola",
+        "slug": "quadra-da-escola"
+      },
+      {
+        "id": 5,
+        "title": "Pátio da escola",
+        "slug": "patio-da-escola"
+      }
+    ],
+    "difficulty": {
       "id": 1,
-      "title": "Em casa",
-      "slug": "em-casa"
+      "title": "Fácil",
+      "slug": "facil",
+      "steps": "1 - 5",
+      "explanation": "De 1 a 5 passos são necessários para completar."
     },
-    {
-      "id": 2,
-      "title": "Sala de aula",
-      "slug": "sala-de-aula"
+    "experimentType": {
+      "id": 1,
+      "title": "Experimentos Demonstrativos",
+      "slug": "demonstrativos",
+      "steps": "São experimentos realizados para demonstrar um conceito específico."
     },
-    {
-      "id": 3,
-      "title": "Quadra da escola",
-      "slug": "quadra-da-escola"
-    }
-  ],
-  "profileName": "meu nome de teste",
-  "postDate": "21 de junho de 2023 às 17:52 horário local.",
-  "title": "titulo de tsete",
-  "slug": "titulo-de-tsete",
-  "imagePreview": "/images/exp-4/img-0.jpg",
-  "description": "descricao de test",
-  "literature": "liter de test",
-  "objectives": [
-    "objetivo1",
-    "objetivo2",
-    "objetivo3"
-  ],
-  "materials": [
-    "lapis",
-    "caneta",
-    "tinta",
-    "copo decartavel"
-  ],
-  "methods": [
-    "metodo1",
-    "metodo2"
-  ],
-  "methodsImages": [
-    "/images/exp-1/img-1.jpg",
-    "/images/exp-1/img-1.jpg"
-  ],
-  "results": "resultado123",
-  "scientificExplanation": "edplicacao de etst",
-  "references": [
-    "https://github.com/Fellippemfv/project-science-1/pulls",
-    "https://chat.openai.com/c/671ae384-3094-4f39-8791-1e90398f8c57",
-    "https://github.com/Fellippemfv/project-science-1/pulls",
-    "https://chat.openai.com/c/671ae384-3094-4f39-8791-1e90398f8c57"
-  ]
-}
+    "title": "Lâmpada de lava com garrafa pet",
+    "slug": "lampada-de-lava-com-garrafa-pet",
+    "imagePreview": "/images/1719171558675/550px-nowatermark-Make-a-Lava-Lamp-with-Household-Ingredients-Step-4-Version-7.jpg.jpg",
+    "description": "Você já se pegou alguma vez hipnotizado por uma lâmpada de lava? Aquela mesma que a gente segura nas mãos, mexe um pouquinho e vê o tremular do líquido, que se divide em formas e cores diferentes. Então, depois de olhar a etiqueta com o preço a gente devolve correndo para a prateleira. Para fazer um favor à sua carteira e ter uma lâmpada de lava feita de ingredientes caseiros.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar a imiscibilidade entre óleo e água."
+      },
+      {
+        "id": 2,
+        "content": "Observar a formação de bolhas devido à reação efervescente."
+      },
+      {
+        "id": 3,
+        "content": "Explicar o fenômeno de densidade e pressão através do movimento das bolhas."
+      },
+      {
+        "id": 4,
+        "content": "Investigar como as bolhas de gás (dióxido de carbono) influenciam a movimentação de líquidos imiscíveis."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Garrafa pet de refrigerante com tampa, vazia e limpa."
+      },
+      {
+        "id": 2,
+        "content": "01 garrafa de Óleo vegetal (escolha um bem barato)."
+      },
+      {
+        "id": 3,
+        "content": "04 Corante alimentar (De cores variadas)."
+      },
+      {
+        "id": 4,
+        "content": "01 Sal, antiácido efervescente ou comprimido de vitamina C (Em pastilhas ou estado sólido)"
+      },
+      {
+        "id": 5,
+        "content": "500 ml de Água."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Lave uma garrafa pet grande de refrigerante ou água. Qualquer recipiente que dê para fechar bem com tampa serve, mas você provavelmente já deve ter alguma garrafa de água vazia em algum canto da casa. Tente achar uma que contenha pelo menos 500 ml para que se possa ver direito o conteúdo.",
+        "imagePath": "/images/1719171558675/lava-1.png"
+      },
+      {
+        "id": 2,
+        "content": "Coloque óleo, água e corante alimentar na garrafa pet. Preencha a garrafa com ¾ de óleo vegetal, complete o restante com água e pingue dez gotas de corante alimentar (ou uma quantia suficiente para deixar a solução bem escura).",
+        "imagePath": "/images/1719171558675/lava-2.jpg"
+      },
+      {
+        "id": 3,
+        "content": "Coloque sal ou uma pastilha de antiácido efervescente na água. Se estiver usando um saleiro de mesa, adicione sal por cerca de cinco segundos. Para que a lâmpada de lava fique mais interessante e borbulhante, em vez de colocar o sal, use uma pastilha de antiácido efervescente, quebre-as em pequenos pedaços e jogue-os no líquido. Qualquer outra pastilha que também seja \"efervescente\" vai funcionar. Estas geralmente são vendidas em drogarias como vitamina C.",
+        "imagePath": "/images/1719171558675/lava-3.jpg"
+      },
+      {
+        "id": 4,
+        "content": "Ponha a tampa na garrafa, vire-a de cabeça para baixo e desvire (opcional). Desse modo, as gotículas coloridas de água que ficam boiando no óleo vão se juntar e formar uma um jorro de bolhas maiores, como num vulcão. Digamos que é assim que os cientistas chamam o fenômeno. Coloque mais sal ou outra pastilha efervescente quando as bolhas começarem a se movimentar.",
+        "imagePath": "/images/1719171558675/lava-4.jpg"
+      }
+    ],
+    "results": "Ao final do experimento, espera-se observar que a água e o óleo permanecem separados devido à sua imiscibilidade, com o óleo flutuando sobre a água. A adição de sal ou pastilhas efervescentes cria bolhas de gás que arrastam pequenas gotas de água colorida através do óleo, formando um efeito visual semelhante a uma lâmpada de lava. As bolhas de gás subirão e descerão continuamente enquanto a reação química estiver ocorrendo, iluminadas pela lanterna ou luz forte colocada sob a garrafa.",
+    "scientificExplanation": "A lâmpada de lava temporária demonstra a imiscibilidade entre óleo e água devido à diferença nas suas polaridades moleculares. Quando o sal é adicionado, ele desce pela água, arrastando algumas gotas de óleo com ele. O sal se dissolve na água, liberando o óleo que sobe devido à sua menor densidade. Com pastilhas efervescentes, a reação química libera dióxido de carbono, criando bolhas que sobem, arrastando a água colorida e produzindo o efeito visual característico. Esse movimento é realçado pela iluminação, permitindo uma melhor observação do fenômeno.",
+    "references": [
+      {
+        "id": 1,
+        "content": "WIKI HOW. Disponível em: https://pt.wikihow.com/Fazer-uma-Lâmpada-de-Lava-com-Ingredientes-Caseiros#:~:text=Preencha%20a%20garrafa%20com%20¾,deixar%20a%20solução%20bem%20escura).&text=Coloque%20sal%20ou%20uma%20pastilha,por%20cerca%20de%20cinco%20segundos.. Acesso em: 23 de JUN de 2024."
+      }
+    ],
+    "activitySheet": "documents/1719171558675/Roteiro-de-Lab-lampada-de-lava.docx"
+  }
 ]
