@@ -1,53 +1,49 @@
 import Image from "next/image";
-import Link from "next/link";
+import { FaSearch, FaUpload } from 'react-icons/fa';
+import Link from 'next/link';
+import imageHomePage from '../../public/exp-home-page.png';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-     
-      {/* Seção 1 */}
-      <div className="flex flex-col items-center pt-12 pb-12">
-      <div className="flex flex-col lg:flex-row items-center gap-8 max-w-6xl w-full">
-        <div className="flex flex-col space-y-4 lg:w-1/2 w-full">
-          <h1 className="text-5xl font-bold">
-           Desbrave o mundo dos experimentos: fácil, dinâmico e educativo!
-          </h1>
-          <p className="text-gray-600 text-lg">
-            Procure experimentos de ciências, biologia, física ou química para relização em sala de aula ou no laboratório.
-          </p>
-          <div className="flex flex-col space-y-2">
-            <Link href="/login">
-
-              {/* <Button className="w-full lg:w-1/2">Get Your Headshots</Button> */}
+    <main className="relative flex flex-col items-center justify-center min-h-screen p-4">
+      {/* Sobreposição branca semitransparente */}
+      <div
+        className="absolute inset-0 bg-white opacity-30"
+        style={{
+          backgroundImage: `url(${imageHomePage.src})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          zIndex: -1
+        }}
+      ></div>
+      <section className="mb-16 relative flex flex-col items-center text-center max-w-4xl mx-auto bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
+        <h1 className="text-5xl font-bold text-blue-700 mb-6">
+          Bem-vindo(a) ao Portal de Experimentos!
+        </h1>
+        <p className="text-lg text-gray-700 mb-6 text-justify">
+          Explore e descubra uma vasta gama de experimentos de ciências, biologia, física e química. Todos os experimentos são testados por profissionais capacitados para garantir uma experiência educativa segura e divertida.
+        </p>
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+          <div className="flex flex-col items-center">
+            <p className="mb-2 text-gray-600">Procure por experimentos</p>
+            <Link target="_blank" href="/pesquisar">
+              <div className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition duration-200 cursor-pointer">
+                <FaSearch className="mr-2" />
+                Pesquisar Experimentos
+              </div>
             </Link>
-            <p className="text-sm text-gray-500 italic">
-              Todos os experimentos desta plataforma são testados por profissionais da área da educação capacitados.
-            </p>
           </div>
-  
+          <div className="flex flex-col items-center mr-4">
+            <p className="mb-2 text-gray-600">Envie seus próprios experimentos</p>
+            <Link target="_blank" href="/enviar-experimento">
+              <div className="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition duration-200 cursor-pointer">
+                <FaUpload className="mr-2" />
+                Enviar Experimentos
+              </div>
+            </Link>
+          </div>
         </div>
-        <div className="lg:w-1/2 w-full mt-8 lg:mt-0">
-          <img
-            src="https://www.getheadshots.ai/_next/static/media/hero.f617e1de.png"
-            alt="AI Headshot Illustration"
-            className="rounded-lg object-cover w-full h-full"
-          />
-        </div>
-      </div>
-    </div>
-
-        {/* Seção 2 */}
-        <section className="mb-8 text-center">
-          <h1 className="text-4xl font-bold mb-4">Seção 2</h1>
-          <p className="text-gray-600">Conteúdo da segunda seção vai aqui.</p>
-        </section>
-
-        {/* Seção 3 */}
-        <section className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Seção 3</h1>
-          <p className="text-gray-600">Conteúdo da terceira seção vai aqui.</p>
-        </section>
-
+      </section>
     </main>
   );
 }

@@ -1,303 +1,500 @@
 "use client"
-import Image from "next/image";
-import Link from "next/link";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import React, { useState } from "react";
+import experimentData from "../../app/api/data/experimentos.json";
+import topicGeneralData from "../../app/api/data/experimentGeneralData.json";
+import Link from "next/link"; // Importando o componente Link do Next.js
+import { BiSearch } from "react-icons/bi";
 
-import { Checkbox } from "@/components/ui/checkbox"
-import { useState } from "react";
-import { HiOutlineSearch } from "react-icons/hi";
+import experimentTypes from "../../app/api/data/experimentTypes.json"
+import difficulties from "../../app/api/data/difficulties.json"
+import locationData from "../../app/api/data/location.json";
 
-interface CheckboxState {
-  terms1: boolean;
-  terms2: boolean;
-  terms3: boolean;
-}
+
 
 export default function Search() {
+  const [selectedExperimentTypes, setSelectedExperimentTypes] = useState<Set<number>>(new Set());
+  const [selectedDifficulties, setSelectedDifficulties] = useState<Set<number>>(new Set());
+  const [selectedLocations, setSelectedLocations] = useState<Set<number>>(new Set());
+  
 
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const handleSelectChange = (option: any) => {
-    setSelectedOption(option);
-  };
-
-  const [checkboxes, setCheckboxes] = useState<CheckboxState>({
-    terms1: false,
-    terms2: false,
-    terms3: false,
+  const [checkboxes, setCheckboxes] = useState<{ [key: string]: boolean }>({});
+  const [selectedGeneralTopics, setSelectedGeneralTopics] = useState<Set<number>>(new Set());
+  const [selectedSpecificTopics, setSelectedSpecificTopics] = useState<Set<string>>(new Set());
+  const [filteredExperiments, setFilteredExperiments] = useState<any[]>([]);
+  const [statusMessage, setStatusMessage] = useState<string>("");
+  const [previousFilters, setPreviousFilters] = useState<{
+    general: Set<number>;
+    specific: Set<string>;
+    experimentTypes: Set<number>;
+    difficulties: Set<number>;
+    locations: Set<number>;
+  }>({
+    general: new Set(),
+    specific: new Set(),
+    experimentTypes: new Set(),
+    difficulties: new Set(),
+    locations: new Set(),
   });
+  
+  const [appliedFilters, setAppliedFilters] = useState<{
+    general: number[];
+    specific: string[];
+    experimentTypes: number[];
+    difficulties: number[];
+    locations: number[];
+  }>({
+    general: [],
+    specific: [],
+    experimentTypes: [],
+    difficulties: [],
+    locations: [],
+  });
+  
 
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+  const handleGeneralTopicChange = (id: number) => {
+    const updatedTopics = new Set(selectedGeneralTopics);
+    const updatedSpecificTopics = new Set(selectedSpecificTopics);
 
-  const handleSelectChange2 = (id: keyof CheckboxState) => {
-    // Atualizar o estado do checkbox clicado
+    if (updatedTopics.has(id)) {
+      // Remove o tópico geral selecionado
+      updatedTopics.delete(id);
+      // Remove todos os tópicos específicos associados ao tópico geral desmarcado
+      topicGeneralData
+        .find((topic) => topic.id === id)
+        ?.topicSpecific.forEach((specific) => {
+          const specificKey = `${id}-${specific.id}`;
+          updatedSpecificTopics.delete(specificKey);
+          // Desmarca o checkbox correspondente ao tópico específico
+          setCheckboxes((prevCheckboxes) => ({
+            ...prevCheckboxes,
+            [specificKey]: false,
+          }));
+        });
+    } else {
+      updatedTopics.add(id);
+    }
+
+    setSelectedGeneralTopics(updatedTopics);
+    setSelectedSpecificTopics(updatedSpecificTopics);
     setCheckboxes((prevCheckboxes) => ({
       ...prevCheckboxes,
       [id]: !prevCheckboxes[id],
     }));
-
-    // Verificar se algum checkbox está marcado
-    const anyCheckboxChecked = Object.values({...checkboxes, [id]: !checkboxes[id]}).some((value) => value);
-    setIsButtonDisabled(!anyCheckboxChecked);
+    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
   };
 
-  const handleConfirmClick = () => {
-    setCheckboxes({
-      terms1: false,
-      terms2: false,
-      terms3: false,
+  const handleSpecificTopicChange = (generalId: number, specificId: number) => {
+    const key = `${generalId}-${specificId}`;
+    const updatedSpecificTopics = new Set(selectedSpecificTopics);
+
+    if (updatedSpecificTopics.has(key)) {
+      updatedSpecificTopics.delete(key);
+    } else {
+      updatedSpecificTopics.add(key);
+    }
+
+    setSelectedSpecificTopics(updatedSpecificTopics);
+    setCheckboxes((prevCheckboxes) => ({
+      ...prevCheckboxes,
+      [key]: !prevCheckboxes[key],
+    }));
+    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
+  };
+
+
+  const handleExperimentTypeChange = (id: number) => {
+    const updatedTypes = new Set(selectedExperimentTypes);
+    if (updatedTypes.has(id)) {
+      updatedTypes.delete(id);
+    } else {
+      updatedTypes.add(id);
+    }
+    setSelectedExperimentTypes(updatedTypes);
+    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
+  };
+  
+  const handleDifficultyChange = (id: number) => {
+    const updatedDifficulties = new Set(selectedDifficulties);
+    if (updatedDifficulties.has(id)) {
+      updatedDifficulties.delete(id);
+    } else {
+      updatedDifficulties.add(id);
+    }
+    setSelectedDifficulties(updatedDifficulties);
+    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
+  };
+  
+  const handleLocationChange = (id: number) => {
+    const updatedLocations = new Set(selectedLocations);
+    if (updatedLocations.has(id)) {
+      updatedLocations.delete(id);
+    } else {
+      updatedLocations.add(id);
+    }
+    setSelectedLocations(updatedLocations);
+    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
+  };
+  
+  
+
+  const filterExperiments = () => {
+    console.log("Filtrando experimentos...");
+  
+    if (
+      selectedGeneralTopics.size === 0 &&
+      selectedSpecificTopics.size === 0 &&
+      selectedExperimentTypes.size === 0 &&
+      selectedDifficulties.size === 0 &&
+      selectedLocations.size === 0
+    ) {
+      setStatusMessage("Nenhum filtro aplicado. Por favor, selecione um filtro.");
+      return;
+    }
+  
+    console.log("Filtros aplicados:");
+    console.log("Gerais:", selectedGeneralTopics);
+    console.log("Específicos:", selectedSpecificTopics);
+    console.log("Tipos de Experimento:", selectedExperimentTypes);
+    console.log("Dificuldades:", selectedDifficulties);
+    console.log("Localizações:", selectedLocations);
+  
+    if (
+      areFiltersSame(previousFilters.general, selectedGeneralTopics) &&
+      areFiltersSame(previousFilters.specific, selectedSpecificTopics) &&
+      areFiltersSame(previousFilters.experimentTypes, selectedExperimentTypes) &&
+      areFiltersSame(previousFilters.difficulties, selectedDifficulties) &&
+      areFiltersSame(previousFilters.locations, selectedLocations)
+    ) {
+      setStatusMessage(
+        "Você já aplicou esses filtros. Por favor, altere os filtros para uma nova pesquisa."
+      );
+      return;
+    }
+  
+    const filtered = experimentData.filter((experiment) => {
+      console.log("Verificando experimento:", experiment.title);
+  
+      const matchesGeneralTopic = selectedGeneralTopics.size === 0 || Array.from(selectedGeneralTopics).some(
+        (generalTopicId) => {
+          const generalTopic = topicGeneralData.find(
+            (topic) => topic.id === generalTopicId
+          );
+          if (!generalTopic) return false;
+  
+          const isSelected =
+            experiment.topicGeneral.some(
+              (topic) => topic.slug === generalTopic.slug
+            ) ||
+            experiment.topicSpecific[generalTopic.slug as keyof typeof experiment.topicSpecific];
+          if (!isSelected) return false;
+  
+          const specificTopics = generalTopic.topicSpecific.filter(
+            (specificTopic) =>
+              checkboxes[`${generalTopic.id}-${specificTopic.id}`]
+          );
+  
+          return (
+            isSelected &&
+            (specificTopics.length === 0 ||
+              specificTopics.some((specificTopic) =>
+                experiment.topicSpecific[
+                  generalTopic.slug as keyof typeof experiment.topicSpecific
+                ]?.some((expSpecific) => expSpecific.slug === specificTopic.slug)
+              ))
+          );
+        }
+      );
+  
+      const matchesExperimentType =
+        selectedExperimentTypes.size === 0 ||
+        selectedExperimentTypes.has(experiment.experimentType.id);
+  
+      const matchesDifficulty =
+        selectedDifficulties.size === 0 ||
+        selectedDifficulties.has(experiment.difficulty.id);
+  
+      const matchesLocation =
+        selectedLocations.size === 0 ||
+        experiment.topicLocation.some((location) =>
+          selectedLocations.has(location.id)
+        );
+  
+      console.log(
+        "Matches:",
+        matchesGeneralTopic,
+        matchesExperimentType,
+        matchesDifficulty,
+        matchesLocation
+      );
+  
+      return (
+        matchesGeneralTopic &&
+        matchesExperimentType &&
+        matchesDifficulty &&
+        matchesLocation
+      );
     });
-    setIsButtonDisabled(true);
+  
+    console.log("Experimentos filtrados:", filtered);
+    setFilteredExperiments(filtered);
+  
+    setPreviousFilters({
+      general: new Set(selectedGeneralTopics),
+      specific: new Set(selectedSpecificTopics),
+      experimentTypes: new Set(selectedExperimentTypes),
+      difficulties: new Set(selectedDifficulties),
+      locations: new Set(selectedLocations),
+    });
+  
+    setAppliedFilters({
+      general: Array.from(selectedGeneralTopics),
+      specific: Array.from(selectedSpecificTopics),
+      experimentTypes: Array.from(selectedExperimentTypes),
+      difficulties: Array.from(selectedDifficulties),
+      locations: Array.from(selectedLocations),
+    });
+  
+    setStatusMessage("Filtros aplicados com sucesso!");
   };
+  
+  
+  
+  
+  
+  const areFiltersSame = (prevFilters: Set<any>, currentFilters: Set<any>) => {
+    if (prevFilters.size !== currentFilters.size) return false;
+    
+    // Converte os sets para arrays e compara os elementos
+    const prevFiltersArray = Array.from(prevFilters);
+    const currentFiltersArray = Array.from(currentFilters);
+    
+    for (let filter of currentFiltersArray) {
+      if (!prevFilters.has(filter)) return false;
+    }
+    return true;
+  };
+  
+  
+
   return (
-<main className="flex min-h-screen flex-col items-center justify-between p-4">
-  <div className="w-full max-w-screen-lg mx-auto mb-8">
+<main className="flex min-h-screen flex-col items-center justify-between sm:m-4">
+  <div className="p-6 bg-white rounded-lg shadow-md w-full">
+    <h2 className="text-3xl font-bold mb-6 text-gray-800">Filtros</h2>
+    <h3 className="text-xl font-semibold mb-4 text-gray-700">Temas de experimentos</h3>
+    <p className="text-base text-gray-600 mb-6">
+      Filtre pelos temas gerais de Física, Química e Biologia e depois mergulhe em temas específicos dentro de cada área.
+    </p>
 
+    <div className="flex flex-wrap -mx-2">
+      {topicGeneralData.map((generalTopic) => (
+        <div key={generalTopic.id} className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
+          <div className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              id={`general-${generalTopic.id}`}
+              onChange={() => handleGeneralTopicChange(generalTopic.id)}
+              checked={checkboxes[generalTopic.id] || false}
+              className="mr-2"
+            />
+            <label htmlFor={`general-${generalTopic.id}`} className="text-sm lg:text-base text-gray-800">
+              {generalTopic.title}
+            </label>
+          </div>
+          <div className="ml-4">
+            {generalTopic.topicSpecific.map((specificTopic) => (
+              <div key={specificTopic.id} className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  id={`specific-${specificTopic.id}`}
+                  onChange={() => handleSpecificTopicChange(generalTopic.id, specificTopic.id)}
+                  checked={checkboxes[`${generalTopic.id}-${specificTopic.id}`] || false}
+                  disabled={!selectedGeneralTopics.has(generalTopic.id)}
+                  className="mr-2"
+                />
+                <label
+                  htmlFor={`specific-${specificTopic.id}`}
+                  className={`text-sm lg:text-xs ${!selectedGeneralTopics.has(generalTopic.id) ? 'text-gray-400' : 'text-gray-800'}`}
+                >
+                  {specificTopic.title}
+                </label>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
 
+      <div className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
+        <h3 className="text-xl font-semibold mb-4 text-gray-700">Tipos de Experimento</h3>
+        <p className="text-base text-gray-600 mb-6">
+          Escolha entre diversos tipos de experimentos.
+        </p>
+        {experimentTypes.map((type) => (
+          <div key={type.id} className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              id={`type-${type.id}`}
+              onChange={() => handleExperimentTypeChange(type.id)}
+              checked={selectedExperimentTypes.has(type.id)}
+              className="mr-2"
+            />
+            <label htmlFor={`type-${type.id}`} className="text-sm lg:text-base text-gray-800">
+              {type.title}
+            </label>
+          </div>
+        ))}
+      </div>
 
+      <div className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
+        <h3 className="text-xl font-semibold mb-4 text-gray-700">Dificuldades</h3>
+        <p className="text-base text-gray-600 mb-6">
+          Encontre experimentos que correspondam ao seu nível de habilidade.
+        </p>
+        {difficulties.map((difficulty) => (
+          <div key={difficulty.id} className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              id={`difficulty-${difficulty.id}`}
+              onChange={() => handleDifficultyChange(difficulty.id)}
+              checked={selectedDifficulties.has(difficulty.id)}
+              className="mr-2"
+            />
+            <label htmlFor={`difficulty-${difficulty.id}`} className="text-sm lg:text-base text-gray-800">
+              {difficulty.title}
+            </label>
+          </div>
+        ))}
+      </div>
 
-  <div className=" flex justify-center items-center mb-8">
-  <div className="w-full">
-    <label htmlFor="search" className="mb-4 text-gray-600 mb-2 block text-xl font-semibold">Escolha uma opção</label>
-    <div className=" flex items-center flex-col md:flex-row">
-    <div className="min-w-60 mb-4 md:mb-0 md:w-auto w-full ">
+      <div className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
+        <h3 className="text-xl font-semibold mb-4 text-gray-700">Localizações</h3>
+        <p className="text-base text-gray-600 mb-6">
+          Filtre os experimentos com base em suas localizações.
+        </p>
+        {locationData.map((location) => (
+          <div key={location.id} className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              id={`location-${location.id}`}
+              onChange={() => handleLocationChange(location.id)}
+              checked={selectedLocations.has(location.id)}
+              className="mr-2"
+            />
+            <label htmlFor={`location-${location.id}`} className="text-sm lg:text-base text-gray-800">
+              {location.title}
+            </label>
+          </div>
+        ))}
+      </div>
+    </div>
 
-     <Select onValueChange={handleSelectChange}>
-        <SelectTrigger className="w-[180px] w-full">
-          <SelectValue placeholder="Selecione uma opção" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Opções</SelectLabel>
-            <SelectItem className="cursor-pointer" value="apple">Experimentos</SelectItem>
-            <SelectItem className="cursor-pointer" value="banana">Demonstrações</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-</div>
-
-
-      <div className="w-full flex flex-col md:flex-row mx-auto">
+    <div className="flex justify-center mt-6">
       <button
-      className={`bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mb-0 md:ml-2 transition duration-300 ${
-        selectedOption ? 'hover:bg-blue-700' : ''
-      } ${selectedOption ? '' : 'opacity-50 cursor-not-allowed'}`}
-      disabled={!selectedOption}
-    >
-      <div className={`flex items-center justify-center lg:w-full ${selectedOption ? '' : 'lg:w-auto'}`}>
-        <HiOutlineSearch className="mr-2" />
-        <span>Buscar</span>
-      </div>
-    </button>
-        <AlertDialog>
-        <AlertDialogTrigger
-        className={`ml-0 md:ml-2 py-2 px-4 rounded focus:outline-none ${
-          isButtonDisabled
-            ? 'bg-gray-300 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed'
-            : 'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 focus:outline-none focus:bg-gray-300 transition-colors duration-300'
-        }`}
-        disabled={isButtonDisabled}
+        onClick={filterExperiments}
+        className="flex items-center px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
       >
-        Resetar Filtros
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Você tem certeza?</AlertDialogTitle>
-      <AlertDialogDescription>
-        Confirmando você vai tirar todos os filtros aplicados
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>Cancelar</AlertDialogCancel>
-      <AlertDialogAction className="" onClick={handleConfirmClick}>
-        Confirmar
-      </AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>
-
-      </div>
+        <BiSearch className="text-white mr-2" />
+        Filtrar experimentos
+      </button>
     </div>
-  </div>
-</div>
-
-
-
-
-
-    <label htmlFor="search" className="mb-4 text-gray-600 mb-2 block text-xl font-semibold">Filtros para Busca</label>
-
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-      {/* Local para Realização */}
-      <div>
-        <label className="text-gray-600 block mb-2">Local para Realização</label>
-
-        <div className="flex flex-wrap">
-        <div className="flex items-center mb-2">
-          <Checkbox
-            onClick={() => handleSelectChange2('terms1')}
-            className="mr-2"
-            id="terms1"
-            checked={checkboxes.terms1}
-          />
-          <label htmlFor="lab" className="mr-4">
-            Laboratório
-          </label>
-        </div>
-
-        <div className="flex items-center mb-2">
-          <Checkbox
-            onClick={() => handleSelectChange2('terms2')}
-            className="mr-2"
-            id="terms2"
-            checked={checkboxes.terms2}
-          />
-          <label htmlFor="classroom" className="mr-4">
-            Sala de Aula
-          </label>
-        </div>
-
-        <div className="flex items-center mb-2">
-          <Checkbox
-            onClick={() => handleSelectChange2('terms3')}
-            className="mr-2"
-            id="terms3"
-            checked={checkboxes.terms3}
-          />
-          <label htmlFor="outdoor">Ambiente Aberto</label>
-        </div>
+    {statusMessage && (
+      <div className={`mt-4 text-center ${statusMessage.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
+        {statusMessage}
       </div>
-      </div>
-
-      {/* Nível de Dificuldade */}
-      <div>
-        <label className="text-gray-600 block mb-2">Nível de dificuldade</label>
-         <div className="flex flex-wrap">
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms4" />
-            <label htmlFor="lab" className="mr-4">Simples</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms5" />
-            <label htmlFor="outdoor">Difícil</label>
-          </div>
-        </div>
-      </div>
-
-      {/* Tema */}
-      <div>
-        <label className="text-gray-600 block mb-2">Tema</label>
-        <div className="flex flex-wrap">
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms6" />
-            <label htmlFor="lab" className="mr-4">Ciências</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms7" />
-            <label htmlFor="classroom" className="mr-4">Física</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms8" />
-            <label htmlFor="outdoor">Biologia</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms9" />
-            <label htmlFor="outdoor">Quimica</label>
-          </div>
-        </div>
-      </div>
-
-      {/* Público Alvo */}
-      <div>
-        <label className="text-gray-600 block mb-2">Público alvo</label>
-        <div className="flex flex-wrap">
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms10" />
-            <label htmlFor="lab" className="mr-4">Ensino fundamental</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms11" />
-            <label htmlFor="classroom" className="mr-4">Ensino medio</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms12" />
-            <label htmlFor="outdoor">Ensino superior</label>
-          </div>
-        </div>
-      </div>
-
-      {/* Custo */}
-      <div>
-        <label className="text-gray-600 block mb-2">Custo para realização</label>
-        <div className="flex flex-wrap">
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms13" />
-            <label htmlFor="lab" className="mr-4">Baixo custo</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms14" />
-            <label htmlFor="outdoor">Alto custo</label>
-          </div>
-        </div>
-      </div>
-
-      {/* Tipos de Experimentos */}
-      <div>
-        <label className="text-gray-600 block mb-2">Tipos de experimentos</label>
-        <div className="flex flex-wrap">
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms15" />
-            <label htmlFor="lab" className="mr-4">Práticos</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms16" />
-            <label htmlFor="classroom" className="mr-4">Virtuais</label>
-          </div>
-
-          <div className="flex items-center mb-2">
-          <Checkbox className="mr-2" id="terms17" />
-            <label htmlFor="outdoor">Teóricos</label>
-          </div>
-        </div>
-      </div>
-    </div>
+    )}
   </div>
 
-  <section className="text-center">
-    <p className="text-gray-600">Você ainda não pesquisou, use o filtro e busque!</p>
+  <section className="w-full mt-8">
+    <h2 className="text-3xl font-bold mb-6 text-gray-800">Experimentos Filtrados</h2>
+    <div className="flex flex-wrap gap-2 mb-4">
+      <span className="font-bold text-gray-700">Filtros atualmente aplicados:</span>
+      {appliedFilters.general.length > 0 || appliedFilters.specific.length > 0 || appliedFilters.experimentTypes.length > 0 || appliedFilters.difficulties.length > 0 || appliedFilters.locations.length > 0 ? (
+        <>
+          {appliedFilters.general.map((filterId) => {
+            const generalTopic = topicGeneralData.find((topic) => topic.id === filterId);
+            return generalTopic ? (
+              <span
+                key={generalTopic.id}
+                className="px-2 py-1 bg-blue-200 text-blue-800 rounded-lg text-sm mr-2 mb-2"
+              >
+                {generalTopic.title}
+              </span>
+            ) : null;
+          })}
+          {appliedFilters.specific.map((filterKey) => {
+            const [generalId, specificId] = filterKey.split("-");
+            const generalTopic = topicGeneralData.find((topic) => topic.id === parseInt(generalId));
+            if (!generalTopic) return null;
+            const specificTopic = generalTopic.topicSpecific.find((topic) => topic.id === parseInt(specificId));
+            return specificTopic ? (
+              <span
+                key={filterKey}
+                className="px-2 py-1 bg-green-200 text-green-800 rounded-lg text-sm mr-2 mb-2"
+              >
+                {`${generalTopic.title}: ${specificTopic.title}`}
+              </span>
+            ) : null;
+          })}
+          {appliedFilters.experimentTypes.map((filterId) => {
+            const type = experimentTypes.find((type) => type.id === filterId);
+            return type ? (
+              <span
+                key={type.id}
+                className="px-2 py-1 bg-yellow-200 text-yellow-800 rounded-lg text-sm mr-2 mb-2"
+              >
+                {type.title}
+              </span>
+            ) : null;
+          })}
+          {appliedFilters.difficulties.map((filterId) => {
+            const difficulty = difficulties.find((diff) => diff.id === filterId);
+            return difficulty ? (
+              <span
+                key={difficulty.id}
+                className="px-2 py-1 bg-red-200 text-red-800 rounded-lg text-sm mr-2 mb-2"
+              >
+                {difficulty.title}
+              </span>
+            ) : null;
+          })}
+          {appliedFilters.locations.map((filterId) => {
+            const location = locationData.find((loc) => loc.id === filterId);
+            return location ? (
+              <span
+                key={location.id}
+                className="px-2 py-1 bg-purple-200 text-purple-800 rounded-lg text-sm mr-2 mb-2"
+              >
+                {location.title}
+              </span>
+            ) : null;
+          })}
+        </>
+      ) : (
+        <span className="text-sm text-gray-500">Nenhum filtro aplicado.</span>
+      )}
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {filteredExperiments.map((experiment) => (
+        <div key={experiment.id} className="border rounded-lg shadow-md p-4 bg-white">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800">{experiment.title}</h3>
+          <img
+            src={experiment.imagePreview}
+            alt={experiment.title}
+            className="w-full h-40 object-cover rounded-md mb-4"
+          />
+          <Link
+            href={`/experimento/${experiment.slug}`}
+            passHref
+            className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-center block"
+            target="_blank"
+          >
+            Acessar
+          </Link>
+        </div>
+      ))}
+    </div>
   </section>
 </main>
-
-
 
 
   );

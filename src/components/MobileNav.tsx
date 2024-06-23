@@ -92,6 +92,18 @@ const MobileNav = () => {
                 
               </Link>
                 </div>
+
+                <div className='w-full h-full mb-8 border-b border-solid border-darkgray'>
+                <Link
+                href="/enviar-experimento"
+                className="inline-block w-full h-full border-solid border-darkgrey text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
+                onClick={onToggleNav}
+              >
+                <span className="mb-4">Enviar experimento</span>
+
+                
+              </Link>
+                </div>
               
             </div>
         </nav>
