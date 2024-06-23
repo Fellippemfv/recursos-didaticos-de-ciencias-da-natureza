@@ -725,7 +725,7 @@ export default function Experiment() {
               const base64Content = base64String.split(",")[1];
               console.log("Base64 da imagem:", base64Content);
       
-              const imagePath = `/public/${experimentId}/images/${selectedImage.name}`;
+              const imagePath = `public/${experimentId}/images/${selectedImage.name}`;
       
               // Verificar se o arquivo já existe no repositório
               let fileSha;
@@ -801,7 +801,7 @@ export default function Experiment() {
           const imageName = tempMethods[i].imagePath.split("/").pop() || "";
       
           // Montar o caminho da imagem sem barra inicial
-          const imagePath = `/public/${experimentId}/images/${imageName}`;
+          const imagePath = `public/${experimentId}/images/${imageName}`;
 
 
 
@@ -850,7 +850,7 @@ export default function Experiment() {
           const base64Content = base64String.split(',')[1];
           console.log('Base64 do documento:', base64Content);
       
-          const documentPath = `/public/${experimentData.id}/documents/${selectedDocument.name}`;
+          const documentPath = `public/${experimentData.id}/documents/${selectedDocument.name}`;
       
           let fileSha = '';
       
@@ -1330,7 +1330,7 @@ export default function Experiment() {
       reader.onload = () => {
         const base64Data = reader.result as string;
         const imageName = files[0].name;
-        const imagePath = `/public/${experimentData.id}/images/${imageName}`;
+        const imagePath = `/${experimentData.id}/images/${imageName}`;
 
         const updatedMethods = tempMethods.map((method, i) => {
           if (i === index) {
