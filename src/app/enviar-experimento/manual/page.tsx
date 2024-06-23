@@ -1170,7 +1170,7 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico da imagem
-      const imagePath = `/public/${experimentData.id}/images/${file.name}`;
+      const imagePath = `/${experimentData.id}/images/${file.name}`;
       
 
       // Atualiza o estado imagePath com o link dinâmico da imagem
@@ -1225,7 +1225,7 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico do documento
-      const documentPath = `/public/${experimentData.id}/documents/${file.name}`
+      const documentPath = `/${experimentData.id}/documents/${file.name}`
 
       // Atualiza o estado activitySheet com o link dinâmico do documento
       setExperimentData((prevState) => ({
