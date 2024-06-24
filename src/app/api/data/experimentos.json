@@ -577,5 +577,159 @@
       }
     ],
     "activitySheet": "/1719182873953/documents/Roteiro de Lab Tinta dancante.docx"
+  },
+  {
+    "id": "1719193862873",
+    "postDate": "23 de junho de 2024 às 21:51",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 3,
+          "title": "Misturas e substâncias",
+          "slug": "misturas-e-substancias"
+        },
+        {
+          "id": 1,
+          "title": "Propriedades da matéria",
+          "slug": "propriedades-da-materia"
+        },
+        {
+          "id": 5,
+          "title": "Elementos, compostos e misturas",
+          "slug": "elementos-compostos-e-misturas"
+        },
+        {
+          "id": 10,
+          "title": "Soluções e concentração",
+          "slug": "solucoes-e-concentracao"
+        }
+      ]
+    },
+    "topicLocation": [
+      {
+        "id": 1,
+        "title": "Sala de aula",
+        "slug": "sala-de-aula"
+      },
+      {
+        "id": 2,
+        "title": "Laboratório de ciências",
+        "slug": "laboratorio-de-ciencias"
+      },
+      {
+        "id": 3,
+        "title": "Ambiente aberto",
+        "slug": "ambiente-aberto"
+      },
+      {
+        "id": 4,
+        "title": "Quadra da escola",
+        "slug": "quadra-da-escola"
+      },
+      {
+        "id": 5,
+        "title": "Pátio da escola",
+        "slug": "patio-da-escola"
+      }
+    ],
+    "difficulty": {
+      "id": 1,
+      "title": "Fácil",
+      "slug": "facil",
+      "steps": "1 - 5",
+      "explanation": "De 1 a 5 passos são necessários para completar."
+    },
+    "experimentType": {
+      "id": 1,
+      "title": "Experimentos Demonstrativos",
+      "slug": "demonstrativos",
+      "steps": "São experimentos realizados para demonstrar um conceito específico."
+    },
+    "title": "Ovo Flutuante",
+    "slug": "ovo-flutuante",
+    "imagePreview": "/1719193862873/images/exp-salina-1.jpg",
+    "description": "Neste experimento, vamos explorar o conceito de densidade usando diferentes soluções (água com sal, água com açúcar, água da torneira e solução salina) para observar como um ovo se comporta em cada uma delas.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Verificar quando uma substância aumenta ou diminui de densidade."
+      },
+      {
+        "id": 2,
+        "content": "Estudar sobre concentração e densidade."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 pacote de sal de cozinha."
+      },
+      {
+        "id": 2,
+        "content": "01 pacote de açucar de cozinha."
+      },
+      {
+        "id": 3,
+        "content": "01 Solução salina (soro ou congestionante)."
+      },
+      {
+        "id": 4,
+        "content": "04 frascos de vidro, copos (ou béqueres) altos e largos o suficiente para conter um ovo."
+      },
+      {
+        "id": 5,
+        "content": "01 colher de metal ou plástico."
+      },
+      {
+        "id": 6,
+        "content": "1 L de água."
+      },
+      {
+        "id": 7,
+        "content": "04 ovos crus (certifique-se de que não estejam rachados)."
+      },
+      {
+        "id": 8,
+        "content": "01 Marcador permanente ou fita adesiva para rotular os frascos."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Em uma superfície plana coloque os quatro copos.",
+        "imagePath": "/1719193862873/images/exp-salina-2.jpg"
+      },
+      {
+        "id": 2,
+        "content": "Preparar os Frascos com Soluções: Encha o primeiro copo com água da torneira. Encha o segundo copo com água e 2 colheres cheia de sal de maneira a dissolver completamente. Encha o terceiro copo com água e 2 colheres cheia de açúcar de maneira a dissolver completamente. Encha o quarto copo com o soro ou congestionante.\n",
+        "imagePath": "/1719193862873/images/exp-salina-3.jpg"
+      },
+      {
+        "id": 3,
+        "content": "Com cuidado, coloque 1 ovo em cada copo e observe quais irão flutuar.",
+        "imagePath": "/1719193862873/images/exp-salina-4.jpg"
+      }
+    ],
+    "results": "",
+    "scientificExplanation": "A densidade de uma substância é definida como a massa por unidade de volume. Quando um ovo é colocado na água da torneira ou solução salina, ele afunda porque a densidade do ovo é maior que a densidade da água. Ao adicionar sal ou açúcar à água, aumentamos a densidade da água, pois essas substâncias aumentam a massa da solução sem alterar significativamente o volume.",
+    "references": [
+      {
+        "id": 1,
+        "content": "SCIENCE BUDDIES. Disponível em: <https://www.sciencebuddies.org/stem-activities/salty-science-floating-eggs-in-water?from=Blog> . Acesso em: 23 de JUN de 2024."
+      },
+      {
+        "id": 2,
+        "content": "GO SCIENCE GIRLS. Disponível em: <https://gosciencegirls.com/floating-egg-experiment/> . Acesso em: 23 de JUN de 2024."
+      }
+    ],
+    "activitySheet": "/1719193862873/documents/Roteiro-de-Lab-ovo-afunda-ou-nao.docx"
   }
 ]
