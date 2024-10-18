@@ -7,17 +7,10 @@ import Link from "next/link"; // Importando o componente Link do Next.js
 import { BiSearch } from "react-icons/bi";
 
 import experimentTypes from "../../app/api/data/experimentTypes.json"
-import difficulties from "../../app/api/data/difficulties.json"
-import locationData from "../../app/api/data/location.json";
-
-
+import { RiArrowRightSLine } from "react-icons/ri";
 
 export default function Search() {
   const [selectedExperimentTypes, setSelectedExperimentTypes] = useState<Set<number>>(new Set());
-  const [selectedDifficulties, setSelectedDifficulties] = useState<Set<number>>(new Set());
-  const [selectedLocations, setSelectedLocations] = useState<Set<number>>(new Set());
-  
-
   const [checkboxes, setCheckboxes] = useState<{ [key: string]: boolean }>({});
   const [selectedGeneralTopics, setSelectedGeneralTopics] = useState<Set<number>>(new Set());
   const [selectedSpecificTopics, setSelectedSpecificTopics] = useState<Set<string>>(new Set());
@@ -27,30 +20,34 @@ export default function Search() {
     general: Set<number>;
     specific: Set<string>;
     experimentTypes: Set<number>;
-    difficulties: Set<number>;
-    locations: Set<number>;
   }>({
     general: new Set(),
     specific: new Set(),
-    experimentTypes: new Set(),
-    difficulties: new Set(),
-    locations: new Set(),
+    experimentTypes: new Set()
   });
   
   const [appliedFilters, setAppliedFilters] = useState<{
     general: number[];
     specific: string[];
     experimentTypes: number[];
-    difficulties: number[];
-    locations: number[];
   }>({
     general: [],
     specific: [],
     experimentTypes: [],
-    difficulties: [],
-    locations: [],
   });
+
+  interface SpecificTopic {
+    id: number;
+    title: string;
+    // Adicione outras propriedades conforme necessário
+  }
   
+  interface GeneralTopic {
+    id: number;
+    title: string;
+    topicSpecific: SpecificTopic[]; // Definindo a propriedade topicSpecific
+    // Adicione outras propriedades conforme necessário
+  }
 
   const handleGeneralTopicChange = (id: number) => {
     const updatedTopics = new Set(selectedGeneralTopics);
@@ -102,7 +99,6 @@ export default function Search() {
     setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
   };
 
-
   const handleExperimentTypeChange = (id: number) => {
     const updatedTypes = new Set(selectedExperimentTypes);
     if (updatedTypes.has(id)) {
@@ -113,30 +109,6 @@ export default function Search() {
     setSelectedExperimentTypes(updatedTypes);
     setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
   };
-  
-  const handleDifficultyChange = (id: number) => {
-    const updatedDifficulties = new Set(selectedDifficulties);
-    if (updatedDifficulties.has(id)) {
-      updatedDifficulties.delete(id);
-    } else {
-      updatedDifficulties.add(id);
-    }
-    setSelectedDifficulties(updatedDifficulties);
-    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
-  };
-  
-  const handleLocationChange = (id: number) => {
-    const updatedLocations = new Set(selectedLocations);
-    if (updatedLocations.has(id)) {
-      updatedLocations.delete(id);
-    } else {
-      updatedLocations.add(id);
-    }
-    setSelectedLocations(updatedLocations);
-    setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
-  };
-  
-  
 
   const filterExperiments = () => {
     console.log("Filtrando experimentos...");
@@ -144,9 +116,7 @@ export default function Search() {
     if (
       selectedGeneralTopics.size === 0 &&
       selectedSpecificTopics.size === 0 &&
-      selectedExperimentTypes.size === 0 &&
-      selectedDifficulties.size === 0 &&
-      selectedLocations.size === 0
+      selectedExperimentTypes.size === 0
     ) {
       setStatusMessage("Nenhum filtro aplicado. Por favor, selecione um filtro.");
       return;
@@ -156,15 +126,11 @@ export default function Search() {
     console.log("Gerais:", selectedGeneralTopics);
     console.log("Específicos:", selectedSpecificTopics);
     console.log("Tipos de Experimento:", selectedExperimentTypes);
-    console.log("Dificuldades:", selectedDifficulties);
-    console.log("Localizações:", selectedLocations);
   
     if (
       areFiltersSame(previousFilters.general, selectedGeneralTopics) &&
       areFiltersSame(previousFilters.specific, selectedSpecificTopics) &&
-      areFiltersSame(previousFilters.experimentTypes, selectedExperimentTypes) &&
-      areFiltersSame(previousFilters.difficulties, selectedDifficulties) &&
-      areFiltersSame(previousFilters.locations, selectedLocations)
+      areFiltersSame(previousFilters.experimentTypes, selectedExperimentTypes)
     ) {
       setStatusMessage(
         "Você já aplicou esses filtros. Por favor, altere os filtros para uma nova pesquisa."
@@ -210,29 +176,17 @@ export default function Search() {
         selectedExperimentTypes.size === 0 ||
         selectedExperimentTypes.has(experiment.experimentType.id);
   
-      const matchesDifficulty =
-        selectedDifficulties.size === 0 ||
-        selectedDifficulties.has(experiment.difficulty.id);
-  
-      const matchesLocation =
-        selectedLocations.size === 0 ||
-        experiment.topicLocation.some((location) =>
-          selectedLocations.has(location.id)
-        );
+    
   
       console.log(
         "Matches:",
         matchesGeneralTopic,
         matchesExperimentType,
-        matchesDifficulty,
-        matchesLocation
       );
   
       return (
         matchesGeneralTopic &&
-        matchesExperimentType &&
-        matchesDifficulty &&
-        matchesLocation
+        matchesExperimentType
       );
     });
   
@@ -243,24 +197,17 @@ export default function Search() {
       general: new Set(selectedGeneralTopics),
       specific: new Set(selectedSpecificTopics),
       experimentTypes: new Set(selectedExperimentTypes),
-      difficulties: new Set(selectedDifficulties),
-      locations: new Set(selectedLocations),
+  
     });
   
     setAppliedFilters({
       general: Array.from(selectedGeneralTopics),
       specific: Array.from(selectedSpecificTopics),
       experimentTypes: Array.from(selectedExperimentTypes),
-      difficulties: Array.from(selectedDifficulties),
-      locations: Array.from(selectedLocations),
     });
   
     setStatusMessage("Filtros aplicados com sucesso!");
   };
-  
-  
-  
-  
   
   const areFiltersSame = (prevFilters: Set<any>, currentFilters: Set<any>) => {
     if (prevFilters.size !== currentFilters.size) return false;
@@ -275,59 +222,141 @@ export default function Search() {
     return true;
   };
   
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeGeneralTopic, setActiveGeneralTopic] = useState<GeneralTopic | null>(null);
+
+  const handleOpenModal = (generalTopic: GeneralTopic) => {
+    setActiveGeneralTopic(generalTopic);
+    setIsModalOpen(true);
+  };
   
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setActiveGeneralTopic(null);
+  };
 
   return (
 <main className="flex min-h-screen flex-col items-center justify-between sm:m-4">
   <div className="p-6 bg-white rounded-lg shadow-md w-full">
-    <h2 className="text-3xl font-bold mb-6 text-gray-800">Filtros</h2>
-    <h3 className="text-xl font-semibold mb-4 text-gray-700">Temas de experimentos</h3>
+    <h2 className="text-3xl font-bold mb-6 text-gray-800">Filtros de pesquisa</h2>
+    <h3 className="text-xl font-semibold mb-4 text-gray-700">Temas dos recursos didáticos</h3>
     <p className="text-base text-gray-600 mb-6">
       Filtre pelos temas gerais de Física, Química e Biologia e depois mergulhe em temas específicos dentro de cada área.
     </p>
 
-    <div className="flex flex-wrap -mx-2">
-      {topicGeneralData.map((generalTopic) => (
-        <div key={generalTopic.id} className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
-          <div className="flex items-center mb-2">
+    {/* Exibir apenas os temas gerais */}
+    {topicGeneralData.map((generalTopic) => (
+  <div key={generalTopic.id} className="w-full px-2 mb-6">
+    <div className="flex items-start mb-4 p-4 border rounded-lg shadow-md bg-white transition-transform hover:scale-105">
+      <div className="flex flex-col flex-grow">
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            id={`general-${generalTopic.id}`}
+            onChange={() => handleGeneralTopicChange(generalTopic.id)}
+            checked={checkboxes[generalTopic.id] || false}
+            className="mr-2"
+          />
+          <label htmlFor={`general-${generalTopic.id}`} className="text-lg font-semibold text-gray-800">
+            {generalTopic.title}
+          </label>
+        </div>
+        
+        {/* Mensagem condicional */}
+        {checkboxes[generalTopic.id] ? (
+          <>
+            {selectedSpecificTopics.size > 0 ? (
+              <p className="text-xs text-green-600 mt-1">
+                Tópico(s) selecionado(s): {Array.from(selectedSpecificTopics)
+                  .map((specificKey) => {
+                    const specificTopic = topicGeneralData
+                      .find((topic) => topic.id === generalTopic.id)
+                      ?.topicSpecific.find((specific) => `${generalTopic.id}-${specific.id}` === specificKey);
+                    return specificTopic ? specificTopic.title : null;
+                  })
+                  .filter(Boolean) // Remove itens nulos
+                  .join(", ")}
+              </p>
+            ) : (
+              <p className="text-xs text-red-600 mt-1">
+                Selecione pelo menos um tópico específico, caso contrário ele vai buscar todos!
+              </p>
+            )}
+          </>
+        ) : (
+          <p className="text-xs text-gray-600 mt-1">
+            Clique nesta caixinha para selecionar este tópico
+          </p>
+        )}
+      </div>
+      <button
+        onClick={() => handleOpenModal(generalTopic)}
+        disabled={!checkboxes[generalTopic.id]} // Desabilita se não estiver selecionado
+        className={`ml-4 flex items-center justify-center px-3 py-1 text-white text-sm rounded-lg 
+          ${checkboxes[generalTopic.id] ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-300 cursor-not-allowed'}`}
+      >
+        <RiArrowRightSLine className="mr-1" />
+        Escolher temas específicos
+      </button>
+    </div>
+  </div>
+))}
+
+
+      {/* Modal para selecionar temas específicos */}
+      {isModalOpen && activeGeneralTopic && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" onClick={handleCloseModal}>   {/* Fechar ao clicar fora */}
+          <div className="fixed left-0 top-0 h-full w-80 bg-white p-6 overflow-y-auto shadow-xl transition-transform transform translate-x-0" onClick={(e) => e.stopPropagation()}  >  {/* Impedir o clique dentro do modal de fechar */} 
+            
+{/* Título */}
+<div className="mb-6">
+  <h2 className="text-xl font-semibold text-center">
+    Temas específicos de {activeGeneralTopic.title}
+  </h2>
+</div>
+
+{/* Lista de temas específicos */}
+<div className="flex flex-col overflow-y-auto max-h-[calc(100vh-200px)]"> {/* Ajuste a altura máxima conforme necessário */}
+{activeGeneralTopic?.topicSpecific.map((specificTopic) => (
+          <div key={specificTopic.id} className="flex items-center mb-2">
             <input
               type="checkbox"
-              id={`general-${generalTopic.id}`}
-              onChange={() => handleGeneralTopicChange(generalTopic.id)}
-              checked={checkboxes[generalTopic.id] || false}
+              id={`specific-${specificTopic.id}`}
+              onChange={() => handleSpecificTopicChange(activeGeneralTopic.id, specificTopic.id)}
+              checked={checkboxes[`${activeGeneralTopic.id}-${specificTopic.id}`] || false}
               className="mr-2"
             />
-            <label htmlFor={`general-${generalTopic.id}`} className="text-sm lg:text-base text-gray-800">
-              {generalTopic.title}
+            <label
+              htmlFor={`specific-${specificTopic.id}`}
+              className="text-sm text-gray-800"
+            >
+              {specificTopic.title}
             </label>
           </div>
-          <div className="ml-4">
-            {generalTopic.topicSpecific.map((specificTopic) => (
-              <div key={specificTopic.id} className="flex items-center mb-2">
-                <input
-                  type="checkbox"
-                  id={`specific-${specificTopic.id}`}
-                  onChange={() => handleSpecificTopicChange(generalTopic.id, specificTopic.id)}
-                  checked={checkboxes[`${generalTopic.id}-${specificTopic.id}`] || false}
-                  disabled={!selectedGeneralTopics.has(generalTopic.id)}
-                  className="mr-2"
-                />
-                <label
-                  htmlFor={`specific-${specificTopic.id}`}
-                  className={`text-sm lg:text-xs ${!selectedGeneralTopics.has(generalTopic.id) ? 'text-gray-400' : 'text-gray-800'}`}
-                >
-                  {specificTopic.title}
-                </label>
-              </div>
-            ))}
+        ))}
+</div>
+
+{/* Altura fantasma para empurrar o botão para baixo */}
+<div className="h-24"></div>
+
+{/* Botão Aplicar Filtro */}
+<button
+  onClick={handleCloseModal}
+  className="fixed bottom-0 left-0 w-full bg-blue-600 text-white p-3 text-center"
+>
+  Aplicar Filtro
+</button>
+
+
           </div>
         </div>
-      ))}
+      )}
 
+      {/* Experimentos */}
       <div className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
-        <h3 className="text-xl font-semibold mb-4 text-gray-700">Tipos de Experimento</h3>
+        <h3 className="text-xl font-semibold mb-4 text-gray-700">Tipos de recursos didáticos</h3>
         <p className="text-base text-gray-600 mb-6">
-          Escolha entre diversos tipos de experimentos.
+          Escolha entre diversos tipos de recursos didáticos.
         </p>
         {experimentTypes.map((type) => (
           <div key={type.id} className="flex items-center mb-2">
@@ -344,49 +373,6 @@ export default function Search() {
           </div>
         ))}
       </div>
-
-      <div className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
-        <h3 className="text-xl font-semibold mb-4 text-gray-700">Dificuldades</h3>
-        <p className="text-base text-gray-600 mb-6">
-          Encontre experimentos que correspondam ao seu nível de habilidade.
-        </p>
-        {difficulties.map((difficulty) => (
-          <div key={difficulty.id} className="flex items-center mb-2">
-            <input
-              type="checkbox"
-              id={`difficulty-${difficulty.id}`}
-              onChange={() => handleDifficultyChange(difficulty.id)}
-              checked={selectedDifficulties.has(difficulty.id)}
-              className="mr-2"
-            />
-            <label htmlFor={`difficulty-${difficulty.id}`} className="text-sm lg:text-base text-gray-800">
-              {difficulty.title}
-            </label>
-          </div>
-        ))}
-      </div>
-
-      <div className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
-        <h3 className="text-xl font-semibold mb-4 text-gray-700">Localizações</h3>
-        <p className="text-base text-gray-600 mb-6">
-          Filtre os experimentos com base em suas localizações.
-        </p>
-        {locationData.map((location) => (
-          <div key={location.id} className="flex items-center mb-2">
-            <input
-              type="checkbox"
-              id={`location-${location.id}`}
-              onChange={() => handleLocationChange(location.id)}
-              checked={selectedLocations.has(location.id)}
-              className="mr-2"
-            />
-            <label htmlFor={`location-${location.id}`} className="text-sm lg:text-base text-gray-800">
-              {location.title}
-            </label>
-          </div>
-        ))}
-      </div>
-    </div>
 
     <div className="flex justify-center mt-6">
       <button
@@ -408,7 +394,7 @@ export default function Search() {
     <h2 className="text-3xl font-bold mb-6 text-gray-800">Experimentos Filtrados</h2>
     <div className="flex flex-wrap gap-2 mb-4">
       <span className="font-bold text-gray-700">Filtros atualmente aplicados:</span>
-      {appliedFilters.general.length > 0 || appliedFilters.specific.length > 0 || appliedFilters.experimentTypes.length > 0 || appliedFilters.difficulties.length > 0 || appliedFilters.locations.length > 0 ? (
+      {appliedFilters.general.length > 0 || appliedFilters.specific.length > 0 || appliedFilters.experimentTypes.length > 0 ? (
         <>
           {appliedFilters.general.map((filterId) => {
             const generalTopic = topicGeneralData.find((topic) => topic.id === filterId);
@@ -446,28 +432,7 @@ export default function Search() {
               </span>
             ) : null;
           })}
-          {appliedFilters.difficulties.map((filterId) => {
-            const difficulty = difficulties.find((diff) => diff.id === filterId);
-            return difficulty ? (
-              <span
-                key={difficulty.id}
-                className="px-2 py-1 bg-red-200 text-red-800 rounded-lg text-sm mr-2 mb-2"
-              >
-                {difficulty.title}
-              </span>
-            ) : null;
-          })}
-          {appliedFilters.locations.map((filterId) => {
-            const location = locationData.find((loc) => loc.id === filterId);
-            return location ? (
-              <span
-                key={location.id}
-                className="px-2 py-1 bg-purple-200 text-purple-800 rounded-lg text-sm mr-2 mb-2"
-              >
-                {location.title}
-              </span>
-            ) : null;
-          })}
+         
         </>
       ) : (
         <span className="text-sm text-gray-500">Nenhum filtro aplicado.</span>
