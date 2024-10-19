@@ -236,32 +236,33 @@ export default function Search() {
   };
 
   return (
-<main className="flex min-h-screen flex-col items-center justify-between sm:m-4">
-  <div className="p-6 bg-white rounded-lg shadow-md w-full">
-    <h2 className="text-3xl font-bold mb-6 text-gray-800">Filtros de pesquisa</h2>
-    <h3 className="text-xl font-semibold mb-4 text-gray-700">Temas dos recursos didáticos</h3>
-    <p className="text-base text-gray-600 mb-6">
-      Filtre pelos temas gerais de Física, Química e Biologia e depois mergulhe em temas específicos dentro de cada área.
-    </p>
+<main className="flex min-h-screen flex-col items-center justify-between sm:m-2">
+  <div className="bg-white border border-gray-300 rounded-lg shadow-md w-full">
+   
 
-    {/* Exibir apenas os temas gerais */}
-    {topicGeneralData.map((generalTopic) => (
-  <div key={generalTopic.id} className="w-full px-2 mb-6">
-    <div className="flex items-start mb-4 p-4 border rounded-lg shadow-md bg-white transition-transform hover:scale-105">
+    <div className="flex flex-wrap justify-between w-full p-4 ">
+
+{/* Exibir apenas os temas gerais */}
+<div className="w-full sm:w-1/2 p-2">
+<h3 className="text-xl font-semibold mb-4 text-gray-700">Temas gerais</h3>
+  <p className="text-base text-gray-600 mb-6">
+    Escolha um tema geral ou um especifico.
+  </p>
+
+  {topicGeneralData.map((generalTopic) => (
+    <div key={generalTopic.id} className="flex items-start mb-4 p-4 border rounded-lg shadow-md bg-white transition-transform duration-200 hover:scale-105">
+      <input
+        type="checkbox"
+        id={`general-${generalTopic.id}`}
+        onChange={() => handleGeneralTopicChange(generalTopic.id)}
+        checked={checkboxes[generalTopic.id] || false}
+        className="mr-3 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+      />
       <div className="flex flex-col flex-grow">
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id={`general-${generalTopic.id}`}
-            onChange={() => handleGeneralTopicChange(generalTopic.id)}
-            checked={checkboxes[generalTopic.id] || false}
-            className="mr-2"
-          />
-          <label htmlFor={`general-${generalTopic.id}`} className="text-lg font-semibold text-gray-800">
-            {generalTopic.title}
-          </label>
-        </div>
-        
+        <label htmlFor={`general-${generalTopic.id}`} className="text-lg font-semibold text-gray-800">
+          {generalTopic.title}
+        </label>
+
         {/* Mensagem condicional */}
         {checkboxes[generalTopic.id] ? (
           <>
@@ -296,102 +297,110 @@ export default function Search() {
           ${checkboxes[generalTopic.id] ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-300 cursor-not-allowed'}`}
       >
         <RiArrowRightSLine className="mr-1" />
-        Escolher temas específicos
+        Temas específicos
       </button>
     </div>
-  </div>
-))}
-
-
-      {/* Modal para selecionar temas específicos */}
-      {isModalOpen && activeGeneralTopic && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" onClick={handleCloseModal}>   {/* Fechar ao clicar fora */}
-          <div className="fixed left-0 top-0 h-full w-80 bg-white p-6 overflow-y-auto shadow-xl transition-transform transform translate-x-0" onClick={(e) => e.stopPropagation()}  >  {/* Impedir o clique dentro do modal de fechar */} 
-            
-{/* Título */}
-<div className="mb-6">
-  <h2 className="text-xl font-semibold text-center">
-    Temas específicos de {activeGeneralTopic.title}
-  </h2>
+  ))}
 </div>
 
-{/* Lista de temas específicos */}
-<div className="flex flex-col overflow-y-auto max-h-[calc(100vh-200px)]"> {/* Ajuste a altura máxima conforme necessário */}
-{activeGeneralTopic?.topicSpecific.map((specificTopic) => (
-          <div key={specificTopic.id} className="flex items-center mb-2">
-            <input
-              type="checkbox"
-              id={`specific-${specificTopic.id}`}
-              onChange={() => handleSpecificTopicChange(activeGeneralTopic.id, specificTopic.id)}
-              checked={checkboxes[`${activeGeneralTopic.id}-${specificTopic.id}`] || false}
-              className="mr-2"
-            />
-            <label
-              htmlFor={`specific-${specificTopic.id}`}
-              className="text-sm text-gray-800"
-            >
-              {specificTopic.title}
-            </label>
-          </div>
-        ))}
+{/* Tipos de recursos didáticos */}
+<div className="w-full sm:w-1/2 p-2">
+  <h3 className="text-xl font-semibold mb-4 text-gray-700">Tipos de Recursos Didáticos</h3>
+  <p className="text-base text-gray-600 mb-6">
+    Escolha entre diversos tipos de recursos didáticos.
+  </p>
+  {experimentTypes.map((type) => (
+    <div key={type.id} className="flex items-center mb-2 p-4 border rounded-lg shadow-md bg-white transition-transform duration-200 hover:scale-105">
+      <input
+        type="checkbox"
+        id={`type-${type.id}`}
+        onChange={() => handleExperimentTypeChange(type.id)}
+        checked={selectedExperimentTypes.has(type.id)}
+        className="mr-3 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+      />
+      <label htmlFor={`type-${type.id}`} className="text-sm lg:text-base text-gray-800">
+        {type.title}
+      </label>
+    </div>
+  ))}
 </div>
 
-{/* Altura fantasma para empurrar o botão para baixo */}
-<div className="h-24"></div>
+</div>
 
-{/* Botão Aplicar Filtro */}
-<button
-  onClick={handleCloseModal}
-  className="fixed bottom-0 left-0 w-full bg-blue-600 text-white p-3 text-center"
->
-  Aplicar Filtro
-</button>
+{/* Modal para selecionar temas específicos */}
+{isModalOpen && activeGeneralTopic && (
+<div className="fixed inset-0 bg-gray-800 bg-opacity-50 z-50" onClick={handleCloseModal}>
+  <div className="fixed left-0 top-0 h-full w-80 bg-white p-6 overflow-y-auto shadow-xl transition-transform duration-200 transform translate-x-0" onClick={(e) => e.stopPropagation()}>
+    
+    {/* Título */}
+    <div className="mb-6">
+      <h2 className="text-xl font-semibold text-center">
+        Temas específicos de {activeGeneralTopic.title}
+      </h2>
+    </div>
 
-
-          </div>
+    {/* Lista de temas específicos */}
+    <div className="flex flex-col overflow-y-auto max-h-[calc(100vh-200px)]">
+      {activeGeneralTopic?.topicSpecific.map((specificTopic) => (
+        <div key={specificTopic.id} className="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id={`specific-${specificTopic.id}`}
+            onChange={() => handleSpecificTopicChange(activeGeneralTopic.id, specificTopic.id)}
+            checked={checkboxes[`${activeGeneralTopic.id}-${specificTopic.id}`] || false}
+            className="mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <label
+            htmlFor={`specific-${specificTopic.id}`}
+            className="text-sm text-gray-800"
+          >
+            {specificTopic.title}
+          </label>
         </div>
-      )}
-
-      {/* Experimentos */}
-      <div className="w-full sm:w-1/3 lg:w-1/3 px-2 mb-6">
-        <h3 className="text-xl font-semibold mb-4 text-gray-700">Tipos de recursos didáticos</h3>
-        <p className="text-base text-gray-600 mb-6">
-          Escolha entre diversos tipos de recursos didáticos.
-        </p>
-        {experimentTypes.map((type) => (
-          <div key={type.id} className="flex items-center mb-2">
-            <input
-              type="checkbox"
-              id={`type-${type.id}`}
-              onChange={() => handleExperimentTypeChange(type.id)}
-              checked={selectedExperimentTypes.has(type.id)}
-              className="mr-2"
-            />
-            <label htmlFor={`type-${type.id}`} className="text-sm lg:text-base text-gray-800">
-              {type.title}
-            </label>
-          </div>
-        ))}
-      </div>
-
-    <div className="flex justify-center mt-6">
-      <button
-        onClick={filterExperiments}
-        className="flex items-center px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-      >
-        <BiSearch className="text-white mr-2" />
-        Filtrar experimentos
-      </button>
+      ))}
     </div>
-    {statusMessage && (
-      <div className={`mt-4 text-center ${statusMessage.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
-        {statusMessage}
-      </div>
-    )}
+
+    {/* Altura fantasma para empurrar o botão para baixo */}
+    <div className="h-24"></div>
+
+    {/* Botão Aplicar Filtro */}
+    <button
+      onClick={handleCloseModal}
+      className="fixed bottom-0 left-0 w-full bg-blue-600 text-white p-3 text-center"
+    >
+      Aplicar Filtro
+    </button>
+  </div>
+</div>
+)}
+
+
+<div className="flex flex-col items-center mb-4">
+  {/* Botão centralizado */}
+  <button
+    onClick={filterExperiments}
+    className="flex items-center px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+  >
+    <BiSearch className="text-white mr-2" />
+    Filtrar recursos didáticos
+  </button>
+
+  {/* Mensagem abaixo do botão */}
+  {statusMessage && (
+    <div className={`mt-4 px-4 py-2 rounded-lg shadow-md ${statusMessage.includes('sucesso') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+      {statusMessage}
+    </div>
+  )}
+</div>
+
+
+
+
+
   </div>
 
   <section className="w-full mt-8">
-    <h2 className="text-3xl font-bold mb-6 text-gray-800">Experimentos Filtrados</h2>
+    <h2 className="font-bold mb-6 text-gray-800">Experimentos Filtrados</h2>
     <div className="flex flex-wrap gap-2 mb-4">
       <span className="font-bold text-gray-700">Filtros atualmente aplicados:</span>
       {appliedFilters.general.length > 0 || appliedFilters.specific.length > 0 || appliedFilters.experimentTypes.length > 0 ? (

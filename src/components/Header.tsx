@@ -6,15 +6,16 @@ import Navbar from './Navbar'
 import { FcBiohazard, FcGlobe, FcSearch } from 'react-icons/fc'
 import { BiSolidFlask } from 'react-icons/bi'
 import logo from "../../public/logo.png"
-import { FaVial } from 'react-icons/fa'
+import { FaBookOpen, FaVial } from 'react-icons/fa'
 
 const Header = () => {
     return (
-      <header className="flex items-center justify-between py-10">
-  <div className="flex items-center">
-        <FaVial className="h-10 w-10 text-blue-500" />
-        <span className="ml-2 text-xl font-medium">Experimentos</span>
-      </div>
+      <header className="flex items-center justify-between py-5 ml-2">
+<div className="flex items-center">
+  <FaBookOpen className="h-10 w-10 text-blue-500" />
+  <span className="ml-2 text-xl font-medium">Recursos Didáticos</span>
+</div>
+
 
 
 
