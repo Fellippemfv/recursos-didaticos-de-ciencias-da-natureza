@@ -1,31 +1,32 @@
 [
-    {
-        "id": 1,
-        "title": "Experimentos",
-        "slug": "demonstrativos",
-        "steps":
-          "São experimentos realizados para demonstrar um conceito específico."
-      },
-      {
-        "id": 2,
-        "title": "Dinâmicas",
-        "slug": "controlados",
-        "steps":
-          "Os alunos conduzem experimentos em que todas as variáveis são controladas para testar uma hipótese específica. "
-      },
-      {
-        "id": 3,
-        "title": "Jogos educativos",
-        "slug": "observacao",
-        "steps":
-          "Os alunos observam fenômenos naturais ou processos em ação e fazem anotações sobre suas observações. "
-      },
-      {
-        "id": 4,
-        "title": "Slides",
-        "slug": "campo",
-        "steps":
-          "Os alunos realizam experimentos fora da sala de aula, muitas vezes em ambientes naturais, para coletar dados e realizar observações. "
-      }
-  ]
-  
+  {
+    "id": 2,
+    "title": "Dinâmicas",
+    "slug": "dinamicas",
+    "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos científicos."
+  },
+  {
+    "id": 1,
+    "title": "Experimentos",
+    "slug": "experimentos",
+    "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+  },
+  {
+    "id": 3,
+    "title": "Jogos educativos",
+    "slug": "jogos-educativos",
+    "steps": "Jogos que auxiliam no aprendizado de ciências por meio de atividades lúdicas e interativas."
+  },
+  {
+    "id": 4,
+    "title": "Modelos físicos",
+    "slug": "modelos-fisicos",
+    "steps": "Representações tridimensionais de objetos ou processos científicos que ajudam na visualização e compreensão dos conteúdos."
+  },
+  {
+    "id": 5,
+    "title": "Slides",
+    "slug": "slides",
+    "steps": "Apresentações visuais que explicam conceitos científicos de forma organizada e sequencial."
+  }
+]

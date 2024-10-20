@@ -250,57 +250,59 @@ export default function Search() {
   </p>
 
   {topicGeneralData.map((generalTopic) => (
-    <div key={generalTopic.id} className="flex items-start mb-4 p-4 border rounded-lg shadow-md bg-white transition-transform duration-200 hover:scale-105">
-      <input
-        type="checkbox"
-        id={`general-${generalTopic.id}`}
-        onChange={() => handleGeneralTopicChange(generalTopic.id)}
-        checked={checkboxes[generalTopic.id] || false}
-        className="mr-3 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-      />
-      <div className="flex flex-col flex-grow">
-        <label htmlFor={`general-${generalTopic.id}`} className="text-lg font-semibold text-gray-800">
+  <div key={generalTopic.id} className="flex items-start mb-4 p-4 border rounded-lg shadow-md bg-white transition-transform duration-200 hover:scale-105">
+    <input
+      type="checkbox"
+      id={`general-${generalTopic.id}`}
+      onChange={() => handleGeneralTopicChange(generalTopic.id)}
+      checked={checkboxes[generalTopic.id] || false}
+      className="mr-3 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+    />
+
+    <div className="flex justify-between items-start w-full">
+      <div className="flex flex-col w-4/5">
+        <label htmlFor={`general-${generalTopic.id}`} className="text-lg font-semibold text-gray-800 cursor-pointer">
           {generalTopic.title}
         </label>
 
         {/* Mensagem condicional */}
-        {checkboxes[generalTopic.id] ? (
-          <>
-            {selectedSpecificTopics.size > 0 ? (
-              <p className="text-xs text-green-600 mt-1">
-                Tópico(s) selecionado(s): {Array.from(selectedSpecificTopics)
-                  .map((specificKey) => {
-                    const specificTopic = topicGeneralData
-                      .find((topic) => topic.id === generalTopic.id)
-                      ?.topicSpecific.find((specific) => `${generalTopic.id}-${specific.id}` === specificKey);
-                    return specificTopic ? specificTopic.title : null;
-                  })
-                  .filter(Boolean) // Remove itens nulos
-                  .join(", ")}
-              </p>
+        <p className={`text-xs mt-1 ${checkboxes[generalTopic.id] ? 'text-green-600' : 'text-gray-600'}`}>
+          {checkboxes[generalTopic.id] ? (
+            selectedSpecificTopics.size > 0 ? (
+              `Tópico(s) selecionado(s): ${Array.from(selectedSpecificTopics)
+                .map((specificKey) => {
+                  const specificTopic = topicGeneralData
+                    .find((topic) => topic.id === generalTopic.id)
+                    ?.topicSpecific.find((specific) => `${generalTopic.id}-${specific.id}` === specificKey);
+                  return specificTopic ? specificTopic.title : null;
+                })
+                .filter(Boolean) // Remove itens nulos
+                .join(", ")}`
             ) : (
-              <p className="text-xs text-red-600 mt-1">
+              <span className="text-red-600">
                 Selecione pelo menos um tópico específico, caso contrário ele vai buscar todos!
-              </p>
-            )}
-          </>
-        ) : (
-          <p className="text-xs text-gray-600 mt-1">
-            Clique nesta caixinha para selecionar este tópico
-          </p>
-        )}
+              </span>
+            )
+          ) : (
+            'Clique nesta caixinha para selecionar este tópico'
+          )}
+        </p>
       </div>
+
       <button
         onClick={() => handleOpenModal(generalTopic)}
         disabled={!checkboxes[generalTopic.id]} // Desabilita se não estiver selecionado
-        className={`ml-4 flex items-center justify-center px-3 py-1 text-white text-sm rounded-lg 
+        className={`flex items-center justify-center w-48 h-10 text-white text-sm rounded-lg 
           ${checkboxes[generalTopic.id] ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-300 cursor-not-allowed'}`}
+        style={{ padding: '1.6rem 1rem' }} // Adicionando padding leve
       >
-        <RiArrowRightSLine className="mr-1" />
-        Temas específicos
+        <RiArrowRightSLine className="mr-1 h-8 w-8" /> {/* Ícone maior */}
+        Escolher Temas
       </button>
     </div>
-  ))}
+  </div>
+))}
+
 </div>
 
 {/* Tipos de recursos didáticos */}
@@ -311,14 +313,15 @@ export default function Search() {
   </p>
   {experimentTypes.map((type) => (
     <div key={type.id} className="flex items-center mb-2 p-4 border rounded-lg shadow-md bg-white transition-transform duration-200 hover:scale-105">
-      <input
-        type="checkbox"
-        id={`type-${type.id}`}
-        onChange={() => handleExperimentTypeChange(type.id)}
-        checked={selectedExperimentTypes.has(type.id)}
-        className="mr-3 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-      />
-      <label htmlFor={`type-${type.id}`} className="text-sm lg:text-base text-gray-800">
+    <input
+  type="checkbox"
+  id={`type-${type.id}`}
+  onChange={() => handleExperimentTypeChange(type.id)}
+  checked={selectedExperimentTypes.has(type.id)}
+  className="mr-3 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+/>
+
+      <label htmlFor={`type-${type.id}`} className="text-sm lg:text-base text-gray-800 cursor-pointer">
         {type.title}
       </label>
     </div>
