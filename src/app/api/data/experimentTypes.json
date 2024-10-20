@@ -1,31 +1,31 @@
 [
   {
     "id": 2,
-    "title": "Dinâmicas",
+    "title": "Dinâmicas (Participação ou Trabalhos em grupo)",
     "slug": "dinamicas",
     "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos científicos."
   },
   {
     "id": 1,
-    "title": "Experimentos",
+    "title": "Experimentos (Demonstrativos e Investigativos)",
     "slug": "experimentos",
     "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
   },
   {
     "id": 3,
-    "title": "Jogos educativos",
+    "title": "Jogos educativos (Quiz e Simulações)",
     "slug": "jogos-educativos",
     "steps": "Jogos que auxiliam no aprendizado de ciências por meio de atividades lúdicas e interativas."
   },
   {
     "id": 4,
-    "title": "Modelos físicos",
+    "title": "Modelos físicos (Maquetes e Protótipos)",
     "slug": "modelos-fisicos",
     "steps": "Representações tridimensionais de objetos ou processos científicos que ajudam na visualização e compreensão dos conteúdos."
   },
   {
     "id": 5,
-    "title": "Slides",
+    "title": "Slides (Apresentações de conceitos e Resumos visuais)",
     "slug": "slides",
     "steps": "Apresentações visuais que explicam conceitos científicos de forma organizada e sequencial."
   }
