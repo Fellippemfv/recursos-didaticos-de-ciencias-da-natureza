@@ -1,5 +1,5 @@
 "use client";
-import { FaArrowRight, FaBook, FaChartBar, FaCheckCircle, FaClipboardCheck, FaClipboardList, FaFileAlt, FaFileDownload, FaFlask, FaImage, FaTimes } from "react-icons/fa";
+import { FaArrowRight, FaBook, FaBullseye, FaChartBar, FaCheckCircle, FaClipboardCheck, FaClipboardList, FaFileAlt, FaFileDownload, FaFlask, FaImage, FaTag, FaTimes } from "react-icons/fa";
 import experimentData from "../../api/data/experimentos.json";
 import { useState } from "react";
 
@@ -40,7 +40,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
     };
 
   return (
-    <div className="container max-w-screen-xl bg-white rounded-lg p-8  border border-gray-300 rounded p-4">
+    <div className="">
         <div
           className="h-40 bg-cover bg-center relative"
           style={{ backgroundImage: `url(${experimentInfo.imagePreview})` }}
@@ -57,10 +57,10 @@ export default function Experiment({ params }: { params: { slug: string } }) {
   <div className="flex justify-between items-initial">
     <div>
       <p className="text-gray-600">
-        Publicado em: {experimentInfo.postDate}
+        Publicado em: {experimentInfo.postDate}.
       </p>
       <p className="text-gray-600">
-        Enviado por: {experimentInfo.profileName}
+        Enviado por: {experimentInfo.profileName}.
       </p>
     </div>
     <p className="text-blue-500 font-semibold">
@@ -69,7 +69,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
   </div>
 
  {/* Título do experimento */}
-<h1 className="text-2xl font-bold mt-6 text-gray-800">{experimentInfo.title}</h1>
+<h1 className="text-2xl font-bold mt-6 text-gray-800">Sobre o recurso didático</h1>
 
 {/* Descrição do experimento */}
 <p className="mt-2 text-base text-gray-700 mb-4 text-justify">{experimentInfo.description}</p>
@@ -77,57 +77,73 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 {/* Seções Padronizadas */}
 
 {/* Sobre o que é este experimento? */}
-<h2 className="text-lg font-semibold text-gray-700">
-  Sobre o que é este experimento?
-</h2>
-<ul className="p-4"> {/* Removi a classe list-disc aqui */}
-  {Object.keys(experimentInfo.topicSpecific).map((topicKey, index) => (
-    <li key={index} className="mt-2">
-      <strong>{topicKey}:</strong>
-      <ul className="list-disc pl-2"> {/* Bolinhas apenas para os tópicos específicos */}
-        {experimentInfo.topicSpecific[topicKey as keyof typeof experimentInfo.topicSpecific]?.map((topic: any) => (
-          <li key={topic.id} className="ml-2">
-            {topic.title}
-          </li>
-        ))}
-      </ul>
-    </li>
-  ))}
-</ul>
+<div className="w-full flex flex-col mb-8">
+  {/* Título com ícone alinhado */}
+  <h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+    <FaTag className="mr-2" /> {/* Ícone à esquerda do título */}
+    Temas deste recurso
+  </h2>
 
+ <div className="overflow-x-auto">
+  <table className="min-w-full border border-gray-300">
+    <thead>
+      <tr className="bg-gray-100">
+        <th className="px-4 py-2 font-semibold text-left text-gray-700">Tema Geral</th>
+        <th className="px-4 py-2 font-semibold text-left text-gray-700">Temas Específicos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {Object.keys(experimentInfo.topicSpecific).map((topicKey, index) => (
+        <tr key={index} className="border-b">
+          <td className="px-4 py-2 font-semibold text-gray-800">
+            {topicKey.charAt(0).toUpperCase() + topicKey.slice(1)} {/* Capitaliza a primeira letra */}
+          </td>
+          <td className="px-4 py-2">
+            <ul className="list-disc pl-4">
+              {experimentInfo.topicSpecific[topicKey as keyof typeof experimentInfo.topicSpecific]?.map((topic: any) => (
+                <li key={topic.id} className="text-gray-700">
+                  {topic.title}
+                </li>
+              ))}
+            </ul>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+</div>
 
 {/* Objetivos */}
-  <h2 className="text-lg font-semibold text-gray-700">Quais são os objetivos?</h2>
-  <ul className="list-disc pl-4 p-4">
+<div className="w-full flex flex-col border border-gray-300 rounded p-4">
+  {/* Título com ícone alinhado */}
+  <h2 className="text-lg font-semibold mb-2 text-gray-700 flex items-center">
+    <FaBullseye className="mr-2" /> {/* Ícone à esquerda do título */}
+    Ojetivos
+  </h2>
+  
+  {/* Lista de objetivos */}
+  <ul className="list-disc">
     {experimentInfo.objectives.map((objective) => (
-      <li key={objective.id} className="ml-4">
+      <li key={objective.id} className="ml-4 text-justify">
         {objective.content}
       </li>
     ))}
   </ul>
-
-
-  
 </div>
-
-
-        
-
-    
-
 
 <div className="w-full mt-8 flex justify-center items-center flex-col">
 <div className="w-full flex flex-col border border-gray-300 rounded p-4">
   {/* Título com ícone alinhado */}
-  <h2 className="text-lg font-semibold mb-6 text-gray-700 flex items-center">
+  <h2 className="text-lg font-semibold mb-2 text-gray-700 flex items-center text-justify">
     <FaClipboardCheck className="mr-2" /> {/* Ícone para Lista de Materiais */}
     Lista de materiais necessários
   </h2>
 
   {/* Lista de materiais com ícones */}
-  <ul className="list-disc pl-4">
+  <ul className="list-disc">
     {experimentInfo.materials.map((material) => (
-      <li key={material.id} className="flex items-center">
+      <li key={material.id} className="flex items-center text-justify">
         <FaCheckCircle className="mr-2 text-green-500" />
         {material.content}
       </li>
@@ -172,7 +188,6 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
           <div className="w-full text-justify">
             <p className="">
-              <FaArrowRight className="inline mr-2" />
               {method.content}
             </p>
           </div>
@@ -183,18 +198,18 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 {/* Modal para imagem em fullscreen */}
 {isModalOpen && (
   <div
-    className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50" // Ajuste a opacidade aqui
-    onClick={closeModal} // Mantém a funcionalidade de fechar ao clicar no fundo
+    className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50" // Fundo com opacidade e modal centralizado
+    onClick={closeModal} // Função para fechar ao clicar no fundo
   >
-    <div className="relative" onClick={(e) => e.stopPropagation()}> {/* Impede que o clique no conteúdo do modal feche o modal */}
+    <div className="relative flex justify-center items-center h-5/6 w-11/12"> {/* Remove onClick aqui */}
       <img
         src={currentImage}
         alt="Imagem ampliada"
-        className="max-w-full max-h-screen object-contain"
+        className="h-full w-full object-contain" // A imagem ocupará a altura total e largura total do contêiner
       />
       <button
-        className="absolute top-4 right-4 text-white text-2xl"
-        onClick={closeModal}
+        className="absolute top-2 right-2 text-white text-2xl"
+        onClick={closeModal} // Botão para fechar o modal
       >
         <FaTimes />
       </button>
@@ -202,21 +217,22 @@ export default function Experiment({ params }: { params: { slug: string } }) {
   </div>
 )}
 
+
+
   </div>
 </div>
 
 
 </div>
 
-
 {/* Resultados Esperados */}
 <div className="mt-4 border border-gray-300 rounded p-4">
 <h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center text-justify">
   <FaChartBar className="mr-2" /> {/* Ícone para Resultados Esperados */}
-  Quais os resultados esperados?
+  Quais são os resultados esperados?
 </h2>
 
-  <p className="mt-2">{experimentInfo.results}</p>
+  <p className="mt-2 text-justify">{experimentInfo.results}</p>
 </div>
 
 {/* Explicação Científica */}
@@ -226,7 +242,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
   Qual a explicação científica?
 </h2>
 
-  <p className="mt-2">{experimentInfo.scientificExplanation}</p>
+  <p className="mt-2 text-justify">{experimentInfo.scientificExplanation}</p>
 </div>
 
 {/* Documentos para Download */}
@@ -264,6 +280,9 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
 
       {/* Adicione mais seções conforme necessário para os outros dados */}
+  
+</div>
+
     </div>
   );
 }
