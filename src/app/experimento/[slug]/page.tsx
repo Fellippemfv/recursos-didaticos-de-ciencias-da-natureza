@@ -72,33 +72,35 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 <h1 className="text-2xl font-bold mt-6 text-gray-800">{experimentInfo.title}</h1>
 
 {/* Descrição do experimento */}
-<p className="mt-2 text-base text-gray-700">{experimentInfo.description}</p>
+<p className="mt-2 text-base text-gray-700 mb-4 text-justify">{experimentInfo.description}</p>
 
 {/* Seções Padronizadas */}
+
 {/* Sobre o que é este experimento? */}
-  <h2 className="text-2xl font-bold mt-6 text-gray-800 mb-4">
-    Sobre o que é este experimento?
-  </h2>
-  <ul className="list-disc pl-4 bg-gray-100 p-4">
-    {Object.keys(experimentInfo.topicSpecific).map((topicKey, index) => (
-      <li key={index} className="mt-2">
-        <strong>{topicKey}:</strong>
-        <ul className="list-disc pl-4 mt-1">
-          {experimentInfo.topicSpecific[topicKey as keyof typeof experimentInfo.topicSpecific]?.map((topic: any) => (
-            <li key={topic.id} className="ml-4">
-              {topic.title}
-            </li>
-          ))}
-        </ul>
-      </li>
-    ))}
-  </ul>
+<h2 className="text-lg font-semibold text-gray-700">
+  Sobre o que é este experimento?
+</h2>
+<ul className="p-4"> {/* Removi a classe list-disc aqui */}
+  {Object.keys(experimentInfo.topicSpecific).map((topicKey, index) => (
+    <li key={index} className="mt-2">
+      <strong>{topicKey}:</strong>
+      <ul className="list-disc pl-2"> {/* Bolinhas apenas para os tópicos específicos */}
+        {experimentInfo.topicSpecific[topicKey as keyof typeof experimentInfo.topicSpecific]?.map((topic: any) => (
+          <li key={topic.id} className="ml-2">
+            {topic.title}
+          </li>
+        ))}
+      </ul>
+    </li>
+  ))}
+</ul>
+
 
 {/* Objetivos */}
-  <h2 className="text-2xl font-bold mt-6 text-gray-800 mb-4">Quais são os objetivos?</h2>
-  <ul className="list-disc pl-4 bg-gray-100 p-4">
+  <h2 className="text-lg font-semibold text-gray-700">Quais são os objetivos?</h2>
+  <ul className="list-disc pl-4 p-4">
     {experimentInfo.objectives.map((objective) => (
-      <li key={objective.id} className="mt-2">
+      <li key={objective.id} className="ml-4">
         {objective.content}
       </li>
     ))}
@@ -115,15 +117,17 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
 
 <div className="w-full mt-8 flex justify-center items-center flex-col">
-<div className="w-full flex flex-col border border-gray-300 rounded p-4 bg-gray-50">
-  <h2 className="text-lg font-semibold mb-6 text-gray-700">
-    <FaClipboardCheck className="inline mr-2" /> {/* Ícone para Lista de Materiais */}
-    Lista de materiais nescessários
+<div className="w-full flex flex-col border border-gray-300 rounded p-4">
+  {/* Título com ícone alinhado */}
+  <h2 className="text-lg font-semibold mb-6 text-gray-700 flex items-center">
+    <FaClipboardCheck className="mr-2" /> {/* Ícone para Lista de Materiais */}
+    Lista de materiais necessários
   </h2>
 
+  {/* Lista de materiais com ícones */}
   <ul className="list-disc pl-4">
     {experimentInfo.materials.map((material) => (
-      <li key={material.id} className="flex items-center text-lg">
+      <li key={material.id} className="flex items-center">
         <FaCheckCircle className="mr-2 text-green-500" />
         {material.content}
       </li>
@@ -132,12 +136,14 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 </div>
 
 
+
   <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start w-full">
-  <div className="mt-8 w-full border border-gray-300 rounded p-4 bg-gray-50">
-    <h2 className="text-lg font-semibold mb-6 text-gray-700">
-      <FaClipboardList className="inline mr-2" />
-      Metodologia
-    </h2>
+  <div className="mt-8 w-full border border-gray-300 rounded p-4">
+  <h2 className="text-lg font-semibold mb-6 text-gray-700 flex items-center">
+  <FaClipboardList className="mr-2" /> {/* Ícone para Metodologia */}
+  Metodologia
+</h2>
+
 
     {experimentInfo.methods.map((method, index) => (
       <div key={method.id} className="flex flex-col mb-8 p-4 border border-gray-200 rounded-lg bg-white flex items-start">
@@ -165,7 +171,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
           </div>
 
           <div className="w-full text-justify">
-            <p className="text-lg text-gray-600">
+            <p className="">
               <FaArrowRight className="inline mr-2" />
               {method.content}
             </p>
@@ -205,30 +211,33 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
 {/* Resultados Esperados */}
 <div className="mt-4 border border-gray-300 rounded p-4">
-  <h2 className="text-lg font-semibold mb-4 text-gray-700">
-    <FaChartBar className="inline mr-2" /> {/* Ícone para Resultados Esperados */}
-    Quais os resultados esperados?
-  </h2>
+<h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center text-justify">
+  <FaChartBar className="mr-2" /> {/* Ícone para Resultados Esperados */}
+  Quais os resultados esperados?
+</h2>
+
   <p className="mt-2">{experimentInfo.results}</p>
 </div>
 
 {/* Explicação Científica */}
 <div className="mt-4 border border-gray-300 rounded p-4">
-  <h2 className="text-lg font-semibold mb-4 text-gray-700">
-    <FaFlask className="inline mr-2" /> {/* Ícone para Explicação Científica */}
-    Qual a explicação científica?
-  </h2>
+<h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center text-justify">
+  <FaFlask className="mr-2" /> {/* Ícone para Explicação Científica */}
+  Qual a explicação científica?
+</h2>
+
   <p className="mt-2">{experimentInfo.scientificExplanation}</p>
 </div>
 
 {/* Documentos para Download */}
 <div className="mt-4 border border-gray-300 rounded p-4">
-  <h2 className="text-lg font-semibold mb-4 text-gray-700">
-    <FaFileDownload className="inline mr-2" /> {/* Ícone para Documentos */}
-    Documentos para download
-  </h2>
+<h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center text-justify">
+  <FaFileDownload className="mr-2" /> {/* Ícone para Documentos */}
+  Documento(s) para download
+</h2>
+
   <p
-    className="mt-2 cursor-pointer text-blue-600"
+    className="mt-2 cursor-pointer text-blue-600 text-justify"
     onClick={() => downloadFile(experimentInfo.activitySheet, 'roteiro-de-atividade.docx')}
   >
     roteiro-de-atividade.docx
@@ -237,10 +246,12 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
 {/* Referências */}
 <div className="mt-4 border border-gray-300 rounded p-4">
-  <h2 className="text-lg font-semibold mb-4 text-gray-700">
-    <FaBook className="inline mr-2" /> {/* Ícone para Referências */}
-    Referências
-  </h2>
+<h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center text-justify">
+  <FaBook className="mr-2" /> {/* Ícone para Referências */}
+  Referências
+</h2>
+
+
   <ul className="list-disc pl-4 mt-2">
     {experimentInfo.references.map((reference) => (
       <li key={reference.id} className="break-words">
