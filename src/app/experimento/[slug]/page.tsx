@@ -7,16 +7,17 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState('');
-
-  const openModal = (imagePath) => {
+  
+  const openModal = (imagePath: string) => {
     setCurrentImage(imagePath);
     setIsModalOpen(true);
   };
-
+  
   const closeModal = () => {
     setIsModalOpen(false);
     setCurrentImage('');
   };
+  
 
   const [experimentList] = useState(experimentData);
   const pageSlug = params.slug;
@@ -142,7 +143,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
   {/* Lista de materiais com ícones */}
   <ul className="list-disc">
-    {experimentInfo.materials.map((material) => (
+    {experimentInfo.materials.map((material: any) => (
       <li key={material.id} className="flex items-center text-justify">
         <FaCheckCircle className="mr-2 text-green-500" />
         {material.content}
@@ -161,7 +162,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 </h2>
 
 
-    {experimentInfo.methods.map((method, index) => (
+    {experimentInfo.methods.map((method: any, index) => (
       <div key={method.id} className="flex flex-col mb-8 p-4 border border-gray-200 rounded-lg bg-white flex items-start">
         
         {/* Bloco para o título da etapa */}
@@ -252,9 +253,9 @@ export default function Experiment({ params }: { params: { slug: string } }) {
   Documento(s) para download
 </h2>
 
-  <p
+<p
     className="mt-2 cursor-pointer text-blue-600 text-justify"
-    onClick={() => downloadFile(experimentInfo.activitySheet, 'roteiro-de-atividade.docx')}
+    onClick={() => downloadFile(experimentInfo.activitySheet || '', 'roteiro-de-atividade.docx')} // Define um valor padrão
   >
     roteiro-de-atividade.docx
   </p>
@@ -269,7 +270,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
 
   <ul className="list-disc pl-4 mt-2">
-    {experimentInfo.references.map((reference) => (
+    {experimentInfo.references.map((reference: any) => (
       <li key={reference.id} className="break-words">
         {reference.content}
       </li>
