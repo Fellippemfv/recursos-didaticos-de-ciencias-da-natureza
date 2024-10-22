@@ -1,19 +1,17 @@
 [
-    
-      {
-        "id": 1,
-        "source": "Livro",
-        "rule": "SOBRENOME, Nome. <em>Título do livro</em>: subtítulo. Edição (se houver). Local de ação: Editora, Ano de ação."
-      },
-      {
-        "id": 2,
-        "source": "Site",
-        "rule": "NOME DO SITE. Disponível em: <URL>. Acesso em: Data."
-      },
-      {
-        "id": 3,
-        "source": "Artigo",
-        "rule": "AUTOR. Título do artigo. <em>Nome da Revista</em>, Local de ação, volume, número, página inicial-final, mês, ano."
-      }
-  ]
-  
+  {
+    "id": 1,
+    "source": "Livro",
+    "rule": "SOBRENOME, Nome. <em>Título do livro</em>: subtítulo. Edição (se houver). Local de ação: Editora, Ano de ação. Disponível em: &lt;URL&gt;. Acesso em: Dia mês ano."
+  },
+  {
+    "id": 2,
+    "source": "Site",
+    "rule": "NOME DO SITE. Disponível em: &lt;URL&gt;. Acesso em: Dia mês ano."
+  },
+  {
+    "id": 3,
+    "source": "Artigo",
+    "rule": "AUTOR. Título do artigo. <Nome da Revista>, Local de ação, volume, número, página inicial-final, mês, ano. Disponível em: &lt;URL&gt;. Acesso em: Dia mês ano."
+  }
+]

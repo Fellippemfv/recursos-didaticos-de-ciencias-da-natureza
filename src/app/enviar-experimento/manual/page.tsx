@@ -159,7 +159,7 @@ export default function Experiment() {
     results: "",
     scientificExplanation: "",
     references: [],
-    activitySheet: "",
+    activitySheetOne: "",
   });
 
   const handleSelectExperimentTypeChange = (selectedType: ExperimentType) => {
@@ -747,11 +747,11 @@ export default function Experiment() {
       // Chama a função handleImageUploadMethod
       await handleImageUploadMethod();
 
-
-      const handleDocumentUpload = async () => {
+      // Chama a função handleDocumentUploadOne
+      const handleDocumentUploadOne = async () => {
         console.log('Iniciando o upload de documentos...');
       
-        if (!selectedDocument) {
+        if (!selectedDocumentOne) {
           console.error('Nenhum documento selecionado.');
           return;
         }
@@ -767,7 +767,7 @@ export default function Experiment() {
           const base64Content = base64String.split(',')[1];
           console.log('Base64 do documento:', base64Content);
       
-          const documentPath = `public/${experimentData.id}/documents/${selectedDocument.name}`;
+          const documentPath = `public/${experimentData.id}/documents/${selectedDocumentOne.name}`;
       
           let fileSha = '';
       
@@ -825,13 +825,174 @@ export default function Experiment() {
           console.error('Erro ao ler o arquivo.');
         };
       
-        reader.readAsDataURL(selectedDocument);
+        reader.readAsDataURL(selectedDocumentOne);
       };
       
+      await handleDocumentUploadOne();
+
+      // Chama a função handleDocumentUploadTwo
+      const handleDocumentUploadTwo = async () => {
+        console.log('Iniciando o upload de documentos...');
       
-      // Chama a função handleDocumentUpload
-      await handleDocumentUpload();
+        if (!selectedDocumentTwo) {
+          console.error('Nenhum documento selecionado.');
+          return;
+        }
       
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          const base64String = reader.result as string | null;
+          if (!base64String) {
+            console.error('Erro ao ler o arquivo.');
+            return;
+          }
+      
+          const base64Content = base64String.split(',')[1];
+          console.log('Base64 do documento:', base64Content);
+      
+          const documentPath = `public/${experimentData.id}/documents/${selectedDocumentTwo.name}`;
+      
+          let fileSha = '';
+      
+          // Função para obter a SHA mais recente do arquivo
+          const getFileSha = async (path: string) => {
+            try {
+              const { data } = await octokitClient.repos.getContent({
+                owner: forkOwner,
+                repo: baseRepositoryName,
+                path: path,
+                ref: newBranchName,
+              });
+      
+              if (Array.isArray(data)) {
+                console.error('O caminho especificado parece ser um diretório, não um arquivo.');
+                return '';
+              }
+      
+              return data.sha;
+            } catch (error: any) {  // Aqui foi alterado para `any`
+              if (error.status === 404) {
+                return ''; // Arquivo não existe
+              } else {
+                console.error('Erro ao verificar existência do arquivo no GitHub:', error);
+                throw error;
+              }
+            }
+          };
+      
+          try {
+            fileSha = await getFileSha(documentPath);
+          } catch (error: any) {  // Aqui foi alterado para `any`
+            console.error('Erro ao obter SHA do arquivo:', error);
+            return;
+          }
+      
+          try {
+            await octokitClient.repos.createOrUpdateFileContents({
+              owner: forkOwner,
+              repo: baseRepositoryName,
+              path: documentPath,
+              message: `Add document for experiment N° ${experimentData.id}`,
+              content: base64Content,
+              branch: newBranchName,
+              sha: fileSha, // Incluir SHA se o arquivo já existir
+            });
+      
+            console.log(`Documento ${documentPath} adicionado com sucesso!`);
+          } catch (error: any) {  // Aqui foi alterado para `any`
+            console.error('Erro ao fazer upload do documento para o GitHub:', error);
+          }
+        };
+      
+        reader.onerror = () => {
+          console.error('Erro ao ler o arquivo.');
+        };
+      
+        reader.readAsDataURL(selectedDocumentTwo);
+      };
+      await handleDocumentUploadTwo();
+      
+      // Chama a função handleDocumentUploadThree
+      const handleDocumentUploadThree = async () => {
+        console.log('Iniciando o upload de documentos...');
+      
+        if (!selectedDocumentThree) {
+          console.error('Nenhum documento selecionado.');
+          return;
+        }
+      
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          const base64String = reader.result as string | null;
+          if (!base64String) {
+            console.error('Erro ao ler o arquivo.');
+            return;
+          }
+      
+          const base64Content = base64String.split(',')[1];
+          console.log('Base64 do documento:', base64Content);
+      
+          const documentPath = `public/${experimentData.id}/documents/${selectedDocumentThree.name}`;
+      
+          let fileSha = '';
+      
+          // Função para obter a SHA mais recente do arquivo
+          const getFileSha = async (path: string) => {
+            try {
+              const { data } = await octokitClient.repos.getContent({
+                owner: forkOwner,
+                repo: baseRepositoryName,
+                path: path,
+                ref: newBranchName,
+              });
+      
+              if (Array.isArray(data)) {
+                console.error('O caminho especificado parece ser um diretório, não um arquivo.');
+                return '';
+              }
+      
+              return data.sha;
+            } catch (error: any) {  // Aqui foi alterado para `any`
+              if (error.status === 404) {
+                return ''; // Arquivo não existe
+              } else {
+                console.error('Erro ao verificar existência do arquivo no GitHub:', error);
+                throw error;
+              }
+            }
+          };
+      
+          try {
+            fileSha = await getFileSha(documentPath);
+          } catch (error: any) {  // Aqui foi alterado para `any`
+            console.error('Erro ao obter SHA do arquivo:', error);
+            return;
+          }
+      
+          try {
+            await octokitClient.repos.createOrUpdateFileContents({
+              owner: forkOwner,
+              repo: baseRepositoryName,
+              path: documentPath,
+              message: `Add document for experiment N° ${experimentData.id}`,
+              content: base64Content,
+              branch: newBranchName,
+              sha: fileSha, // Incluir SHA se o arquivo já existir
+            });
+      
+            console.log(`Documento ${documentPath} adicionado com sucesso!`);
+          } catch (error: any) {  // Aqui foi alterado para `any`
+            console.error('Erro ao fazer upload do documento para o GitHub:', error);
+          }
+        };
+      
+        reader.onerror = () => {
+          console.error('Erro ao ler o arquivo.');
+        };
+      
+        reader.readAsDataURL(selectedDocumentThree);
+      };
+      await handleDocumentUploadThree();
 
       const handleApplyingCommentsAndPullRequest = async () => {
         adicionarPasso("Adicionando sugestão de novo experimento...", true);
@@ -1100,53 +1261,163 @@ export default function Experiment() {
     reader.readAsDataURL(file);
   };
 
-  const [selectedDocument, setSelectedDocument] = useState<File | null>(null);
-  const [documentPreviewURL, setDocumentPreviewURL] = useState<string | null>(null);
-  const [isDocumentConfirmed, setIsDocumentConfirmed] = useState(false);
+  //Documento-1
+  const [selectedDocumentOne, setSelectedDocumentOne] = useState<File | null>(null);
+  const [documentPreviewURLOne, setDocumentPreviewURLOne] = useState<string | null>(null);
+  const [isDocumentConfirmedOne, setIsDocumentConfirmedOne] = useState(false);
 
-  const handleDocumentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   //Documento-2
+   const [selectedDocumentTwo, setSelectedDocumentTwo] = useState<File | null>(null);
+   const [documentPreviewURLTwo, setDocumentPreviewURLTwo] = useState<string | null>(null);
+   const [isDocumentConfirmedTwo, setIsDocumentConfirmedTwo] = useState(false);
+
+     //Documento-3
+     const [selectedDocumentThree, setSelectedDocumentThree] = useState<File | null>(null);
+     const [documentPreviewURLThree, setDocumentPreviewURLThree] = useState<string | null>(null);
+     const [isDocumentConfirmedThree, setIsDocumentConfirmedThree] = useState(false);
+
+
+  const handleDocumentChangeOne = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     console.log(file);
 
     if (file) {
-      setSelectedDocument(file);
+      setSelectedDocumentOne(file);
       const documentURL = URL.createObjectURL(file);
-      setDocumentPreviewURL(documentURL);
-      setIsDocumentConfirmed(true);
-      uploadDocument(file);
+      setDocumentPreviewURLOne(documentURL);
+      setIsDocumentConfirmedOne(true);
+      uploadDocumentOne(file);
     }
   };
 
-  const handleRemoveDocument = () => {
-    setSelectedDocument(null);
-    setDocumentPreviewURL(null);
-    setIsDocumentConfirmed(false);
+  const handleRemoveDocumentOne = () => {
+    setSelectedDocumentOne(null);
+    setDocumentPreviewURLOne(null);
+    setIsDocumentConfirmedOne(false);
     setUploadStatus('');
     
-    // Limpe a propriedade activitySheet do estado experimentData
+    // Limpe a propriedade activitySheetOne do estado experimentData
     setExperimentData((prevState) => ({
       ...prevState,
-      activitySheet: '',
+      activitySheetOne: '',
     }));
 
     // Redefinir o valor do input file para null
-    const documentInputElement = document.getElementById('documentUpload') as HTMLInputElement;
+    const documentInputElement = document.getElementById('documentUploadOne') as HTMLInputElement;
     if (documentInputElement) {
       documentInputElement.value = '';
     }
   };
 
-  const uploadDocument = (file: File) => {
+  const uploadDocumentOne = (file: File) => {
     const reader = new FileReader();
 
     reader.onload = () => {
       // Cria o link dinâmico do documento
       const documentPath = `/${experimentData.id}/documents/${file.name}`
 
-      // Atualiza o estado activitySheet com o link dinâmico do documento
+      // Atualiza o estado activitySheetOne com o link dinâmico do documento
       setExperimentData((prevState) => ({
         ...prevState,
-        activitySheet: documentPath,
+        activitySheetOne: documentPath,
+      }));
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleDocumentChangeTwo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    console.log(file);
+
+    if (file) {
+      setSelectedDocumentTwo(file);
+      const documentURL = URL.createObjectURL(file);
+      setDocumentPreviewURLTwo(documentURL);
+      setIsDocumentConfirmedTwo(true);
+      uploadDocumentTwo(file);
+    }
+  };
+
+  const handleRemoveDocumentTwo = () => {
+    setSelectedDocumentTwo(null);
+    setDocumentPreviewURLTwo(null);
+    setIsDocumentConfirmedTwo(false);
+    setUploadStatus('');
+    
+    // Limpe a propriedade activitySheetTwo do estado experimentData
+    setExperimentData((prevState) => ({
+      ...prevState,
+      activitySheetTwo: '',
+    }));
+
+    // Redefinir o valor do input file para null
+    const documentInputElement = document.getElementById('documentUploadTwo') as HTMLInputElement;
+    if (documentInputElement) {
+      documentInputElement.value = '';
+    }
+  };
+
+  const uploadDocumentTwo = (file: File) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      // Cria o link dinâmico do documento
+      const documentPath = `/${experimentData.id}/documents/${file.name}`
+
+      // Atualiza o estado activitySheetTwo com o link dinâmico do documento
+      setExperimentData((prevState) => ({
+        ...prevState,
+        activitySheetTwo: documentPath,
+      }));
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleDocumentChangeThree = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    console.log(file);
+
+    if (file) {
+      setSelectedDocumentThree(file);
+      const documentURL = URL.createObjectURL(file);
+      setDocumentPreviewURLThree(documentURL);
+      setIsDocumentConfirmedThree(true);
+      uploadDocumentThree(file);
+    }
+  };
+
+  const handleRemoveDocumentThree = () => {
+    setSelectedDocumentThree(null);
+    setDocumentPreviewURLThree(null);
+    setIsDocumentConfirmedThree(false);
+    setUploadStatus('');
+    
+    // Limpe a propriedade activitySheetThree do estado experimentData
+    setExperimentData((prevState) => ({
+      ...prevState,
+      activitySheetThree: '',
+    }));
+
+    // Redefinir o valor do input file para null
+    const documentInputElement = document.getElementById('documentUploadThree') as HTMLInputElement;
+    if (documentInputElement) {
+      documentInputElement.value = '';
+    }
+  };
+
+  const uploadDocumentThree = (file: File) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      // Cria o link dinâmico do documento
+      const documentPath = `/${experimentData.id}/documents/${file.name}`
+
+      // Atualiza o estado activitySheetThree com o link dinâmico do documento
+      setExperimentData((prevState) => ({
+        ...prevState,
+        activitySheetThree: documentPath,
       }));
     };
 
@@ -1386,8 +1657,7 @@ export default function Experiment() {
                       <div className="flex flex-col">
                         <p className="mt-2 mb-4 text-sm text-muted-foreground flex-1">
                           O "ID" é gerado automaticamente, seria o numero de
-                          identificação do experimento e deve servir para
-                          adicionar e editar o experimento na plataforma do
+                          identificação do recurso didático e deve servir para editar a atividade na plataforma do
                           github.
                         </p>
                         <Input
@@ -1414,7 +1684,7 @@ export default function Experiment() {
                       <div className="flex flex-col">
                         <p className="mt-2 mb-4 text-sm text-muted-foreground flex-1">
                           A data é gerada automaticamente, deve servir para
-                          adicionar a pagina do experimento o dia e hora que ele
+                          mostrar na página da atividade o dia e hora que ele
                           foi enviado.
                         </p>
                         <Input
@@ -1440,8 +1710,8 @@ export default function Experiment() {
                     </div>
                     <p className="mt-2 mb-4 text-sm text-muted-foreground">
                       O nome do autor/da autora é a identificação de quem enviou
-                      os dados do experimento e aparecerá dentro da página do
-                      experimento para sabermos quem enviou.
+                      os dados do recurso didático e aparecerá dentro da página do
+                      da atividade para sabermos quem enviou.
                     </p>
                     <Input
                       placeholder="Clique e escreva seu nome."
@@ -1478,10 +1748,10 @@ export default function Experiment() {
                     <Label htmlFor="title">Tópico geral  *Obrigatório</Label>
                   </div>
                   <p className="mt-2 mb-4 text-sm text-muted-foreground">
-                    Selecione um tópico geral para o seu experimento entre
+                    Selecione um tópico geral para o seu recurso didático entre
                     Biologia, Física e Química. Escolha cuidadosamente, pois
-                    isso ajudará na identificação e classificação do seu
-                    experimento.
+                    isso ajudará na identificação e classificação do sua
+                    atividade.
                   </p>
                   <select
                     id="topicGeneral"
@@ -1563,9 +1833,9 @@ export default function Experiment() {
                           </div>
                           <p className="mt-2 mb-4 text-sm text-muted-foreground">
                             Selecione um tópico específico dentro da{" "}
-                            {generalTopic.title} para o seu experimento. Escolha
+                            {generalTopic.title} para o seu recurso didático. Escolha
                             cuidadosamente, pois isso ajudará na identificação e
-                            classificação do seu experimento.
+                            classificação de sua atividade.
                           </p>
                           <select
                             id={`topicSpecific-${generalTopic.slug}`}
@@ -1665,7 +1935,7 @@ export default function Experiment() {
                           <thead className="bg-gray-50">
                             <tr>
                               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Tipo de Experimento
+                                Tipo de Recurso didático
                               </th>
                               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Descrição
@@ -1683,66 +1953,65 @@ export default function Experiment() {
                         </table>
                       </div>
                     </div>
-                    <div className="mt-2 flex flex-col justfy-center p-4 border border-solid border-gray-300 rounded-md mb-4 relative">
-                      <table className="custom-table">
-                        <tbody>
-                          {experimentTypes.map((type, index) =>
-                            index % 2 === 0 ? (
-                              <tr className="flex justify-around" key={type.id}>
-                                <td>
-                                  <label>
-                                    <input
-                                      type="radio"
-                                      name="experimentType"
-                                      value={type.slug}
-                                      checked={
-                                        // @ts-ignore
-                                        experimentData.experimentType.slug ===
-                                        type.slug
-                                      }
-                                      onChange={() =>
-                                        handleSelectExperimentTypeChange(type)
-                                      }
-                                      className="mr-1"
-                                    />
-                                    {type.title}
-                                  </label>
-                                </td>
-                                {experimentTypes[index + 1] && (
-                                  <td>
-                                    <label>
-                                      <input
-                                        type="radio"
-                                        name="experimentType"
-                                        value={experimentTypes[index + 1].slug}
-                                        checked={
-                                          // @ts-ignore
-                                          experimentData.experimentType.slug ===
-                                          experimentTypes[index + 1].slug
-                                        }
-                                        onChange={() =>
-                                          handleSelectExperimentTypeChange(
-                                            experimentTypes[index + 1],
-                                          )
-                                        }
-                                        className="mr-1"
-                                      />
-                                      {experimentTypes[index + 1].title}
-                                    </label>
-                                  </td>
-                                )}
-                              </tr>
-                            ) : null,
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
+                    <div className="mt-4 p-4 border border-gray-300 rounded-md mb-4 relative bg-white shadow-sm">
+  {/* Tabela estilizada para tipos de experimentos */}
+  <table className="w-full table-fixed">
+    <tbody>
+      {experimentTypes.map((type, index) =>
+        index % 2 === 0 ? (
+          <tr key={type.id} className="flex justify-between mb-2">
+            <td className="w-1/2 p-2">
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="experimentType"
+                  value={type.slug}
+                  checked={
+                    // @ts-ignore
+                    experimentData.experimentType.slug === type.slug
+                  }
+                  onChange={() => handleSelectExperimentTypeChange(type)}
+                  className="mr-2 text-blue-600 focus:ring focus:ring-blue-300"
+                />
+                <span className="text-gray-700">{type.title}</span>
+              </label>
+            </td>
+            {experimentTypes[index + 1] && (
+              <td className="w-1/2 p-2">
+                <label className="flex items-center cursor-pointer">
+                  <input
+                    type="radio"
+                    name="experimentType"
+                    value={experimentTypes[index + 1].slug}
+                    checked={
+                      // @ts-ignore
+                      experimentData.experimentType.slug ===
+                      experimentTypes[index + 1].slug
+                    }
+                    onChange={() =>
+                      handleSelectExperimentTypeChange(experimentTypes[index + 1])
+                    }
+                    className="mr-2 text-blue-600 focus:ring focus:ring-blue-300"
+                  />
+                  <span className="text-gray-700">
+                    {experimentTypes[index + 1].title}
+                  </span>
+                </label>
+              </td>
+            )}
+          </tr>
+        ) : null
+      )}
+    </tbody>
+  </table>
+</div>
+
 
                     {experimentData.experimentType.length === 0 && (
                       <div className="flex flex-row justify-center mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
-                          Selecione pelo menos um tipo de experimento.
+                          Selecione pelo menos um tipo de recurso didático.
                         </span>
                       </div>
                     )}
@@ -1767,8 +2036,8 @@ export default function Experiment() {
                     {/* Restante do código... */}
                   </div>
                   <p className="mt-2 mb-4 text-sm text-muted-foreground">
-                    O título é uma parte crucial da identificação do seu
-                    experimento. Por favor, seja claro e descritivo, de
+                    O título é uma parte crucial da identificação do sua
+                    atividade. Por favor, seja claro e descritivo, de
                     preferência faça algo chamativo.
                   </p>
                   <Input
@@ -1786,7 +2055,7 @@ export default function Experiment() {
                   {experimentData.title.length === 0 && (
                     <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                       <MdError className="mr-2" />
-                      <span>Escreva um Título para o experimento</span>
+                      <span>Escreva um Título para representar a atividade</span>
                     </div>
                   )}
                 </div>
@@ -1800,7 +2069,7 @@ export default function Experiment() {
         </div>
 
         <p className="mb-2 text-sm text-muted-foreground">
-          Forneça uma imagem que represente o experimento como um
+          Forneça uma imagem que represente a atividade como um
           todo. Essa imagem vai ficar na página de busca e na página
           do experimento em si.
         </p>
@@ -1852,7 +2121,7 @@ export default function Experiment() {
           {experimentData.imagePreview.length === 0 && (
             <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
               <MdError className="mr-2" />
-              <span>Adicione uma imagem relacionada ao experimento</span>
+              <span>Adicione uma imagem relacionada ao recurso didático</span>
             </div>
           )}
         </div>
@@ -1869,8 +2138,8 @@ export default function Experiment() {
               <Label htmlFor="previewImage">Descrição *Obrigatório</Label>
             </div>
             <p className="mb-2 text-sm text-muted-foreground">
-              Forneça uma descrição objetiva, detalhada e concisa do seu
-              experimento, escreva de forma que fique chamativo e atraia
+              Forneça uma descrição objetiva, detalhada e concisa da
+              atividade, escreva de forma que fique chamativo e atraia
               as pessoas a acessarem. Essa descrição vai aparecer na
               página de procurar experimentos, logo, seja breve.
             </p>
@@ -1890,34 +2159,159 @@ export default function Experiment() {
               <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                 <MdError className="mr-2" />
                 <span>
-                  Escreva uma descrição relacionada ao experimento
+                  Escreva uma descrição relacionada ao recurso didático
                 </span>
               </div>
             )}
           </div>
         </div>
 
-<div className="mt-8">
-                  <div className="mb-4">
-                    <div className="flex flex-row items-center mb-2">
-                      <div>
-                        <MdOutlineDescription style={{ marginRight: "5px" }} />{" "}
-                        {/* Adicionando o ícone MdImage dentro de uma div */}
-                      </div>
-                      <Label htmlFor="previewImage">Arquivos adicionais para download *Opcional</Label>
-                    </div>
-                    <p className="mb-2 text-sm text-muted-foreground">
-                    Anexe até 5 arquivos adicionais nos formatos ".docx" ou ".pptx". De no maximo 1mb. Esses arquivos podem complementar o recurso didático com materiais de apoio, como roteiros, apresentações ou documentos explicativos.
-                    </p>
+        <div className="mt-8">
+      {/* Cabeçalho com ícone e label */}
 
- {/* Componente para permitir selecionar um arquivo .docx */}
- <input type="file" id="documentUpload" onChange={handleDocumentChange} accept=".docx" />
+     
+      <div className="mb-4">
+        <div className="flex items-center mb-2">
+          <MdOutlineDescription className="text-xl mr-2" />
+          <Label htmlFor="previewImage"> Arquivos adicionais para download *Opcional</Label>
 
-{/* Botão para remover o documento selecionado */}
-<button onClick={handleRemoveDocument}>Remover Documento</button>
-                  </div>
-                </div>
-   
+          
+        </div>
+
+        {/* Texto explicativo */}
+        <p className="mb-2 text-sm text-gray-600">
+          Anexe até 3 arquivos adicionais nos formatos ".docx" ou ".pptx". De no máximo 1mb. Esses arquivos podem complementar o recurso didático com materiais de apoio, como roteiros, apresentações ou documentos explicativos.
+        </p>
+
+{/* Arquivo-1 */}
+<div className="border border-gray-300 p-4 rounded-md mt-4">
+    {/* Linha com o input de arquivo e botão de remover */}
+<div className="flex items-center justify-between mb-4">
+  <h2 className="text-lg font-semibold mr-2">Primeiro Arquivo:</h2> {/* Alinhado à esquerda */}
+
+  {/* Input de arquivo (bloqueado se já tiver um arquivo selecionado) */}
+  <div className="flex-grow mr-2"> {/* Permite que o input ocupe o espaço disponível */}
+    <input
+      type="file"
+      id="documentUploadOne"
+      onChange={handleDocumentChangeOne}
+      accept=".docx, .pptx"
+      disabled={isDocumentConfirmedOne} // Bloqueia o input se já houver um arquivo
+      className={`block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 ${
+        isDocumentConfirmedOne ? "cursor-not-allowed opacity-50" : ""
+      }`}
+      style={{
+        cursor: isDocumentConfirmedOne ? "not-allowed" : "pointer", // Cursor de não permitido quando bloqueado
+      }}
+    />
+  </div>
+
+  {/* Botão de remover (só aparece se houver arquivo selecionado) */}
+  {selectedDocumentOne && (
+    <button
+      onClick={handleRemoveDocumentOne}
+      className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none text-sm"
+    >
+      Remover Documento
+    </button>
+  )}
+</div>
+
+{/* Mensagem de erro ou aviso, só aparece se não houver arquivo */}
+{!selectedDocumentOne && (
+  <p className="mt-2 text-sm text-red-600 bg-red-100 p-2 rounded">
+    Nenhum arquivo escolhido.
+  </p>
+)}
+</div>
+
+{/* Arquivo-2 */}
+<div className="border border-gray-300 p-4 rounded-md mt-4">
+    {/* Linha com o input de arquivo e botão de remover */}
+<div className="flex items-center justify-between mb-4">
+  <h2 className="text-lg font-semibold mr-2">Segundo Arquivo:</h2> {/* Alinhado à esquerda */}
+
+  {/* Input de arquivo (bloqueado se já tiver um arquivo selecionado) */}
+  <div className="flex-grow mr-2"> {/* Permite que o input ocupe o espaço disponível */}
+    <input
+      type="file"
+      id="documentUploadTwo"
+      onChange={handleDocumentChangeTwo}
+      accept=".docx, .pptx"
+      disabled={isDocumentConfirmedTwo} // Bloqueia o input se já houver um arquivo
+      className={`block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 ${
+        isDocumentConfirmedTwo ? "cursor-not-allowed opacity-50" : ""
+      }`}
+      style={{
+        cursor: isDocumentConfirmedTwo ? "not-allowed" : "pointer", // Cursor de não permitido quando bloqueado
+      }}
+    />
+  </div>
+
+  {/* Botão de remover (só aparece se houver arquivo selecionado) */}
+  {selectedDocumentTwo && (
+    <button
+      onClick={handleRemoveDocumentTwo}
+      className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none text-sm"
+    >
+      Remover Documento
+    </button>
+  )}
+</div>
+
+{/* Mensagem de erro ou aviso, só aparece se não houver arquivo */}
+{!selectedDocumentTwo && (
+  <p className="mt-2 text-sm text-red-600 bg-red-100 p-2 rounded">
+    Nenhum arquivo escolhido.
+  </p>
+)}
+</div>
+
+{/* Arquivo-3 */}
+<div className="border border-gray-300 p-4 rounded-md mt-4">
+    {/* Linha com o input de arquivo e botão de remover */}
+<div className="flex items-center justify-between mb-4">
+  <h2 className="text-lg font-semibold mr-2">Terceiro Arquivo:</h2> {/* Alinhado à esquerda */}
+
+  {/* Input de arquivo (bloqueado se já tiver um arquivo selecionado) */}
+  <div className="flex-grow mr-2"> {/* Permite que o input ocupe o espaço disponível */}
+    <input
+      type="file"
+      id="documentUploadThree"
+      onChange={handleDocumentChangeThree}
+      accept=".docx, .pptx"
+      disabled={isDocumentConfirmedThree} // Bloqueia o input se já houver um arquivo
+      className={`block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 ${
+        isDocumentConfirmedThree ? "cursor-not-allowed opacity-50" : ""
+      }`}
+      style={{
+        cursor: isDocumentConfirmedThree ? "not-allowed" : "pointer", // Cursor de não permitido quando bloqueado
+      }}
+    />
+  </div>
+
+  {/* Botão de remover (só aparece se houver arquivo selecionado) */}
+  {selectedDocumentThree && (
+    <button
+      onClick={handleRemoveDocumentThree}
+      className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none text-sm"
+    >
+      Remover Documento
+    </button>
+  )}
+</div>
+
+{/* Mensagem de erro ou aviso, só aparece se não houver arquivo */}
+{!selectedDocumentThree && (
+  <p className="mt-2 text-sm text-red-600 bg-red-100 p-2 rounded">
+    Nenhum arquivo escolhido.
+  </p>
+)}
+</div>
+  
+
+      </div>
+    </div>
 
 
               </div>
@@ -1939,7 +2333,7 @@ export default function Experiment() {
                     {/* Restante do código... */}
                   </div>
                   <p className="mb-2 text-sm text-muted-foreground">
-                    Liste os objetivos do experimento no infinitivo, ou seja,
+                    Liste os objetivos da atividade no infinitivo, ou seja,
                     descreva o que se pretende alcançar de forma clara e
                     sucinta. Certifique-se de incluir todos os objetivos que o
                     experimento visa alcançar. Por exemplo, "analisar",
@@ -1988,7 +2382,7 @@ export default function Experiment() {
                     <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                       <MdError className="mr-2" />
                       <span>
-                        Adicione ao menos um objetivo relacionado ao experimento
+                        Adicione ao menos um objetivo relacionado ao recurso didático
                       </span>
                     </div>
                   )}
@@ -2018,10 +2412,10 @@ export default function Experiment() {
                     {/* Restante do código... */}
                   </div>
                   <p className="mb-2 text-sm text-muted-foreground">
-                    Liste os materiais essenciais para a realização do
-                    experimento. Certifique-se de incluir tudo o que os
-                    participantes precisarão para realizar o experimento com
-                    sucesso. Por exemplo, inclua computador, tablet ou
+                    Liste os materiais essenciais para a realização da
+                    atividade. Certifique-se de incluir tudo o que os
+                    participantes precisarão para realizar a atividade com
+                    sucesso. Por exemplo, inclua, impressão de arquivos, lapis, caneta, computador, tablet ou
                     smartphone com acesso à internet, bem como qualquer outro
                     material. Adicione a quantidade e o nome de cada material.
                   </p>
@@ -2049,7 +2443,7 @@ export default function Experiment() {
                       <div className="p-4">
                         <Input
                           type="text"
-                          placeholder="Clique e escreva um material."
+                          placeholder="Clique e escreva a quantidade e o nome de um material."
                           className="mb-2 max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent focus:ring-transparent outline-none resize-none"
                           defaultValue={material.materialText}
                           onChange={(event) => {
@@ -2067,7 +2461,7 @@ export default function Experiment() {
                     <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                       <MdError className="mr-2" />
                       <span>
-                        Adicione ao menos um material relacionado ao experimento
+                        Adicione ao menos um material que será utilizado na atividade
                       </span>
                     </div>
                   )}
@@ -2095,9 +2489,9 @@ export default function Experiment() {
                   </div>
                   <p className="mb-2 text-sm text-muted-foreground">
                     Forneça uma descrição objetiva, detalhada e concisa de cada
-                    passo para a realização do seu experimento, escreva de forma
+                    passo para a realização a atividade porposta, escreva de forma
                     que fique claro o que devemos realizar, por isso, separe em
-                    passos.
+                    etapas.
                   </p>
 
                   {tempMethods.map((method, index) => (
@@ -2203,7 +2597,7 @@ export default function Experiment() {
                     <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                       <MdError className="mr-2" />
                       <span>
-                        Adicione ao menos um Passo relacionado ao experimento
+                        Adicione ao menos um Passo relacionado ao recurso didático
                       </span>
                     </div>
                   )}
@@ -2227,17 +2621,17 @@ export default function Experiment() {
                         {/* Adicionando o ícone MdImage dentro de uma div */}
                       </div>
                       <Label htmlFor="previewImage">
-                        Resultados do Experimento *Opcional
+                        Resultados esperados *Opcional
                       </Label>
                     </div>
                     {/* Restante do código... */}
                   </div>
                   <p className="mb-2 text-sm text-muted-foreground">
-                    Insira os resultados obtidos a partir da realização do
-                    experimento. Seja claro e objetivo para que outros usuários
+                    Insira os resultados obtidos a partir da realização da
+                    atividade. Seja claro e objetivo para que outros usuários
                     possam entender facilmente o que deve ocorrer ao final da
                     sua realização, mais especificamente o que devemos observar
-                    após o realizar todas as etapas da metodologia.
+                    após o realizar todas as etapas da metodologia. Insira apenas se for pertinente.
                   </p>
 
                   <Textarea
@@ -2255,7 +2649,7 @@ export default function Experiment() {
                     <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                       <MdError className="mr-2" />
                       <span>
-                        Escreva o resultado esperado ao realizar o experimento
+                        Escreva o resultado esperado ao realizar o recurso didático (se houver)
                       </span>
                     </div>
                   )}
@@ -2275,10 +2669,9 @@ export default function Experiment() {
                     {/* Restante do código... */}
                   </div>
                   <p className="mb-2 text-sm text-muted-foreground">
-                    Insira uma explicação científica detalhada do seu
-                    experimento. Utilize terminologia apropriada e seja claro
+                    Insira uma explicação científica detalhada da sua atividade. Utilize terminologia apropriada e seja claro
                     para que outros usuários possam compreender facilmente como
-                    a ciência explica este experimento.
+                    a ciência explica este recurso didático. Lembrando: Apenas se nescessário.
                   </p>
 
                   <Textarea
@@ -2297,7 +2690,7 @@ export default function Experiment() {
                       <MdError className="mr-2" />
                       <span>
                         Escreva uma explicação ciêntifica relacionado ao
-                        experimento
+                        recurso didático (se houver)
                       </span>
                     </div>
                   )}
@@ -2313,9 +2706,9 @@ export default function Experiment() {
                       <Label htmlFor="previewImage">Referências *Obrigatório</Label>
                     </div>
                     <p className="text-sm text-gray-500 mb-4">
-                      Liste as referências utilizadas no experimento.
+                      Liste as referências utilizadas.
                       Certifique-se de incluir todas as fontes e materiais
-                      consultados para realizar o experimento.
+                      consultados para realizar a atividade.
                     </p>
 
                     <div className="mt-2 flex flex-col justfy-center p-4 border border-solid border-gray-300 rounded-md mb-4 relative">
@@ -2387,7 +2780,7 @@ export default function Experiment() {
                       <MdError className="mr-2" />
                       <span>
                         Adicione ao menos uma referência relacionada ao
-                        experimento
+                        recurso didático
                       </span>
                     </div>
                   )}

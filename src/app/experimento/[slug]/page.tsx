@@ -70,7 +70,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
   </div>
 
  {/* Título do experimento */}
-<h1 className="text-2xl font-bold mt-6 text-gray-800">Sobre o recurso didático</h1>
+<h1 className="text-2xl font-bold mt-6 text-gray-800">Proposta da atividade</h1>
 
 {/* Descrição do experimento */}
 <p className="mt-2 text-base text-gray-700 mb-4 text-justify">{experimentInfo.description} Abaixo você pode conferir os temas relacionados a este recurso didático.</p>
