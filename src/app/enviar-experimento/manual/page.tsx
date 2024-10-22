@@ -706,25 +706,34 @@ export default function Experiment() {
       const handleImageUploadMethod = async () => {
         console.log("Iniciando o upload de imagens...");
       
-        // Iterar sobre cada imagem em previewImages
-        for (let i = 0; i < previewImages.length; i++) {
-          const base64String = previewImages[i];
+        // Função para obter a SHA mais recente do arquivo
+        const getFileSha = async (path: string) => {
+          try {
+            const { data } = await octokitClient.repos.getContent({
+              owner: forkOwner,
+              repo: baseRepositoryName,
+              path: path,
+              ref: newBranchName,
+            });
       
-          // Remover o prefixo do URI de dados
-          const base64Content = base64String.split(",")[1];
-          console.log("Base64 da imagem:", base64Content);
+            if (Array.isArray(data)) {
+              console.error("O caminho especificado parece ser um diretório, não um arquivo.");
+              return '';
+            }
       
-          // Obter o nome da imagem usando a mesma lógica que você já tem
-          const imageName = tempMethods[i].imagePath.split("/").pop() || "";
+            return data.sha;
+          } catch (error: any) {
+            if (error.status === 404) {
+              return ''; // Arquivo não existe
+            } else {
+              console.error("Erro ao verificar existência do arquivo no GitHub:", error);
+              throw error;
+            }
+          }
+        };
       
-          // Montar o caminho da imagem sem barra inicial
-          const imagePath = `public/${experimentId}/images/${imageName}`;
-
-
-
-      
-          // Upload da imagem
-          adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
+        // Função para realizar o upload ou atualização de uma imagem
+        const uploadImageToGithub = async (imagePath: string, base64Content: string, sha: string | undefined) => {
           try {
             await octokitClient.repos.createOrUpdateFileContents({
               owner: forkOwner,
@@ -733,266 +742,164 @@ export default function Experiment() {
               message: `Add image for experiment N° ${experimentId}`,
               content: base64Content,
               branch: newBranchName,
+              sha: sha || undefined, // Inclui SHA se não estiver vazia
             });
       
             adicionarPasso(`Imagem ${imagePath} adicionada com sucesso!`, true);
-          } catch (error) {
-            console.error("Erro ao fazer upload da imagem:", error);
+          } catch (error: any) {
+            if (error.status === 409) {
+              console.warn("Conflito de SHA detectado. Tentando obter a SHA mais recente e atualizar novamente.");
+              try {
+                const updatedSha = await getFileSha(imagePath);
+                await uploadImageToGithub(imagePath, base64Content, updatedSha); // Tenta novamente com a nova SHA
+              } catch (retryError: any) {
+                console.error("Erro ao tentar atualizar a imagem novamente:", retryError);
+              }
+            } else {
+              console.error("Erro ao fazer upload da imagem:", error);
+              adicionarPasso(`Erro ao fazer upload da imagem ${imagePath}`, false);
+            }
+          }
+        };
+      
+        // Iterar sobre cada imagem em previewImages
+        for (let i = 0; i < previewImages.length; i++) {
+          const base64String = previewImages[i];
+          const base64Content = base64String.split(",")[1];
+      
+          const imageName = tempMethods[i].imagePath.split("/").pop() || "";
+          const imagePath = `public/${experimentId}/images/${imageName}`;
+      
+          adicionarPasso(`Realizando o upload da imagem ${imagePath}...`, true);
+      
+          try {
+            const fileSha = await getFileSha(imagePath); // Obtém a SHA antes do upload
+            await uploadImageToGithub(imagePath, base64Content, fileSha);
+          } catch (error: any) {
+            console.error("Erro ao obter SHA do arquivo:", error);
             adicionarPasso(`Erro ao fazer upload da imagem ${imagePath}`, false);
           }
         }
+      
         console.log("Upload de imagens concluído!");
       };
       
       // Chama a função handleImageUploadMethod
       await handleImageUploadMethod();
+      
 
-      // Chama a função handleDocumentUploadOne
-      const handleDocumentUploadOne = async () => {
-        console.log('Iniciando o upload de documentos...');
-      
-        if (!selectedDocumentOne) {
-          console.error('Nenhum documento selecionado.');
-          return;
-        }
-      
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          const base64String = reader.result as string | null;
-          if (!base64String) {
-            console.error('Erro ao ler o arquivo.');
-            return;
-          }
-      
-          const base64Content = base64String.split(',')[1];
-          console.log('Base64 do documento:', base64Content);
-      
-          const documentPath = `public/${experimentData.id}/documents/${selectedDocumentOne.name}`;
-      
-          let fileSha = '';
-      
-          // Função para obter a SHA mais recente do arquivo
-          const getFileSha = async (path: string) => {
-            try {
-              const { data } = await octokitClient.repos.getContent({
-                owner: forkOwner,
-                repo: baseRepositoryName,
-                path: path,
-                ref: newBranchName,
-              });
-      
-              if (Array.isArray(data)) {
-                console.error('O caminho especificado parece ser um diretório, não um arquivo.');
-                return '';
-              }
-      
-              return data.sha;
-            } catch (error: any) {  // Aqui foi alterado para `any`
-              if (error.status === 404) {
-                return ''; // Arquivo não existe
-              } else {
-                console.error('Erro ao verificar existência do arquivo no GitHub:', error);
-                throw error;
-              }
-            }
-          };
-      
-          try {
-            fileSha = await getFileSha(documentPath);
-          } catch (error: any) {  // Aqui foi alterado para `any`
-            console.error('Erro ao obter SHA do arquivo:', error);
-            return;
-          }
-      
-          try {
-            await octokitClient.repos.createOrUpdateFileContents({
-              owner: forkOwner,
-              repo: baseRepositoryName,
-              path: documentPath,
-              message: `Add document for experiment N° ${experimentData.id}`,
-              content: base64Content,
-              branch: newBranchName,
-              sha: fileSha, // Incluir SHA se o arquivo já existir
-            });
-      
-            console.log(`Documento ${documentPath} adicionado com sucesso!`);
-          } catch (error: any) {  // Aqui foi alterado para `any`
-            console.error('Erro ao fazer upload do documento para o GitHub:', error);
-          }
-        };
-      
-        reader.onerror = () => {
-          console.error('Erro ao ler o arquivo.');
-        };
-      
-        reader.readAsDataURL(selectedDocumentOne);
-      };
-      
-      await handleDocumentUploadOne();
+// Função para fazer upload do documento
+const uploadDocumentToGithub = async (selectedDocument: File) => {
+  if (!selectedDocument) {
+    console.error('Nenhum documento selecionado.');
+    return;
+  }
 
-      // Chama a função handleDocumentUploadTwo
-      const handleDocumentUploadTwo = async () => {
-        console.log('Iniciando o upload de documentos...');
-      
-        if (!selectedDocumentTwo) {
-          console.error('Nenhum documento selecionado.');
-          return;
+  const reader = new FileReader();
+  reader.onloadend = async () => {
+    const base64String = reader.result as string | null;
+    if (!base64String) {
+      console.error('Erro ao ler o arquivo.');
+      return;
+    }
+
+    const base64Content = base64String.split(',')[1];
+    const documentPath = `public/${experimentData.id}/documents/${selectedDocument.name}`;
+    let fileSha = '';
+
+    // Função para obter a SHA mais recente do arquivo
+    const getFileSha = async (path: string) => {
+      try {
+        const { data } = await octokitClient.repos.getContent({
+          owner: forkOwner,
+          repo: baseRepositoryName,
+          path: path,
+          ref: newBranchName,
+        });
+
+        if (Array.isArray(data)) {
+          console.error('O caminho especificado parece ser um diretório, não um arquivo.');
+          return '';
         }
-      
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          const base64String = reader.result as string | null;
-          if (!base64String) {
-            console.error('Erro ao ler o arquivo.');
-            return;
-          }
-      
-          const base64Content = base64String.split(',')[1];
-          console.log('Base64 do documento:', base64Content);
-      
-          const documentPath = `public/${experimentData.id}/documents/${selectedDocumentTwo.name}`;
-      
-          let fileSha = '';
-      
-          // Função para obter a SHA mais recente do arquivo
-          const getFileSha = async (path: string) => {
-            try {
-              const { data } = await octokitClient.repos.getContent({
-                owner: forkOwner,
-                repo: baseRepositoryName,
-                path: path,
-                ref: newBranchName,
-              });
-      
-              if (Array.isArray(data)) {
-                console.error('O caminho especificado parece ser um diretório, não um arquivo.');
-                return '';
-              }
-      
-              return data.sha;
-            } catch (error: any) {  // Aqui foi alterado para `any`
-              if (error.status === 404) {
-                return ''; // Arquivo não existe
-              } else {
-                console.error('Erro ao verificar existência do arquivo no GitHub:', error);
-                throw error;
-              }
-            }
-          };
-      
-          try {
-            fileSha = await getFileSha(documentPath);
-          } catch (error: any) {  // Aqui foi alterado para `any`
-            console.error('Erro ao obter SHA do arquivo:', error);
-            return;
-          }
-      
-          try {
-            await octokitClient.repos.createOrUpdateFileContents({
-              owner: forkOwner,
-              repo: baseRepositoryName,
-              path: documentPath,
-              message: `Add document for experiment N° ${experimentData.id}`,
-              content: base64Content,
-              branch: newBranchName,
-              sha: fileSha, // Incluir SHA se o arquivo já existir
-            });
-      
-            console.log(`Documento ${documentPath} adicionado com sucesso!`);
-          } catch (error: any) {  // Aqui foi alterado para `any`
-            console.error('Erro ao fazer upload do documento para o GitHub:', error);
-          }
-        };
-      
-        reader.onerror = () => {
-          console.error('Erro ao ler o arquivo.');
-        };
-      
-        reader.readAsDataURL(selectedDocumentTwo);
-      };
-      await handleDocumentUploadTwo();
-      
-      // Chama a função handleDocumentUploadThree
-      const handleDocumentUploadThree = async () => {
-        console.log('Iniciando o upload de documentos...');
-      
-        if (!selectedDocumentThree) {
-          console.error('Nenhum documento selecionado.');
-          return;
+
+        return data.sha;
+      } catch (error: any) {
+        if (error.status === 404) {
+          return ''; // Arquivo não existe, então não há SHA
+        } else {
+          console.error('Erro ao verificar existência do arquivo no GitHub:', error);
+          throw error;
         }
-      
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          const base64String = reader.result as string | null;
-          if (!base64String) {
-            console.error('Erro ao ler o arquivo.');
-            return;
-          }
-      
-          const base64Content = base64String.split(',')[1];
-          console.log('Base64 do documento:', base64Content);
-      
-          const documentPath = `public/${experimentData.id}/documents/${selectedDocumentThree.name}`;
-      
-          let fileSha = '';
-      
-          // Função para obter a SHA mais recente do arquivo
-          const getFileSha = async (path: string) => {
-            try {
-              const { data } = await octokitClient.repos.getContent({
-                owner: forkOwner,
-                repo: baseRepositoryName,
-                path: path,
-                ref: newBranchName,
-              });
-      
-              if (Array.isArray(data)) {
-                console.error('O caminho especificado parece ser um diretório, não um arquivo.');
-                return '';
-              }
-      
-              return data.sha;
-            } catch (error: any) {  // Aqui foi alterado para `any`
-              if (error.status === 404) {
-                return ''; // Arquivo não existe
-              } else {
-                console.error('Erro ao verificar existência do arquivo no GitHub:', error);
-                throw error;
-              }
-            }
-          };
-      
-          try {
-            fileSha = await getFileSha(documentPath);
-          } catch (error: any) {  // Aqui foi alterado para `any`
-            console.error('Erro ao obter SHA do arquivo:', error);
-            return;
-          }
-      
-          try {
-            await octokitClient.repos.createOrUpdateFileContents({
-              owner: forkOwner,
-              repo: baseRepositoryName,
-              path: documentPath,
-              message: `Add document for experiment N° ${experimentData.id}`,
-              content: base64Content,
-              branch: newBranchName,
-              sha: fileSha, // Incluir SHA se o arquivo já existir
-            });
-      
-            console.log(`Documento ${documentPath} adicionado com sucesso!`);
-          } catch (error: any) {  // Aqui foi alterado para `any`
-            console.error('Erro ao fazer upload do documento para o GitHub:', error);
-          }
-        };
-      
-        reader.onerror = () => {
-          console.error('Erro ao ler o arquivo.');
-        };
-      
-        reader.readAsDataURL(selectedDocumentThree);
-      };
-      await handleDocumentUploadThree();
+      }
+    };
+
+    // Função para fazer upload ou atualizar arquivo no GitHub
+    const updateFileOnGithub = async (sha: string | undefined) => {
+      try {
+        await octokitClient.repos.createOrUpdateFileContents({
+          owner: forkOwner,
+          repo: baseRepositoryName,
+          path: documentPath,
+          message: `Add document for experiment N° ${experimentData.id}`,
+          content: base64Content,
+          branch: newBranchName,
+          sha: sha || undefined, // Use SHA se não estiver vazia
+        });
+
+        console.log(`Documento ${documentPath} adicionado com sucesso!`);
+      } catch (error: any) {
+        if (error.status === 409) {
+          console.warn('Conflito de SHA detectado. Tentando novamente com a SHA mais recente.');
+          const updatedSha = await getFileSha(documentPath); // Obtenha a SHA mais atualizada
+          await updateFileOnGithub(updatedSha); // Tente novamente com a nova SHA
+        } else {
+          console.error('Erro ao fazer upload do documento para o GitHub:', error);
+        }
+      }
+    };
+
+    try {
+      fileSha = await getFileSha(documentPath); // Obtenha a SHA antes de tentar o upload
+      await updateFileOnGithub(fileSha); // Tente o upload
+    } catch (error: any) {
+      console.error('Erro ao obter SHA do arquivo:', error);
+    }
+  };
+
+  reader.onerror = () => {
+    console.error('Erro ao ler o arquivo.');
+  };
+
+  reader.readAsDataURL(selectedDocument);
+};
+
+// Função para realizar os uploads em sequência
+const handleDocumentUploads = async () => {
+  try {
+    // Primeiro documento
+    if (selectedDocumentOne) {
+      await uploadDocumentToGithub(selectedDocumentOne);
+    }
+    
+
+    // Segundo documento
+    if (selectedDocumentTwo) {
+      await uploadDocumentToGithub(selectedDocumentTwo);
+    }
+    
+
+    // Terceiro documento
+    if (selectedDocumentThree) {
+      await uploadDocumentToGithub(selectedDocumentThree);
+    }
+  } catch (error) {
+    console.error('Erro ao fazer upload dos documentos:', error);
+  }
+};
+
+// Chamando a função de uploads sequenciais
+await handleDocumentUploads();
+
 
       const handleApplyingCommentsAndPullRequest = async () => {
         adicionarPasso("Adicionando sugestão de novo experimento...", true);
@@ -1375,6 +1282,7 @@ export default function Experiment() {
     reader.readAsDataURL(file);
   };
 
+  
   const handleDocumentChangeThree = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     console.log(file);
@@ -2308,6 +2216,8 @@ export default function Experiment() {
   </p>
 )}
 </div>
+
+
   
 
       </div>
