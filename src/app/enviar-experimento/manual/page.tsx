@@ -1381,7 +1381,7 @@ export default function Experiment() {
                     <div className="mb-4 flex flex-col">
                       <div className="flex flex-row">
                         <MdFingerprint style={{ marginRight: "5px" }} />
-                        <Label htmlFor="message-2">ID Único</Label>
+                        <Label htmlFor="message-2">ID Único *Automático</Label>
                       </div>
                       <div className="flex flex-col">
                         <p className="mt-2 mb-4 text-sm text-muted-foreground flex-1">
@@ -1409,7 +1409,7 @@ export default function Experiment() {
                     <div className="flex flex-col">
                       <div className="flex flex-row items-center">
                         <MdDateRange style={{ marginRight: "5px" }} />
-                        <Label htmlFor="message-2">Data de postagem</Label>
+                        <Label htmlFor="message-2">Data de postagem *Automático</Label>
                       </div>
                       <div className="flex flex-col">
                         <p className="mt-2 mb-4 text-sm text-muted-foreground flex-1">
@@ -1436,7 +1436,7 @@ export default function Experiment() {
                     <div className="flex flex-row items-center mb-2">
                       <RiUserLine style={{ marginRight: "5px" }} />{" "}
                       {/* Adicionando o ícone RiUserLine */}
-                      <Label htmlFor="message-2">Nome do autor/da autora</Label>
+                      <Label htmlFor="message-2">Nome do autor/da autora *Obrigatório</Label>
                     </div>
                     <p className="mt-2 mb-4 text-sm text-muted-foreground">
                       O nome do autor/da autora é a identificação de quem enviou
@@ -1475,7 +1475,7 @@ export default function Experiment() {
                       <FiHash style={{ marginRight: "5px" }} />{" "}
                       {/* Adicionando o ícone FaHashtag dentro de uma div */}
                     </div>
-                    <Label htmlFor="title">Tópico geral:</Label>
+                    <Label htmlFor="title">Tópico geral  *Obrigatório</Label>
                   </div>
                   <p className="mt-2 mb-4 text-sm text-muted-foreground">
                     Selecione um tópico geral para o seu experimento entre
@@ -1556,7 +1556,7 @@ export default function Experiment() {
                               <Label
                                 htmlFor={`topicSpecific-${generalTopic.slug}`}
                               >
-                                Tópico Específico de {generalTopic.title}:
+                                Tópico Específico de {generalTopic.title}  *Obrigatório
                               </Label>
                             </div>
                             {/* Restante do código... */}
@@ -1648,10 +1648,12 @@ export default function Experiment() {
                   <div className="mb-4">
                     <div className="flex flex-col items-initial mb-2">
                       <div className="flex flex-row items-center justify-initial mb-2">
-                        <IoFlask style={{ marginRight: "5px" }} />{" "}
-                        <label htmlFor="experimentType">
-                          Tipo de Recurso didático:
-                        </label>
+                        <IoFlask style={{ marginRight: "5px" }} />
+                        <Label
+                                htmlFor={`experimentType`}
+                              >
+                                 Tipo de Recurso didático *Obrigatório
+                              </Label>                         
                       </div>
                       <p className="mt-2 mb-4 text-sm text-muted-foreground">
                         Esta classificação ajuda a definir o tipo de recurso didático
@@ -1760,7 +1762,7 @@ export default function Experiment() {
                         <MdOutlineFileOpen style={{ marginRight: "5px" }} />{" "}
                         {/* Adicionando o ícone FaHeading dentro de uma div */}
                       </div>
-                      <Label htmlFor="title">Título:</Label>
+                      <Label htmlFor="title">Título *Obrigatório</Label>
                     </div>
                     {/* Restante do código... */}
                   </div>
@@ -1794,7 +1796,7 @@ export default function Experiment() {
         <div className="flex flex-row items-center mb-2">
           <MdImageSearch style={{ marginRight: "5px" }} />{" "}
           {/* Adicionando o ícone MdImage dentro de uma div */}
-          <Label htmlFor="previewImage">Imagem de Preview</Label>
+          <Label htmlFor="previewImage">Imagem de Preview *Obrigatório</Label>
         </div>
 
         <p className="mb-2 text-sm text-muted-foreground">
@@ -1857,7 +1859,43 @@ export default function Experiment() {
       </div>
     </div>
    
+    <div className="mt-8">
+          <div className="mb-4">
+            <div className="flex flex-row items-center mb-2">
+              <div>
+                <MdOutlineDescription style={{ marginRight: "5px" }} />{" "}
+                {/* Adicionando o ícone MdImage dentro de uma div */}
+              </div>
+              <Label htmlFor="previewImage">Descrição *Obrigatório</Label>
+            </div>
+            <p className="mb-2 text-sm text-muted-foreground">
+              Forneça uma descrição objetiva, detalhada e concisa do seu
+              experimento, escreva de forma que fique chamativo e atraia
+              as pessoas a acessarem. Essa descrição vai aparecer na
+              página de procurar experimentos, logo, seja breve.
+            </p>
 
+            <Textarea
+              placeholder="Clique e escreva a sua descrição."
+              id="description"
+              className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
+              name="description"
+              onChange={handleInputChange}
+            />
+            <p className="text-sm text-muted-foreground">
+              Insira entre 10-300 caracteres.
+            </p>
+
+            {experimentData.description.length === 0 && (
+              <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
+                <MdError className="mr-2" />
+                <span>
+                  Escreva uma descrição relacionada ao experimento
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
 
 <div className="mt-8">
                   <div className="mb-4">
@@ -1866,10 +1904,10 @@ export default function Experiment() {
                         <MdOutlineDescription style={{ marginRight: "5px" }} />{" "}
                         {/* Adicionando o ícone MdImage dentro de uma div */}
                       </div>
-                      <Label htmlFor="previewImage">Arquivos adicionais para download (Opcional)</Label>
+                      <Label htmlFor="previewImage">Arquivos adicionais para download *Opcional</Label>
                     </div>
                     <p className="mb-2 text-sm text-muted-foreground">
-                      Forneça um ou mais arquivos (máximo 5), para de arquivos adicionais em formato de docx ou pptx. 
+                    Anexe até 5 arquivos adicionais nos formatos ".docx" ou ".pptx". De no maximo 1mb. Esses arquivos podem complementar o recurso didático com materiais de apoio, como roteiros, apresentações ou documentos explicativos.
                     </p>
 
  {/* Componente para permitir selecionar um arquivo .docx */}
@@ -1881,43 +1919,7 @@ export default function Experiment() {
                 </div>
    
 
-                <div className="mt-8">
-                  <div className="mb-4">
-                    <div className="flex flex-row items-center mb-2">
-                      <div>
-                        <MdOutlineDescription style={{ marginRight: "5px" }} />{" "}
-                        {/* Adicionando o ícone MdImage dentro de uma div */}
-                      </div>
-                      <Label htmlFor="previewImage">Descrição</Label>
-                    </div>
-                    <p className="mb-2 text-sm text-muted-foreground">
-                      Forneça uma descrição objetiva, detalhada e concisa do seu
-                      experimento, escreva de forma que fique chamativo e atraia
-                      as pessoas a acessarem. Essa descrição vai aparecer na
-                      página de procurar experimentos, logo, seja breve.
-                    </p>
 
-                    <Textarea
-                      placeholder="Clique e escreva a sua descrição."
-                      id="description"
-                      className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
-                      name="description"
-                      onChange={handleInputChange}
-                    />
-                    <p className="text-sm text-muted-foreground">
-                      Insira entre 10-300 caracteres.
-                    </p>
-
-                    {experimentData.description.length === 0 && (
-                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
-                        <MdError className="mr-2" />
-                        <span>
-                          Escreva uma descrição relacionada ao experimento
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
               </div>
 
               <div className="border border-gray-300 rounded-lg p-6 mb-6">
@@ -1932,7 +1934,7 @@ export default function Experiment() {
                         <MdPlaylistAddCheck style={{ marginRight: "5px" }} />{" "}
                         {/* Adicionando o ícone MdImage dentro de uma div */}
                       </div>
-                      <Label htmlFor="previewImage">Objetivos</Label>
+                      <Label htmlFor="previewImage">Objetivos *Obrigatório</Label>
                     </div>
                     {/* Restante do código... */}
                   </div>
@@ -2010,7 +2012,7 @@ export default function Experiment() {
                         {/* Adicionando o ícone MdImage dentro de uma div */}
                       </div>
                       <Label htmlFor="previewImage">
-                        Materiais Necessários
+                        Materiais Necessários *Obrigatório
                       </Label>
                     </div>
                     {/* Restante do código... */}
@@ -2088,7 +2090,7 @@ export default function Experiment() {
                         <MdOutlinePinch style={{ marginRight: "5px" }} />{" "}
                         {/* Adicionando o ícone MdImage dentro de uma div */}
                       </div>
-                      <Label htmlFor="previewImage">Passo a passo</Label>
+                      <Label htmlFor="previewImage">Passo a passo *Obrigatório</Label>
                     </div>
                   </div>
                   <p className="mb-2 text-sm text-muted-foreground">
@@ -2225,7 +2227,7 @@ export default function Experiment() {
                         {/* Adicionando o ícone MdImage dentro de uma div */}
                       </div>
                       <Label htmlFor="previewImage">
-                        Resultados do Experimento
+                        Resultados do Experimento *Opcional
                       </Label>
                     </div>
                     {/* Restante do código... */}
@@ -2267,7 +2269,7 @@ export default function Experiment() {
                         {/* Adicionando o ícone MdImage dentro de uma div */}
                       </div>
                       <Label htmlFor="previewImage">
-                        Explicação Científica
+                        Explicação Científica *Opcional
                       </Label>
                     </div>
                     {/* Restante do código... */}
@@ -2308,7 +2310,7 @@ export default function Experiment() {
                         <MdOutlineLibraryBooks style={{ marginRight: "5px" }} />{" "}
                         {/* Ícone MdOutlineLibraryBooks */}
                       </div>
-                      <Label htmlFor="previewImage">Referências</Label>
+                      <Label htmlFor="previewImage">Referências *Obrigatório</Label>
                     </div>
                     <p className="text-sm text-gray-500 mb-4">
                       Liste as referências utilizadas no experimento.
