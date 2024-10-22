@@ -73,17 +73,13 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 <h1 className="text-2xl font-bold mt-6 text-gray-800">Sobre o recurso didático</h1>
 
 {/* Descrição do experimento */}
-<p className="mt-2 text-base text-gray-700 mb-4 text-justify">{experimentInfo.description}</p>
+<p className="mt-2 text-base text-gray-700 mb-4 text-justify">{experimentInfo.description} Abaixo você pode conferir os temas relacionados a este recurso didático.</p>
 
 {/* Seções Padronizadas */}
 
 {/* Sobre o que é este experimento? */}
 <div className="w-full flex flex-col mb-8">
-  {/* Título com ícone alinhado */}
-  <h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center">
-    <FaTag className="mr-2" /> {/* Ícone à esquerda do título */}
-    Temas deste recurso
-  </h2>
+ 
 
  <div className="overflow-x-auto">
   <table className="min-w-full border border-gray-300">
@@ -230,7 +226,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 <div className="mt-4 border border-gray-300 rounded p-4">
 <h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center text-justify">
   <FaChartBar className="mr-2" /> {/* Ícone para Resultados Esperados */}
-  Quais são os resultados esperados?
+  Resultados esperados
 </h2>
 
   <p className="mt-2 text-justify">{experimentInfo.results}</p>
@@ -240,7 +236,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 <div className="mt-4 border border-gray-300 rounded p-4">
 <h2 className="text-lg font-semibold mb-4 text-gray-700 flex items-center text-justify">
   <FaFlask className="mr-2" /> {/* Ícone para Explicação Científica */}
-  Qual a explicação científica?
+  Explicação científica
 </h2>
 
   <p className="mt-2 text-justify">{experimentInfo.scientificExplanation}</p>
