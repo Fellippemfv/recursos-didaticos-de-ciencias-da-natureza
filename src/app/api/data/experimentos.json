@@ -731,5 +731,73 @@
       }
     ],
     "activitySheet": "/1719193862873/documents/Roteiro-de-Lab-ovo-afunda-ou-nao.docx"
+  },
+  {
+    "id": "1729635395769",
+    "postDate": "22 de outubro de 2024 às 18:16",
+    "profileName": "dsadad",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 10,
+          "title": "Circuitos elétricos simples",
+          "slug": "circuitos-eletricos-simples"
+        }
+      ]
+    },
+    "experimentType": {
+      "id": 2,
+      "title": "Dinâmicas (Participação ou Trabalhos em grupo)",
+      "slug": "dinamicas",
+      "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos científicos."
+    },
+    "title": "adsasd adsad",
+    "slug": "adsasd-adsad",
+    "imagePreview": "/1729635395769/images/EMqRvVAX0AIcLlq.jpg",
+    "description": "asdasd asd",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "asdada"
+      },
+      {
+        "id": 2,
+        "content": "asdasd"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "adsad"
+      },
+      {
+        "id": 2,
+        "content": "adasd"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "dasdada asdasd",
+        "imagePath": "/1729635395769/images/7aea3e27f0757319e9518db2cd281e7d.jpg"
+      }
+    ],
+    "results": "dasda asdads",
+    "scientificExplanation": "dasda adsd",
+    "references": [
+      {
+        "id": 1,
+        "content": "asdadasd"
+      }
+    ],
+    "activitySheetOne": "/1729635395769/documents/roteiro-de-atividade (5).docx",
+    "activitySheetTwo": "/1729635395769/documents/roteiro-de-atividade (6).docx"
   }
 ]
