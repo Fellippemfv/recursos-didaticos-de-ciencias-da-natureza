@@ -731,5 +731,78 @@
       }
     ],
     "activitySheet": "/1719193862873/documents/Roteiro-de-Lab-ovo-afunda-ou-nao.docx"
+  },
+  {
+    "id": "1729636694151",
+    "postDate": "22 de outubro de 2024 às 18:38",
+    "profileName": "fasf dfsdf",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 4,
+          "title": "Trabalho e energia",
+          "slug": "trabalho-e-energia"
+        }
+      ]
+    },
+    "experimentType": {
+      "id": 2,
+      "title": "Dinâmicas (Participação ou Trabalhos em grupo)",
+      "slug": "dinamicas",
+      "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos científicos."
+    },
+    "title": "sdas af fdf",
+    "slug": "sdas-af-fdf",
+    "imagePreview": "/1729636694151/images/7aea3e27f0757319e9518db2cd281e7d.jpg",
+    "description": "das asda das ",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "asda ads"
+      },
+      {
+        "id": 2,
+        "content": "asda asdasd"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "asdasd asdsad"
+      },
+      {
+        "id": 2,
+        "content": "dasda asdad"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "asdas asdsada asd",
+        "imagePath": "/1729636694151/images/EMqRvVAX0AIcLlq.jpg"
+      }
+    ],
+    "results": "asdadsas asdasda ",
+    "scientificExplanation": "asdasd asdad",
+    "references": [
+      {
+        "id": 1,
+        "content": "sadasdas asdasdads"
+      },
+      {
+        "id": 2,
+        "content": "asdasdas assad"
+      }
+    ],
+    "activitySheetOne": "/1729636694151/documents/roteiro-de-atividade (5).docx",
+    "activitySheetTwo": "/1729636694151/documents/roteiro-de-atividade (6).docx",
+    "activitySheetThree": "/1729636694151/documents/roteiro-de-atividade (7).docx"
   }
 ]
