@@ -5,45 +5,95 @@ import imageHomePage from '../../public/exp-home-page.png';
 
 export default function Home() {
   return (
-    <main className="relative flex flex-col items-center justify-center min-h-screen p-4">
-      {/* Sobreposição branca semitransparente */}
-      <div
-        className="absolute inset-0 bg-white opacity-30"
-        style={{
-          backgroundImage: `url(${imageHomePage.src})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          zIndex: -1
-        }}
-      ></div>
-      <section className="mb-16 relative flex flex-col items-center text-center max-w-4xl mx-auto bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
-        <h1 className="text-5xl font-bold text-blue-700 mb-6">
-          Bem-vindo(a) ao Portal de Experimentos!
-        </h1>
-        <p className="text-lg text-gray-700 mb-6 text-justify">
-          Explore e descubra uma vasta gama de experimentos de ciências, biologia, física e química. Todos os experimentos são testados por profissionais capacitados para garantir uma experiência educativa segura e divertida.
-        </p>
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-          <div className="flex flex-col items-center">
-            <p className="mb-2 text-gray-600">Procure por experimentos</p>
-            <Link target="_blank" href="/pesquisar">
-              <div className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition duration-200 cursor-pointer">
-                <FaSearch className="mr-2" />
-                Pesquisar Experimentos
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center mr-4">
-            <p className="mb-2 text-gray-600">Envie seus próprios experimentos</p>
-            <Link target="_blank" href="/enviar-experimento">
-              <div className="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition duration-200 cursor-pointer">
-                <FaUpload className="mr-2" />
-                Enviar Experimentos
-              </div>
-            </Link>
-          </div>
+    <div className="min-h-screen bg-gray-100 p-6">
+
+{/* Banner Informativo */}
+<div className="bg-blue-600 text-white p-8 rounded-lg mb-8 text-center flex flex-col md:flex-row items-center justify-between gap-6">
+  {/* Imagem no Banner */}
+  <img src="https://cdn.awsli.com.br/2500x2500/1158/1158247/produto/210083649/sem-foro-diy-c05f1dt8fu.jpg" 
+       alt="Imagem ilustrativa de recursos didáticos" 
+       className="w-full md:w-1/3 rounded-lg shadow-md" />
+  
+  {/* Texto e Botão no Banner */}
+  <div className="flex flex-col items-center md:items-start text-center md:text-left">
+    <h1 className="text-3xl font-bold mb-2">Bem-vindo ao Portal de Recursos Didáticos</h1>
+    <p className="text-lg mb-4">Explore uma variedade de atividades escolares, como experimentos, jogos educativos e dinâmicas para facilitar o aprendizado.</p>
+    {/* Botões Responsivos */}
+    <div className="flex flex-col md:flex-row gap-4 mt-4 w-full md:justify-around">
+      <a href="/filtrar-atividades" 
+         className="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200 transition">
+        Explorar Atividades
+      </a>
+      <a href="/sobre" 
+         className="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200 transition">
+        Sobre a plataforma
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+    {/* Destaques */}
+    <section className="mb-12">
+      <h3 className="text-xl font-bold mb-4">Atividades em Destaque</h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <img
+            src="https://www.nta.ufscar.br/projetos/recursos-didaticos-1/circulo_trigonometrico.png"
+            alt="Experimento"
+            width={500}
+            height={500}
+            className="w-full h-48 object-cover rounded-md"
+          />
+          <h4 className="mt-4 font-semibold text-lg">Experimentos Científicos</h4>
+          <p>Explore atividades práticas que ajudam a demonstrar conceitos científicos.</p>
         </div>
-      </section>
-    </main>
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <img
+            src="https://www.nta.ufscar.br/projetos/recursos-didaticos-1/circulo_trigonometrico.png"
+            alt="Jogos Educativos"
+            width={500}
+            height={500}
+            className="w-full h-48 object-cover rounded-md"
+          />
+          <h4 className="mt-4 font-semibold text-lg">Jogos Educativos</h4>
+          <p>Aprenda ciências de forma divertida com quizzes e simulações interativas.</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <img
+            src="https://www.nta.ufscar.br/projetos/recursos-didaticos-1/circulo_trigonometrico.png"
+            alt="Dinâmicas de Grupo"
+            width={500}
+            height={500}
+            className="w-full h-48 object-cover rounded-md"
+          />
+          <h4 className="mt-4 font-semibold text-lg">Dinâmicas de Grupo</h4>
+          <p>Atividades colaborativas para envolver os estudantes e incentivar o trabalho em equipe.</p>
+        </div>
+      </div>
+    </section>
+
+   
+
+    {/* Resumo das Atividades Disponíveis */}
+    <section>
+      <h3 className="text-xl font-bold mb-4">Resumo das Atividades Disponíveis</h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white p-4 rounded-lg shadow-md text-center">
+          <h4 className="font-semibold text-lg">Experimentos</h4>
+          <p className="text-3xl font-bold text-blue-600">15</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow-md text-center">
+          <h4 className="font-semibold text-lg">Jogos Educativos</h4>
+          <p className="text-3xl font-bold text-blue-600">8</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow-md text-center">
+          <h4 className="font-semibold text-lg">Dinâmicas</h4>
+          <p className="text-3xl font-bold text-blue-600">12</p>
+        </div>
+      </div>
+    </section>
+  </div>
   );
 }

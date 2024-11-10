@@ -13,7 +13,7 @@
   },
   {
     "id": 3,
-    "title": "Jogos educativos (Quiz e Simulações)",
+    "title": "Jogos educativos (Tabuleiros e Simulações)",
     "slug": "jogos-educativos",
     "steps": "Jogos que auxiliam no aprendizado de ciências por meio de atividades lúdicas e interativas."
   },
@@ -22,11 +22,5 @@
     "title": "Modelos físicos (Maquetes e Protótipos)",
     "slug": "modelos-fisicos",
     "steps": "Representações tridimensionais de objetos ou processos científicos que ajudam na visualização e compreensão dos conteúdos."
-  },
-  {
-    "id": 5,
-    "title": "Slides (Apresentações de conceitos e Resumos visuais)",
-    "slug": "slides",
-    "steps": "Apresentações visuais que explicam conceitos científicos de forma organizada e sequencial."
   }
 ]

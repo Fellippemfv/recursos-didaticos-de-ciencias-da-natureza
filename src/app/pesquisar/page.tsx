@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import experimentData from "../../app/api/data/experimentos.json";
 import topicGeneralData from "../../app/api/data/experimentGeneralData.json";
 import Link from "next/link"; // Importando o componente Link do Next.js
@@ -8,6 +8,7 @@ import { BiSearch } from "react-icons/bi";
 
 import experimentTypes from "../../app/api/data/experimentTypes.json"
 import { RiArrowRightSLine } from "react-icons/ri";
+import { FiSearch } from "react-icons/fi";
 
 export default function Search() {
   const [selectedExperimentTypes, setSelectedExperimentTypes] = useState<Set<number>>(new Set());
@@ -110,8 +111,14 @@ export default function Search() {
     setStatusMessage("Filtros alterados. Clique em 'Filtrar' para atualizar a lista.");
   };
 
+  // Cria uma referência para a seção "Experimentos Filtrados"
+  const filteredSectionRef = useRef(null);
+
   const filterExperiments = () => {
     console.log("Filtrando experimentos...");
+    if (filteredSectionRef.current) {
+      filteredSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   
     if (
       selectedGeneralTopics.size === 0 &&
@@ -312,7 +319,7 @@ export default function Search() {
     Escolha entre diversos tipos de recursos didáticos.
   </p>
   {experimentTypes.map((type) => (
-    <div key={type.id} className="flex items-center mb-2 p-4 border rounded-lg shadow-md bg-white transition-transform duration-200 hover:scale-105">
+    <div key={type.id} className="mt-4 flex items-center mb-2 p-4 border rounded-lg shadow-md bg-white transition-transform duration-200 hover:scale-105">
     <input
   type="checkbox"
   id={`type-${type.id}`}
@@ -404,7 +411,7 @@ export default function Search() {
 
   <section className="w-full mt-8">
     <h2 className="font-bold mb-6 text-gray-800">Experimentos Filtrados</h2>
-    <div className="flex flex-wrap gap-2 mb-4">
+    <div ref={filteredSectionRef} className="flex flex-wrap gap-2 mb-4 mt-4">
       <span className="font-bold text-gray-700">Filtros atualmente aplicados:</span>
       {appliedFilters.general.length > 0 || appliedFilters.specific.length > 0 || appliedFilters.experimentTypes.length > 0 ? (
         <>
@@ -450,26 +457,42 @@ export default function Search() {
         <span className="text-sm text-gray-500">Nenhum filtro aplicado.</span>
       )}
     </div>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {filteredExperiments.map((experiment) => (
-        <div key={experiment.id} className="border rounded-lg shadow-md p-4 bg-white">
-          <h3 className="text-lg font-semibold mb-4 text-gray-800">{experiment.title}</h3>
-          <img
-            src={experiment.imagePreview}
-            alt={experiment.title}
-            className="w-full h-40 object-cover rounded-md mb-4"
-          />
-          <Link
-            href={`/experimento/${experiment.slug}`}
-            passHref
-            className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-center block"
-            target="_blank"
-          >
-            Acessar
-          </Link>
-        </div>
-      ))}
+    
+    {filteredExperiments.length > 0 ? (
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {filteredExperiments.map((experiment) => (
+      <div key={experiment.id} className="border rounded-lg shadow-md p-4 bg-white">
+        <h3 className="text-lg font-semibold mb-4 text-gray-800">{experiment.title}</h3>
+        <img
+          src={experiment.imagePreview}
+          alt={experiment.title}
+          className="w-full h-40 object-cover rounded-md mb-4"
+        />
+        <Link
+          href={`/experimento/${experiment.slug}`}
+          passHref
+          className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-center block"
+          target="_blank"
+        >
+          Acessar
+        </Link>
+      </div>
+    ))}
+  </div>
+) : (
+  <div className="flex items-center justify-center h-screen">
+    <div className="text-center">
+      <FiSearch className="mx-auto text-4xl text-blue-600 mb-4" />
+      <p className="text-xl font-semibold text-gray-700">
+        Nenhum experimento encontrado. <br />
+        Pesquise utilizando o filtro.
+      </p>
     </div>
+  </div>
+)}
+
+
+
   </section>
 </main>
 

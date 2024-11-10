@@ -1,81 +1,81 @@
-import Image from "next/image";
+import img from "next/image";
 import Link from "next/link";
 
 export default function About() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      {/* Seção 1: Texto à esquerda, Imagem à direita */}
-      <section className="my-8 flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
-        <div className="text-center lg:text-left lg:w-1/2 lg:pr-4">
-          <h2 className="text-4xl font-extrabold text-green-800 mb-4">
-            Quem Somos
-          </h2>
-          <p className="text-gray-600">
-            Bem-vindo ao nosso espaço dedicado à ciência, onde professores
-            apaixonados se uniram para criar uma plataforma única. Nossa missão
-            é tornar a ciência acessível a todos, promovendo o aprendizado de
-            maneira envolvente e divertida. Aqui, oferecemos uma variedade de
-            experimentos gratuitos, cuidadosamente elaborados por educadores,
-            para inspirar a curiosidade e facilitar o entendimento dos
-            princípios científicos. Junte-se a nós nesta jornada educacional,
-            onde a descoberta e o conhecimento estão ao alcance de todos!
-          </p>
-        </div>
-        <img
-          src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/230119-google_hero-teachers.width-1200.format-webp.webp"
-          alt="Imagem de professores"
-          className="w-full max-h-96 object-cover rounded-lg lg:w-1/2 lg:pl-4"
-        />
+     
+     <div className="max-w-5xl mx-auto p-6 space-y-12">
+      {/* Informações do Projeto */}
+      <section className="bg-blue-100 p-8 rounded-lg shadow-md text-center">
+        <h1 className="text-3xl font-bold text-blue-600 mb-4">Sobre o Projeto</h1>
+        <p className="text-lg">
+          Esta plataforma foi criada para facilitar o acesso a recursos didáticos interativos, como experimentos, jogos e dinâmicas, que auxiliem professores e estudantes. Nosso propósito é apoiar o aprendizado de forma lúdica e acessível, oferecendo um repositório de atividades educacionais práticas e inovadoras. Queremos contribuir para a educação, promovendo uma experiência de ensino mais enriquecedora e interativa.
+        </p>
       </section>
 
-      {/* Seção 2: Imagem à esquerda, Texto à direita */}
-      <section className="my-8 flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
-        <img
-          src="https://img.freepik.com/vector-premium/concepto-ilustracion-analisis-mercado-valores_701961-2507.jpg?w=2000"
-          alt="Imagem de professores"
-          className="w-full max-h-96 object-cover rounded-lg lg:w-1/2 lg:pl-4"
-        />
-        <div className="text-center lg:text-left lg:w-1/2 lg:pl-4">
-          <h2 className="text-4xl font-extrabold text-green-800 mb-4">
-            Nosso Compromisso
-          </h2>
-          <p className="text-gray-600">
-            Estamos comprometidos em proporcionar uma experiência educativa
-            excepcional. Nossa missão vai além de oferecer experimentos
-            gratuitos; é um compromisso com a qualidade, apoiando educadores e
-            alunos em sua jornada de descobertas científicas. Acreditamos que a
-            educação científica deve ser acessível, inspiradora e
-            transformadora. Ao unir forças, professores e alunos podem explorar
-            o fascinante mundo da ciência de maneira envolvente e significativa.
-            Junte-se a nós nessa jornada de aprendizado e descoberta!
-          </p>
+      {/* Equipe */}
+      <section>
+        <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">Nossa Equipe</h2>
+        <div className="flex flex-wrap justify-center gap-8">
+          {/* Membro da equipe 1 */}
+          <div className="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md text-center">
+            <img
+              src="https://st4.depositphotos.com/2704315/27896/v/1600/depositphotos_278960050-stock-illustration-work-planning-timeline-concept-vector.jpg"
+              alt="Nome do Membro 1"
+              width={150}
+              height={150}
+              className="rounded-full mx-auto mb-4"
+            />
+            <h3 className="text-xl font-semibold">Nome do Membro 1</h3>
+            <p className="text-gray-600">Idealizador e Educador</p>
+            <p className="mt-2 text-sm">
+              Especialista em educação com foco no ensino lúdico e didático.
+            </p>
+          </div>
+          {/* Membro da equipe 2 */}
+          <div className="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md text-center">
+            <img
+              src="https://st4.depositphotos.com/2704315/27896/v/1600/depositphotos_278960050-stock-illustration-work-planning-timeline-concept-vector.jpg"
+              alt="Nome do Membro 2"
+              width={150}
+              height={150}
+              className="rounded-full mx-auto mb-4"
+            />
+            <h3 className="text-xl font-semibold">Nome do Membro 2</h3>
+            <p className="text-gray-600">Desenvolvedor Full Stack</p>
+            <p className="mt-2 text-sm">
+              Responsável pelo desenvolvimento da plataforma e pela experiência do usuário.
+            </p>
+          </div>
+       
         </div>
       </section>
 
-      {/* Seção 1: Texto à esquerda, Imagem à direita */}
-      <section className="my-8 flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
-        <div className="text-center lg:text-left lg:w-1/2 lg:pr-4">
-          <h2 className="text-4xl font-extrabold text-green-800 mb-4">
-            Envie seu experimento
-          </h2>
-          <p className="text-gray-600">
-            Faça parte da nossa comunidade de aprendizado colaborativo!
-            Encorajamos você a compartilhar seu próprio experimento conosco.
-            Envie todos os detalhes, incluindo procedimentos, materiais
-            necessários e suas experiências relacionadas ao experimento para o
-            nosso e-mail: <span className="text-blue-600">email@gmail.com</span>
-            . Não se esqueça de incluir imagens em anexo para ilustrar cada
-            passo do processo. Estamos ansiosos para destacar e compartilhar sua
-            contribuição em nossa plataforma, inspirando outros educadores e
-            alunos na jornada científica!
-          </p>
-        </div>
-        <img
-          src="https://img.freepik.com/vector-premium/mujer-negocios-alta-productividad_701961-2085.jpg?size=626&ext=jpg"
-          alt="Imagem de professores"
-          className="w-full max-h-96 object-cover rounded-lg lg:w-1/2 lg:pl-4"
-        />
+      {/* Contato e Feedback */}
+      <section className="bg-blue-100 p-8 rounded-lg shadow-md">
+        <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">Contato e Feedback</h2>
+        <p className="text-lg mb-4 text-center">
+          Entre em contato conosco ou envie suas sugestões para melhorar a plataforma!
+        </p>
+        <ul className="list-disc list-inside text-center space-y-2">
+          <li>
+            <span className="font-semibold">E-mail:</span> contato@plataformaeducacional.com
+          </li>
+          <li>
+            <span className="font-semibold">GitHub:</span>{' '}
+            <a
+              href="https://github.com/repositorio-do-projeto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              github.com/repositorio-do-projeto
+            </a>
+          </li>
+        </ul>
       </section>
+    </div>
     </main>
   );
 }
