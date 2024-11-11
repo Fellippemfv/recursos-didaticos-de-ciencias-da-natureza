@@ -550,8 +550,8 @@ export default function Search() {
             <div className="text-center">
               <FiSearch className="mx-auto text-4xl text-blue-600 mb-4" />
               <p className="text-xl font-semibold text-gray-700">
-                Nenhum experimento encontrado. <br />
-                Pesquise utilizando o filtro.
+                Nenhum experimento encontrado! <br />
+                Pesquise utilizando outro filtro.
               </p>
             </div>
           </div>
