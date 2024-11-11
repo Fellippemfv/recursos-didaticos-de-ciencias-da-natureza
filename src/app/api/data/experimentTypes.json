@@ -1,9 +1,9 @@
 [
   {
     "id": 2,
-    "title": "Dinâmicas (Participação ou Trabalhos em grupo)",
+    "title": "Dinâmicas (Participação em dupla ou em grupo)",
     "slug": "dinamicas",
-    "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos científicos."
+    "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos."
   },
   {
     "id": 1,
@@ -13,7 +13,7 @@
   },
   {
     "id": 3,
-    "title": "Jogos educativos (Tabuleiros e Simulações)",
+    "title": "Jogos educativos (Tabuleiros e Lúdicos)",
     "slug": "jogos-educativos",
     "steps": "Jogos que auxiliam no aprendizado de ciências por meio de atividades lúdicas e interativas."
   },
@@ -22,5 +22,11 @@
     "title": "Modelos físicos (Maquetes e Protótipos)",
     "slug": "modelos-fisicos",
     "steps": "Representações tridimensionais de objetos ou processos científicos que ajudam na visualização e compreensão dos conteúdos."
-  }
+  },
+  {
+    "id": 5,
+    "title": "Aplicativos Educativos (Apps e Sites Interativos)",
+    "slug": "aplicativos-educativos",
+    "steps": "Aplicações digitais que utilizam interatividade para promover a aprendizagem ativa, incluindo simulações e atividades práticas online."
+}
 ]

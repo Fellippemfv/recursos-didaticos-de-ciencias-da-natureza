@@ -15,6 +15,7 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+
   };
 
   return (
@@ -23,7 +24,7 @@ const Navbar = () => {
       <NavItem icon={<FcSearch />} text="Pesquisar" path="/pesquisar" />
       <NavItem icon={<FcInfo />} text="Sobre" path="/sobre" />
 
-     
+
     </ul>
   );
 };
