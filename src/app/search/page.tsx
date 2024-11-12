@@ -6,7 +6,7 @@ import topicGeneralData from "../api/data/teachingResourceGeneralThemes.json";
 import Link from "next/link"; // Importando o componente Link do Next.js
 import { BiSearch } from "react-icons/bi";
 
-import experimentTypes from "../api/data/teachingResourceTypes.json";
+import resourceTypes from "../api/data/teachingResourceTypes.json";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { FiSearch } from "react-icons/fi";
 
@@ -26,21 +26,21 @@ export default function Search() {
   const [previousFilters, setPreviousFilters] = useState<{
     general: Set<number>;
     specific: Set<string>;
-    experimentTypes: Set<number>;
+    resourceTypes: Set<number>;
   }>({
     general: new Set(),
     specific: new Set(),
-    experimentTypes: new Set(),
+    resourceTypes: new Set(),
   });
 
   const [appliedFilters, setAppliedFilters] = useState<{
     general: number[];
     specific: string[];
-    experimentTypes: number[];
+    resourceTypes: number[];
   }>({
     general: [],
     specific: [],
-    experimentTypes: [],
+    resourceTypes: [],
   });
 
   interface SpecificTopic {
@@ -148,7 +148,7 @@ export default function Search() {
     if (
       areFiltersSame(previousFilters.general, selectedGeneralTopics) &&
       areFiltersSame(previousFilters.specific, selectedSpecificTopics) &&
-      areFiltersSame(previousFilters.experimentTypes, selectedExperimentTypes)
+      areFiltersSame(previousFilters.resourceTypes, selectedExperimentTypes)
     ) {
       setStatusMessage(
         "Você já aplicou esses filtros. Por favor, altere os filtros para uma nova pesquisa.",
@@ -157,7 +157,7 @@ export default function Search() {
     }
 
     const filtered = teachingResourceData.filter((teachingResource) => {
-      console.log("Verificando experimento:", teachingResource.title);
+      console.log("Verificando atividade:", teachingResource.title);
 
       const matchesGeneralTopic =
         selectedGeneralTopics.size === 0 ||
@@ -209,13 +209,13 @@ export default function Search() {
     setPreviousFilters({
       general: new Set(selectedGeneralTopics),
       specific: new Set(selectedSpecificTopics),
-      experimentTypes: new Set(selectedExperimentTypes),
+      resourceTypes: new Set(selectedExperimentTypes),
     });
 
     setAppliedFilters({
       general: Array.from(selectedGeneralTopics),
       specific: Array.from(selectedSpecificTopics),
-      experimentTypes: Array.from(selectedExperimentTypes),
+      resourceTypes: Array.from(selectedExperimentTypes),
     });
 
     setStatusMessage("Filtros aplicados com sucesso!");
@@ -343,7 +343,7 @@ export default function Search() {
             <p className="text-base text-gray-600 mb-6">
               Escolha entre diversos tipos de recursos didáticos.
             </p>
-            {experimentTypes.map((type) => (
+            {resourceTypes.map((type) => (
               <div
                 key={type.id}
                 className="mt-4 flex items-center mb-2 p-4 border rounded-lg shadow-md bg-white transition-transform duration-200 hover:scale-105"
@@ -463,7 +463,7 @@ export default function Search() {
           </span>
           {appliedFilters.general.length > 0 ||
           appliedFilters.specific.length > 0 ||
-          appliedFilters.experimentTypes.length > 0 ? (
+          appliedFilters.resourceTypes.length > 0 ? (
             <>
               {appliedFilters.general.map((filterId) => {
                 const generalTopic = topicGeneralData.find(
@@ -496,10 +496,8 @@ export default function Search() {
                   </span>
                 ) : null;
               })}
-              {appliedFilters.experimentTypes.map((filterId) => {
-                const type = experimentTypes.find(
-                  (type) => type.id === filterId,
-                );
+              {appliedFilters.resourceTypes.map((filterId) => {
+                const type = resourceTypes.find((type) => type.id === filterId);
                 return type ? (
                   <span
                     key={type.id}
@@ -519,27 +517,27 @@ export default function Search() {
 
         {filteredExperiments.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredExperiments.map((experiment) => (
+            {filteredExperiments.map((resource) => (
               <Link
-                href={`/teaching-resource/${experiment.slug}`}
+                href={`/teaching-resource/${resource.slug}`}
                 passHref
-                key={experiment.id}
+                key={resource.id}
                 className="block"
                 target="_blank"
               >
                 <div className="bg-white p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200">
                   <img
-                    src={experiment.imagePreview}
-                    alt={experiment.title}
+                    src={resource.imagePreview}
+                    alt={resource.title}
                     className="w-full h-48 object-cover rounded-md mb-4"
                   />
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                    {experiment.title}
+                    {resource.title}
                   </h3>
                   <p className="text-gray-600">
-                    {experiment.description.length > 90
-                      ? `${experiment.description.slice(0, 90)}...`
-                      : experiment.description}
+                    {resource.description.length > 90
+                      ? `${resource.description.slice(0, 90)}...`
+                      : resource.description}
                   </p>
                 </div>
               </Link>
@@ -550,7 +548,7 @@ export default function Search() {
             <div className="text-center">
               <FiSearch className="mx-auto text-4xl text-blue-600 mb-4" />
               <p className="text-xl font-semibold text-gray-700">
-                Nenhum experimento encontrado! <br />
+                Nenhum atividade encontrado! <br />
                 Pesquise utilizando outro filtro.
               </p>
             </div>

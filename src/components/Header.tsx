@@ -1,11 +1,6 @@
 "use client";
-import Link from "next/link";
 import MobileNav from "./MobileNav";
-import ThemeSwitch from "./ThemeSwitch";
 import Navbar from "./Navbar";
-import { FcBiohazard, FcGlobe, FcSearch } from "react-icons/fc";
-import { BiSolidFlask } from "react-icons/bi";
-import logo from "../../public/logo.png";
 import { FaBookOpen, FaVial } from "react-icons/fa";
 
 const Header = () => {

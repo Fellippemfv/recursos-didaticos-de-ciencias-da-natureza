@@ -43,7 +43,7 @@ import { z } from "zod";
 import { Octokit } from "@octokit/rest";
 /* import Octokit from "@octokit/rest"; */
 
-import experimentTypes from "../api/data/teachingResourceTypes.json";
+import resourceTypes from "../api/data/teachingResourceTypes.json";
 import abntRules from "../api/data/abntRules.json";
 import topicGeneralData from "../api/data/teachingResourceGeneralThemes.json";
 
@@ -53,8 +53,6 @@ import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import { FcInfo } from "react-icons/fc";
-import { BiLoaderAlt } from "react-icons/bi";
-import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -79,16 +77,16 @@ interface SpecificTopic {
   slug: string;
 }
 
-interface ExperimentType {
+interface ResourceType {
   id: number;
   title: string;
   slug: string;
   steps: string;
 }
 
-export default function Experiment() {
+export default function sendTeachingResource() {
   const successRef = useRef<HTMLDivElement>(null); // Especifica o tipo HTMLDivElement
-  const [experimentGeneralData] = useState(topicGeneralData);
+  const [resourceGeneralData] = useState(topicGeneralData);
   const [apiToken, setApiToken] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [testResult, setTestResult] = useState<{
@@ -157,7 +155,7 @@ export default function Experiment() {
     setTestResult(null);
   };
 
-  const [experimentData, setExperimentData] = useState({
+  const [resourceData, setResourceData] = useState({
     id: "",
     postDate: "",
     profileName: "",
@@ -177,8 +175,8 @@ export default function Experiment() {
     activitySheetOne: "",
   });
 
-  const handleSelectExperimentTypeChange = (selectedType: ExperimentType) => {
-    setExperimentData((prevData: any) => ({
+  const handleSelectResourceTypeChange = (selectedType: ResourceType) => {
+    setResourceData((prevData: any) => ({
       ...prevData,
       resourceType: selectedType,
     }));
@@ -186,17 +184,17 @@ export default function Experiment() {
 
   const handleGeneralSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
-    const selectedTopic = experimentGeneralData.find(
+    const selectedTopic = resourceGeneralData.find(
       (topic) => topic.slug === value,
     );
 
     if (selectedTopic) {
-      const isTopicAlreadySelected = experimentData.topicGeneral.some(
+      const isTopicAlreadySelected = resourceData.topicGeneral.some(
         (topic: any) => topic.title === selectedTopic.title,
       );
 
       if (!isTopicAlreadySelected) {
-        setExperimentData((prevData: any) => ({
+        setResourceData((prevData: any) => ({
           ...prevData,
           topicGeneral: [
             ...prevData.topicGeneral,
@@ -223,12 +221,12 @@ export default function Experiment() {
     generalTopicSlug: any,
   ) => {
     const { value } = event.target;
-    const selectedSpecificTopic = experimentGeneralData
+    const selectedSpecificTopic = resourceGeneralData
       .find((topic) => topic.slug === generalTopicSlug)
       ?.topicSpecific.find((topic) => topic.slug === value);
 
     if (selectedSpecificTopic) {
-      setExperimentData((prevData: any) => {
+      setResourceData((prevData: any) => {
         const updatedTopicSpecific = {
           ...prevData.topicSpecific,
           [generalTopicSlug]: [
@@ -257,14 +255,14 @@ export default function Experiment() {
   ) => {
     const { name, value } = event.target;
 
-    setExperimentData({
-      ...experimentData,
+    setResourceData({
+      ...resourceData,
       [name]: value,
     });
   };
 
   const handleRemoveGeneralTopic = (id: number, generalTopicSlug: any) => {
-    setExperimentData((prevData) => {
+    setResourceData((prevData) => {
       const updatedTopicSpecific = { ...prevData.topicSpecific };
       delete updatedTopicSpecific[generalTopicSlug];
 
@@ -279,7 +277,7 @@ export default function Experiment() {
   };
 
   const handleRemoveSpecificTopic = (id: number, generalTopicSlug: any) => {
-    setExperimentData((prevData: any) => ({
+    setResourceData((prevData: any) => ({
       ...prevData,
       topicSpecific: {
         ...prevData.topicSpecific,
@@ -291,13 +289,13 @@ export default function Experiment() {
   };
 
   const isGeneralTopicSelected = (slug: any) => {
-    return experimentData.topicGeneral.some(
+    return resourceData.topicGeneral.some(
       (topic: Topic) => topic.slug === slug,
     );
   };
 
   const isSpecificTopicSelected = (slug: any) => {
-    return Object.values(experimentData.topicSpecific).some(
+    return Object.values(resourceData.topicSpecific).some(
       (topics: SpecificTopic[]) =>
         topics.some((topic: SpecificTopic) => topic.slug === slug),
     );
@@ -305,10 +303,10 @@ export default function Experiment() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const experimentJson = JSON.stringify({
-      ...experimentData,
+    const resourceJson = JSON.stringify({
+      ...resourceData,
     });
-    console.log(experimentJson);
+    console.log(resourceJson);
   };
 
   interface Objective {
@@ -324,7 +322,7 @@ export default function Experiment() {
     setTempObjectives((prevObjectives) =>
       prevObjectives.filter((obj) => obj.id !== id),
     );
-    setExperimentData((prevData: any) => ({
+    setResourceData((prevData: any) => ({
       ...prevData,
       objectives: prevData.objectives.filter((obj: any) => obj.id !== id),
     }));
@@ -334,7 +332,7 @@ export default function Experiment() {
     if (tempObjectives.length < 5) {
       const newObj: Objective = { id: nextId, objectiveText: "", content: "" };
       setTempObjectives((prevObjectives) => [...prevObjectives, newObj]);
-      setExperimentData((prevData: any) => ({
+      setResourceData((prevData: any) => ({
         ...prevData,
         objectives: [...prevData.objectives, { id: nextId, content: "" }],
       }));
@@ -351,7 +349,7 @@ export default function Experiment() {
       obj.id === id ? { ...obj, objectiveText: value } : obj,
     );
     setTempObjectives(updatedObjectives);
-    setExperimentData((prevData: any) => ({
+    setResourceData((prevData: any) => ({
       ...prevData,
       objectives: prevData.objectives.map((obj: any) =>
         obj.id === id ? { ...obj, content: value } : obj,
@@ -372,7 +370,7 @@ export default function Experiment() {
     setTempMaterials((prevMaterials) =>
       prevMaterials.filter((material) => material.id !== id),
     );
-    setExperimentData((prevData: any) => ({
+    setResourceData((prevData: any) => ({
       ...prevData,
       materials: prevData.materials.filter(
         (material: any) => material.id !== id,
@@ -388,7 +386,7 @@ export default function Experiment() {
         content: "",
       };
       setTempMaterials((prevMaterials) => [...prevMaterials, newMaterial]);
-      setExperimentData((prevData: any) => ({
+      setResourceData((prevData: any) => ({
         ...prevData,
         materials: [...prevData.materials, { id: nextMaterialId, content: "" }],
       }));
@@ -405,7 +403,7 @@ export default function Experiment() {
       material.id === id ? { ...material, materialText: value } : material,
     );
     setTempMaterials(updatedMaterials);
-    setExperimentData((prevData: any) => ({
+    setResourceData((prevData: any) => ({
       ...prevData,
       materials: prevData.materials.map((material: any) =>
         material.id === id ? { ...material, content: value } : material,
@@ -426,7 +424,7 @@ export default function Experiment() {
     setTempReferences((prevReferences) =>
       prevReferences.filter((reference) => reference.id !== id),
     );
-    setExperimentData((prevData: any) => ({
+    setResourceData((prevData: any) => ({
       ...prevData,
       references: prevData.references.filter(
         (reference: any) => reference.id !== id,
@@ -442,7 +440,7 @@ export default function Experiment() {
         content: "",
       };
       setTempReferences((prevReferences) => [...prevReferences, newReference]);
-      setExperimentData((prevData: any) => ({
+      setResourceData((prevData: any) => ({
         ...prevData,
         references: [
           ...prevData.references,
@@ -462,7 +460,7 @@ export default function Experiment() {
       reference.id === id ? { ...reference, referenceText: value } : reference,
     );
     setTempReferences(updatedReferences);
-    setExperimentData((prevData: any) => ({
+    setResourceData((prevData: any) => ({
       ...prevData,
       references: prevData.references.map((reference: any) =>
         reference.id === id ? { ...reference, content: value } : reference,
@@ -479,7 +477,7 @@ export default function Experiment() {
       locale: ptBR,
     });
     const generatedId = Date.now().toString();
-    setExperimentData((prevData) => ({
+    setResourceData((prevData) => ({
       ...prevData,
       id: generatedId,
       postDate: formattedDate,
@@ -497,22 +495,20 @@ export default function Experiment() {
 
   // Lógica para verificar se todos os campos estão preenchidos
   const allFieldsFilled =
-    experimentData.profileName.length !== MinLenghtVerification &&
-    experimentData.topicGeneral.length !== MinLenghtVerification &&
-    experimentData.resourceType.length !== MinLenghtVerification &&
-    experimentData.title.length !== MinLenghtVerification &&
-    experimentData.imagePreview.length !== MinLenghtVerification &&
-    experimentData.description.length !== MinLenghtVerification &&
-    experimentData.objectives.length !== MinLenghtVerification &&
-    experimentData.materials.length !== MinLenghtVerification &&
-    experimentData.methods.length !== MinLenghtVerification &&
-    experimentData.references.length !== MinLenghtVerification;
+    resourceData.profileName.length !== MinLenghtVerification &&
+    resourceData.topicGeneral.length !== MinLenghtVerification &&
+    resourceData.resourceType.length !== MinLenghtVerification &&
+    resourceData.title.length !== MinLenghtVerification &&
+    resourceData.imagePreview.length !== MinLenghtVerification &&
+    resourceData.description.length !== MinLenghtVerification &&
+    resourceData.objectives.length !== MinLenghtVerification &&
+    resourceData.materials.length !== MinLenghtVerification &&
+    resourceData.methods.length !== MinLenghtVerification &&
+    resourceData.references.length !== MinLenghtVerification;
 
   async function handleSend() {
     setIsSending(true);
     setPassos([]);
-
-    const passosRealizados = document.getElementById("passos-realizados");
 
     // Função para adicionar um passo ao log
     const adicionarPasso = (passo: string, sucesso: boolean) => {
@@ -534,7 +530,7 @@ export default function Experiment() {
 
       // Json
       const filePath = "src/app/api/data/teachingResourceSpecifics.json";
-      const fileContent = JSON.stringify(experimentData, null, 2);
+      const fileContent = JSON.stringify(resourceData, null, 2);
 
       adicionarPasso("Criando o fork do repositório original...", true);
       // Cria o fork do repositório original
@@ -555,7 +551,7 @@ export default function Experiment() {
       // Espera alguns segundos para garantir que as informações do fork estejam atualizadas
       await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      // Verifica se a branch "new-experiment" existe no fork
+      // Verifica se a branch "new-resource" existe no fork
       adicionarPasso(
         `Verificando a existência da branch "${baseBranchName}" no fork...`,
         true,
@@ -570,7 +566,7 @@ export default function Experiment() {
       });
 
       if (!data) {
-        // Cria a branch "new-experiment" no fork se ela não existir
+        // Cria a branch "new-resource" no fork se ela não existir
         adicionarPasso(
           `A branch "${baseBranchName}" não existe no fork. Criando a branch...`,
           true,
@@ -905,7 +901,7 @@ export default function Experiment() {
           }
 
           const base64Content = base64String.split(",")[1];
-          const documentPath = `public/${experimentData.id}/documents/${selectedDocument.name}`;
+          const documentPath = `public/${resourceData.id}/documents/${selectedDocument.name}`;
           let fileSha = "";
 
           // Função para obter a SHA mais recente do arquivo
@@ -946,7 +942,7 @@ export default function Experiment() {
                 owner: forkOwner,
                 repo: baseRepositoryName,
                 path: documentPath,
-                message: `Add document for resource N° ${experimentData.id}`,
+                message: `Add document for resource N° ${resourceData.id}`,
                 content: base64Content,
                 branch: newBranchName,
                 sha: sha || undefined, // Use SHA se não estiver vazia
@@ -1010,7 +1006,7 @@ export default function Experiment() {
       await handleDocumentUploads();
 
       const handleApplyingCommentsAndPullRequest = async () => {
-        adicionarPasso("Adicionando sugestão de novo experimento...", true);
+        adicionarPasso("Adicionando sugestão de nova atividade...", true);
 
         const currentContent = Array.isArray(fileInfo.data)
           ? undefined
@@ -1123,7 +1119,7 @@ export default function Experiment() {
           owner: baseRepositoryOwnerName,
           repo: baseRepositoryName,
           title: `Update teaching resource data N° ${experimentId}`,
-          body: "Please review and approve this update to the experiment data.",
+          body: "Please review and approve this update to the resource data.",
           head: `${forkOwner}:${newBranchName}`,
           base: baseBranchName,
         });
@@ -1139,8 +1135,8 @@ export default function Experiment() {
       // Chama a função handleApplyingCommentsAndPullRequest
       await handleApplyingCommentsAndPullRequest();
     } catch (error) {
-      console.error("Erro ao enviar experimento.", error);
-      adicionarPasso("Erro ao enviar experimento." + `${error}`, false);
+      console.error("Erro ao enviar atividade.", error);
+      adicionarPasso("Erro ao enviar atividade." + `${error}`, false);
       // Lidar com erros
     } finally {
       setIsSending(false);
@@ -1168,7 +1164,7 @@ export default function Experiment() {
       ç: "c",
     };
 
-    const titleWithoutSpecialChars = experimentData.title
+    const titleWithoutSpecialChars = resourceData.title
       .toLowerCase()
       .replace(/[^\w\s]/gi, (match: string) => {
         const replacement = specialCharsMap[match];
@@ -1178,14 +1174,14 @@ export default function Experiment() {
     return titleWithoutSpecialChars
       .replace(/\s+/g, "-")
       .replace(/^-+|-+$/g, "");
-  }, [experimentData.title]);
+  }, [resourceData.title]);
 
   useEffect(() => {
-    setExperimentData((prevData) => ({
+    setResourceData((prevData) => ({
       ...prevData,
       slug: generateSlug(),
     }));
-  }, [experimentData.title, generateSlug]);
+  }, [resourceData.title, generateSlug]);
 
   useEffect(() => {
     handleGenerateId();
@@ -1244,8 +1240,8 @@ export default function Experiment() {
     setIsImageConfirmed(false);
     setUploadStatus("");
 
-    // Limpe a propriedade imagePreview do estado experimentData
-    // setExperimentData((prevState: any) => ({
+    // Limpe a propriedade imagePreview do estado resourceData
+    // setResourceData((prevState: any) => ({
     //   ...prevState,
     //   imagePreview: "",
     // }));
@@ -1264,10 +1260,10 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico da imagem
-      const imagePath = `/${experimentData.id}/images/${file.name}`;
+      const imagePath = `/${resourceData.id}/images/${file.name}`;
 
       // Atualiza o estado imagePath com o link dinâmico da imagem
-      setExperimentData((prevState: any) => ({
+      setResourceData((prevState: any) => ({
         ...prevState,
         imagePreview: imagePath,
       }));
@@ -1324,8 +1320,8 @@ export default function Experiment() {
     setIsDocumentConfirmedOne(false);
     setUploadStatus("");
 
-    // Limpe a propriedade activitySheetOne do estado experimentData
-    setExperimentData((prevState) => ({
+    // Limpe a propriedade activitySheetOne do estado resourceData
+    setResourceData((prevState) => ({
       ...prevState,
       activitySheetOne: "",
     }));
@@ -1344,10 +1340,10 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico do documento
-      const documentPath = `/${experimentData.id}/documents/${file.name}`;
+      const documentPath = `/${resourceData.id}/documents/${file.name}`;
 
       // Atualiza o estado activitySheetOne com o link dinâmico do documento
-      setExperimentData((prevState) => ({
+      setResourceData((prevState) => ({
         ...prevState,
         activitySheetOne: documentPath,
       }));
@@ -1377,8 +1373,8 @@ export default function Experiment() {
     setIsDocumentConfirmedTwo(false);
     setUploadStatus("");
 
-    // Limpe a propriedade activitySheetTwo do estado experimentData
-    setExperimentData((prevState) => ({
+    // Limpe a propriedade activitySheetTwo do estado resourceData
+    setResourceData((prevState) => ({
       ...prevState,
       activitySheetTwo: "",
     }));
@@ -1397,10 +1393,10 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico do documento
-      const documentPath = `/${experimentData.id}/documents/${file.name}`;
+      const documentPath = `/${resourceData.id}/documents/${file.name}`;
 
       // Atualiza o estado activitySheetTwo com o link dinâmico do documento
-      setExperimentData((prevState) => ({
+      setResourceData((prevState) => ({
         ...prevState,
         activitySheetTwo: documentPath,
       }));
@@ -1430,8 +1426,8 @@ export default function Experiment() {
     setIsDocumentConfirmedThree(false);
     setUploadStatus("");
 
-    // Limpe a propriedade activitySheetThree do estado experimentData
-    setExperimentData((prevState) => ({
+    // Limpe a propriedade activitySheetThree do estado resourceData
+    setResourceData((prevState) => ({
       ...prevState,
       activitySheetThree: "",
     }));
@@ -1450,10 +1446,10 @@ export default function Experiment() {
 
     reader.onload = () => {
       // Cria o link dinâmico do documento
-      const documentPath = `/${experimentData.id}/documents/${file.name}`;
+      const documentPath = `/${resourceData.id}/documents/${file.name}`;
 
       // Atualiza o estado activitySheetThree com o link dinâmico do documento
-      setExperimentData((prevState) => ({
+      setResourceData((prevState) => ({
         ...prevState,
         activitySheetThree: documentPath,
       }));
@@ -1488,8 +1484,8 @@ export default function Experiment() {
     updatedMethods[index] = { ...updatedMethods[index], content: value };
     setTempMethods(updatedMethods);
 
-    // Atualiza experimentData.methods com o novo conteúdo
-    setExperimentData((prevData: any) => {
+    // Atualiza resourceData.methods com o novo conteúdo
+    setResourceData((prevData: any) => {
       const updatedData = {
         ...prevData,
         methods: updatedMethods,
@@ -1505,7 +1501,7 @@ export default function Experiment() {
       imagePath: "",
     };
     setTempMethods((prevMethods) => [...prevMethods, newMethodObj]);
-    setExperimentData((prevData: any) => {
+    setResourceData((prevData: any) => {
       const newMethods = [
         ...prevData.methods,
         { id: nextMethodId, content: newMethod, imagePath: "" },
@@ -1536,8 +1532,8 @@ export default function Experiment() {
     setPreviewImages((prevImages) => prevImages.filter((_, i) => i !== index));
     setImageInputsCount((prevCount) => prevCount - 1);
 
-    // Remove o método em experimentData.methods
-    setExperimentData((prevData) => ({
+    // Remove o método em resourceData.methods
+    setResourceData((prevData) => ({
       ...prevData,
       methods: prevData.methods.filter((m: any) => m.id !== id),
     }));
@@ -1555,7 +1551,7 @@ export default function Experiment() {
       reader.onload = () => {
         const base64Data = reader.result as string;
         const imageName = files[0].name;
-        const imagePath = `/${experimentData.id}/images/${imageName}`;
+        const imagePath = `/${resourceData.id}/images/${imageName}`;
 
         const updatedMethods = tempMethods.map((method, i) => {
           if (i === index) {
@@ -1571,8 +1567,8 @@ export default function Experiment() {
           return updatedImages;
         });
 
-        // Atualiza o experimentData.methods com o caminho da imagem
-        setExperimentData((prevData: any) => {
+        // Atualiza o resourceData.methods com o caminho da imagem
+        setResourceData((prevData: any) => {
           const updatedData = {
             ...prevData,
             methods: (prevData.methods as any[]).map((m) => {
@@ -1611,7 +1607,7 @@ export default function Experiment() {
 
     setImageInputsCount((prevCount) => prevCount - 1);
 
-    setExperimentData((prevData: any) => ({
+    setResourceData((prevData: any) => ({
       ...prevData,
       methods: prevData.methods.map((m: any) => {
         if (m.id === updatedMethods[index].id) {
@@ -1703,7 +1699,7 @@ export default function Experiment() {
                             id="id"
                             type="text"
                             name="id"
-                            value={experimentData.id}
+                            value={resourceData.id}
                             onChange={handleInputChange}
                             disabled
                             className="cursor-not-allowed w-full md:w-auto px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
@@ -1732,7 +1728,7 @@ export default function Experiment() {
                             id="postDate"
                             type="text"
                             name="postDate"
-                            value={experimentData.postDate}
+                            value={resourceData.postDate}
                             onChange={handleInputChange}
                             disabled
                             className="cursor-not-allowed w-full md:w-auto px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
@@ -1754,14 +1750,14 @@ export default function Experiment() {
                       <p className="mt-2 mb-4 text-sm text-muted-foreground">
                         O nome do autor/da autora é a identificação de quem
                         enviou os dados do recurso didático e aparecerá dentro
-                        da página do da atividade para sabermos quem enviou.
+                        da página da atividade para sabermos quem enviou.
                       </p>
                       <Input
                         placeholder="Clique e escreva seu nome."
                         id="profileName"
                         type="text"
                         name="profileName"
-                        value={experimentData.profileName}
+                        value={resourceData.profileName}
                         onChange={handleInputChange}
                         className="mb-4 max-w-40rem px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transparent outline-none resize-none"
                       />
@@ -1770,7 +1766,7 @@ export default function Experiment() {
                       </p>
                     </div>
 
-                    {experimentData.profileName.length === 0 && (
+                    {resourceData.profileName.length === 0 && (
                       <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>Escreva um nome de identificação</span>
@@ -1795,7 +1791,7 @@ export default function Experiment() {
                     <p className="mt-2 mb-4 text-sm text-muted-foreground">
                       Selecione um tópico geral para o seu recurso didático
                       entre Biologia, Física e Química. Escolha cuidadosamente,
-                      pois isso ajudará na identificação e classificação do sua
+                      pois isso ajudará na identificação e classificação de sua
                       atividade.
                     </p>
                     <select
@@ -1806,7 +1802,7 @@ export default function Experiment() {
                       className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
                     >
                       <option value="">Selecione um tópico</option>
-                      {experimentGeneralData.map((topic) => (
+                      {resourceGeneralData.map((topic) => (
                         <option
                           key={topic.id}
                           value={topic.slug}
@@ -1819,7 +1815,7 @@ export default function Experiment() {
                     </select>
 
                     <div className="mt-2 flex flex-wrap">
-                      {experimentData.topicGeneral.map((topic: any) => (
+                      {resourceData.topicGeneral.map((topic: any) => (
                         <div
                           key={topic.id}
                           className="bg-purple-600 mr-2 p-1.5 rounded-md inline-flex items-center mr-2 mb-2 text-white shadow-lg relative"
@@ -1838,7 +1834,7 @@ export default function Experiment() {
                         </div>
                       ))}
 
-                      {experimentData.topicGeneral.length === 0 && (
+                      {resourceData.topicGeneral.length === 0 && (
                         <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                           <MdError className="mr-2" />
                           <span>Selecione pelo menos um tópico geral</span>
@@ -1847,15 +1843,15 @@ export default function Experiment() {
                     </div>
                   </div>
 
-                  {experimentData.topicGeneral.length > 0 && (
+                  {resourceData.topicGeneral.length > 0 && (
                     <>
-                      {experimentData.topicGeneral.map((generalTopic: any) => {
+                      {resourceData.topicGeneral.map((generalTopic: any) => {
                         const specificTopics =
-                          experimentGeneralData.find(
+                          resourceGeneralData.find(
                             (topic) => topic.slug === generalTopic.slug,
                           )?.topicSpecific || [];
 
-                        const selectedSpecificTopics = (experimentData
+                        const selectedSpecificTopics = (resourceData
                           .topicSpecific[generalTopic.slug] ||
                           []) as SpecificTopic[];
 
@@ -1988,7 +1984,7 @@ export default function Experiment() {
                               </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                              {experimentTypes.map((type, index) => (
+                              {resourceTypes.map((type, index) => (
                                 <tr
                                   key={type.id}
                                   className="flex justify-between items-center"
@@ -2001,11 +1997,11 @@ export default function Experiment() {
                                         name="resourceType"
                                         value={type.slug}
                                         checked={
-                                          (experimentData.resourceType as any)
+                                          (resourceData.resourceType as any)
                                             .slug === type.slug
                                         }
                                         onChange={() =>
-                                          handleSelectExperimentTypeChange(type)
+                                          handleSelectResourceTypeChange(type)
                                         }
                                         className="mr-2 text-blue-600 focus:ring focus:ring-blue-300"
                                       />
@@ -2026,7 +2022,7 @@ export default function Experiment() {
                         </div>
                       </div>
 
-                      {experimentData.resourceType.length === 0 && (
+                      {resourceData.resourceType.length === 0 && (
                         <div className="flex flex-row justify-center mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                           <MdError className="mr-2" />
                           <span>
@@ -2040,7 +2036,7 @@ export default function Experiment() {
 
                 <div className="border border-gray-300 rounded-lg p-6 mb-6">
                   <h2 className="text-lg font-semibold mb-4">
-                    Etapa 3: Informações Básicas do experimento
+                    Etapa 3: Informações Básicas da atividade
                   </h2>
 
                   <div className="mt-8">
@@ -2057,7 +2053,7 @@ export default function Experiment() {
                       {/* Restante do código... */}
                     </div>
                     <p className="mt-2 mb-4 text-sm text-muted-foreground">
-                      O título é uma parte crucial da identificação do sua
+                      O título é uma parte crucial da identificação de sua
                       atividade. Por favor, seja claro e descritivo, de
                       preferência faça algo chamativo.
                     </p>
@@ -2073,7 +2069,7 @@ export default function Experiment() {
                       Insira entre 10-300 caracteres.
                     </p>
 
-                    {experimentData.title.length === 0 && (
+                    {resourceData.title.length === 0 && (
                       <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
@@ -2096,7 +2092,7 @@ export default function Experiment() {
                       <p className="mb-2 text-sm text-muted-foreground">
                         Forneça uma imagem que represente a atividade como um
                         todo. Essa imagem vai ficar na página de busca e na
-                        página do experimento em si.
+                        página da atividade em si.
                       </p>
 
                       <div className="flex flex-col items-center">
@@ -2148,7 +2144,7 @@ export default function Experiment() {
                           </div>
                         </div>
 
-                        {experimentData.imagePreview.length === 0 && (
+                        {resourceData.imagePreview.length === 0 && (
                           <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                             <MdError className="mr-2" />
                             <span>
@@ -2192,7 +2188,7 @@ export default function Experiment() {
                         Insira entre 10-300 caracteres.
                       </p>
 
-                      {experimentData.description.length === 0 && (
+                      {resourceData.description.length === 0 && (
                         <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                           <MdError className="mr-2" />
                           <span>
@@ -2395,8 +2391,8 @@ export default function Experiment() {
                     <p className="mb-2 text-sm text-muted-foreground">
                       Liste os objetivos da atividade no infinitivo, ou seja,
                       descreva o que se pretende alcançar de forma clara e
-                      sucinta. Certifique-se de incluir todos os objetivos que o
-                      experimento visa alcançar. Por exemplo, "analisar",
+                      sucinta. Certifique-se de incluir todos os objetivos que a
+                      atividade visa alcançar. Por exemplo, "analisar",
                       "comparar", "avaliar", entre outros. Cada objetivo deve
                       estar descrito no infinitivo e de forma distinta.
                     </p>
@@ -2438,7 +2434,7 @@ export default function Experiment() {
                       </div>
                     ))}
 
-                    {experimentData.objectives.length === 0 && (
+                    {resourceData.objectives.length === 0 && (
                       <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
@@ -2519,7 +2515,7 @@ export default function Experiment() {
                       </div>
                     ))}
 
-                    {experimentData.materials.length === 0 && (
+                    {resourceData.materials.length === 0 && (
                       <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
@@ -2554,9 +2550,9 @@ export default function Experiment() {
                     </div>
                     <p className="mb-2 text-sm text-muted-foreground">
                       Forneça uma descrição objetiva, detalhada e concisa de
-                      cada passo para a realização a atividade porposta, escreva
-                      de forma que fique claro o que devemos realizar, por isso,
-                      separe em etapas.
+                      cada passo para a realização da atividade porposta,
+                      escreva de forma que fique claro o que devemos realizar,
+                      por isso, separe em etapas.
                     </p>
 
                     {tempMethods.map((method, index) => (
@@ -2658,7 +2654,7 @@ export default function Experiment() {
                       </div>
                     ))}
 
-                    {experimentData.methods.length === 0 && (
+                    {resourceData.methods.length === 0 && (
                       <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
@@ -2702,7 +2698,7 @@ export default function Experiment() {
                     </p>
 
                     <Textarea
-                      placeholder="Clique e escreva os resultados do seu experimento."
+                      placeholder="Clique e escreva os resultados da sua atividade."
                       id="results"
                       className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
                       name="results"
@@ -2712,7 +2708,7 @@ export default function Experiment() {
                       Insira entre 10-300 caracteres.
                     </p>
 
-                    {experimentData.results.length === 0 && (
+                    {resourceData.results.length === 0 && (
                       <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
@@ -2737,7 +2733,7 @@ export default function Experiment() {
                       {/* Restante do código... */}
                     </div>
                     <p className="mb-2 text-sm text-muted-foreground">
-                      Insira uma explicação científica detalhada da sua
+                      Insira uma explicação científica detalhada de sua
                       atividade. Utilize terminologia apropriada e seja claro
                       para que outros usuários possam compreender facilmente
                       como a ciência explica este recurso didático. Lembrando:
@@ -2745,7 +2741,7 @@ export default function Experiment() {
                     </p>
 
                     <Textarea
-                      placeholder="Clique e escreva a explicação científica do seu experimento."
+                      placeholder="Clique e escreva a explicação científica de sua atividade."
                       id="scientificExplanation"
                       className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
                       name="scientificExplanation"
@@ -2755,7 +2751,7 @@ export default function Experiment() {
                       Insira entre 10-300 caracteres.
                     </p>
 
-                    {experimentData.scientificExplanation.length === 0 && (
+                    {resourceData.scientificExplanation.length === 0 && (
                       <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
@@ -2851,7 +2847,7 @@ export default function Experiment() {
                       </div>
                     ))}
 
-                    {experimentData.references.length === 0 && (
+                    {resourceData.references.length === 0 && (
                       <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                         <MdError className="mr-2" />
                         <span>
@@ -2942,19 +2938,19 @@ export default function Experiment() {
                               {/* Tópico: Nome de identificação */}
                               <li
                                 className={`flex items-center justify-between p-3 ${
-                                  experimentData.profileName.length > 0
+                                  resourceData.profileName.length > 0
                                     ? "text-green-500"
                                     : "text-red-500"
                                 }`}
                               >
                                 <div className="flex items-center">
-                                  {experimentData.profileName.length > 0 ? (
+                                  {resourceData.profileName.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   <span>
-                                    {experimentData.profileName.length > 0
+                                    {resourceData.profileName.length > 0
                                       ? 'Campo: "Nome de identificação" preenchido'
                                       : 'Campo: "Nome de identificação" não preenchido'}
                                   </span>
@@ -2962,16 +2958,16 @@ export default function Experiment() {
                               </li>
                               {/* Tópico: Tópico geral */}
                               <li
-                                className={`flex items-center justify-between p-2 ${experimentData.topicGeneral.length > 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-2 ${resourceData.topicGeneral.length > 0 ? "text-green-500" : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
-                                  {experimentData.topicGeneral.length > 0 ? (
+                                  {resourceData.topicGeneral.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   <span>
-                                    {experimentData.topicGeneral.length > 0
+                                    {resourceData.topicGeneral.length > 0
                                       ? 'Campo: "Tópico geral" selecionado'
                                       : 'Campo: "Tópico geral" não selecionado'}
                                   </span>
@@ -2980,18 +2976,18 @@ export default function Experiment() {
                               {/*Tópico: Tipos de recursos didáticos com status */}
 
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.resourceType.length !== 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${resourceData.resourceType.length !== 0 ? "text-green-500" : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.resourceType.length !== 0 ? (
+                                  {resourceData.resourceType.length !== 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.resourceType.length !== 0
+                                    {resourceData.resourceType.length !== 0
                                       ? 'Campo: "Tipo de recurso didático" selecionado'
                                       : 'Campo: "Tipo de recurso didático" não selecionado'}
                                   </span>
@@ -3001,18 +2997,18 @@ export default function Experiment() {
                               {/*Tópico: Título */}
 
                               <li
-                                className={`flex items-center justify-between p-3  ${experimentData.title.length > 0 ? "text-green-500" : "text-red-500 "}`}
+                                className={`flex items-center justify-between p-3  ${resourceData.title.length > 0 ? "text-green-500" : "text-red-500 "}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.title.length > 0 ? (
+                                  {resourceData.title.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.title.length > 0
+                                    {resourceData.title.length > 0
                                       ? 'Campo "Título da atividade" preenchido'
                                       : 'Campo "Título da atividade" não preenchido'}
                                   </span>
@@ -3021,18 +3017,18 @@ export default function Experiment() {
 
                               {/*Tópico: Imagem de preview */}
                               <li
-                                className={`flex items-center justify-between p-3  ${experimentData.imagePreview.length > 0 ? "text-green-500 " : "text-red-500 "}`}
+                                className={`flex items-center justify-between p-3  ${resourceData.imagePreview.length > 0 ? "text-green-500 " : "text-red-500 "}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.imagePreview.length > 0 ? (
+                                  {resourceData.imagePreview.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.imagePreview.length > 0
+                                    {resourceData.imagePreview.length > 0
                                       ? 'Campo: "Imagem de Preview" adicionada'
                                       : 'Campo: "Imagem de preview" não adicionada'}
                                   </span>
@@ -3041,18 +3037,18 @@ export default function Experiment() {
 
                               {/*Tópico: Descrição*/}
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.description.length > 0 ? "text-green-500 " : " text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${resourceData.description.length > 0 ? "text-green-500 " : " text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.description.length > 0 ? (
+                                  {resourceData.description.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.description.length > 0
+                                    {resourceData.description.length > 0
                                       ? 'Campo: "Descrição" preenchido'
                                       : 'Campo: "Descrição" não preenchido'}
                                   </span>
@@ -3061,18 +3057,18 @@ export default function Experiment() {
 
                               {/*Tópico: Objetivos*/}
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.objectives.length > 0 ? "text-green-500 " : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${resourceData.objectives.length > 0 ? "text-green-500 " : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.objectives.length > 0 ? (
+                                  {resourceData.objectives.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.objectives.length > 0
+                                    {resourceData.objectives.length > 0
                                       ? 'Campo: "Objetivos" preenchido'
                                       : 'Campo: "Objetivos" não preenchido'}
                                   </span>
@@ -3081,18 +3077,18 @@ export default function Experiment() {
 
                               {/*Tópico: Materiais necessários*/}
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.materials.length > 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${resourceData.materials.length > 0 ? "text-green-500" : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.materials.length > 0 ? (
+                                  {resourceData.materials.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.materials.length > 0
+                                    {resourceData.materials.length > 0
                                       ? 'Campo: "Materiais necessários" preenchido'
                                       : 'Campo: "Materiais necessários" não preenchido'}
                                   </span>
@@ -3101,18 +3097,18 @@ export default function Experiment() {
 
                               {/*Tópico: Passo a passo*/}
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.methods.length > 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${resourceData.methods.length > 0 ? "text-green-500" : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.methods.length > 0 ? (
+                                  {resourceData.methods.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.methods.length > 0
+                                    {resourceData.methods.length > 0
                                       ? 'Campo: "Passo a passo" preenchido'
                                       : 'Campo: "Passo a passo" não preenchido'}
                                   </span>
@@ -3121,18 +3117,18 @@ export default function Experiment() {
 
                               {/*Tópico: Referências*/}
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.references.length > 0 ? "text-green-500 " : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${resourceData.references.length > 0 ? "text-green-500 " : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.references.length > 0 ? (
+                                  {resourceData.references.length > 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.references.length > 0
+                                    {resourceData.references.length > 0
                                       ? 'Campo: "Referências" preenchido'
                                       : 'Campo: "Referências" não preenchido'}
                                   </span>
@@ -3279,14 +3275,14 @@ export default function Experiment() {
             </div>
           </form>
         </div>
-        {/*   {Object.keys(experimentData).length > 0 && (
+        {/*   {Object.keys(resourceData).length > 0 && (
           <>
             <div className="d-flex justify-content-end">
               <button className="btn btn-outline-primary me-2">
                 <FaCopy className="ms-2" />
               </button>
             </div>
-            <pre>{JSON.stringify(experimentData, null, 2)}</pre>
+            <pre>{JSON.stringify(resourceData, null, 2)}</pre>
           </>
         )} */}
       </div>

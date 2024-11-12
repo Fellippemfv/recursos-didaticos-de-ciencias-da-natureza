@@ -1,23 +1,23 @@
 "use client";
 import {
-  FaArrowRight,
   FaBook,
   FaBullseye,
   FaChartBar,
   FaCheckCircle,
   FaClipboardCheck,
   FaClipboardList,
-  FaFileAlt,
   FaFileDownload,
   FaFlask,
-  FaImage,
-  FaTag,
   FaTimes,
 } from "react-icons/fa";
-import experimentData from "../../api/data/teachingResourceSpecifics.json";
+import resourceData from "../../api/data/teachingResourceSpecifics.json";
 import { useState } from "react";
 
-export default function Experiment({ params }: { params: { slug: string } }) {
+export default function teachingResource({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
 
@@ -31,7 +31,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
     setCurrentImage("");
   };
 
-  const [experimentList] = useState(experimentData);
+  const [experimentList] = useState(resourceData);
   const pageSlug = params.slug;
 
   const experimentInfo = experimentList.find(
@@ -79,12 +79,12 @@ export default function Experiment({ params }: { params: { slug: string } }) {
           <p className="text-blue-500 font-semibold">ID: {experimentInfo.id}</p>
         </div>
 
-        {/* Título do experimento */}
+        {/* Título da atividade */}
         <h1 className="text-2xl font-bold mt-6 text-gray-800">
           Proposta da atividade
         </h1>
 
-        {/* Descrição do experimento */}
+        {/* Descrição da atividade */}
         <p className="mt-2 text-base text-gray-700 mb-4 text-justify">
           {experimentInfo.description} Abaixo você pode conferir os temas
           relacionados a este recurso didático.
@@ -92,7 +92,7 @@ export default function Experiment({ params }: { params: { slug: string } }) {
 
         {/* Seções Padronizadas */}
 
-        {/* Sobre o que é este experimento? */}
+        {/* Sobre o que é esta atividade? */}
         <div className="w-full flex flex-col mb-8">
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-300">

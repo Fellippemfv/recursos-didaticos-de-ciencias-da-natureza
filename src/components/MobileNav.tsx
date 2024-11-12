@@ -1,27 +1,31 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from './Link'
-import headerNavLinks from '../../data/headerNavLinks'
+import { useState } from "react";
+import Link from "./Link";
+import headerNavLinks from "../../data/headerNavLinks";
 
 const MobileNav = () => {
-  const [navShow, setNavShow] = useState(false)
+  const [navShow, setNavShow] = useState(false);
 
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
-        document.body.style.overflow = 'auto'
+        document.body.style.overflow = "auto";
       } else {
         // Prevent scrolling
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = "hidden";
       }
-      return !status
-    })
-  }
+      return !status;
+    });
+  };
 
   return (
     <>
-      <button aria-label="Toggle Menu" onClick={onToggleNav} className="sm:hidden">
+      <button
+        aria-label="Toggle Menu"
+        onClick={onToggleNav}
+        className="sm:hidden"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -37,11 +41,15 @@ const MobileNav = () => {
       </button>
       <div
         className={`fixed left-0 top-0 z-10 h-full w-full transform bg-white opacity-95 duration-300 ease-in-out dark:bg-gray-950 dark:opacity-[0.98] ${
-          navShow ? 'translate-x-0' : 'translate-x-full'
+          navShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-end">
-          <button className="mr-8 mt-11 h-8 w-8" aria-label="Toggle Menu" onClick={onToggleNav}>
+          <button
+            className="mr-8 mt-11 h-8 w-8"
+            aria-label="Toggle Menu"
+            onClick={onToggleNav}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -57,9 +65,8 @@ const MobileNav = () => {
           </button>
         </div>
         <nav className="fixed mt-8 h-full">
-            <div className="px-12 flex flex-col">
-
-              <div className='w-full h-full mb-8 border-b border-solid border-darkgray'>
+          <div className="px-12 flex flex-col">
+            <div className="w-full h-full mb-8 border-b border-solid border-darkgray">
               <Link
                 href="/"
                 className="inline-block w-full h-full border-solid border-darkgrey text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
@@ -67,49 +74,42 @@ const MobileNav = () => {
               >
                 <span className="mb-4">Inicio</span>
               </Link>
-              </div>
-             
+            </div>
 
-              <div className='w-full h-full mb-8 border-b border-solid border-darkgray'>
+            <div className="w-full h-full mb-8 border-b border-solid border-darkgray">
               <Link
-                href="/pesquisar"
+                href="/search"
                 className="inline-block w-full h-full border-solid border-darkgrey text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
-                
                 <span className="mb-4">Pesquisar</span>
               </Link>
-              </div>
-             
-                <div className='w-full h-full mb-8 border-b border-solid border-darkgray'>
-                <Link
-                href="/sobre"
+            </div>
+
+            <div className="w-full h-full mb-8 border-b border-solid border-darkgray">
+              <Link
+                href="/about"
                 className="inline-block w-full h-full border-solid border-darkgrey text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
                 <span className="mb-4">Sobre</span>
-
-                
               </Link>
-                </div>
+            </div>
 
-                <div className='w-full h-full mb-8 border-b border-solid border-darkgray'>
-                <Link
+            <div className="w-full h-full mb-8 border-b border-solid border-darkgray">
+              <Link
                 href="/enviar-experimento"
                 className="inline-block w-full h-full border-solid border-darkgrey text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
                 <span className="mb-4">Enviar experimento</span>
-
-                
               </Link>
-                </div>
-              
             </div>
+          </div>
         </nav>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default MobileNav
+export default MobileNav;
