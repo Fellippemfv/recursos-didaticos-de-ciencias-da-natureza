@@ -533,14 +533,14 @@ export default function Experiment() {
         auth: apiToken,
       });
 
-      const newBranchName = `experiment-update-${experimentId}`;
+      const newBranchName = `new-resource-${experimentId}`;
 
       const baseRepositoryOwnerName = "fellippemfv";
       const baseRepositoryName = "my-science-project";
-      const baseBranchName = "add-experiment";
+      const baseBranchName = "add-new-resource";
 
       // Json
-      const filePath = "src/app/api/data/experimentos.json";
+      const filePath = "src/app/api/data/teachingResourceSpecifics.json";
       const fileContent = JSON.stringify(experimentData, null, 2);
 
       adicionarPasso("Criando o fork do repositório original...", true);
@@ -727,7 +727,7 @@ export default function Experiment() {
                     owner: forkOwner,
                     repo: baseRepositoryName,
                     path: imagePath,
-                    message: `Add image for experiment N° ${experimentId}`,
+                    message: `Add image for resource N° ${experimentId}`,
                     content: base64Content,
                     branch: newBranchName,
                     sha, // Incluir SHA se o arquivo já existir
@@ -837,7 +837,7 @@ export default function Experiment() {
               owner: forkOwner,
               repo: baseRepositoryName,
               path: imagePath,
-              message: `Add image for experiment N° ${experimentId}`,
+              message: `Add image for resource N° ${experimentId}`,
               content: base64Content,
               branch: newBranchName,
               sha: sha || undefined, // Inclui SHA se não estiver vazia
@@ -953,7 +953,7 @@ export default function Experiment() {
                 owner: forkOwner,
                 repo: baseRepositoryName,
                 path: documentPath,
-                message: `Add document for experiment N° ${experimentData.id}`,
+                message: `Add document for resource N° ${experimentData.id}`,
                 content: base64Content,
                 branch: newBranchName,
                 sha: sha || undefined, // Use SHA se não estiver vazia
@@ -1053,7 +1053,7 @@ export default function Experiment() {
             owner: forkOwner,
             repo: baseRepositoryName,
             path: filePath,
-            message: `Update experiment data for experiment N° ${experimentId}`,
+            message: `Update teaching resource data N° ${experimentId}`,
             content: Buffer.from(updatedContent).toString("base64"),
             branch: newBranchName,
             sha: latestSha, // Use o SHA mais recente
@@ -1084,7 +1084,7 @@ export default function Experiment() {
                 owner: forkOwner,
                 repo: baseRepositoryName,
                 path: filePath,
-                message: `Update experiment data for experiment N° ${experimentId} (conflict resolution)`,
+                message: `Update specific data for resource N° ${experimentId} (conflict resolution)`,
                 content: Buffer.from(updatedContent).toString("base64"),
                 branch: newBranchName,
                 sha: refreshedSha,
@@ -1129,7 +1129,7 @@ export default function Experiment() {
         const pullRequest = await octokitClient.pulls.create({
           owner: baseRepositoryOwnerName,
           repo: baseRepositoryName,
-          title: `Update experiment data for experiment N° ${experimentId}`,
+          title: `Update teaching resource data N° ${experimentId}`,
           body: "Please review and approve this update to the experiment data.",
           head: `${forkOwner}:${newBranchName}`,
           base: baseBranchName,
@@ -3189,7 +3189,7 @@ export default function Experiment() {
 
                       {/* Explicação e botão para recarregar */}
                       <p className="text-sm text-gray-600 mb-4">
-                        Se você deseja enviar outro TeachingResourceo, por favor
+                        Se você deseja enviar outra atividade, por favor
                         recarregue a página.
                       </p>
                       {/* Botão para ver o log de sucesso */}
