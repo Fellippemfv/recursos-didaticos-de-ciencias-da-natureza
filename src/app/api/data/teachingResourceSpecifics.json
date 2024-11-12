@@ -731,5 +731,64 @@
       }
     ],
     "activitySheet": "/1719193862873/documents/Roteiro-de-Lab-ovo-afunda-ou-nao.docx"
+  },
+  {
+    "id": "1731442527428",
+    "postDate": "12 de novembro de 2024 às 16:15",
+    "profileName": "dasdd",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 3,
+          "title": "Gravidade",
+          "slug": "gravidade"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 3,
+      "title": "Jogos educativos (Tabuleiros e Lúdicos)",
+      "slug": "jogos-educativos",
+      "steps": "Jogos que auxiliam no aprendizado de ciências por meio de atividades lúdicas e interativas."
+    },
+    "title": "dasd",
+    "slug": "dasd",
+    "imagePreview": "/1731442527428/images/Untitled (1).jpg",
+    "description": "dasdd",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "dasdd"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "dasdad"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "dasdad",
+        "imagePath": ""
+      }
+    ],
+    "results": "dasdd",
+    "scientificExplanation": "dasdad",
+    "references": [
+      {
+        "id": 1,
+        "content": "dasdads"
+      }
+    ],
+    "activitySheetOne": "/1731442527428/documents/roteiro-de-atividade (5).docx"
   }
 ]
