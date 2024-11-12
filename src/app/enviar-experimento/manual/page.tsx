@@ -28,6 +28,11 @@ import {
   MdCancel,
 } from "react-icons/md";
 
+// Definir o tipo para cada log de erro
+interface LogErro {
+  mensagem: string;
+  cor: string;
+}
 import { RiAddLine, RiUserLine } from "react-icons/ri";
 import { FiHash, FiUploadCloud } from "react-icons/fi";
 
@@ -499,6 +504,15 @@ export default function Experiment() {
     experimentData.materials.length !== MinLenghtVerification &&
     experimentData.methods.length !== MinLenghtVerification &&
     experimentData.references.length !== MinLenghtVerification;
+
+  // Definir o tipo do estado como um array de LogErro
+  const [logsDeErro, setLogsDeErro] = useState<LogErro[]>([]);
+
+  // Função para adicionar um passo ao log
+  const adicionarPasso = (passo: string, sucesso: boolean) => {
+    const cor = sucesso ? "green" : "red";
+    setLogsDeErro((prevLogs) => [...prevLogs, { mensagem: passo, cor }]);
+  };
 
   async function handleSend() {
     setIsSending(true);
@@ -2844,7 +2858,11 @@ export default function Experiment() {
                         <button
                           onClick={handleSend}
                           disabled={isSending || isSent || !allFieldsFilled}
-                          className={`mt-6 flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${isSending || isSent || !allFieldsFilled ? "cursor-not-allowed opacity-50" : "hover:bg-green-600"}`}
+                          className={`mt-6 flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
+                            isSending || isSent || !allFieldsFilled
+                              ? "cursor-not-allowed opacity-50"
+                              : "hover:bg-green-600"
+                          }`}
                         >
                           {isSending ? (
                             <>
@@ -2891,7 +2909,11 @@ export default function Experiment() {
                             <ul className="text-sm">
                               {/* Tópico: Nome de identificação */}
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.profileName.length > 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${
+                                  experimentData.profileName.length > 0
+                                    ? "text-green-500"
+                                    : "text-red-500"
+                                }`}
                               >
                                 <div className="flex items-center">
                                   {experimentData.profileName.length > 0 ? (
@@ -2906,10 +2928,9 @@ export default function Experiment() {
                                   </span>
                                 </div>
                               </li>
-
                               {/* Tópico: Tópico geral */}
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.topicGeneral.length > 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-2 ${experimentData.topicGeneral.length > 0 ? "text-green-500" : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {experimentData.topicGeneral.length > 0 ? (
@@ -3086,14 +3107,14 @@ export default function Experiment() {
                                   </span>
                                 </div>
                               </li>
-                              {/* Outros tópicos podem ser replicados aqui */}
                             </ul>
                           </div>
                         </ul>
                       </div>
                     </div>
                   </div>
-                ) : (
+                ) : pullRequestUrl ? (
+                  /* Tela de Sucesso */
                   <div
                     ref={successRef} // Mantendo o ref
                     className="flex justify-center items-center min-h-screen bg-gradient-to-r from-green-400 to-teal-400"
@@ -3128,7 +3149,7 @@ export default function Experiment() {
 
                       {/* Explicação e botão para recarregar */}
                       <p className="text-sm text-gray-600 mb-4">
-                        Se você deseja enviar outro experimento, por favor
+                        Se você deseja enviar outro TeachingResourceo, por favor
                         recarregue a página.
                       </p>
                       <div className="flex justify-center">
@@ -3138,6 +3159,31 @@ export default function Experiment() {
                         >
                           Recarregar Página
                         </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  /* Tela de Erro */
+                  <div className="flex justify-center items-center min-h-screen bg-red-100">
+                    <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg text-center">
+                      <h2 className="text-3xl font-semibold text-red-600 mb-4">
+                        Ocorreu um erro!
+                      </h2>
+                      <p className="text-lg text-gray-600 mb-8">
+                        Não foi possível enviar sua atividade. Por favor,
+                        verifique os LOGS de erro e contate o administrador do
+                        projeto. Tente novamente mais tarde.
+                      </p>
+
+                      {/* Exibindo os logs de erro */}
+                      <div className="text-left mt-4 bg-gray-50 p-4 rounded-md border border-gray-300 max-h-64 overflow-y-auto">
+                        <ul>
+                          {logsDeErro.map((log, index) => (
+                            <li key={index} style={{ color: log.cor }}>
+                              {log.mensagem}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>
