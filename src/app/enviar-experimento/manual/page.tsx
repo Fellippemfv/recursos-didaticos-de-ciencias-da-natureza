@@ -33,6 +33,7 @@ interface LogErro {
   mensagem: string;
   cor: string;
 }
+
 import { RiAddLine, RiUserLine } from "react-icons/ri";
 import { FiHash, FiUploadCloud } from "react-icons/fi";
 
@@ -102,6 +103,15 @@ export default function Experiment() {
     message: string;
   } | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // Definir o tipo do estado como um array de LogErro
+  const [logsDeErro, setLogsDeErro] = useState<LogErro[]>([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Funções para abrir e fechar o modal
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("githubApiToken");
@@ -505,28 +515,16 @@ export default function Experiment() {
     experimentData.methods.length !== MinLenghtVerification &&
     experimentData.references.length !== MinLenghtVerification;
 
-  // Definir o tipo do estado como um array de LogErro
-  const [logsDeErro, setLogsDeErro] = useState<LogErro[]>([]);
-
-  // Função para adicionar um passo ao log
-  const adicionarPasso = (passo: string, sucesso: boolean) => {
-    const cor = sucesso ? "green" : "red";
-    setLogsDeErro((prevLogs) => [...prevLogs, { mensagem: passo, cor }]);
-  };
-
   async function handleSend() {
     setIsSending(true);
     setPassos([]);
 
     const passosRealizados = document.getElementById("passos-realizados");
 
+    // Função para adicionar um passo ao log
     const adicionarPasso = (passo: string, sucesso: boolean) => {
-      if (passosRealizados) {
-        const item = document.createElement("li");
-        item.textContent = passo;
-        item.style.color = sucesso ? "green" : "red";
-        passosRealizados.appendChild(item);
-      }
+      const cor = sucesso ? "green" : "red";
+      setLogsDeErro((prevLogs) => [...prevLogs, { mensagem: passo, cor }]);
     };
 
     try {
@@ -672,6 +670,7 @@ export default function Experiment() {
 
         if (selectedImage) {
           const reader = new FileReader();
+
           reader.onloadend = async () => {
             const base64String = reader.result as string | null;
             if (base64String !== null) {
@@ -681,74 +680,112 @@ export default function Experiment() {
 
               const imagePath = `public/${experimentId}/images/${selectedImage.name}`;
 
-              // Verificar se o arquivo já existe no repositório
-              let fileSha;
-              try {
-                const response = await octokitClient.repos.getContent({
-                  owner: forkOwner,
-                  repo: baseRepositoryName,
-                  path: imagePath,
-                  ref: newBranchName,
-                });
+              // Função para obter o SHA do arquivo, se ele existir
+              const getFileSha = async (): Promise<string | undefined> => {
+                try {
+                  const response = await octokitClient.repos.getContent({
+                    owner: forkOwner,
+                    repo: baseRepositoryName,
+                    path: imagePath,
+                    ref: newBranchName,
+                  });
 
-                // Verificar se é um arquivo (type === "file")
-                if (
-                  response.data &&
-                  !Array.isArray(response.data) &&
-                  response.data.type === "file"
-                ) {
-                  fileSha = response.data.sha;
-                } else {
-                  // Não é um arquivo válido (pode ser um diretório ou outro tipo)
-                  throw new Error("O conteúdo obtido não é um arquivo válido.");
+                  // Verificar se é um arquivo (type === "file")
+                  if (
+                    response.data &&
+                    !Array.isArray(response.data) &&
+                    response.data.type === "file"
+                  ) {
+                    return response.data.sha;
+                  } else {
+                    throw new Error(
+                      "O conteúdo obtido não é um arquivo válido.",
+                    );
+                  }
+                } catch (error: any) {
+                  if (error.status !== 404) {
+                    adicionarPasso(
+                      "Erro ao verificar existência do arquivo no GitHub.",
+                      false,
+                    );
+                    console.error(
+                      "Erro ao verificar existência do arquivo:",
+                      error,
+                    );
+                    throw error;
+                  }
+                  return undefined; // Arquivo não existe
                 }
-              } catch (error: any) {
-                if (error.status !== 404) {
+              };
+
+              // Obter o SHA atual do arquivo, se existir
+              let fileSha = await getFileSha();
+
+              const uploadFile = async (sha: string | undefined) => {
+                try {
+                  await octokitClient.repos.createOrUpdateFileContents({
+                    owner: forkOwner,
+                    repo: baseRepositoryName,
+                    path: imagePath,
+                    message: `Add image for experiment N° ${experimentId}`,
+                    content: base64Content,
+                    branch: newBranchName,
+                    sha, // Incluir SHA se o arquivo já existir
+                  });
                   adicionarPasso(
-                    "Erro ao verificar existência do arquivo no GitHub.",
-                    false,
+                    `Imagem ${imagePath} adicionada com sucesso!`,
+                    true,
                   );
-                  console.error(error);
-                  return;
+                  console.log(
+                    `Imagem ${imagePath} adicionada com sucesso ao repositório!`,
+                  );
+                } catch (error: any) {
+                  if (error.status === 409) {
+                    // Conflito: obter SHA atualizado e tentar novamente
+                    adicionarPasso(
+                      "Conflito detectado, tentando novamente com SHA atualizado...",
+                      true,
+                    );
+                    console.log(
+                      "Conflito detectado, tentando novamente com SHA atualizado...",
+                    );
+                    fileSha = await getFileSha(); // Obter o SHA mais recente
+                    await uploadFile(fileSha); // Tentar novamente
+                  } else {
+                    console.error(
+                      "Erro ao fazer upload da imagem para o GitHub:",
+                      error,
+                    );
+                    adicionarPasso(
+                      "Erro ao fazer upload da imagem para o GitHub.",
+                      false,
+                    );
+                  }
                 }
-              }
+              };
 
-              // Upload da imagem
               adicionarPasso(
-                `Realizando o upload da imagem ${imagePath}...`,
+                `Iniciando o upload da imagem ${imagePath}...`,
                 true,
               );
-              try {
-                await octokitClient.repos.createOrUpdateFileContents({
-                  owner: forkOwner,
-                  repo: baseRepositoryName,
-                  path: imagePath,
-                  message: `Add image for experiment N° ${experimentId}`,
-                  content: base64Content,
-                  branch: newBranchName,
-                  sha: fileSha, // Incluir SHA se o arquivo já existir
-                });
-                adicionarPasso(
-                  `Imagem ${imagePath} adicionada com sucesso!`,
-                  true,
-                );
-              } catch (error: any) {
-                console.error(error);
-                adicionarPasso(
-                  "Erro ao fazer upload da imagem para o GitHub.",
-                  false,
-                );
-              }
+              await uploadFile(fileSha);
             } else {
               adicionarPasso("Erro ao converter imagem para base64.", false);
+              console.error("Erro ao converter imagem para base64.");
             }
           };
+
           reader.onerror = () => {
             adicionarPasso("Erro ao ler o arquivo.", false);
+            console.error("Erro ao ler o arquivo.");
           };
+
+          // Iniciar leitura do arquivo
+          adicionarPasso("Iniciando a leitura do arquivo...", true);
           reader.readAsDataURL(selectedImage);
         } else {
           adicionarPasso("Nenhuma imagem selecionada.", false);
+          console.log("Nenhuma imagem selecionada.");
         }
       };
 
@@ -981,64 +1018,37 @@ export default function Experiment() {
 
       const handleApplyingCommentsAndPullRequest = async () => {
         adicionarPasso("Adicionando sugestão de novo experimento...", true);
-        // Decodifica o conteúdo atual para uma string
+
         const currentContent = Array.isArray(fileInfo.data)
           ? undefined
           : fileInfo.data.type === "file" && fileInfo.data.content
             ? Buffer.from(fileInfo.data.content, "base64").toString()
             : undefined;
 
-        // Converte o conteúdo atual em um array de objetos JSON
         const currentArray = currentContent ? JSON.parse(currentContent) : [];
-
-        // Converte o novo conteúdo em um objeto JSON
         const newObject = JSON.parse(fileContent);
-
-        // Adiciona o novo objeto ao array existente
         currentArray.push(newObject);
 
-        // Converte o array atualizado de volta em uma string JSON
         const updatedContent = JSON.stringify(currentArray, null, 2);
         adicionarPasso("Sugestão adicionada com sucesso!", true);
 
         adicionarPasso("Criando um novo commit...", true);
-        // Cria um novo commit com os dados atualizados
-        const { data: newCommit } = await octokitClient.git.createCommit({
-          owner: forkOwner,
-          repo: baseRepositoryName,
-          message: `Send experiment N° ${experimentId}`,
-          tree: data.commit.commit.tree.sha,
-          parents: [baseCommitSha],
-          author: {
-            name: "Your Name",
-            email: "your.email@example.com",
-          },
-          committer: {
-            name: "Your Name",
-            email: "your.email@example.com",
-          },
-          content: Buffer.from(updatedContent).toString("base64"),
-        });
 
-        adicionarPasso("Novo commit realizado com sucesso!", true);
+        try {
+          // Obtenha o SHA mais recente do arquivo antes de fazer o commit
+          const latestFileInfo = await octokitClient.repos.getContent({
+            owner: forkOwner,
+            repo: baseRepositoryName,
+            path: filePath,
+            ref: newBranchName,
+          });
 
-        const newCommitSha = newCommit.sha;
+          const latestSha = Array.isArray(latestFileInfo.data)
+            ? undefined
+            : latestFileInfo.data.sha;
 
-        // Verifica se fileInfo é um objeto único ou uma matriz de objetos
-        const fileInfoArray = Array.isArray(fileInfo.data)
-          ? fileInfo.data
-          : [fileInfo.data];
+          adicionarPasso("SHA mais recente obtido com sucesso.", true);
 
-        // Verifica se o primeiro elemento do array possui a propriedade 'sha'
-        if (fileInfoArray.length > 0 && "sha" in fileInfoArray[0]) {
-          // Acessa a propriedade 'sha' do primeiro elemento do array
-          const sha = fileInfoArray[0].sha;
-
-          // Atualiza o conteúdo do arquivo na nova branch do fork
-          adicionarPasso(
-            "Atualizando o conteúdo do arquivo na nova branch do fork...",
-            true,
-          );
           await octokitClient.repos.createOrUpdateFileContents({
             owner: forkOwner,
             repo: baseRepositoryName,
@@ -1046,27 +1056,63 @@ export default function Experiment() {
             message: `Update experiment data for experiment N° ${experimentId}`,
             content: Buffer.from(updatedContent).toString("base64"),
             branch: newBranchName,
-            sha,
+            sha: latestSha, // Use o SHA mais recente
           });
 
           adicionarPasso("Conteúdo do arquivo atualizado com sucesso!", true);
-          console.log("Dados adicionados à nova branch do fork com sucesso!");
-        } else {
-          // Trata o caso em que a propriedade 'sha' não está presente
-          console.error(
-            "A propriedade 'sha' não está presente no objeto fileInfo.",
-          );
-          adicionarPasso(
-            "A propriedade 'sha' não está presente no objeto fileInfo.",
-            false,
-          );
+        } catch (error: any) {
+          if (error.status === 409) {
+            adicionarPasso(
+              "Conflito detectado. Tentando obter SHA atualizado...",
+              false,
+            );
+
+            // Tente novamente após pegar o SHA atualizado
+            const refreshedFileInfo = await octokitClient.repos.getContent({
+              owner: forkOwner,
+              repo: baseRepositoryName,
+              path: filePath,
+              ref: newBranchName,
+            });
+
+            const refreshedSha = Array.isArray(refreshedFileInfo.data)
+              ? undefined
+              : refreshedFileInfo.data.sha;
+
+            try {
+              await octokitClient.repos.createOrUpdateFileContents({
+                owner: forkOwner,
+                repo: baseRepositoryName,
+                path: filePath,
+                message: `Update experiment data for experiment N° ${experimentId} (conflict resolution)`,
+                content: Buffer.from(updatedContent).toString("base64"),
+                branch: newBranchName,
+                sha: refreshedSha,
+              });
+
+              adicionarPasso(
+                "Conflito resolvido e conteúdo atualizado com sucesso!",
+                true,
+              );
+            } catch (retryError) {
+              console.error(retryError);
+              adicionarPasso(
+                "Erro ao resolver o conflito ao atualizar o arquivo.",
+                false,
+              );
+              return;
+            }
+          } else {
+            console.error(error);
+            adicionarPasso("Erro ao atualizar o conteúdo do arquivo.", false);
+            return;
+          }
         }
 
         adicionarPasso(
           "Mesclando os commits da branch de destino do fork na nova branch do fork...",
           true,
         );
-        // Mescla os commits da branch de destino do fork na nova branch do fork
         const mergeResponse = await octokitClient.repos.merge({
           owner: forkOwner,
           repo: baseRepositoryName,
@@ -1075,13 +1121,11 @@ export default function Experiment() {
         });
 
         adicionarPasso("Commits mesclados com sucesso!", true);
-        console.log("Commits mesclados com sucesso!");
 
         adicionarPasso(
-          "Criando uma pull request para mesclar as alterações da nova branch do fork na branch 'test' do repositório original...",
+          "Criando uma pull request para mesclar as alterações...",
           true,
         );
-        // Cria uma pull request para mesclar as alterações da nova branch do fork na branch "test" do repositório original
         const pullRequest = await octokitClient.pulls.create({
           owner: baseRepositoryOwnerName,
           repo: baseRepositoryName,
@@ -1092,16 +1136,11 @@ export default function Experiment() {
         });
 
         adicionarPasso("Pull request criada com sucesso!", true);
-        console.log("Pull request criada com sucesso!");
-
-        adicionarPasso("Pronto você enviou seu experimento!", true);
-
-        // Exibe o link para a pull request criada
-        const pullRequestUrl = pullRequest.data.html_url;
-        adicionarPasso(`Link da pull request: ${pullRequestUrl}`, true);
-
-        // Exemplo de setar a URL da pull request no final
-        setPullRequestUrl(`${pullRequestUrl}`);
+        adicionarPasso(
+          `Link da pull request: ${pullRequest.data.html_url}`,
+          true,
+        );
+        setPullRequestUrl(pullRequest.data.html_url);
       };
 
       // Chama a função handleApplyingCommentsAndPullRequest
@@ -3115,6 +3154,7 @@ export default function Experiment() {
                   </div>
                 ) : pullRequestUrl ? (
                   /* Tela de Sucesso */
+
                   <div
                     ref={successRef} // Mantendo o ref
                     className="flex justify-center items-center min-h-screen bg-gradient-to-r from-green-400 to-teal-400"
@@ -3152,14 +3192,60 @@ export default function Experiment() {
                         Se você deseja enviar outro TeachingResourceo, por favor
                         recarregue a página.
                       </p>
-                      <div className="flex justify-center">
+                      {/* Botão para ver o log de sucesso */}
+                      <div className="flex justify-center space-x-4">
                         <button
                           onClick={() => window.location.reload()}
-                          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
                         >
                           Recarregar Página
                         </button>
+
+                        <button
+                          onClick={openModal}
+                          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        >
+                          Ver Log
+                        </button>
                       </div>
+
+                      {/* Modal para exibir os logs de sucesso */}
+                      {isModalOpen && (
+                        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                          <div className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg">
+                            <div className="flex justify-between items-center mb-4">
+                              <h2 className="text-2xl font-semibold text-gray-800">
+                                Log de Sucesso
+                              </h2>
+                              <button
+                                onClick={closeModal}
+                                className="text-gray-500 hover:text-gray-800 text-2xl font-semibold"
+                              >
+                                &times;
+                              </button>
+                            </div>
+
+                            <div className="text-left max-h-64 overflow-y-auto bg-gray-50 p-4 rounded-md border border-gray-300">
+                              <ul>
+                                {logsDeErro.map((log, index) => (
+                                  <li key={index} style={{ color: log.cor }}>
+                                    {log.mensagem}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <div className="flex justify-center mt-6">
+                              <button
+                                onClick={closeModal}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                              >
+                                Fechar
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -3184,6 +3270,15 @@ export default function Experiment() {
                             </li>
                           ))}
                         </ul>
+                      </div>
+
+                      <div className="flex justify-center mt-6">
+                        <button
+                          onClick={() => window.location.reload()}
+                          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                        >
+                          Tentar Novamente
+                        </button>
                       </div>
                     </div>
                   </div>
