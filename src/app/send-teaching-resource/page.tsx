@@ -50,15 +50,15 @@ import { z } from "zod";
 import { Octokit } from "@octokit/rest";
 /* import Octokit from "@octokit/rest"; */
 
-import experimentTypes from "../../api/data/experimentTypes.json";
-import abntRules from "../../api/data/abntRules.json";
-import topicGeneralData from "../../api/data/experimentGeneralData.json";
+import experimentTypes from "../api/data/teachingResourceTypes.json";
+import abntRules from "../api/data/abntRules.json";
+import topicGeneralData from "../api/data/teachingResourceGeneralThemes.json";
 
 import axios from "axios";
-import { Textarea } from "../../../components/ui/textarea";
-import { Label } from "../../../components/ui/label";
-import { Input } from "../../../components/ui/input";
-import { Button } from "../../../components/ui/button";
+import { Textarea } from "../../components/ui/textarea";
+import { Label } from "../../components/ui/label";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
 import { FcInfo } from "react-icons/fc";
 import { BiLoaderAlt } from "react-icons/bi";
 import { useRouter } from "next/navigation";

@@ -27,13 +27,13 @@ export default function Home() {
           {/* Botões Responsivos */}
           <div className="flex flex-col md:flex-row gap-4 mt-4 w-full md:justify-around">
             <a
-              href="/filtrar-atividades"
+              href="/search"
               className="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200 transition"
             >
               Explorar Atividades
             </a>
             <a
-              href="/sobre"
+              href="/about"
               className="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200 transition"
             >
               Sobre a plataforma

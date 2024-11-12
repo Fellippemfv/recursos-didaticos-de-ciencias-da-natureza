@@ -14,7 +14,7 @@ import {
   FaTag,
   FaTimes,
 } from "react-icons/fa";
-import experimentData from "../../api/data/experimentos.json";
+import experimentData from "../../api/data/teachingResourceSpecifics.json";
 import { useState } from "react";
 
 export default function Experiment({ params }: { params: { slug: string } }) {

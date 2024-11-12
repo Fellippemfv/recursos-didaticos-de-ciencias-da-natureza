@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import experimentData from "../../app/api/data/experimentos.json";
-import topicGeneralData from "../../app/api/data/experimentGeneralData.json";
+import teachingResourceData from "../api/data/teachingResourceSpecifics.json";
+import topicGeneralData from "../api/data/teachingResourceGeneralThemes.json";
 import Link from "next/link"; // Importando o componente Link do Next.js
 import { BiSearch } from "react-icons/bi";
 
-import experimentTypes from "../../app/api/data/experimentTypes.json";
+import experimentTypes from "../api/data/teachingResourceTypes.json";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { FiSearch } from "react-icons/fi";
 
@@ -156,8 +156,8 @@ export default function Search() {
       return;
     }
 
-    const filtered = experimentData.filter((experiment) => {
-      console.log("Verificando experimento:", experiment.title);
+    const filtered = teachingResourceData.filter((teachingResource) => {
+      console.log("Verificando experimento:", teachingResource.title);
 
       const matchesGeneralTopic =
         selectedGeneralTopics.size === 0 ||
@@ -168,11 +168,11 @@ export default function Search() {
           if (!generalTopic) return false;
 
           const isSelected =
-            experiment.topicGeneral.some(
+            teachingResource.topicGeneral.some(
               (topic) => topic.slug === generalTopic.slug,
             ) ||
-            experiment.topicSpecific[
-              generalTopic.slug as keyof typeof experiment.topicSpecific
+            teachingResource.topicSpecific[
+              generalTopic.slug as keyof typeof teachingResource.topicSpecific
             ];
           if (!isSelected) return false;
 
@@ -185,8 +185,8 @@ export default function Search() {
             isSelected &&
             (specificTopics.length === 0 ||
               specificTopics.some((specificTopic) =>
-                experiment.topicSpecific[
-                  generalTopic.slug as keyof typeof experiment.topicSpecific
+                teachingResource.topicSpecific[
+                  generalTopic.slug as keyof typeof teachingResource.topicSpecific
                 ]?.some(
                   (expSpecific) => expSpecific.slug === specificTopic.slug,
                 ),
@@ -196,7 +196,7 @@ export default function Search() {
 
       const matchesExperimentType =
         selectedExperimentTypes.size === 0 ||
-        selectedExperimentTypes.has(experiment.experimentType.id);
+        selectedExperimentTypes.has(teachingResource.experimentType.id);
 
       console.log("Matches:", matchesGeneralTopic, matchesExperimentType);
 
@@ -521,7 +521,7 @@ export default function Search() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredExperiments.map((experiment) => (
               <Link
-                href={`/experimento/${experiment.slug}`}
+                href={`/teaching-resource/${experiment.slug}`}
                 passHref
                 key={experiment.id}
                 className="block"
