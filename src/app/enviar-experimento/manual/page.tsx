@@ -489,7 +489,16 @@ export default function Experiment() {
 
   // Lógica para verificar se todos os campos estão preenchidos
   const allFieldsFilled =
-    experimentData.profileName.length !== MinLenghtVerification;
+    experimentData.profileName.length !== MinLenghtVerification &&
+    experimentData.topicGeneral.length !== MinLenghtVerification &&
+    experimentData.experimentType.length !== MinLenghtVerification &&
+    experimentData.title.length !== MinLenghtVerification &&
+    experimentData.imagePreview.length !== MinLenghtVerification &&
+    experimentData.description.length !== MinLenghtVerification &&
+    experimentData.objectives.length !== MinLenghtVerification &&
+    experimentData.materials.length !== MinLenghtVerification &&
+    experimentData.methods.length !== MinLenghtVerification &&
+    experimentData.references.length !== MinLenghtVerification;
 
   async function handleSend() {
     setIsSending(true);
@@ -1925,7 +1934,7 @@ export default function Experiment() {
                             <thead className="bg-gray-50">
                               <tr>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                  Tipo de Recurso didático
+                                  Tipo de Recurso Didático
                                 </th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                   Descrição
@@ -1933,35 +1942,21 @@ export default function Experiment() {
                               </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                              {experimentTypes.map((type) => (
-                                <tr key={type.id}>
-                                  <td className="px-6 py-4">{type.title}</td>
-                                  <td className="px-6 py-4">{type.steps}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div className="mt-4 p-4 border border-gray-300 rounded-md mb-4 relative bg-white shadow-sm">
-                        {/* Tabela estilizada para tipos de experimentos */}
-                        <table className="w-full table-fixed">
-                          <tbody>
-                            {experimentTypes.map((type, index) =>
-                              index % 2 === 0 ? (
+                              {experimentTypes.map((type, index) => (
                                 <tr
                                   key={type.id}
-                                  className="flex justify-between mb-2"
+                                  className="flex justify-between items-center"
                                 >
-                                  <td className="w-1/2 p-2">
-                                    <label className="flex items-center cursor-pointer">
+                                  {/* Coluna para os tipos de recursos e seleção */}
+                                  <td className="px-6 py-4 w-1/2 flex items-center">
+                                    <label className="flex items-center cursor-pointer w-full">
                                       <input
                                         type="radio"
                                         name="experimentType"
                                         value={type.slug}
                                         checked={
                                           (experimentData.experimentType as any)
-                                            .slug === (type as any).slug
+                                            .slug === type.slug
                                         }
                                         onChange={() =>
                                           handleSelectExperimentTypeChange(type)
@@ -1973,40 +1968,16 @@ export default function Experiment() {
                                       </span>
                                     </label>
                                   </td>
-                                  {experimentTypes[index + 1] && (
-                                    <td className="w-1/2 p-2">
-                                      <label className="flex items-center cursor-pointer">
-                                        <input
-                                          type="radio"
-                                          name="experimentType"
-                                          value={
-                                            experimentTypes[index + 1].slug
-                                          }
-                                          checked={
-                                            (
-                                              experimentData.experimentType as any
-                                            ).slug ===
-                                            (experimentTypes[index + 1] as any)
-                                              .slug
-                                          }
-                                          onChange={() =>
-                                            handleSelectExperimentTypeChange(
-                                              experimentTypes[index + 1],
-                                            )
-                                          }
-                                          className="mr-2 text-blue-600 focus:ring focus:ring-blue-300"
-                                        />
-                                        <span className="text-gray-700">
-                                          {experimentTypes[index + 1].title}
-                                        </span>
-                                      </label>
-                                    </td>
-                                  )}
+
+                                  {/* Coluna para a descrição */}
+                                  <td className="px-6 py-4 w-1/2">
+                                    {type.steps}
+                                  </td>
                                 </tr>
-                              ) : null,
-                            )}
-                          </tbody>
-                        </table>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
 
                       {experimentData.experimentType.length === 0 && (
@@ -2920,7 +2891,7 @@ export default function Experiment() {
                             <ul className="text-sm">
                               {/* Tópico: Nome de identificação */}
                               <li
-                                className={`flex items-center justify-between p-2 ${experimentData.profileName.length > 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${experimentData.profileName.length > 0 ? "text-green-500" : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {experimentData.profileName.length > 0 ? (
@@ -2938,7 +2909,7 @@ export default function Experiment() {
 
                               {/* Tópico: Tópico geral */}
                               <li
-                                className={`flex items-center justify-between p-2 ${experimentData.topicGeneral.length > 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${experimentData.topicGeneral.length > 0 ? "text-green-500" : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {experimentData.topicGeneral.length > 0 ? (
@@ -3175,7 +3146,7 @@ export default function Experiment() {
             </div>
           </form>
         </div>
-        {/* {Object.keys(experimentData).length > 0 && (
+        {/*   {Object.keys(experimentData).length > 0 && (
           <>
             <div className="d-flex justify-content-end">
               <button className="btn btn-outline-primary me-2">
