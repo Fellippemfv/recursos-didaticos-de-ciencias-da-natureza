@@ -731,5 +731,64 @@
       }
     ],
     "activitySheet": "/1719193862873/documents/Roteiro-de-Lab-ovo-afunda-ou-nao.docx"
+  },
+  {
+    "id": "1731445114912",
+    "postDate": "12 de novembro de 2024 às 16:58",
+    "profileName": "dsad",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 11,
+          "title": "Efeito térmico da corrente elétrica",
+          "slug": "efeito-termico-da-corrente-eletrica"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 5,
+      "title": "Aplicativos Educativos (Apps e Sites Interativos)",
+      "slug": "aplicativos-educativos",
+      "steps": "Aplicações digitais que utilizam interatividade para promover a aprendizagem ativa, incluindo simulações e atividades práticas online."
+    },
+    "title": "fasfasfads",
+    "slug": "fasfasfads",
+    "imagePreview": "/1731445114912/images/Untitled (1).jpg",
+    "description": "dasdasfasffasf",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "gdfafcxxcvxcv"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "xcvxcvv"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "vcxvxcvxcv",
+        "imagePath": "/1731445114912/images/Untitled (5).jpg"
+      }
+    ],
+    "results": "vxcvxcvdfasd",
+    "scientificExplanation": "gdsgsdgsd",
+    "references": [
+      {
+        "id": 1,
+        "content": "gfjfgjfj"
+      }
+    ],
+    "activitySheetOne": "/1731445114912/documents/roteiro-de-atividade (6).docx"
   }
 ]
