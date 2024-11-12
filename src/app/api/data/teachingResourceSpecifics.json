@@ -70,7 +70,7 @@
       "steps": "1 - 5",
       "explanation": "De 1 a 5 passos são necessários para completar."
     },
-    "experimentType": {
+    "resourceType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
       "slug": "demonstrativos",
@@ -206,7 +206,7 @@
       "steps": "6 - 10",
       "explanation": "De 6 a 10 passos são necessários para completar."
     },
-    "experimentType": {
+    "resourceType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
       "slug": "demonstrativos",
@@ -226,22 +226,12 @@
         "content": "segundo objetivo"
       }
     ],
-    "materials": [
-      "asdasd.asdasd"
-    ],
-    "methods": [
-      "asdasdasdasd",
-      "asdasdasd"
-    ],
-    "methodsImages": [
-      "/images/exp-9/img-0.jpg",
-      "/images/exp-9/img-0.jpg"
-    ],
+    "materials": ["asdasd.asdasd"],
+    "methods": ["asdasdasdasd", "asdasdasd"],
+    "methodsImages": ["/images/exp-9/img-0.jpg", "/images/exp-9/img-0.jpg"],
     "results": "asdasd",
     "scientificExplanation": "asdasd",
-    "references": [
-      "asdasdasdasd"
-    ]
+    "references": ["asdasdasdasd"]
   },
   {
     "id": "1719173649995",
@@ -334,7 +324,7 @@
       "steps": "1 - 5",
       "explanation": "De 1 a 5 passos são necessários para completar."
     },
-    "experimentType": {
+    "resourceType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
       "slug": "demonstrativos",
@@ -497,7 +487,7 @@
       "steps": "1 - 5",
       "explanation": "De 1 a 5 passos são necessários para completar."
     },
-    "experimentType": {
+    "resourceType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
       "slug": "demonstrativos",
@@ -647,7 +637,7 @@
       "steps": "1 - 5",
       "explanation": "De 1 a 5 passos são necessários para completar."
     },
-    "experimentType": {
+    "resourceType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
       "slug": "demonstrativos",

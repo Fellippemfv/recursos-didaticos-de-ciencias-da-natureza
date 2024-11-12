@@ -37,14 +37,7 @@ interface LogErro {
 import { RiAddLine, RiUserLine } from "react-icons/ri";
 import { FiHash, FiUploadCloud } from "react-icons/fi";
 
-import {
-  FaCheckCircle,
-  FaCopy,
-  FaExclamationTriangle,
-  FaFlask,
-  FaSpinner,
-  FaTrash,
-} from "react-icons/fa";
+import { FaCheckCircle, FaSpinner, FaTrash } from "react-icons/fa";
 import { z } from "zod";
 
 import { Octokit } from "@octokit/rest";
@@ -170,7 +163,7 @@ export default function Experiment() {
     profileName: "",
     topicGeneral: [],
     topicSpecific: [],
-    experimentType: [],
+    resourceType: [],
     title: "",
     slug: "",
     imagePreview: "",
@@ -187,7 +180,7 @@ export default function Experiment() {
   const handleSelectExperimentTypeChange = (selectedType: ExperimentType) => {
     setExperimentData((prevData: any) => ({
       ...prevData,
-      experimentType: selectedType,
+      resourceType: selectedType,
     }));
   };
 
@@ -506,7 +499,7 @@ export default function Experiment() {
   const allFieldsFilled =
     experimentData.profileName.length !== MinLenghtVerification &&
     experimentData.topicGeneral.length !== MinLenghtVerification &&
-    experimentData.experimentType.length !== MinLenghtVerification &&
+    experimentData.resourceType.length !== MinLenghtVerification &&
     experimentData.title.length !== MinLenghtVerification &&
     experimentData.imagePreview.length !== MinLenghtVerification &&
     experimentData.description.length !== MinLenghtVerification &&
@@ -1973,7 +1966,7 @@ export default function Experiment() {
                       <div className="flex flex-col items-initial mb-2">
                         <div className="flex flex-row items-center justify-initial mb-2">
                           <IoFlask style={{ marginRight: "5px" }} />
-                          <Label htmlFor={`experimentType`}>
+                          <Label htmlFor={`resourceType`}>
                             Tipo de Recurso didático *Obrigatório
                           </Label>
                         </div>
@@ -2005,10 +1998,10 @@ export default function Experiment() {
                                     <label className="flex items-center cursor-pointer w-full">
                                       <input
                                         type="radio"
-                                        name="experimentType"
+                                        name="resourceType"
                                         value={type.slug}
                                         checked={
-                                          (experimentData.experimentType as any)
+                                          (experimentData.resourceType as any)
                                             .slug === type.slug
                                         }
                                         onChange={() =>
@@ -2033,7 +2026,7 @@ export default function Experiment() {
                         </div>
                       </div>
 
-                      {experimentData.experimentType.length === 0 && (
+                      {experimentData.resourceType.length === 0 && (
                         <div className="flex flex-row justify-center mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
                           <MdError className="mr-2" />
                           <span>
@@ -2987,19 +2980,18 @@ export default function Experiment() {
                               {/*Tópico: Tipos de recursos didáticos com status */}
 
                               <li
-                                className={`flex items-center justify-between p-3 ${experimentData.experimentType.length !== 0 ? "text-green-500" : "text-red-500"}`}
+                                className={`flex items-center justify-between p-3 ${experimentData.resourceType.length !== 0 ? "text-green-500" : "text-red-500"}`}
                               >
                                 <div className="flex items-center">
                                   {/* Ícone à esquerda */}
-                                  {experimentData.experimentType.length !==
-                                  0 ? (
+                                  {experimentData.resourceType.length !== 0 ? (
                                     <MdCheckCircle className="mr-2 text-green-500" />
                                   ) : (
                                     <MdCancel className="mr-2 text-red-500" />
                                   )}
                                   {/* Nome do tópico à direita */}
                                   <span>
-                                    {experimentData.experimentType.length !== 0
+                                    {experimentData.resourceType.length !== 0
                                       ? 'Campo: "Tipo de recurso didático" selecionado'
                                       : 'Campo: "Tipo de recurso didático" não selecionado'}
                                   </span>

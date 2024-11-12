@@ -196,7 +196,7 @@ export default function Search() {
 
       const matchesExperimentType =
         selectedExperimentTypes.size === 0 ||
-        selectedExperimentTypes.has(teachingResource.experimentType.id);
+        selectedExperimentTypes.has(teachingResource.resourceType.id);
 
       console.log("Matches:", matchesGeneralTopic, matchesExperimentType);
 
