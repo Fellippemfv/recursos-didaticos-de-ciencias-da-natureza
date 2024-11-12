@@ -731,5 +731,64 @@
       }
     ],
     "activitySheet": "/1719193862873/documents/Roteiro-de-Lab-ovo-afunda-ou-nao.docx"
+  },
+  {
+    "id": "1731442952223",
+    "postDate": "12 de novembro de 2024 às 16:22",
+    "profileName": "teste",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 1,
+          "title": "Movimento e deslocamento",
+          "slug": "movimento-e-deslocamento"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 2,
+      "title": "Dinâmicas (Participação em dupla ou em grupo)",
+      "slug": "dinamicas",
+      "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos."
+    },
+    "title": "sdasdsad",
+    "slug": "sdasdsad",
+    "imagePreview": "/1731442952223/images/Untitled (1).jpg",
+    "description": "sdaasd",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "dasdasdads"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "dasdasdasdd"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "asdasdfasASwqwq",
+        "imagePath": "/1731442952223/images/Untitled (5).jpg"
+      }
+    ],
+    "results": "wqweqwe",
+    "scientificExplanation": "dsadasd",
+    "references": [
+      {
+        "id": 1,
+        "content": "dasdasd"
+      }
+    ],
+    "activitySheetOne": "/1731442952223/documents/roteiro-de-atividade (5).docx"
   }
 ]
