@@ -18,11 +18,12 @@ export default function Home() {
         {/* Texto e Botão no Banner */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <h1 className="text-3xl font-bold mb-2">
-            Bem-vindo ao Portal de Recursos Didáticos
+            Bem-vindo ao Portal de Recursos Didáticos de Ciências da Natureza
           </h1>
           <p className="text-lg mb-4">
-            Explore uma variedade de atividades escolares, como experimentos,
-            jogos educativos e dinâmicas para facilitar o aprendizado.
+            Explore uma variedade de atividades escolares como: Dinâmicas,
+            Experimentos, Jogos educativos, Modelos físicos, Aplicativos
+            Educativos, para facilitar o aprendizado dos alunos.
           </p>
           {/* Botões Responsivos */}
           <div className="flex flex-col md:flex-row gap-4 mt-4 w-full md:justify-around">

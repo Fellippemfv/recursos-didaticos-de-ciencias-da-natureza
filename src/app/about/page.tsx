@@ -18,13 +18,22 @@ export default function About() {
               className="rounded-lg shadow-md w-40 h-40 object-cover"
             />
           </div>
-          <p className="text-lg text-gray-800 text-justify leading-relaxed">
-            Este site foi desenvolvido para fornecer recursos didáticos
-            inovadores para o ensino de Ciências da Natureza. A plataforma
-            oferece atividades interativas, como experimentos, jogos e
-            dinâmicas, que tornam o aprendizado mais acessível, lúdico e eficaz.
-            O objetivo é promover uma educação mais envolvente, onde a teoria se
-            conecta com a prática de forma divertida e significativa.
+          <p className="text-lg text-gray-800 text-justify leading-relaxed first-line:ml-8">
+            Este site foi desenvolvido para fornecer recursos didáticos para o
+            ensino de Ciências da Natureza (Física, Química e Biologia). A
+            plataforma organizou e centralizou atividades interativas, como
+            Dinâmicas (Participação em dupla ou em grupo), Experimentos
+            (Demonstrativos e Investigativos), Jogos educativos (Tabuleiros e
+            Lúdicos), Modelos físicos (Maquetes e Protótipos) e Aplicativos
+            Educativos (Apps e Sites Interativos) e o disponibiliza de forma
+            gratuita. O objetivo é fornecer um local para que o professor de
+            forma rápida consiga escolher alguma atividade diferente do comum
+            para realizar em sala de aula, deste modo, promovendo uma educação
+            mais envolvente, onde a teoria se conecta com a prática de forma
+            divertida e significativa. As atividade e recursos demonstrados
+            foram pegos de diversas fontes: Internet, livros, artigos. Todos os
+            créditos foram indicados na aba "Referências" na página especifica
+            da atividade. Este projeto NÃO TEM CARÁTER COMERCIAL.
           </p>
         </section>
 
@@ -33,23 +42,37 @@ export default function About() {
           <h2 className="text-3xl font-semibold text-blue-600 mb-6 text-center">
             A História por Trás do Projeto
           </h2>
+          <div className="flex justify-center mb-6">
+            <img
+              src="https://educacaopublica.cecierj.edu.br/092020/cd33feace8fae56753599be1d0531374.jpg"
+              alt="Imagem do Projeto"
+              className="rounded-lg shadow-md w-40 h-40 object-cover"
+            />
+          </div>
           <p className="text-lg text-gray-800 text-justify leading-relaxed">
-            O projeto nasceu como parte de uma pesquisa de anteprojeto de
-            mestrado em Ciências e matematica, com o objetivo de explorar novas
-            abordagens pedagógicas que utilizam recursos digitais interativos.
-            Durante a pesquisa, percebi a necessidade de ferramentas que
-            incentivem a aprendizagem ativa e tornem o ensino mais envolvente
-            para os estudantes. Entretanto, durante o processo de seleção do
-            mestrado não fui adiante. Mas mesmo assim, criei esta plataforma
-            para centralizar recursos educativos e tornar o ensino de Ciências
-            mais acessível e dinâmico.
+            O projeto nasceu como parte de uma pesquisa sobre experimentos para
+            serem realizados na escola que trabalhava. Durante a pesquisa,
+            percebi a necessidade de ferramentas que incentivem a aprendizagem
+            ativa e tornem o ensino mais envolvente para os estudantes.
+            Entretanto, percebi que as atividades que fomentam o aprendizado vão
+            além dos experimentos, elas abrangem todo um conjunto de recursos
+            didáticos. Além disso, reparei que durante o planejamento das aulas
+            apenas a procura e organização dos recursos didáticos e das
+            atividades demoravam muito tempo pois estão presentes em diversas
+            fontes e a linguagem muitas vezes era técnica e sem filtros para
+            busca, o que dificultava muito. Como forma de resolver este problema
+            de organização e tempo, surgiu esta plataforma para que qualquer
+            professor consiga de forma rápida e eficiente selecionar atividades
+            e recursos didáticos para serem utilizados em sua respectiva unidade
+            de ensino. E se quiser ele pode participar enviando sua proposta,
+            seja por email ou pelo github.
           </p>
         </section>
 
         {/* Seção Colaborador */}
         <section className="bg-white p-10 rounded-lg border border-gray-300">
           <h2 className="text-3xl font-semibold text-blue-600 mb-6 text-center">
-            Colaborador
+            Professor/Desenvolvedor
           </h2>
           <div className="flex justify-center mb-6">
             <img
@@ -59,12 +82,14 @@ export default function About() {
             />
           </div>
           <p className="text-lg text-gray-800 text-justify leading-relaxed">
-            Sou o único colaborador deste projeto, e tenho a missão de
-            proporcionar ferramentas educacionais de alta qualidade para tornar
-            o aprendizado de Ciências mais acessível e envolvente. Com um forte
-            interesse por educação e pedagogia digital, criei este site como uma
-            extensão, com o propósito de transformar a forma como o conhecimento
-            científico é transmitido e compreendido pelos estudantes.
+            Eu sou o Fellippe, Professor de ciências e desenvolvedor deste
+            projeto, e tenho a missão de proporcionar ferramentas educacionais
+            de alta qualidade para tornar o aprendizado de Ciências mais
+            acessível e envolvente. Com um forte interesse por educação e
+            pedagogia digital, criei este site como uma extensão, com o
+            propósito organizar e centralizar atividades e recursos didáticos
+            referente a ciências da natureza. Você pode me contrar no lattes:
+            https://lattes.cnpq.br/6921925564951567
           </p>
         </section>
 
@@ -75,8 +100,11 @@ export default function About() {
           </h2>
           <p className="text-lg text-center text-gray-800 mb-6">
             Caso tenha dúvidas ou queira compartilhar suas sugestões, entre em
-            contato! Estamos abertos a feedbacks para melhorar continuamente a
-            plataforma.
+            contato por email, estamos abertos a feedbacks para melhorar
+            continuamente a plataforma! Caso queria enviar sua proposta de
+            atividade ou que o recurso didático desenvolvido por você seja
+            exibido neste site, você pode clicar no link do github abaixo e ver
+            as etapas para enviar.
           </p>
           <div className="flex justify-center gap-8">
             <div className="flex items-center gap-2 text-gray-800">
