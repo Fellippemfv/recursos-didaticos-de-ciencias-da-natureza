@@ -1,4 +1,4 @@
-<h1 align="center">Centralização de recursos didáticos de ciências da natureza</h1>
+<h1 align="center">Centralização de atividades e recursos didáticos </h1>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Fellippemfv/nest-prisma-swagger-docker-base-project">
@@ -19,8 +19,17 @@
 ## 📑 Sumário
 
 - [Sobre o projeto](#round_pushpin-sobre-o-projeto)
+- [Tecnologias utilizadas](#rocket-tecnologias-utilizadas)
 - [Como usar](#information_source-como-usar)
 - [Páginas presentes no website](#páginas-presentes-no-website)
+- [Orientações para enviar atividade por email](#orientações-para-enviar-atividade-por-email)
+- [Orientações para enviar atividade localmente](#orientações-para-enviar-atividade-localmente)
+- [Funcionamento de envio via GitHub API](#funcionamento-de-envio-via-github-api)
+- [Como Propagar Atualizações da Branch master para Outras Branches](#como-propagar-atualizações-da-branch-master-para-outras-branches)
+- [Como Propagar Atualizações da Branch styles para Outras Branches](#como-propagar-atualizações-da-branch-styles-para-outras-branches)
+- [Como Propagar Atualizações da Branch add-new-resource para Outras Branches](#como-propagar-atualizações-da-branch-add-new-resource-para-outras-branches)
+- [Deploy na Vercel](#deploy-na-vercel)
+- [Licença](#memo-licença)
 
 ## :round_pushpin: Sobre o projeto
 
@@ -96,7 +105,7 @@ yarn dev
 pnpm dev
 ```
 
-## Páginas presentes no website
+## 📄 Páginas presentes no website
 
 Abaixo uma descrição detalhada de todas as páginas presentes em nosso projeto.
 
@@ -155,11 +164,32 @@ A página de **Enviar Atividade** foi desenvolvida para facilitar o processo de 
 - **Formulário Completo de Inserção de Dados**: Contém campos para preenchimento de diversas informações necessárias sobre cada atividade, como título, descrição, objetivos educacionais, categorias, nível educacional, e links de recursos adicionais.
 - **Botão de Envio Automatizado**: Ao final do formulário, um botão permite o envio da atividade. Utilizando a API do GitHub, ao clicar neste botão, um commit é criado automaticamente, seguido pela criação de um pull request para revisão.
 
-> **Imagem da Página de Enviar Atividade**
+## 📧 Orientações para enviar atividade por email
 
----
+Para garantir que sua atividade seja enviada corretamente e que todas as informações necessárias sejam incluídas, siga as orientações abaixo:
 
-## Orientações para enviar atividade localmente
+1. **Prepare os Arquivos**
+
+   - Certifique-se de que todos os arquivos relacionados à atividade estão completos e organizados.
+   - Se a atividade incluir vários arquivos (documentos, imagens, códigos), compacte-os em um único arquivo no formato `.zip`.
+
+2. **Nomeação dos Arquivos**
+
+   - Nomeie o arquivo com um título claro e padronizado. Por exemplo: `Atividade_NomeCompleto_ProfessorDisciplina_Data.zip`.
+   - Inclua seu nome completo e o título da atividade para facilitar a identificação.
+
+3. **Corpo do Email**
+
+   - No corpo do e-mail, inclua as seguintes informações:
+     - **Seu nome completo**
+     - **Nome da atividade**
+     - **Disciplina ou projeto relacionado**
+     - **Data de envio**
+     - **Mensagem breve**: Caso haja algo específico que o professor ou responsável deva saber sobre a atividade, adicione essa informação.
+
+   Exemplo de corpo de e-mail:
+
+## 💻 Orientações para enviar atividade localmente
 
 Primeiro baixe o projeto seguindo as orientações iniciais. Depois siga os passos abaixo para enviar uma atividade localmente para o repositório, utilizando a página de **Enviar Atividade**:
 
@@ -276,7 +306,7 @@ E alguns campos com preenchimento automático:
 
 Seguindo esses passos, você poderá enviar atividades e recursos para o projeto de forma eficiente, utilizando a automação do GitHub para agilizar o processo de contribuição.
 
-## Funcionamento de envio via GitHub API
+## 🛠️ Funcionamento de envio via GitHub API
 
 A integração com a GitHub API permite que o processo de submissão seja automático, incluindo:
 
@@ -285,7 +315,7 @@ A integração com a GitHub API permite que o processo de submissão seja autom�
 
 Esta funcionalidade foi desenvolvida para agilizar o processo de contribuição, garantindo um fluxo organizado e eficiente de novas atividades.
 
-## Padrão de Mensagens de Commit
+## ✍️ Padrão de Mensagens de Commit
 
 Abaixo estão diretrizes e exemplos de mensagens de commit para cada tipo de mudança no projeto. Use um estilo conciso e direto, com verbos no infinitivo (ex.: "Adicionar", "Atualizar") para facilitar o entendimento.
 
@@ -336,14 +366,14 @@ Use este formato para criar mensagens de commit:
    - **Exemplo**: `Melhoria: Melhorar acessibilidade dos botões`
    - **Descrição (opcional)**: Explicite a motivação da melhoria, especialmente se ela impacta a experiência do usuário.
 
-## Dicas para Boas Mensagens de Commit
+### Dicas para Boas Mensagens de Commit
 
 - **Seja claro e objetivo**: Descreva a mudança de forma que qualquer pessoa consiga entender.
 - **Limite o resumo a 50 caracteres**: Use uma descrição curta e objetiva.
 - **Adicione contexto na descrição**: Se a mudança for complexa, explique o motivo na descrição adicional.
 - **Use uma linguagem consistente**: Opte pelo infinitivo e um tom direto.
 
-## Como Propagar Atualizações da Branch `master` para Outras Branches
+## 🔄 Como Propagar Atualizações da Branch `master` para Outras Branches
 
 Este guia explica como atualizar branches secundárias (`add-new-resource` e `styles`) com mudanças feitas na branch `master`. Esse processo garante que alterações principais realizadas em `master` estejam disponíveis em outras branches de desenvolvimento.
 
@@ -386,7 +416,7 @@ git push origin styles
 
 ---
 
-## Como Propagar Atualizações da Branch `styles` para Outras Branches
+## 🔄 Como Propagar Atualizações da Branch `styles` para Outras Branches
 
 Este guia explica como atualizar branches (`add-new-resource` e `master`) com mudanças feitas na branch `styles`. Esse processo é útil quando você realiza alterações na branch `styles` e deseja garantir que essas mudanças sejam refletidas nas outras branches de desenvolvimento.
 
@@ -429,7 +459,7 @@ git push origin master
 
 ---
 
-## Como Propagar Atualizações da Branch `add-new-resource` para Outras Branches
+## 🔄 Como Propagar Atualizações da Branch `add-new-resource` para Outras Branches
 
 Este guia explica como atualizar as branches `master` e `styles` com mudanças feitas na branch `add-new-resource`. Esse processo é útil quando você realiza alterações na branch `add-new-resource` e deseja garantir que essas mudanças sejam refletidas nas outras branches de desenvolvimento.
 
@@ -472,12 +502,12 @@ git push origin master
 
 ---
 
-## Deploy na Vercel
+## 🌐 Deploy na Vercel
 
 Este projeto está disponível para acesso através da plataforma [Vercel](https://vercel.com/), que oferece uma solução prática e eficiente para o deploy de aplicações Next.js. A escolha da Vercel deve-se à sua integração direta com o GitHub, permitindo que qualquer alteração no repositório seja automaticamente atualizada no ambiente de produção da Vercel. Isso facilita a manutenção e garante que as atualizações estejam sempre sincronizadas.
 
 Confira o projeto em funcionamento [aqui](https://link-ficticio-da-vercel.com).
 
-## :memo: License
+## :memo: Licença
 
 This project is under the MIT license. See [LICENSE](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md) for more information.
