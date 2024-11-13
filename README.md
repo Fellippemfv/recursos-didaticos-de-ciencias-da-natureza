@@ -226,20 +226,16 @@ npm run dev
 **4. Busque e Adicione o TOKEN da API do GitHub:**
 
 - Nesta seção, você aprenderá como buscar e adicionar o **TOKEN de acesso pessoal** (Classic) da API do GitHub. Esse token é necessário para permitir que o sistema interaja com o repositório de forma segura e automatizada.
-  &nbsp;
 
 **4.1**. **Acesse o GitHub e Vá para as Configurações de Token**:
 
 - Primeiramente, acesse o [GitHub](https://github.com) e faça login na sua conta.
      - No canto superior direito da página inicial, clique na sua foto de perfil e depois em **Settings** (Configurações).
-  &nbsp;
 
 **4.2**. **Navegue até a Seção de Tokens de Acesso**:
 
 - No menu lateral esquerdo, procure e clique em **Developer settings** (Configurações do desenvolvedor).
      - Em seguida, clique em **Personal access tokens** (Tokens de acesso pessoal) e, depois, em **Tokens (classic)**.
-
-&nbsp;
 
 **4.3**. **Gere um Novo Token**:
 
@@ -247,13 +243,9 @@ npm run dev
      - Preencha os campos conforme necessário. Em **Note**, você pode adicionar uma descrição para lembrar o propósito do token (por exemplo, "Token para Enviar Atividades ao Repositório").
      - Defina a **Data de Expiração** (opcional) e selecione os **Escopos** (permissões) para o token. Para o processo de envio de atividades, você precisará garantir que as permissões **repo** (acesso completo ao repositório) e **workflow** (para automação de workflows) estejam selecionadas.
 
-&nbsp;
-
 **4.4**. **Copie o Token Gerado**:
 
 - Após gerar o token, copie-o para a área de transferência. **Lembre-se de que este token é mostrado apenas uma vez**, então é importante guardá-lo em um local seguro.
-
-&nbsp;
 
 **4.5**. Adicionando o Token no Sistema
 
@@ -263,7 +255,6 @@ npm run dev
 - **Cole o Token Copiado**:
 
 - No campo indicado, cole o token que você copiou do GitHub.
-  &nbsp;
 
 **5. Preencha o Formulário**: Preencha todos os campos obrigatórios do formulário, Certifique-se de fornecer informações completas e precisas para cada campo. Os campos obrigatórios são:
 
