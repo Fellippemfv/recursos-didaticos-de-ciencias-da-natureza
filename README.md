@@ -1,6 +1,64 @@
-## Como baixar e rodar o projeto localmente
+<h1 align="center">Centralização de recursos didáticos de ciências da natureza</h1>
 
-Este é um projeto desenvolvido com **Next.js** e **Tailwind CSS**, utilizando a estrutura do `create-next-app` para facilitar a inicialização e configuração do ambiente de desenvolvimento.
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Fellippemfv/nest-prisma-swagger-docker-base-project">
+
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Fellippemfv/nest-prisma-swagger-docker-base-project?color=red">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Fellippemfv/nest-prisma-swagger-docker-base-project?color=yellow">
+  
+  <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/commits/master">
+   <img alt="last-commit" src="https://img.shields.io/github/last-commit/Fellippemfv/nest-prisma-swagger-docker-base-project">
+  </a>
+
+  <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/blob/master/LICENSE.md">
+   <img alt="GitHub/license" src="https://img.shields.io/github/license/Fellippemfv/nest-prisma-swagger-docker-base-project">
+  </a>
+</p>
+
+## 📑 Sumário
+
+- [Sobre o projeto](#round_pushpin-sobre-o-projeto)
+- [Como usar](#information_source-como-usar)
+- [Páginas presentes no website](#páginas-presentes-no-website)
+
+## :round_pushpin: Sobre o projeto
+
+<p align="justify">
+ Este projeto foi desenvolvido para fornecer recursos didáticos para o ensino de Ciências da Natureza (Física, Química e Biologia). A plataforma organizou e centralizou atividades interativas, como Dinâmicas (Participação em dupla ou em grupo), Experimentos (Demonstrativos e Investigativos), Jogos educativos (Tabuleiros e Lúdicos), Modelos físicos (Maquetes e Protótipos) e Aplicativos Educativos (Apps e Sites Interativos) e o disponibiliza de forma gratuita. O objetivo é fornecer um local para que o professor de forma rápida consiga escolher alguma atividade diferente do comum para realizar em sala de aula, deste modo, promovendo uma educação mais envolvente, onde a teoria se conecta com a prática de forma divertida e significativa. As atividade e recursos demonstrados foram pegos de diversas fontes: Internet, livros, artigos. Todos os créditos foram indicados na aba "Referências" na página especifica da atividade. Este projeto NÃO TEM CARÁTER COMERCIAL.
+</p>
+
+## :rocket: Tecnologias utilizadas
+
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+- [Node.js](https://nodejs.org/en/): Ambiente de execução para desenvolvimento do lado do servidor em JavaScript.
+- [Next.js](https://nextjs.org): Framework para criação da interface do usuário, com suporte a renderização no servidor e funcionalidades otimizadas para o frontend.
+- [Tailwind CSS](https://tailwindcss.com): Biblioteca de estilização para construir interfaces responsivas e altamente personalizáveis.
+- [TypeScript](https://www.typescriptlang.org): Superconjunto de JavaScript que adiciona tipagem estática, melhorando a qualidade e manutenção do código.
+- [ESLint](https://eslint.org): Ferramenta para análise de código, garantindo conformidade com padrões de estilo e reduzindo erros.
+- [Prettier](https://prettier.io): Formatação automática do código para manter uma padronização visual.
+- [JSON](https://www.json.org/json-en.html): Formato de armazenamento de dados estruturados utilizado para gerenciar configurações e dados do projeto.
+
+### Funções de cada tecnologia
+
+- **Interface e Estilo:**
+
+  - **Next.js**: Framework para construção de páginas e renderização.
+  - **Tailwind CSS**: Estilização rápida e responsiva das interfaces.
+    &nbsp;
+
+- **Ambiente de Desenvolvimento e Manutenção do Código:**
+
+  - **Node.js**: Execução do JavaScript fora do navegador, especialmente para ferramentas de desenvolvimento.
+  - **TypeScript**: Melhoria na qualidade e escalabilidade do código com tipagem.
+  - **ESLint** e **Prettier**: Manutenção e padronização do código.
+    &nbsp;
+
+- **Armazenamento de Dados e Configurações:**
+  - **JSON**: Utilizado para gerenciar dados de configuração e armazenamento estruturado.
+
+## :information_source: Como usar
 
 ### Pré-requisitos
 
@@ -419,3 +477,7 @@ git push origin master
 Este projeto está disponível para acesso através da plataforma [Vercel](https://vercel.com/), que oferece uma solução prática e eficiente para o deploy de aplicações Next.js. A escolha da Vercel deve-se à sua integração direta com o GitHub, permitindo que qualquer alteração no repositório seja automaticamente atualizada no ambiente de produção da Vercel. Isso facilita a manutenção e garante que as atualizações estejam sempre sincronizadas.
 
 Confira o projeto em funcionamento [aqui](https://link-ficticio-da-vercel.com).
+
+## :memo: License
+
+This project is under the MIT license. See [LICENSE](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md) for more information.
