@@ -21,14 +21,14 @@
 - [Sobre o projeto](#round_pushpin-sobre-o-projeto)
 - [Tecnologias utilizadas](#rocket-tecnologias-utilizadas)
 - [Como usar](#information_source-como-usar)
-- [Páginas presentes no website](#páginas-presentes-no-website)
-- [Orientações para enviar atividade por email](#orientações-para-enviar-atividade-por-email)
-- [Orientações para enviar atividade localmente](#orientações-para-enviar-atividade-localmente)
-- [Funcionamento de envio via GitHub API](#funcionamento-de-envio-via-github-api)
-- [Como Propagar Atualizações da Branch master para Outras Branches](#como-propagar-atualizações-da-branch-master-para-outras-branches)
-- [Como Propagar Atualizações da Branch styles para Outras Branches](#como-propagar-atualizações-da-branch-styles-para-outras-branches)
-- [Como Propagar Atualizações da Branch add-new-resource para Outras Branches](#como-propagar-atualizações-da-branch-add-new-resource-para-outras-branches)
-- [Deploy na Vercel](#deploy-na-vercel)
+- [Páginas presentes no website](#page_facing_up-páginas-presentes-no-website)
+- [Orientações para enviar atividade por email](#email-orientações-para-enviar-atividade-por-email)
+- [Orientações para enviar atividade localmente](#computer-orientações-para-enviar-atividade-localmente)
+- [Funcionamento de envio via GitHub API](#hammer_and_wrench-funcionamento-de-envio-via-github-api)
+- [Como Propagar Atualizações da Branch master para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-master-para-outras-branches)
+- [Como Propagar Atualizações da Branch styles para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-styles-para-outras-branches)
+- [Como Propagar Atualizações da Branch add-new-resource para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-add-new-resource-para-outras-branches)
+- [Deploy na Vercel](#globe_with_meridians-deploy-na-vercel)
 - [Licença](#memo-licença)
 
 ## :round_pushpin: Sobre o projeto
@@ -105,7 +105,7 @@ yarn dev
 pnpm dev
 ```
 
-## 📄 Páginas presentes no website
+## :page_facing_up: Páginas presentes no website
 
 Abaixo uma descrição detalhada de todas as páginas presentes em nosso projeto.
 
@@ -164,7 +164,7 @@ A página de **Enviar Atividade** foi desenvolvida para facilitar o processo de 
 - **Formulário Completo de Inserção de Dados**: Contém campos para preenchimento de diversas informações necessárias sobre cada atividade, como título, descrição, objetivos educacionais, categorias, nível educacional, e links de recursos adicionais.
 - **Botão de Envio Automatizado**: Ao final do formulário, um botão permite o envio da atividade. Utilizando a API do GitHub, ao clicar neste botão, um commit é criado automaticamente, seguido pela criação de um pull request para revisão.
 
-## 📧 Orientações para enviar atividade por email
+## :email: Orientações para enviar atividade por email
 
 Para garantir que sua atividade seja enviada corretamente e que todas as informações necessárias sejam incluídas, siga as orientações abaixo:
 
@@ -189,7 +189,7 @@ Para garantir que sua atividade seja enviada corretamente e que todas as informa
 
    Exemplo de corpo de e-mail:
 
-## 💻 Orientações para enviar atividade localmente
+## :computer: Orientações para enviar atividade localmente
 
 Primeiro baixe o projeto seguindo as orientações iniciais. Depois siga os passos abaixo para enviar uma atividade localmente para o repositório, utilizando a página de **Enviar Atividade**:
 
@@ -226,12 +226,13 @@ npm run dev
 **4. Busque e Adicione o TOKEN da API do GitHub:**
 
 - Nesta seção, você aprenderá como buscar e adicionar o **TOKEN de acesso pessoal** (Classic) da API do GitHub. Esse token é necessário para permitir que o sistema interaja com o repositório de forma segura e automatizada.
+  &nbsp;
 
 **4.1**. **Acesse o GitHub e Vá para as Configurações de Token**:
 
 - Primeiramente, acesse o [GitHub](https://github.com) e faça login na sua conta.
      - No canto superior direito da página inicial, clique na sua foto de perfil e depois em **Settings** (Configurações).
-     &nbsp;
+  &nbsp;
 
 **4.2**. **Navegue até a Seção de Tokens de Acesso**:
 
@@ -262,7 +263,7 @@ npm run dev
 - **Cole o Token Copiado**:
 
 - No campo indicado, cole o token que você copiou do GitHub.
-       &nbsp;
+  &nbsp;
 
 **5. Preencha o Formulário**: Preencha todos os campos obrigatórios do formulário, Certifique-se de fornecer informações completas e precisas para cada campo. Os campos obrigatórios são:
 
@@ -306,7 +307,7 @@ E alguns campos com preenchimento automático:
 
 Seguindo esses passos, você poderá enviar atividades e recursos para o projeto de forma eficiente, utilizando a automação do GitHub para agilizar o processo de contribuição.
 
-## 🛠️ Funcionamento de envio via GitHub API
+## :hammer_and_wrench: Funcionamento de envio via GitHub API
 
 A integração com a GitHub API permite que o processo de submissão seja automático, incluindo:
 
@@ -315,7 +316,7 @@ A integração com a GitHub API permite que o processo de submissão seja autom�
 
 Esta funcionalidade foi desenvolvida para agilizar o processo de contribuição, garantindo um fluxo organizado e eficiente de novas atividades.
 
-## ✍️ Padrão de Mensagens de Commit
+## :writing_hand: Padrão de Mensagens de Commit
 
 Abaixo estão diretrizes e exemplos de mensagens de commit para cada tipo de mudança no projeto. Use um estilo conciso e direto, com verbos no infinitivo (ex.: "Adicionar", "Atualizar") para facilitar o entendimento.
 
@@ -373,7 +374,7 @@ Use este formato para criar mensagens de commit:
 - **Adicione contexto na descrição**: Se a mudança for complexa, explique o motivo na descrição adicional.
 - **Use uma linguagem consistente**: Opte pelo infinitivo e um tom direto.
 
-## 🔄 Como Propagar Atualizações da Branch `master` para Outras Branches
+## :arrows_clockwise: Como Propagar Atualizações da Branch `master` para Outras Branches
 
 Este guia explica como atualizar branches secundárias (`add-new-resource` e `styles`) com mudanças feitas na branch `master`. Esse processo garante que alterações principais realizadas em `master` estejam disponíveis em outras branches de desenvolvimento.
 
@@ -416,7 +417,7 @@ git push origin styles
 
 ---
 
-## 🔄 Como Propagar Atualizações da Branch `styles` para Outras Branches
+## :arrows_clockwise: Como Propagar Atualizações da Branch `styles` para Outras Branches
 
 Este guia explica como atualizar branches (`add-new-resource` e `master`) com mudanças feitas na branch `styles`. Esse processo é útil quando você realiza alterações na branch `styles` e deseja garantir que essas mudanças sejam refletidas nas outras branches de desenvolvimento.
 
@@ -459,7 +460,7 @@ git push origin master
 
 ---
 
-## 🔄 Como Propagar Atualizações da Branch `add-new-resource` para Outras Branches
+## :arrows_clockwise: Como Propagar Atualizações da Branch `add-new-resource` para Outras Branches
 
 Este guia explica como atualizar as branches `master` e `styles` com mudanças feitas na branch `add-new-resource`. Esse processo é útil quando você realiza alterações na branch `add-new-resource` e deseja garantir que essas mudanças sejam refletidas nas outras branches de desenvolvimento.
 
@@ -502,7 +503,7 @@ git push origin master
 
 ---
 
-## 🌐 Deploy na Vercel
+## :globe_with_meridians: Deploy na Vercel
 
 Este projeto está disponível para acesso através da plataforma [Vercel](https://vercel.com/), que oferece uma solução prática e eficiente para o deploy de aplicações Next.js. A escolha da Vercel deve-se à sua integração direta com o GitHub, permitindo que qualquer alteração no repositório seja automaticamente atualizada no ambiente de produção da Vercel. Isso facilita a manutenção e garante que as atualizações estejam sempre sincronizadas.
 
