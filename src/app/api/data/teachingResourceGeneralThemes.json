@@ -83,6 +83,21 @@
         "id": 16,
         "title": "Astronomia",
         "slug": "astronomia"
+      },
+      {
+        "id": 17,
+        "title": "1° Lei de newton",
+        "slug": "1-lei-de-newton"
+      },
+      {
+        "id": 18,
+        "title": "2° Lei de newton",
+        "slug": "2-lei-de-newton"
+      },
+      {
+        "id": 19,
+        "title": "3° Lei de newton",
+        "slug": "3-lei-de-newton"
       }
     ]
   },
