@@ -915,5 +915,80 @@
       }
     ],
     "activitySheetOne": "/1731608083583/documents/Doc1.docx"
+  },
+  {
+    "id": "1731610038443",
+    "postDate": "14 de novembro de 2024 às 14:47",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 17,
+          "title": "1° Lei de newton",
+          "slug": "1-lei-de-newton"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "1° Lei de newton no copo",
+    "slug": "1-lei-de-newton-no-copo",
+    "imagePreview": "/1731610038443/images/imagem_2024-11-14_144921900.png",
+    "description": "Vamos observar a 1° Lei de newton utilizando objetos simples e baratos.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar a Primeira Lei de Newton (Lei da Inércia);"
+      },
+      {
+        "id": 2,
+        "content": "Introduzir o conceito de força e movimento;"
+      },
+      {
+        "id": 3,
+        "content": "Desenvolver habilidades de observação e análise."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Copo transparente;"
+      },
+      {
+        "id": 2,
+        "content": "01 Pedaço de cartolina;"
+      },
+      {
+        "id": 3,
+        "content": "01 Moeda grande (de 1 real ou 25 centavos)."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Coloque o copo na mesa, e deixe um pedaço de cartolina em cima deste copo. Depois coloque uma moeda ao centro da cartolina. Ao final puxe o mais rápido possível a cartolina e observe o que vai ocorrer com o a moeda.",
+        "imagePath": "/1731610038443/images/imagem_2024-11-14_145352588.png"
+      }
+    ],
+    "results": "Espera-se que ao puxar rapidamente o pedaço de cartolina (ou pedaço de papel) colocado entre o copo e a moeda, a moeda permaneça sobre o copo em vez de ser puxada junto com o lenço. Esse comportamento demonstra a tendência de a moeda permanecer em repouso (inércia) enquanto o lenço é puxado. Isso ajuda a visualizar como um objeto em repouso não se movimenta até que uma força significativa atue diretamente sobre ele.",
+    "scientificExplanation": "A Primeira Lei de Newton, ou Lei da Inércia, afirma que um corpo em repouso tende a permanecer em repouso, e um corpo em movimento tende a continuar em movimento com velocidade constante, a menos que uma força externa atue sobre ele. No experimento, a moeda está em repouso sobre o copo e, devido à inércia, ela tende a permanecer em repouso. Quando o lenço é puxado rapidamente, a força aplicada é insuficiente para vencer a inércia da moeda, então a moeda fica no mesmo lugar enquanto o lenço é removido debaixo dela. Esse efeito se deve ao fato de que o atrito entre a moeda e o lenço é pequeno e, ao puxar o lenço com rapidez, a moeda não acompanha o movimento, ilustrando claramente o conceito de inércia.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Mundo educação. Disponível em: <https://mundoeducacao.uol.com.br/fisica/primeira-lei-newton.htm#:~:text=Um%20deles%20consiste%20em%20apoiar,tendência%20de%20permanecer%20em%20repouso.>. Acesso em: 14 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
