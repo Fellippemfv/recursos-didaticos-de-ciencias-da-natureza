@@ -525,7 +525,7 @@ export default function sendTeachingResource() {
       const newBranchName = `new-resource-${experimentId}`;
 
       const baseRepositoryOwnerName = "fellippemfv";
-      const baseRepositoryName = "my-science-project";
+      const baseRepositoryName = "recursos-didaticos-de-ciencias-da-natureza";
       const baseBranchName = "add-new-resource";
 
       // Json
