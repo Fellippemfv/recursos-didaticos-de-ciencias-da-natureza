@@ -529,4 +529,4 @@ Confira o projeto em funcionamento [aqui](https://link-ficticio-da-vercel.com).
 
 ## :memo: Licença
 
-Este projeto utiliza a MIT license. Veja em [Licença](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md) para mais informação.
+Este projeto utiliza a MIT license. Veja em [Licença](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/license) para mais informação.
