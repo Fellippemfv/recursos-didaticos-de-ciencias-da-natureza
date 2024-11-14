@@ -226,12 +226,22 @@
         "content": "segundo objetivo"
       }
     ],
-    "materials": ["asdasd.asdasd"],
-    "methods": ["asdasdasdasd", "asdasdasd"],
-    "methodsImages": ["/images/exp-9/img-0.jpg", "/images/exp-9/img-0.jpg"],
+    "materials": [
+      "asdasd.asdasd"
+    ],
+    "methods": [
+      "asdasdasdasd",
+      "asdasdasd"
+    ],
+    "methodsImages": [
+      "/images/exp-9/img-0.jpg",
+      "/images/exp-9/img-0.jpg"
+    ],
     "results": "asdasd",
     "scientificExplanation": "asdasd",
-    "references": ["asdasdasdasd"]
+    "references": [
+      "asdasdasdasd"
+    ]
   },
   {
     "id": "1719173649995",
@@ -721,5 +731,94 @@
       }
     ],
     "activitySheet": "/1719193862873/documents/Roteiro-de-Lab-ovo-afunda-ou-nao.docx"
+  },
+  {
+    "id": "1731605562512",
+    "postDate": "14 de novembro de 2024 às 13:32",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 2,
+        "title": "Biologia",
+        "slug": "biologia"
+      }
+    ],
+    "topicSpecific": {
+      "biologia": [
+        {
+          "id": 21,
+          "title": "Células eucariontes e procariontes",
+          "slug": "celulas-eucariontes-e-procariontes"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 4,
+      "title": "Modelos físicos (Maquetes e Protótipos)",
+      "slug": "modelos-fisicos",
+      "steps": "Representações tridimensionais de objetos ou processos científicos que ajudam na visualização e compreensão dos conteúdos."
+    },
+    "title": "Células na garrafa",
+    "slug": "celulas-na-garrafa",
+    "imagePreview": "/1731605562512/images/Captura de tela 2024-11-14 125342.png",
+    "description": "Criando células com garrafa pet, utilizando materiais baratos e acessíveis",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Identificar e diferenciar estruturas celulares;"
+      },
+      {
+        "id": 2,
+        "content": "Compreender a organização interna das células;"
+      },
+      {
+        "id": 3,
+        "content": "Desenvolver habilidades de modelagem e criatividade."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 garrafas pet transparente, de cores diferentes;"
+      },
+      {
+        "id": 2,
+        "content": "01 Pacote de massa de modelar em 4 cores diferentes;"
+      },
+      {
+        "id": 3,
+        "content": "01 Gel de cabelo transparente ou gelatina incolor;"
+      },
+      {
+        "id": 4,
+        "content": "01 Plástico filme."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Na primeira garrafa pet, deixe ela em pé e corte o fundo da\ngarrafa; Na segunda garrafa, corte com ela deitada de modo a\nabrir uma abertura em uma de suas laterais.",
+        "imagePath": "/1731605562512/images/exp-1.jpg"
+      },
+      {
+        "id": 2,
+        "content": "Com a massa de modelar faça as organelas: Núcleo (é a maior\nestrutura da célula)- Retículo Endoplasmático Rugoso- Reticulo\nendoplasmático Liso,- Complexo de Golgi,- Mitocôndrias e Lisossomos.",
+        "imagePath": "/1731605562512/images/Captura de tela 2024-11-14 130802.png"
+      },
+      {
+        "id": 3,
+        "content": "Na primeira garrafa: Coloque o gel até metade do fundo da\ngarrafa pet, sobre o gel coloque e arrume as organelas da célula,\nComplete o fundo da garrafa com o restante do gel. E Cubra com\nplástico filme. Na segunda garrafa: Faça o mesmo procedimento.",
+        "imagePath": "/1731605562512/images/imagem_2024-11-14_133842933.png"
+      }
+    ],
+    "results": "",
+    "scientificExplanation": "",
+    "references": [
+      {
+        "id": 1,
+        "content": "Colégio dom Pedro. Disponível em: <https://www.cp2.g12.br/blog/tijuca2/files/2020/03/ciencias-8-ano-maquete-de-célula-humana.pdf>.\nAcesso em: 14 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
