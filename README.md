@@ -34,7 +34,7 @@
 ## :round_pushpin: Sobre o projeto
 
 <p align="justify">
- Este projeto foi desenvolvido para fornecer recursos didáticos para o ensino de Ciências da Natureza (Física, Química e Biologia). A plataforma organizou e centralizou atividades interativas, como Dinâmicas (Participação em dupla ou em grupo), Experimentos (Demonstrativos e Investigativos), Jogos educativos (Tabuleiros e Lúdicos), Modelos físicos (Maquetes e Protótipos) e Aplicativos Educativos (Apps e Sites Interativos) e o disponibiliza de forma gratuita. O objetivo é fornecer um local para que o professor de forma rápida consiga escolher alguma atividade diferente do comum para realizar em sala de aula, deste modo, promovendo uma educação mais envolvente, onde a teoria se conecta com a prática de forma divertida e significativa. As atividade e recursos demonstrados foram pegos de diversas fontes: Internet, livros, artigos. Todos os créditos foram indicados na aba "Referências" na página especifica da atividade. Este projeto NÃO TEM CARÁTER COMERCIAL.
+ Este projeto foi desenvolvido para fornecer informações sobre recursos didáticos para o ensino de Ciências da Natureza (Física, Química e Biologia). A plataforma organizou e centralizou atividades interativas, como Dinâmicas (Participação em dupla ou em grupo), Experimentos (Demonstrativos e Investigativos), Jogos educativos (Tabuleiros e Lúdicos), Modelos físicos (Maquetes e Protótipos) e Aplicativos Educativos (Apps e Sites Interativos) e o disponibiliza de forma gratuita. O objetivo é fornecer um local para que o professor de forma rápida consiga escolher alguma atividade diferente do comum para realizar em sala de aula, deste modo, promovendo uma educação mais envolvente, onde a teoria se conecta com a prática de forma divertida e significativa. As atividade e recursos demonstrados foram pegos de diversas fontes: Internet, livros, artigos. Todos os créditos foram indicados na aba "Referências" na página especifica da atividade. Este projeto NÃO TEM CARÁTER COMERCIAL.
 </p>
 
 ## :rocket: Tecnologias utilizadas
@@ -267,7 +267,7 @@ npm run dev
 
 **4.5**. Adicionando o Token no Sistema
 
-- No sistema, vá até a página onde você irá inserir o token ([http://localhost:3000/send-teaching-resource](http://localhost:3000/send-teaching-resource)). Procure o campo denominado **'Adicionar Token do GitHub'**. Cole o Token Copiado
+- No sistema, vá até a página onde você irá inserir o token ([http://localhost:3000/send-teaching-resource](http://localhost:3000/send-teaching-resource)). Procure o campo denominado **'Chave da API do GitHub'**. Clique em **Editar código**. Cole o Token Copiado e clique em **Concluir**.
   ![token-7](https://github.com/user-attachments/assets/4500f7f8-30f1-4bf3-a63a-6cc7a9ece022)
 - Após adicionar, vai aparecer um botão chamado "Testar", clicando nele ele verifica se o seu token é valido, se for válido vai aparecer seu nome do github, caso contrário vai aparecer um erro.
   **5. Preencha o Formulário**: Preencha todos os campos obrigatórios do formulário, Certifique-se de fornecer informações completas e precisas para cada campo. Os campos obrigatórios são:
