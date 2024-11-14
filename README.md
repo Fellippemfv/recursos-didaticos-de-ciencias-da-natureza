@@ -196,8 +196,6 @@ No corpo do e-mail, inclua o máximo possível das seguintes informações para 
 - **Etapa/Passo a Passo**: Detalhe cada passo necessário para realizar a atividade, desde a preparação até a finalização. Caso as etapas tenha imagens adicione. (modelo de nome: metodologia-nome_da_imagem)
 - **Referências**: Inclua referências para qualquer material de apoio ou fonte que tenha sido consultada na elaboração da atividade.
 
-&nbsp;
-
 Além destes campos, os seguintes são opcionais e podem ser incluídos conforme necessário:
 
 - **Tópico Específico**: Detalhe o assunto mais específico abordado dentro do tópico geral, se aplicável.
