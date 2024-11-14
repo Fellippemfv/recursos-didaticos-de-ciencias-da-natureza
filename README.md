@@ -1,4 +1,4 @@
-<h1 align="center">Centralização de atividades e recursos didáticos </h1>
+<h1 align="center">Recursos didáticos de ciências da natureza</h1>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Fellippemfv/nest-prisma-swagger-docker-base-project">
@@ -254,8 +254,6 @@ npm run dev
   ![token-2](https://github.com/user-attachments/assets/37e8ad69-5d22-4119-81c4-799740521eec)
 - Em seguida, clique em **Personal access tokens** (Tokens de acesso pessoal) e, depois, em **Tokens (classic)**.
   ![token-3](https://github.com/user-attachments/assets/156ad9fe-4191-4e95-87b3-0ad58dae1315)
-  **4.3**. **Gere um Novo Token**:
-
 - Clique no botão **Generate new token** (Gerar novo token).
 - Clique no botão **Generate new token (classic)** (Gerar novo token clássico).
   ![token-4](https://github.com/user-attachments/assets/8b291179-62fb-4bd6-92cd-6cabecca8cb5)
