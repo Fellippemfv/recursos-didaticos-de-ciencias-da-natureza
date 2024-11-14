@@ -381,6 +381,10 @@ Use este formato para criar mensagens de commit:
    - **Exemplo**: `Melhoria: Melhorar acessibilidade dos botões`
    - **Descrição (opcional)**: Explicite a motivação da melhoria, especialmente se ela impacta a experiência do usuário.
 
+> _Nota Importante_: **Traduza a mensagem para o inglês antes de finalizar o commit**.
+
+Por exemplo, `Adicionar: Filtro por categoria na página de recursos` deve ser convertido para `Add: Category filter on resources page`
+
 ### Dicas para Boas Mensagens de Commit
 
 - **Seja claro e objetivo**: Descreva a mudança de forma que qualquer pessoa consiga entender.
