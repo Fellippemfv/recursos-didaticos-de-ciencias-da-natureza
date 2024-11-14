@@ -78,6 +78,11 @@
         "id": 15,
         "title": "Transformações de energia",
         "slug": "transformacoes-de-energia"
+      },
+      {
+        "id": 16,
+        "title": "Astronomia",
+        "slug": "astronomia"
       }
     ]
   },
