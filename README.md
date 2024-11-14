@@ -1,19 +1,20 @@
 <h1 align="center">Recursos didáticos de ciências da natureza</h1>
 
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
+ <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=blue">
 
-<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=green">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
-  
-  <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/commits/master">
-   <img alt="last-commit" src="https://img.shields.io/github/last-commit/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
-  </a>
+<img alt="Repository size" src="https://img.shields.io/github/repo-size/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=purple">
 
-  <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/blob/master/LICENSE.md">
-   <img alt="GitHub/license" src="https://img.shields.io/github/license/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
-  </a>
+<a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/commits/master">
+   <img alt="last-commit" src="https://img.shields.io/github/last-commit/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=orange">
+</a>
+
+<a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/blob/master/LICENSE.md">
+   <img alt="GitHub/license" src="https://img.shields.io/github/license/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=red">
+</a>
+
 </p>
 
 ## 📑 Sumário
@@ -25,6 +26,7 @@
 - [Orientações para enviar atividade por email](#email-orientações-para-enviar-atividade-por-email)
 - [Orientações para enviar atividade localmente](#computer-orientações-para-enviar-atividade-localmente)
 - [Funcionamento de envio via GitHub API](#hammer_and_wrench-funcionamento-de-envio-via-github-api)
+- [Padrão de Mensagens de Commit](#writing_hand-padrão-de-mensagens-de-commit)
 - [Como Propagar Atualizações da Branch master para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-master-para-outras-branches)
 - [Como Propagar Atualizações da Branch styles para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-styles-para-outras-branches)
 - [Como Propagar Atualizações da Branch add-new-resource para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-add-new-resource-para-outras-branches)
