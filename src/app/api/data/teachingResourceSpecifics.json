@@ -226,12 +226,22 @@
         "content": "segundo objetivo"
       }
     ],
-    "materials": ["asdasd.asdasd"],
-    "methods": ["asdasdasdasd", "asdasdasd"],
-    "methodsImages": ["/images/exp-9/img-0.jpg", "/images/exp-9/img-0.jpg"],
+    "materials": [
+      "asdasd.asdasd"
+    ],
+    "methods": [
+      "asdasdasdasd",
+      "asdasdasd"
+    ],
+    "methodsImages": [
+      "/images/exp-9/img-0.jpg",
+      "/images/exp-9/img-0.jpg"
+    ],
     "results": "asdasd",
     "scientificExplanation": "asdasd",
-    "references": ["asdasdasdasd"]
+    "references": [
+      "asdasdasdasd"
+    ]
   },
   {
     "id": "1719173649995",
@@ -721,5 +731,68 @@
       }
     ],
     "activitySheet": "/1719193862873/documents/Roteiro-de-Lab-ovo-afunda-ou-nao.docx"
+  },
+  {
+    "id": "1731604652410",
+    "postDate": "14 de novembro de 2024 às 13:17",
+    "profileName": "dsad",
+    "topicGeneral": [
+      {
+        "id": 2,
+        "title": "Biologia",
+        "slug": "biologia"
+      }
+    ],
+    "topicSpecific": {
+      "biologia": [
+        {
+          "id": 3,
+          "title": "Classificação dos seres vivos",
+          "slug": "classificacao-dos-seres-vivos"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 2,
+      "title": "Dinâmicas (Participação em dupla ou em grupo)",
+      "slug": "dinamicas",
+      "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos."
+    },
+    "title": "sfsdf",
+    "slug": "sfsdf",
+    "imagePreview": "/1731604652410/images/Untitled (7).jpg",
+    "description": "fdsfds",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "fsdf"
+      },
+      {
+        "id": 2,
+        "content": "ff"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "dsfsdf"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "fsdfsf",
+        "imagePath": "/1731604652410/images/Untitled (6).jpg"
+      }
+    ],
+    "results": "fsdf",
+    "scientificExplanation": "fsdf",
+    "references": [
+      {
+        "id": 1,
+        "content": "fdsf"
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
