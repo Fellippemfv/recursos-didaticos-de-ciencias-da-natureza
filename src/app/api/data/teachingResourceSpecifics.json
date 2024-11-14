@@ -990,5 +990,84 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731627817422",
+    "postDate": "14 de novembro de 2024 às 19:43",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 18,
+          "title": "2° Lei de newton",
+          "slug": "2-lei-de-newton"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "2° Lei de Newton com bolinhas e canudo",
+    "slug": "2-lei-de-newton-com-bolinhas-e-canudo",
+    "imagePreview": "/1731627817422/images/imagem_2024-11-14_195201817.png",
+    "description": "Vamos verificar na prática a segunda lei de newton, assoprando três bolinhas de tamanhos diferentes.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar a Segunda Lei de Newton (F = m.a);"
+      },
+      {
+        "id": 2,
+        "content": "Comparar o efeito da massa sobre a aceleração;"
+      },
+      {
+        "id": 3,
+        "content": "Desenvolver habilidades de experimentação e análise."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Bolinha de isopor;"
+      },
+      {
+        "id": 2,
+        "content": "01 Bolinha de gude;"
+      },
+      {
+        "id": 3,
+        "content": "01 bolinha de massinha (massa de modelar);"
+      },
+      {
+        "id": 4,
+        "content": "01 Canudo."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Pegue cada bolinha individualmente em cima da mesa e tente assoprar cada uma para longe utilizando o canudo.",
+        "imagePath": "/1731627817422/images/imagem_2024-11-14_195313572.png"
+      }
+    ],
+    "results": "Espera-se que, ao soprar com o canudo, as bolinhas de diferentes massas se comportem de maneiras distintas. A bolinha de isopor, que é a mais leve, deverá acelerar mais facilmente e percorrer uma distância maior com o mesmo sopro. A bolinha de gude, sendo mais pesada, deverá mover-se mais lentamente e com menor aceleração, enquanto a bolinha de massinha, com massa intermediária, apresentará uma resposta entre as duas. Isso demonstrará a relação direta entre a massa e a aceleração, conforme descrito na Segunda Lei de Newton.",
+    "scientificExplanation": "A Segunda Lei de Newton estabelece que a aceleração (𝑎) de um objeto é diretamente proporcional à força (𝐹) aplicada sobre ele e inversamente proporcional à sua massa (𝑚), expressa pela fórmula: F=m⋅a. No experimento, ao soprar as bolinhas com o canudo, aplica-se uma força semelhante a cada uma delas, mas a resposta de aceleração varia conforme a massa de cada bolinha. A bolinha de isopor, que possui a menor massa, experimenta uma aceleração maior e, portanto, se move com mais facilidade. A bolinha de gude, que tem a maior massa, responde com menor aceleração ao mesmo sopro, movendo-se mais lentamente e percorrendo uma distância menor. Este experimento ilustra como objetos com maior massa requerem uma força maior para alcançar a mesma aceleração, ajudando a entender o princípio fundamental da Segunda Lei de Newton na prática.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, canal Welton Oliveira. Disponível em: <https://youtu.be/s7dXfKdqdSc?si=8vLY9f8c6ou1jqKQ>. Acesso em: 14 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
