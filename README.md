@@ -171,23 +171,39 @@ Para garantir que sua atividade seja enviada corretamente e que todas as informa
 1. **Prepare os Arquivos**
 
    - Certifique-se de que todos os arquivos relacionados à atividade estão completos e organizados.
-   - Se a atividade incluir vários arquivos (documentos, imagens, códigos), compacte-os em um único arquivo no formato `.zip`.
 
 2. **Nomeação dos Arquivos**
 
-   - Nomeie o arquivo com um título claro e padronizado. Por exemplo: `Atividade_NomeCompleto_ProfessorDisciplina_Data.zip`.
-   - Inclua seu nome completo e o título da atividade para facilitar a identificação.
+   - Se a atividade incluir vários arquivos (documentos, imagens, códigos), tome cuidado para os arquivos NÃO TEREM O MESMO NOME, caso contrário vai ocorrer erro ao enviar.
 
-3. **Corpo do Email**
+### 3. **Corpo do Email**
 
-   - No corpo do e-mail, inclua as seguintes informações:
-     - **Seu nome completo**
-     - **Nome da atividade**
-     - **Disciplina ou projeto relacionado**
-     - **Data de envio**
-     - **Mensagem breve**: Caso haja algo específico que o professor ou responsável deva saber sobre a atividade, adicione essa informação.
+No corpo do e-mail, inclua o máximo possível das seguintes informações para facilitar a identificação e avaliação da atividade:
 
-   Exemplo de corpo de e-mail:
+- **Nome do autor/da autora**: Seu nome completo, para que o responsável possa facilmente identificar o criador da atividade.
+- **Tópico geral**: Identifique a área de conhecimento à qual a atividade pertence, como Biologia, Física ou Química.
+- **Tipo de Recurso Didático**: Informe o tipo de recurso utilizado na atividade. As opções incluem:
+  - **Dinâmicas** (Participação em dupla ou em grupo)
+  - **Experimentos** (Demonstrativos e Investigativos)
+  - **Jogos Educativos** (Tabuleiros e Lúdicos)
+  - **Modelos Físicos** (Maquetes e Protótipos)
+  - **Aplicativos Educativos** (Apps e Sites Interativos)
+- **Título da Atividade**: Forneça um título claro e específico para a atividade, que resuma seu propósito.
+- **Imagem de Preview**: Anexe uma imagem que ofereça uma prévia visual da atividade.
+- **Descrição Detalhada**: Inclua uma descrição completa da atividade, explicando seu contexto e finalidade.
+- **Objetivos Educacionais**: Explique quais habilidades ou conhecimentos a atividade busca desenvolver nos estudantes.
+- **Materiais Necessários**: Liste todos os materiais que serão usados para executar a atividade.
+- **Etapa/Passo a Passo**: Detalhe cada passo necessário para realizar a atividade, desde a preparação até a finalização. Caso as etapas tenha imagens adicione. (modelo de nome: metodologia-nome_da_imagem)
+- **Referências**: Inclua referências para qualquer material de apoio ou fonte que tenha sido consultada na elaboração da atividade.
+
+&nbsp;
+
+Além destes campos, os seguintes são opcionais e podem ser incluídos conforme necessário:
+
+- **Tópico Específico**: Detalhe o assunto mais específico abordado dentro do tópico geral, se aplicável.
+- **Arquivos Adicionais para Download**: Inclua arquivos adicionais, se houver, nos formatos ".docx" ou ".pptx" (tamanho máximo de 1 MB).
+- **Resultados Esperados**: Descreva os resultados que se espera que os estudantes alcancem ao concluir a atividade.
+- **Explicação Científica**: Adicione uma explicação científica para ajudar os estudantes a entenderem os conceitos teóricos relacionados à atividade.
 
 ## :computer: Orientações para enviar atividade localmente
 
@@ -230,58 +246,65 @@ npm run dev
 **4.1**. **Acesse o GitHub e Vá para as Configurações de Token**:
 
 - Primeiramente, acesse o [GitHub](https://github.com) e faça login na sua conta.
-     - No canto superior direito da página inicial, clique na sua foto de perfil e depois em **Settings** (Configurações).
-
-**4.2**. **Navegue até a Seção de Tokens de Acesso**:
+- No canto superior direito da página inicial, clique na sua foto de perfil e depois em **Settings** (Configurações).
+  ![token-1](https://github.com/user-attachments/assets/e5442461-e06b-4c53-a9cd-dca7c8b0f660)
+  **4.2**. **Navegue até a Seção de Tokens de Acesso**:
 
 - No menu lateral esquerdo, procure e clique em **Developer settings** (Configurações do desenvolvedor).
-     - Em seguida, clique em **Personal access tokens** (Tokens de acesso pessoal) e, depois, em **Tokens (classic)**.
-
-**4.3**. **Gere um Novo Token**:
+  ![token-2](https://github.com/user-attachments/assets/37e8ad69-5d22-4119-81c4-799740521eec)
+- Em seguida, clique em **Personal access tokens** (Tokens de acesso pessoal) e, depois, em **Tokens (classic)**.
+  ![token-3](https://github.com/user-attachments/assets/156ad9fe-4191-4e95-87b3-0ad58dae1315)
+  **4.3**. **Gere um Novo Token**:
 
 - Clique no botão **Generate new token** (Gerar novo token).
-     - Preencha os campos conforme necessário. Em **Note**, você pode adicionar uma descrição para lembrar o propósito do token (por exemplo, "Token para Enviar Atividades ao Repositório").
-     - Defina a **Data de Expiração** (opcional) e selecione os **Escopos** (permissões) para o token. Para o processo de envio de atividades, você precisará garantir que as permissões **repo** (acesso completo ao repositório) e **workflow** (para automação de workflows) estejam selecionadas.
-
-**4.4**. **Copie o Token Gerado**:
+- Clique no botão **Generate new token (classic)** (Gerar novo token clássico).
+  ![token-4](https://github.com/user-attachments/assets/8b291179-62fb-4bd6-92cd-6cabecca8cb5)
+- Preencha os campos conforme necessário. Em **Note**, você pode adicionar uma descrição para lembrar o propósito do token (por exemplo, "Token para Enviar Atividades ao Repositório").
+- Defina a **Data de Expiração** (opcional) e selecione os **Escopos** (permissões) para o token. Para o processo de envio de atividades, você precisará garantir que as permissões **repo** (acesso completo ao repositório) e **workflow** (para automação de workflows) estejam selecionadas.
+- Selecione os escopos, ou seja, as permissões. Recomendo marcar TODOS, por isso cuidado com o seu token, com altas permissões alguém malicioso pode utilizar para fins maléficos.
+  ![token-5](https://github.com/user-attachments/assets/6ecda35f-8b3e-465f-b072-6a4afb2d7a7b)
+- E por fim clique em "Generate token", ao final da página.
+  **4.4**. **Copie o Token Gerado**:
 
 - Após gerar o token, copie-o para a área de transferência. **Lembre-se de que este token é mostrado apenas uma vez**, então é importante guardá-lo em um local seguro.
+  ![token-6](https://github.com/user-attachments/assets/4a940bf9-38a6-4004-ad16-a3a832b29881)
 
 **4.5**. Adicionando o Token no Sistema
 
-- **Acesse o Campo 'Adicionar Token do GitHub'**:
-     - No sistema, vá até a página onde você irá inserir o token. Procure o campo denominado **'Adicionar Token do GitHub'**.
+- No sistema, vá até a página onde você irá inserir o token ([http://localhost:3000/send-teaching-resource](http://localhost:3000/send-teaching-resource)). Procure o campo denominado **'Adicionar Token do GitHub'**. Cole o Token Copiado
+  ![token-7](https://github.com/user-attachments/assets/4500f7f8-30f1-4bf3-a63a-6cc7a9ece022)
+- Após adicionar, vai aparecer um botão chamado "Testar", clicando nele ele verifica se o seu token é valido, se for válido vai aparecer seu nome do github, caso contrário vai aparecer um erro.
+  **5. Preencha o Formulário**: Preencha todos os campos obrigatórios do formulário, Certifique-se de fornecer informações completas e precisas para cada campo. Os campos obrigatórios são:
 
-- **Cole o Token Copiado**:
-
-- No campo indicado, cole o token que você copiou do GitHub.
-
-**5. Preencha o Formulário**: Preencha todos os campos obrigatórios do formulário, Certifique-se de fornecer informações completas e precisas para cada campo. Os campos obrigatórios são:
-
-- Nome do autor/da autora
-- Tópico geral (Biologia, Física ou Química)
-- Tipo de Recurso didático - Dinâmicas (Participação em dupla ou em grupo), Experimentos (Demonstrativos e Investigativos), Jogos educativos (Tabuleiros e Lúdicos), Modelos físicos (Maquetes e Protótipos) e Aplicativos Educativos (Apps e Sites Interativos)
-- Título da atividade
-- Imagem de Preview
-- Descrição detalhada
-- Objetivos educacionais
-- Materiais nescessários
-- Etapa/Passo a passo
-- Referências
+- **Nome do autor/da autora**: Seu nome completo, para que o responsável possa facilmente identificar o criador da atividade.
+- **Tópico geral**: Identifique a área de conhecimento à qual a atividade pertence, como Biologia, Física ou Química.
+- **Tipo de Recurso Didático**: Informe o tipo de recurso utilizado na atividade. As opções incluem:
+  - **Dinâmicas** (Participação em dupla ou em grupo)
+  - **Experimentos** (Demonstrativos e Investigativos)
+  - **Jogos Educativos** (Tabuleiros e Lúdicos)
+  - **Modelos Físicos** (Maquetes e Protótipos)
+  - **Aplicativos Educativos** (Apps e Sites Interativos)
+- **Título da Atividade**: Forneça um título claro e específico para a atividade, que resuma seu propósito.
+- **Imagem de Preview**: Anexe uma imagem que ofereça uma prévia visual da atividade.
+- **Descrição Detalhada**: Inclua uma descrição completa da atividade, explicando seu contexto e finalidade.
+- **Objetivos Educacionais**: Explique quais habilidades ou conhecimentos a atividade busca desenvolver nos estudantes.
+- **Materiais Necessários**: Liste todos os materiais que serão usados para executar a atividade.
+- **Etapa/Passo a Passo**: Detalhe cada passo necessário para realizar a atividade, desde a preparação até a finalização. Caso as etapas tenha imagens adicione. (modelo de nome: metodologia-nome_da_imagem)
+- **Referências**: Inclua referências para qualquer material de apoio ou fonte que tenha sido consultada na elaboração da atividade.
   &nbsp;
 
 Além destes campos, temos alguns campos opcionais:
 
-- Tópico Específico
-- Arquivos adicionais para download (nos formatos ".docx" ou ".pptx". De no máximo 1mb)
-- Resultados esperados
-- Explicação Científica
+- **Tópico Específico**: Detalhe o assunto mais específico abordado dentro do tópico geral, se aplicável.
+- **Arquivos Adicionais para Download**: Inclua arquivos adicionais, se houver, nos formatos ".docx" ou ".pptx" (tamanho máximo de 1 MB).
+- **Resultados Esperados**: Descreva os resultados que se espera que os estudantes alcancem ao concluir a atividade.
+- **Explicação Científica**: Adicione uma explicação científica para ajudar os estudantes a entenderem os conceitos teóricos relacionados à atividade.
   &nbsp;
 
 E alguns campos com preenchimento automático:
 
-- ID Único
-- Data de postagem
+- ID Único: Número gerado para diferenciar as ativiades, sua ausência causaria problemas na filtragem de atividades.
+- Data de postagem: A data que foi enviada a atividade, para identificar quando foi enviado.
   &nbsp;
 
 **6. Envio da Atividade**:
@@ -305,7 +328,9 @@ A integração com a GitHub API permite que o processo de submissão seja autom�
 1. **Criação de Commit Automático**: O sistema cria automaticamente um commit com as mudanças submetidas no formulário.
 2. **Pull Request Automático**: Após o commit, uma pull request é gerada e enviada ao repositório principal para revisão e aprovação dos mantenedores do projeto.
 
-Esta funcionalidade foi desenvolvida para agilizar o processo de contribuição, garantindo um fluxo organizado e eficiente de novas atividades.
+Esta funcionalidade foi desenvolvida para agilizar o processo de contribuição, garantindo um fluxo organizado e eficiente de novas atividades. O diagrama desta etapa pode ser visto na imagem abaixo:
+
+![diagrama-2](https://github.com/user-attachments/assets/34e9251c-8573-4cf7-af46-5f70d2fd68db)
 
 ## :writing_hand: Padrão de Mensagens de Commit
 
@@ -502,4 +527,4 @@ Confira o projeto em funcionamento [aqui](https://link-ficticio-da-vercel.com).
 
 ## :memo: Licença
 
-This project is under the MIT license. See [LICENSE](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md) for more information.
+Este projeto utiliza a MIT license. Veja em [Licença](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md) para mais informação.
