@@ -1,18 +1,18 @@
 <h1 align="center">Recursos didáticos de ciências da natureza</h1>
 
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Fellippemfv/nest-prisma-swagger-docker-base-project">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
 
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Fellippemfv/nest-prisma-swagger-docker-base-project?color=red">
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Fellippemfv/nest-prisma-swagger-docker-base-project?color=yellow">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
   
   <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/commits/master">
-   <img alt="last-commit" src="https://img.shields.io/github/last-commit/Fellippemfv/nest-prisma-swagger-docker-base-project">
+   <img alt="last-commit" src="https://img.shields.io/github/last-commit/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
   </a>
 
   <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/blob/master/LICENSE.md">
-   <img alt="GitHub/license" src="https://img.shields.io/github/license/Fellippemfv/nest-prisma-swagger-docker-base-project">
+   <img alt="GitHub/license" src="https://img.shields.io/github/license/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza">
   </a>
 </p>
 
