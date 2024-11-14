@@ -174,7 +174,7 @@ Para garantir que sua atividade seja enviada corretamente e que todas as informa
 
 2. **Nomeação dos Arquivos**
 
-   - Se a atividade incluir vários arquivos (documentos, imagens, códigos), tome cuidado para os arquivos NÃO TEREM O MESMO NOME, caso contrário vai ocorrer erro ao enviar.
+   - Se a atividade incluir vários arquivos (documentos e imagens), tome cuidado para os arquivos NÃO TEREM O MESMO NOME, caso contrário vai ocorrer erro ao enviar.
 
 ### 3. **Corpo do Email**
 
@@ -271,7 +271,7 @@ npm run dev
   ![token-7](https://github.com/user-attachments/assets/4500f7f8-30f1-4bf3-a63a-6cc7a9ece022)
 - Após adicionar, vai aparecer um botão chamado "Testar", clicando nele ele verifica se o seu token é valido, se for válido vai aparecer seu nome do github, caso contrário vai aparecer um erro.
   **5. Preencha o Formulário**: Preencha todos os campos obrigatórios do formulário, Certifique-se de fornecer informações completas e precisas para cada campo. Os campos obrigatórios são:
-
+  **Observação importante**: Se a atividade incluir vários arquivos (documentos e imagens), tome cuidado para os arquivos NÃO TEREM O MESMO NOME.
 - **Nome do autor/da autora**: Seu nome completo, para que o responsável possa facilmente identificar o criador da atividade.
 - **Tópico geral**: Identifique a área de conhecimento à qual a atividade pertence, como Biologia, Física ou Química.
 - **Tipo de Recurso Didático**: Informe o tipo de recurso utilizado na atividade. As opções incluem:
