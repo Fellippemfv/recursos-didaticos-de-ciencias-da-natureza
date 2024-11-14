@@ -5,14 +5,14 @@
 
 <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=green">
 
-<img alt="Repository size" src="https://img.shields.io/github/repo-size/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=purple">
+<img alt="Repository size" src="https://img.shields.io/github/repo-size/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=red">
 
-<a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/commits/master">
+<a href="last commit">
    <img alt="last-commit" src="https://img.shields.io/github/last-commit/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=orange">
 </a>
 
-<a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/blob/master/LICENSE.md">
-   <img alt="GitHub/license" src="https://img.shields.io/github/license/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=red">
+<a href="license">
+   <img alt="GitHub/license" src="https://img.shields.io/github/license/FellippeMFV/recursos-didaticos-de-ciencias-da-natureza?color=yellow">
 </a>
 
 </p>
