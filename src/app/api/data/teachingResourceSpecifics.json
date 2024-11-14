@@ -820,5 +820,100 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731608083583",
+    "postDate": "14 de novembro de 2024 às 14:14",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 16,
+          "title": "Astronomia",
+          "slug": "astronomia"
+        },
+        {
+          "id": 8,
+          "title": "Luz e óptica",
+          "slug": "luz-e-optica"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Medindo horas com o sol",
+    "slug": "medindo-horas-com-o-sol",
+    "imagePreview": "/1731608083583/images/Relógiode-sol-2-Cartoon-e1548015907475.jpg",
+    "description": "Criando um dispositivo arcaico para a medição das horas.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Compreender o movimento aparente do Sol e sua relação com a passagem do tempo;"
+      },
+      {
+        "id": 2,
+        "content": "Introduzir conceitos de orientação e localização geográfica;"
+      },
+      {
+        "id": 3,
+        "content": "Desenvolver habilidades de observação e registro científico."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Papel impresso com o modelo;"
+      },
+      {
+        "id": 2,
+        "content": "01 espetinho de madeira sem ponta;"
+      },
+      {
+        "id": 3,
+        "content": "01 bussola."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Faça o download do arquivo presente na aba \"Arquivos adicionais\", você vai ver um modelo semelhante ao lado para ser impresso. Corte da borda do papel ao longo das linhas pontilhadas. Se necessário para estabilidade ou durabilidade, cole a figura em uma folha de papelão ou cartolina e corte novamente.",
+        "imagePath": "/1731608083583/images/Meu-Dial-jpg.jpg"
+      },
+      {
+        "id": 2,
+        "content": "Dobre ao longo da linha horizontal sólida com a linha do lado de fora. Vinque e abra a parte dobrada novamente. Insira uma ponta de espetinho de madeira (ou lápis) afiada  através do pequeno círculo na parte superior central. O comprimento do espetinho deve ser ajustado, na parte traseira do relógio  de forma que este fique praticamente perpendicular (faça um ângulo de  90 graus) com a superfície do mostrador.",
+        "imagePath": "/1731608083583/images/Relógiode-sol-2-Cartoon-e1548015907475.jpg"
+      },
+      {
+        "id": 3,
+        "content": "Selecione a linha de latitude, nas abas laterais do mostrador, mais próxima de sua latitude (obtida por um GPS ou no Google Maps) e faça um corte sobre a respectiva linha linha. E o deixe ao lado de uma bússola.",
+        "imagePath": "/1731608083583/images/relogio-cartoon-1-e1548008914241.jpg"
+      },
+      {
+        "id": 4,
+        "content": "Gire o relógio de Sol de forma que o lápis aponte para o sul, conforme determinado pela bússola. Lembre de somar a declinação magnética do lugar para encontrar a direção do norte geográfico. Declinações para o Leste são positivas e ao Oeste são negativas. Veja o exemplo, para o caso de uma declinação de 20 graus ao oeste. Temos então uma declinação negativa de -20 graus assim o norte verdadeiro sera dado por: 360 -20 = 340 graus.  ajustamos a bússola, girando-a, para que a agulha aponte nessa direção, feito isso a direção zero grau apontará o norte geográfico.",
+        "imagePath": "/1731608083583/images/Bussola-2-cartoon.jpg"
+      }
+    ],
+    "results": "Ao realizar o experimento do relógio de sol, espera-se que os estudantes percebam a relação direta entre a posição do Sol e a projeção de sombras ao longo do dia. Eles deverão entender que, conforme o Sol “se move” no céu, a sombra gerada pelo marcador do relógio de sol muda de posição, indicando as horas. Espera-se também que eles consigam identificar o movimento aparente do Sol de leste para oeste e relacionar esses fenômenos com a rotação da Terra, além de compreenderem a importância dos pontos cardeais para a precisão do relógio de sol.",
+    "scientificExplanation": "O relógio de sol funciona com base no princípio de que a Terra gira em torno de seu próprio eixo, um movimento chamado de rotação, que dura aproximadamente 24 horas. Essa rotação cria a ilusão de que o Sol se move de leste para oeste no céu ao longo do dia. Ao posicionar um objeto (como uma vareta) verticalmente em um local iluminado pelo Sol, ele projeta uma sombra que se desloca conforme o ângulo de incidência da luz solar muda. Esse deslocamento é previsível e pode ser usado para marcar as horas, pois a posição da sombra em diferentes momentos do dia corresponde a intervalos de tempo específicos. Esse princípio foi historicamente utilizado antes dos relógios mecânicos e demonstra como a astronomia está relacionada à medição do tempo.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Astronomia na prática. Disponível em: <https://www.astronomiapratica.com.br/experimentos/medindo-o-tempo-construindo-um-relogio-de-sol/>. Acesso em: 14 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": "/1731608083583/documents/Doc1.docx"
   }
 ]
