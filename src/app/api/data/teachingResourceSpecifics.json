@@ -1318,5 +1318,97 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731685209749",
+    "postDate": "15 de novembro de 2024 às 11:40",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 7,
+          "title": "Som e ondas sonoras",
+          "slug": "som-e-ondas-sonoras"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Observando a força do som",
+    "slug": "observando-a-forca-do-som",
+    "imagePreview": "/1731685209749/images/imagem_2024-11-15_114045212.png",
+    "description": "Vamos observar na prática a força do som, ao utilizar uma colher e panela para mover grãos de arroz.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar que o som é uma onda mecânica;"
+      },
+      {
+        "id": 2,
+        "content": "Visualizar a propagação de ondas sonoras;"
+      },
+      {
+        "id": 3,
+        "content": "Explorar o conceito de frequência e intensidade sonora."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Pote de plástico (Pote de requeijão ou de manteiga);"
+      },
+      {
+        "id": 2,
+        "content": "01 Saco plástico;"
+      },
+      {
+        "id": 3,
+        "content": "01 Fita Durex;"
+      },
+      {
+        "id": 4,
+        "content": "10 grãos de arroz;"
+      },
+      {
+        "id": 5,
+        "content": "01 Panela de metal;"
+      },
+      {
+        "id": 6,
+        "content": "01 Colher de metal."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Pegue o pote e cubra toda a parte de cima de cima com um pedaço de sacola (Sacola de mercado ou sacola de lixo). E prenda a sacola em cima utilizando uma fita, de modo a superfície ficar bem rígida e reta,",
+        "imagePath": "/1731685209749/images/imagem_2024-11-15_114626782.png"
+      },
+      {
+        "id": 2,
+        "content": "Depois adicione os grãos de arroz em cima. Pegue uma panela e comece a bater nela utilizando uma colher de metal, de modo a fazer muito barulho, e deve estar bem proximo dos grãos de arroz, mas sem tocar diretamente. Verifique o que ocorre com os grãos ao fazer barulho.",
+        "imagePath": "/1731685209749/images/imagem_2024-11-15_115108261.png"
+      }
+    ],
+    "results": "Ao bater na panela ou gerar som em alta intensidade próximo ao plástico esticado sobre o copo, espera-se que as ondas sonoras causem vibrações perceptíveis no plástico. Essas vibrações devem transferir energia aos grãos de arroz, fazendo-os pular. Sons mais intensos (maior amplitude) deverão provocar movimentos mais pronunciados nos grãos, enquanto sons mais fracos podem gerar apenas pequenas vibrações ou nenhum movimento perceptível.",
+    "scientificExplanation": "O som é uma onda mecânica que se propaga pelo ar como uma sequência de compressões e rarefações. Quando o som atinge o plástico esticado sobre o copo, ele provoca vibrações na superfície do plástico. Essas vibrações transferem energia mecânica para os grãos de arroz, causando seu movimento. A intensidade do som (volume) está diretamente relacionada à amplitude das ondas sonoras: sons mais altos geram vibrações mais intensas, o que resulta em movimentos mais perceptíveis nos grãos. Este experimento demonstra como as ondas sonoras, invisíveis a olho nu, possuem força física capaz de interagir com objetos leves, tornando conceitos como vibração, propagação de ondas e transferência de energia mais acessíveis e concretos para os estudantes.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Gerência de Educação 5a CRE. Disponível em: <https://youtu.be/O5BW7VbBdyk?si=eb5ycTKIYc7NhpS_>. Acesso em: 15 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
