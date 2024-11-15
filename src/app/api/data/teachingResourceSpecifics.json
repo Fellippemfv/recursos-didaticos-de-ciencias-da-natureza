@@ -1069,5 +1069,72 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731629207462",
+    "postDate": "14 de novembro de 2024 às 20:06",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 19,
+          "title": "3° Lei de newton",
+          "slug": "3-lei-de-newton"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "3° Lei de Newton cm balanças",
+    "slug": "3-lei-de-newton-cm-balancas",
+    "imagePreview": "/1731629207462/images/Captura de tela 2024-11-14 202504.png",
+    "description": "Vamos verificar a 3° Lei de Newton utilizando duas balanças",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar a Terceira Lei de Newton (Ação e Reação);"
+      },
+      {
+        "id": 2,
+        "content": "Comprovar a interação de forças entre dois objetos;"
+      },
+      {
+        "id": 3,
+        "content": "Desenvolver habilidades de observação e análise experimental."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 Balanças pequenas simples."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Ligue e ative uma das balanças em cima da mesa. Na sequência ligue a outra balança mas desta vez em cima da outra balança. Observe a marcação de peso de ambas as balanças.",
+        "imagePath": "/1731629207462/images/Captura de tela 2024-11-14 202133.png"
+      }
+    ],
+    "results": "Ao pressionar as duas balanças uma contra a outra, espera-se que ambas registrem leituras idênticas de força. Entretanto com sinais diferentes. Esse resultado confirma que a força exercida por uma balança sobre a outra gera uma força de reação igual e oposta, de acordo com a Terceira Lei de Newton. Essa observação ajuda a visualizar como, em qualquer interação entre dois corpos, as forças são simétricas e atuam em direções opostas.",
+    "scientificExplanation": "A Terceira Lei de Newton afirma que, para toda ação, existe uma reação igual em magnitude e oposta em direção. No experimento, ao pressionar as duas balanças uma contra a outra, a balança A exerce uma força sobre a balança B, e essa força é registrada pela balança B. Simultaneamente, a balança B exerce uma força de reação sobre a balança A, que registra a mesma leitura de força. Esse par de forças de ação e reação ocorre porque, quando um objeto aplica força sobre outro, o segundo objeto devolve uma força com a mesma intensidade, mas na direção oposta ocasionando a mudança de sinais entre uma e outra. Este experimento permite observar diretamente essa interação, mostrando que as forças de ação e reação sempre ocorrem em pares e são aplicadas em corpos distintos, mas com valores iguais e sentidos contrários.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Oficiencia. Disponível em: <https://youtu.be/ongcLUQF-M8?si=2hCfx0sNGRo8F5IK>. Acesso em: 14 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
