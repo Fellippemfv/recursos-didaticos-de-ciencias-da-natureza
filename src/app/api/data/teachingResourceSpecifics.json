@@ -1212,5 +1212,111 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731681806674",
+    "postDate": "15 de novembro de 2024 às 10:43",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 12,
+          "title": "Magnetismo",
+          "slug": "magnetismo"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Simulando o magnetismo da terra",
+    "slug": "simulando-o-magnetismo-da-terra",
+    "imagePreview": "/1731681806674/images/imagem_2024-11-15_104452840.png",
+    "description": "Vamos simular como é o magnetismo da terra utilizando uma bola de isopor grande, alguns imãs e limalha de ferro.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Simular o campo magnético da Terra;"
+      },
+      {
+        "id": 2,
+        "content": "Visualizar linhas de campo magnético;"
+      },
+      {
+        "id": 3,
+        "content": "Compreender a interação entre materiais magnéticos e campos magnéticos."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "1 Folha de isopor média;"
+      },
+      {
+        "id": 2,
+        "content": "01 Bola de isopor grande;"
+      },
+      {
+        "id": 3,
+        "content": "Kit 10 Disco Magnético N35 3x2 Mm Supe Forte E Potente;"
+      },
+      {
+        "id": 4,
+        "content": "Limalha de ferro (O máximo que conseguir);"
+      },
+      {
+        "id": 5,
+        "content": "01 Pedaço de plástico;"
+      },
+      {
+        "id": 6,
+        "content": "01 Palito de espeto;"
+      },
+      {
+        "id": 7,
+        "content": "01 peneira."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Primeiro enrole os imãs com um pedaço plástico. Esta etapa é necessária devido a limalha de ferro grudar aos imãs, sem esta proteção seria muito difícil retirar depois.",
+        "imagePath": "/1731681806674/images/imagem_2024-11-15_105312430.png"
+      },
+      {
+        "id": 2,
+        "content": "Com um estilete, corte a bola de isopor exatamente ao meio, a dividindo em duas partes iguais. Depois cave uma cavidade ao meio em ambas as partes.",
+        "imagePath": "/1731681806674/images/imagem_2024-11-15_105403634.png"
+      },
+      {
+        "id": 3,
+        "content": "Coloque os imãs em uma das cavidades, de modo a ficar bem preso. E feche novamente a bola de isopor utilizando uma fita, de modo aos imãs ficarem dentro dela e a bola de isopor se fechar por completo.",
+        "imagePath": "/1731681806674/images/imagem_2024-11-15_105530246.png"
+      },
+      {
+        "id": 4,
+        "content": "Coloque um papel de isopor sobre a mesa. E utilize um palito de espeto para fixar a bola a folha de isopor. Depois basta jogar a limalha utilizando uma peneira, de preferência devagar e ao centro. E verifique o que vai ocorrer.",
+        "imagePath": "/1731681806674/images/imagem_2024-11-15_105800568.png"
+      }
+    ],
+    "results": "Quando pequenos ímãs forem colocados dentro ou próximos da bola de isopor (representando o núcleo da Terra), e a limalha de ferro for espalhada na superfície, espera-se que as partículas metálicas formem linhas ao redor da bola, ilustrando as linhas do campo magnético. As partículas devem alinhar-se de maneira semelhante ao que ocorre com o campo magnético terrestre, convergindo nos polos magnéticos (representados pelos polos dos ímãs).",
+    "scientificExplanation": "A Terra tem um campo magnético gerado pelo movimento do ferro fundido em seu núcleo externo, funcionando como um dínamo natural. Esse campo é representado por linhas imaginárias que saem do polo sul magnético e entram no polo norte magnético, formando uma estrutura que envolve o planeta. No experimento, os ímãs dentro ou próximos da bola de isopor simulam o núcleo da Terra, e a limalha de ferro representa partículas que reagem ao campo magnético. Assim como as partículas carregadas que compõem os ventos solares são desviadas pelo campo magnético terrestre, a limalha de ferro alinha-se de acordo com as forças magnéticas. A convergência da limalha nos polos magnéticos demonstra que esses são os pontos de maior intensidade do campo, ajudando a visualizar o comportamento magnético do planeta.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Professor Boaro. Disponível em: <https://youtu.be/aX7n9h9l-g4?si=Kf6jWbTrQFCc6Ncl>. Acesso em: 15 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
