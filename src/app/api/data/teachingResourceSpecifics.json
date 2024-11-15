@@ -1136,5 +1136,81 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731678115284",
+    "postDate": "15 de novembro de 2024 às 09:41",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 3,
+          "title": "Gravidade",
+          "slug": "gravidade"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Testando a gravidade atirando materiais no chão",
+    "slug": "testando-a-gravidade-atirando-materiais-no-chao",
+    "imagePreview": "/1731678115284/images/applefeather-1400x756.png",
+    "description": "Vamos testar a força da gravidade jogando alguns materiais no chão e verificar o tempo em que cada uma demora para chegar no solo.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar que a gravidade atua igualmente sobre objetos de massas diferentes;"
+      },
+      {
+        "id": 2,
+        "content": "Evidenciar o efeito da resistência do ar no movimento dos corpos;"
+      },
+      {
+        "id": 3,
+        "content": "Desenvolver habilidades de observação e análise científica."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Livro ou caderno;"
+      },
+      {
+        "id": 2,
+        "content": "02 folhas de caderno (Uma folha normal e outra amassada)"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Primeiro jogue ao mesmo tempo e na mesma altura o caderno e a folha de caderno inteira. Verifique o tempo em que cada uma demora cair ao chão.",
+        "imagePath": "/1731678115284/images/imagem_2024-11-15_095930345.png"
+      },
+      {
+        "id": 2,
+        "content": "Segundo jogue ao mesmo tempo e na mesma altura o caderno e a folha de caderno amassada. Verifique o tempo em que cada uma demora cair ao chão.",
+        "imagePath": "/1731678115284/images/imagem_2024-11-15_100024009.png"
+      }
+    ],
+    "results": "Na primeira etapa, ao soltar simultaneamente um livro e uma folha aberta, espera-se que a folha demore mais para atingir o chão devido à resistência do ar, enquanto o livro cai rapidamente. Na segunda etapa, ao repetir o experimento com a folha amassada em forma de bola, tanto o livro quanto a folha devem atingir o chão ao mesmo tempo. Isso ocorre porque, ao amassar a folha, a resistência do ar diminui, e a gravidade atua de forma predominante em ambos os objetos.",
+    "scientificExplanation": "A aceleração da gravidade (𝑔≈9,8m/s²) é a mesma para todos os objetos próximos à superfície da Terra, independentemente de suas massas. No entanto, a resistência do ar interfere no movimento dos corpos em queda livre, desacelerando aqueles com maior área de superfície e menor densidade, como a folha de papel aberta. Na primeira etapa, a folha aberta encontra maior resistência do ar por causa de sua grande área e baixo peso, o que a desacelera, enquanto o livro, mais denso e aerodinâmico, é menos afetado e cai mais rapidamente. Na segunda etapa, ao amassar a folha, reduzimos sua área de contato com o ar, minimizando a resistência aerodinâmica. Nesse caso, tanto o livro quanto a folha amassada são dominados pela força gravitacional, caindo ao mesmo tempo, confirmando que a gravidade atua de forma igual em ambos quando a resistência do ar é insignificante. Este experimento ilustra o impacto das forças resistivas, como o ar, e os princípios fundamentais da gravidade, tornando o conceito mais tangível para os estudantes.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Domingos Dos Santos Neto. Disponível em: <https://youtu.be/_LpHFA5rJ9Q?si=L0FO0gW4zz88xT5s>. Acesso em: 15 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
