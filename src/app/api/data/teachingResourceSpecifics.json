@@ -1410,5 +1410,85 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731713407421",
+    "postDate": "15 de novembro de 2024 às 19:30",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 9,
+          "title": "Eletricidade estática",
+          "slug": "eletricidade-estatica"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Separando balões com eletricidade estática",
+    "slug": "separando-baloes-com-eletricidade-estatica",
+    "imagePreview": "/1731713407421/images/imagem_2024-11-15_193323880.png",
+    "description": "Vamos visualizar a eletricidade estática utilizando dois balões e um barbante. ",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o fenômeno da eletricidade estática;"
+      },
+      {
+        "id": 2,
+        "content": "Explorar interações entre cargas elétricas;"
+      },
+      {
+        "id": 3,
+        "content": "Introduzir conceitos básicos de cargas elétricas."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 bexigas iguais;"
+      },
+      {
+        "id": 2,
+        "content": "01 vareta;"
+      },
+      {
+        "id": 3,
+        "content": "01 Barbante."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Encha as bexigas e amarre-as com uma linha. Pendure a linha na vara de forma que as bexigas encostem uma na outra.",
+        "imagePath": "/1731713407421/images/imagem_2024-11-15_193742328.png"
+      },
+      {
+        "id": 2,
+        "content": "Esfregue bastante e ao mesmo tempo cada bexiga em uma blusa de lã. E repita o passo 1. Posicione os balões na vareta de modo a se encontrarem. E veja se acontece a mesma coisa que antes.",
+        "imagePath": "/1731713407421/images/imagem_2024-11-15_193813289.png"
+      }
+    ],
+    "results": "Ao esfregar dois balões em uma camisa de algodão, espera-se que ambos acumulem cargas elétricas semelhantes, fazendo com que se repelam quando suspensos próximos um do outro pelo barbante. Se um dos balões for esfregado e o outro permanecer neutro, deverá ocorrer atração entre eles. O experimento também pode incluir a observação de como os balões atraem pequenos pedaços de papel, demonstrando a força da eletricidade estática.",
+    "scientificExplanation": "Quando os balões são esfregados na camisa de algodão, há uma transferência de elétrons entre os materiais, gerando eletricidade estática. O atrito faz com que os balões acumulem carga negativa (elétrons) na superfície, tornando-os eletricamente carregados. Se ambos os balões têm cargas semelhantes (negativas), eles se repelem devido à força elétrica que atua entre cargas iguais. Se um balão está carregado e o outro neutro, as cargas negativas do balão atraem as cargas positivas induzidas no balão neutro, criando uma força de atração.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Museu Light. Disponível em: <https://www.museulight.com.br/aprenda-brincando/faca-voce/bexigas-separadas>. Acesso em: 15 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
