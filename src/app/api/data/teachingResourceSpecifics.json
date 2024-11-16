@@ -226,22 +226,12 @@
         "content": "segundo objetivo"
       }
     ],
-    "materials": [
-      "asdasd.asdasd"
-    ],
-    "methods": [
-      "asdasdasdasd",
-      "asdasdasd"
-    ],
-    "methodsImages": [
-      "/images/exp-9/img-0.jpg",
-      "/images/exp-9/img-0.jpg"
-    ],
+    "materials": ["asdasd.asdasd"],
+    "methods": ["asdasdasdasd", "asdasdasd"],
+    "methodsImages": ["/images/exp-9/img-0.jpg", "/images/exp-9/img-0.jpg"],
     "results": "asdasd",
     "scientificExplanation": "asdasd",
-    "references": [
-      "asdasdasdasd"
-    ]
+    "references": ["asdasdasdasd"]
   },
   {
     "id": "1719173649995",
@@ -1096,8 +1086,8 @@
       "slug": "experimentos",
       "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
     },
-    "title": "3° Lei de Newton cm balanças",
-    "slug": "3-lei-de-newton-cm-balancas",
+    "title": "3° Lei de Newton com balanças",
+    "slug": "3-lei-de-newton-com-balancas",
     "imagePreview": "/1731629207462/images/Captura de tela 2024-11-14 202504.png",
     "description": "Vamos verificar a 3° Lei de Newton utilizando duas balanças",
     "objectives": [

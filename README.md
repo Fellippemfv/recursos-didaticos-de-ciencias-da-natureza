@@ -385,6 +385,35 @@ Use este formato para criar mensagens de commit:
 
 Por exemplo, `Adicionar: Filtro por categoria na página de recursos` deve ser convertido para `Add: Category filter on resources page`
 
+## :arrows_clockwise: Como atualizar repositório remoto após pull request do website ser aceita
+
+Este guia explica como atualizar o repositório remoto após uma pull request advinda do website ser aprovada a branche `add-new-resource`. Esse processo garante que alterações principais realizadas em `add-new-resource` estejam disponíveis em outras branches de desenvolvimento.
+
+Siga as seguintes etapas:
+
+Antes de tudo, certifique-se de não haver alterações no repositorio local, caso contrário vai haver conflitos, neste caso desfaça alterações e siga os passos abaixo.
+
+```bash
+git checkout add-new-resource
+
+git pull
+
+git checkout master
+
+git merge add-new-resource
+
+git push origin master
+
+// caso nescessário atualize na branche style
+
+git checkout style
+
+git merge add-new-resource
+
+git push origin style
+
+```
+
 ### Dicas para Boas Mensagens de Commit
 
 - **Seja claro e objetivo**: Descreva a mudança de forma que qualquer pessoa consiga entender.

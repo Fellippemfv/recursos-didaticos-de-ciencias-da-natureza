@@ -6,8 +6,8 @@
     "topicSpecific": [
       {
         "id": 1,
-        "title": "Movimento e deslocamento",
-        "slug": "movimento-e-deslocamento"
+        "title": "Termodinamica e Máquinas Térmicas",
+        "slug": "termodinamica-e-maquinas-termicas"
       },
       {
         "id": 2,
@@ -26,8 +26,8 @@
       },
       {
         "id": 5,
-        "title": "Máquinas simples",
-        "slug": "maquinas-simples"
+        "title": "Máquinas simples e alavancas",
+        "slug": "maquinas-simples-e-alavancas"
       },
       {
         "id": 6,
@@ -56,8 +56,8 @@
       },
       {
         "id": 11,
-        "title": "Efeito térmico da corrente elétrica",
-        "slug": "efeito-termico-da-corrente-eletrica"
+        "title": "Energia elétrica ",
+        "slug": "energia-eletrica"
       },
       {
         "id": 12,
@@ -66,8 +66,8 @@
       },
       {
         "id": 13,
-        "title": "Óptica geométrica",
-        "slug": "optica-geometrica"
+        "title": "Movimento Circular",
+        "slug": "movimento-cicular"
       },
       {
         "id": 14,
@@ -98,6 +98,16 @@
         "id": 19,
         "title": "3° Lei de newton",
         "slug": "3-lei-de-newton"
+      },
+      {
+        "id": 20,
+        "title": "Movimento Retilíneo Uniforme – MRU",
+        "slug": "movimento-retilineo-uniforme-mru"
+      },
+      {
+        "id": 21,
+        "title": "Movimento Retilíneo Uniformemente Variado – MRUV",
+        "slug": "movimento-retilineo uniformemente variado-mruv"
       }
     ]
   },
