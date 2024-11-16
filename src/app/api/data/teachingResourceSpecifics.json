@@ -1490,5 +1490,97 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731715400034",
+    "postDate": "15 de novembro de 2024 às 20:03",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 10,
+          "title": "Circuitos elétricos simples",
+          "slug": "circuitos-eletricos-simples"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Criando um circuito elétrico simples",
+    "slug": "criando-um-circuito-eletrico-simples",
+    "imagePreview": "/1731715400034/images/imagem_2024-11-15_204332118.png",
+    "description": "Vamos criar um circuito elétrico simples para demonstrar como ele funciona.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o funcionamento de um circuito elétrico simples;"
+      },
+      {
+        "id": 2,
+        "content": "Introduzir os componentes básicos de um circuito;"
+      },
+      {
+        "id": 3,
+        "content": "Incentivar o raciocínio lógico e habilidades práticas."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Suporte / Case / Soquete Com Botão On/off Para 2 Pilhas Aa;"
+      },
+      {
+        "id": 2,
+        "content": "02 Pilhas Aa;"
+      },
+      {
+        "id": 3,
+        "content": "02 fios condutores;"
+      },
+      {
+        "id": 4,
+        "content": "01 Soquete de Lâmpada;"
+      },
+      {
+        "id": 5,
+        "content": "01 Lâmpada."
+      }
+    ],
+    "methods": [
+      {
+        "id": 9,
+        "content": "Utilizando uma chave de fenda, anexe dois fios ao compartimento de pilhas. E depois adicione as pilhas uma no polo negativo e outro positivo da case, semelhante a imagem.",
+        "imagePath": "/1731715400034/images/imagem_2024-11-15_202103250.png"
+      },
+      {
+        "id": 11,
+        "content": "Faça o mesmo processo de fixação, mas colocando um fio negativo e outro negativo no soquete de lâmpada. Na sequência adicione uma lâmpada e verifique se acende. Utilize o botão de On/Off de baixo da case das pilhas para acender e desligar a lâmpada.",
+        "imagePath": "/1731715400034/images/imagem_2024-11-15_202205973.png"
+      }
+    ],
+    "results": "Ao conectar os fios isolados à pilha e ao soquete da lâmpada, espera-se que a lâmpada acenda, completando o circuito. O experimento demonstra que a corrente elétrica flui de forma contínua quando o circuito está fechado. Se houver uma interrupção (como a desconexão de um fio, ou apertando o botão do interruptor), o circuito se abre e a lâmpada apaga. Isso ajuda a visualizar o comportamento de circuitos elétricos no cotidiano.",
+    "scientificExplanation": "Quando o circuito é fechado, os elétrons fluem do terminal negativo da bateria, através dos fios e da lâmpada, retornando ao terminal positivo. Esse fluxo contínuo de elétrons é chamado de corrente elétrica. Quando o circuito está aberto (um fio desconectado), a corrente não pode fluir, e a lâmpada permanece apagada.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Wikihow. Disponível em: <https://pt.wikihow.com/Criar-um-Circuito-Elétrico-Simples>. Acesso em: 15 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Youtube, Arte e Ciência. Disponível em: <https://youtu.be/Zzd1CWm288w?si=QliBVrfSZt3ZCf_T>. Acesso em: 15 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
