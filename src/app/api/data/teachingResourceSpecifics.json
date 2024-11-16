@@ -1674,5 +1674,109 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731771891490",
+    "postDate": "16 de novembro de 2024 às 11:44",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 14,
+          "title": "Calor e temperatura",
+          "slug": "calor-e-temperatura"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Observando o efeito do calor e da temperatura.",
+    "slug": "observando-o-efeito-do-calor-e-da-temperatura",
+    "imagePreview": "/1731771891490/images/imagem_2024-11-16_121530650.png",
+    "description": "Vamos verificar na prática a temperatura de alguns líquidos.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o fenômeno de adaptação sensorial térmica;"
+      },
+      {
+        "id": 2,
+        "content": "Explorar a influência de estímulos térmicos;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar a experiência sensorial com conceitos científicos."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "03 Copos plásticos;"
+      },
+      {
+        "id": 2,
+        "content": "03 Recipientes plásticos grandes;"
+      },
+      {
+        "id": 3,
+        "content": "01 garrafa de agua gelada;"
+      },
+      {
+        "id": 4,
+        "content": "01 garrafa de agua quente;"
+      },
+      {
+        "id": 5,
+        "content": "01 garrafa de agua em temperatura ambiente;"
+      },
+      {
+        "id": 6,
+        "content": "01 termômetro;"
+      },
+      {
+        "id": 7,
+        "content": "01 Cronômetro."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Primeiro coloque água gelada em um copo e verifique a temperatura. Depois Coloque a água quente em outro copo e verifique a temperatura. Em um terceiro coloque agua em temperatura ambiente e também vá medir a temperatura.",
+        "imagePath": "/1731771891490/images/imagem_2024-11-16_120342218.png"
+      },
+      {
+        "id": 2,
+        "content": "Derrame a água gelada sobre um dos recipiente de plástico grande, e faça o mesmo coma água quente e a água em temperatura ambiente. Depois peça para o aluno colocar as duas mãos por 1 minuto na água em temperatura ambiente. Posteriormente, peça para colocar cada mão em um dos recipientes (de água gelada e quente) ao mesmo tempo durante 1 minuto.  Ao final pergunte se eles sentem a diferença.",
+        "imagePath": "/1731771891490/images/imagem_2024-11-16_120803253.png"
+      }
+    ],
+    "results": "Após mergulhar as mãos em água à temperatura ambiente por um minuto, espera-se que: A mão colocada em água quente sinta uma forte percepção de calor devido à diferença de temperatura em relação à água ambiente. A mão colocada em água gelada sinta um frio intenso inicialmente, novamente devido ao contraste com a temperatura ambiente. Ambos os participantes notarão uma adaptação gradual das sensações após manterem as mãos nos novos ambientes por um tempo prolongado, com uma diminuição da intensidade das sensações iniciais.",
+    "scientificExplanation": "Este experimento ilustra como o sistema sensorial humano percebe a temperatura. A pele contém receptores térmicos, que detectam estímulos de calor e frio. Quando a mão é colocada em um ambiente extremamente frio (gelo) ou quente (água aquecida), os receptores se adaptam ao estímulo prolongado. Ao mudar para a água à temperatura ambiente, a percepção da temperatura é influenciada pela adaptação inicial.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Colégios Rede Marista. Disponível em: <https://colegios.redemarista.org.br/champagnat/noticias/laboratorio-em-casa>. Acesso em: 16 de NOV de 2024. "
+      },
+      {
+        "id": 2,
+        "content": "Teachy. Disponível em: <https://www.teachy.com.br/atividades/ensino-fundamental/7ano/ciencias/experimentos-com-calor-e-temperatura>. Acesso em: 16 de NOV de 2024."
+      },
+      {
+        "id": 3,
+        "content": "Youtube, SCIENCE / BIOLOGY EXPRESS. Disponível em: <https://www.youtube.com/watch?v=SHzl7VDrXV8>. Acesso em: 16 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
