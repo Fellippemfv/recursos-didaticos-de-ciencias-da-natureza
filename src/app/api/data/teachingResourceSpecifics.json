@@ -1582,5 +1582,97 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731770209682",
+    "postDate": "16 de novembro de 2024 às 11:16",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 15,
+          "title": "Transformações de energia",
+          "slug": "transformacoes-de-energia"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "A lata mágica e a transformação de energia",
+    "slug": "a-lata-magica-e-a-transformacao-de-energia",
+    "imagePreview": "/1731770209682/images/imagem_2024-11-16_112757316.png",
+    "description": "Vamos observar a transformação de energia por meio da chamada lata mágica.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar a transformação de energia potencial elástica em energia cinética;"
+      },
+      {
+        "id": 2,
+        "content": "Explorar o conceito de conservação de energia;"
+      },
+      {
+        "id": 3,
+        "content": "Estimular a compreensão de energia mecânica."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Lata de alumínio;"
+      },
+      {
+        "id": 2,
+        "content": "01 Elásticos;"
+      },
+      {
+        "id": 3,
+        "content": "02 Pregos;"
+      },
+      {
+        "id": 4,
+        "content": "1 Parafusos;"
+      },
+      {
+        "id": 5,
+        "content": "02 Porcas."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Fure o centro do fundo da lata e o centro da tampa usando um prego ou ferramenta similar. Esses furos devem permitir a passagem do elástico. Passe o elástico pelo orifício central da tampa e do fundo da lata, posicionando o peso (parafuso ou pilha) preso no centro do elástico. Para fixar o elástico nos furos, utilize os pregos, palitos de dente ou clipes como travas, prendendo cada extremidade do elástico na parte externa da lata. Verifique se o peso fica bem suspenso dentro da lata, preso pelo elástico. O elástico deve estar bem tensionado, permitindo que o peso se movimente elasticamente dentro da lata. Conforme mostrado na figura ao lado.",
+        "imagePath": "/1731770209682/images/imagem_2024-11-16_111730860.png"
+      },
+      {
+        "id": 2,
+        "content": "Coloque a lata horizontalmente sobre uma superfície plana.\nEmpurre-a levemente para frente e observe o movimento. ",
+        "imagePath": "/1731770209682/images/imagem_2024-11-16_112531101.png"
+      }
+    ],
+    "results": "Após montar o sistema com elásticos dentro da lata e enrolá-los para armazenar energia, a lata deve \"rolar sozinha\" quando colocada em uma superfície plana. A energia potencial elástica acumulada nos elásticos será liberada gradualmente, transformando-se em energia cinética, que movimentará a lata. Quando a energia for completamente dissipada (em forma de calor e som), a lata parará de se mover.",
+    "scientificExplanation": "Este experimento demonstra o princípio da transformação de energia. Os elásticos dentro da lata armazenam energia potencial elástica ao serem torcidos. Quando a lata é colocada na superfície, essa energia é liberada, convertendo-se em energia cinética, que faz a lata rolar. Durante o movimento, parte da energia é perdida devido ao atrito entre a lata e a superfície, ilustrando a dissipação de energia. A lata para de se mover quando toda a energia potencial inicial é transferida ou dissipada.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Aclemildo C. Pereira; Beatriz G. Gomes; Gabriel L. C. de Souza. LATA MÁGICA. Disponível em: <http://www2.ufac.br/mpecim/menu/producoes/viver-ciencia-2017/133-002-lata-magica.pdf>. Acesso em: 16 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Blogspot, Professor Andrios. Disponível em: <https://professorandrios.blogspot.com/2011/10/lata-adestrada-atividade-experimental.html>.  Acesso em: 16 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
