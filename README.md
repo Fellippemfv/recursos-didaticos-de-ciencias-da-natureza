@@ -27,6 +27,7 @@
 - [Orientações para enviar atividade localmente](#computer-orientações-para-enviar-atividade-localmente)
 - [Funcionamento de envio via GitHub API](#hammer_and_wrench-funcionamento-de-envio-via-github-api)
 - [Padrão de Mensagens de Commit](#writing_hand-padrão-de-mensagens-de-commit)
+- [Como atualizar repositório remoto após pull request do website ser aceita](#arrows_clockwise-como-atualizar-repositório-remoto-após-pull-request-do-website-ser-aceita)
 - [Como Propagar Atualizações da Branch master para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-master-para-outras-branches)
 - [Como Propagar Atualizações da Branch styles para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-styles-para-outras-branches)
 - [Como Propagar Atualizações da Branch add-new-resource para Outras Branches](#arrows_clockwise-como-propagar-atualizações-da-branch-add-new-resource-para-outras-branches)
@@ -385,6 +386,13 @@ Use este formato para criar mensagens de commit:
 
 Por exemplo, `Adicionar: Filtro por categoria na página de recursos` deve ser convertido para `Add: Category filter on resources page`
 
+### Dicas para Boas Mensagens de Commit
+
+- **Seja claro e objetivo**: Descreva a mudança de forma que qualquer pessoa consiga entender.
+- **Limite o resumo a 50 caracteres**: Use uma descrição curta e objetiva.
+- **Adicione contexto na descrição**: Se a mudança for complexa, explique o motivo na descrição adicional.
+- **Use uma linguagem consistente**: Opte pelo infinitivo e um tom direto.
+
 ## :arrows_clockwise: Como atualizar repositório remoto após pull request do website ser aceita
 
 Este guia explica como atualizar o repositório remoto após uma pull request advinda do website ser aprovada a branche `add-new-resource`. Esse processo garante que alterações principais realizadas em `add-new-resource` estejam disponíveis em outras branches de desenvolvimento.
@@ -413,13 +421,6 @@ git merge add-new-resource
 git push origin style
 
 ```
-
-### Dicas para Boas Mensagens de Commit
-
-- **Seja claro e objetivo**: Descreva a mudança de forma que qualquer pessoa consiga entender.
-- **Limite o resumo a 50 caracteres**: Use uma descrição curta e objetiva.
-- **Adicione contexto na descrição**: Se a mudança for complexa, explique o motivo na descrição adicional.
-- **Use uma linguagem consistente**: Opte pelo infinitivo e um tom direto.
 
 ## :arrows_clockwise: Como Propagar Atualizações da Branch `master` para Outras Branches
 
