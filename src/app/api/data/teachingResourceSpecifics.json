@@ -2075,5 +2075,89 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731884186947",
+    "postDate": "17 de novembro de 2024 às 18:56",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 5,
+          "title": "Máquinas simples e alavancas",
+          "slug": "maquinas-simples-e-alavancas"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Testando uma roldana com corda de varal",
+    "slug": "testando-uma-roldana-com-corda-de-varal",
+    "imagePreview": "/1731884186947/images/imagem_2024-11-17_193123876.png",
+    "description": "Vamos testar na prática a eficiência de uma roldana.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o funcionamento das roldanas como máquinas simples:"
+      },
+      {
+        "id": 2,
+        "content": "Comparar o trabalho realizado com e sem o uso de roldanas;"
+      },
+      {
+        "id": 3,
+        "content": "Introduzir o conceito de vantagem mecânica."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "4 metros de corda de Varal;"
+      },
+      {
+        "id": 2,
+        "content": "01 Roldana 2cm para varal de metal com plástico com gancho 10pç;"
+      },
+      {
+        "id": 3,
+        "content": "Objeto pesado (Acima de 1Kg)."
+      }
+    ],
+    "methods": [
+      {
+        "id": 2,
+        "content": "Estenda um varal com as cordas. Depois adicione uma das roldanas em uma parte do varal.",
+        "imagePath": "/1731884186947/images/imagem_2024-11-17_193750781.png"
+      },
+      {
+        "id": 3,
+        "content": "Um dos experimentos se baseia em passar uma corda sobre o varal, e tente puxar algum objeto pesado sem roldana. O segundo experimento se baseia em puxar o mesmo peso mas agora com a corda passando pela roldana. Ao final peça que os alunos verifiquem se existe diferença.",
+        "imagePath": "/1731884186947/images/imagem_2024-11-17_193106104.png"
+      }
+    ],
+    "results": "Os estudantes devem observar que ao tentar levantar o objeto sem o auxílio da roldana, a força aplicada é maior e exige mais esforço físico. Com o uso da roldana, no entanto, a força necessária é reduzida, o que torna o trabalho mais fácil e eficiente. Essa diferença demonstra a vantagem mecânica oferecida pelas roldanas, facilitando o levantamento de cargas pesadas ao redirecionar a força aplicada. O experimento também destaca como as máquinas simples auxiliam em tarefas do dia a dia, reduzindo o esforço humano.",
+    "scientificExplanation": "As roldanas são máquinas simples que permitem a mudança da direção e a distribuição da força. No primeiro experimento, sem o uso da roldana, a força aplicada precisa vencer diretamente o peso do objeto, tornando o trabalho mais difícil. No segundo experimento, a roldana redireciona a força, permitindo que o mesmo peso seja levantado com menor esforço ou por uma direção mais conveniente. A vantagem mecânica da roldana está no fato de que ela divide a força necessária para levantar o objeto, dependendo do tipo de sistema utilizado (fixo ou móvel). No caso de uma roldana fixa, a força é redirecionada, mas o esforço é igual ao peso do objeto. Com sistemas mais complexos, como uma roldana móvel ou compostas, a força necessária pode ser reduzida significativamente. O experimento introduz conceitos como eficiência mecânica e a conservação de energia, uma vez que o trabalho total realizado é o mesmo, mas a força aplicada é menor devido à alteração na forma como a energia é transmitida.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Brasil Escola. Disponível em: <https://brasilescola.uol.com.br/fisica/roldanas.htm>. Acesso em: 17 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "FIS. Disponível em: <https://www2.fis.ufba.br/dftma/Roteiros/EXP%203_Maquinas_Simples.pdf>. Acesso em: 17 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
