@@ -1901,5 +1901,90 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731859684230",
+    "postDate": "17 de novembro de 2024 às 12:08",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 2,
+          "title": "Força e movimento",
+          "slug": "forca-e-movimento"
+        },
+        {
+          "id": 18,
+          "title": "2° Lei de newton",
+          "slug": "2-lei-de-newton"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Observando a força e o movimento utilizando carrinhos",
+    "slug": "observando-a-forca-e-o-movimento-utilizando-carrinhos",
+    "imagePreview": "/1731859684230/images/imagem_2024-11-17_122216407.png",
+    "description": "Vamos verificar por meio de uma rampa e carrinhos como a força aplicada a um objeto influência seu movimento.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar a relação entre força aplicada e movimento resultante;"
+      },
+      {
+        "id": 2,
+        "content": "Estudar a influência de forças externas no movimento;"
+      },
+      {
+        "id": 3,
+        "content": "Compreender os conceitos de aceleração e velocidade."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 carrinhos de brinquedo;"
+      },
+      {
+        "id": 2,
+        "content": "02 placas de compensado;"
+      },
+      {
+        "id": 3,
+        "content": "Fita crepe."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Pegue o compensado e monte duas rampas. De modo a ter uma distância reta entre as duas, além disso, certifique-se de que ambas tenham a mesma inclinação.",
+        "imagePath": "/1731859684230/images/imagem_2024-11-17_121732356.png"
+      },
+      {
+        "id": 2,
+        "content": "Bem ao centro adicione uma fita delimitando exatamente a mesma distância entre os dois lados. Peça a um aluno para soltar o carrinho de um lado e peça a outro aluno para adicionar força ao outro carrinho, ambos ao mesmo tempo. Peça para que observem qual carrinho chegou primeiro a linha.",
+        "imagePath": "/1731859684230/images/imagem_2024-11-17_121807917.png"
+      }
+    ],
+    "results": "Ao realizar o experimento, espera-se que os estudantes percebam que o carrinho movido apenas pela gravidade desce a rampa em uma velocidade constante, enquanto o carrinho que recebe força adicional atinge a linha mais rapidamente, devido ao aumento da aceleração. Esse resultado demonstra como a força externa, quando aplicada em um objeto, pode aumentar sua velocidade e modificar sua dinâmica de movimento. A atividade também permite que os participantes reflitam sobre a relação entre força, massa, aceleração e resistência no contexto de movimentos em planos inclinados.",
+    "scientificExplanation": "O experimento ilustra os princípios fundamentais da física relacionados à segunda lei de Newton: a força resultante em um corpo é igual à massa do corpo vezes sua aceleração (F=m.a). No caso do carrinho que desce apenas pela ação da gravidade, a força que age sobre ele é o componente gravitacional ao longo do plano inclinado, que depende do peso do carrinho e do ângulo de inclinação. Já no carrinho que recebe força adicional, a aceleração aumenta porque a força externa é somada à força gravitacional.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Educapes. Disponível em: <https://educapes.capes.gov.br/bitstream/capes/430506/2/Produto%20Educacional%20-%20Timóteo%20Ricardo.pdf>. Acesso em: 17 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
