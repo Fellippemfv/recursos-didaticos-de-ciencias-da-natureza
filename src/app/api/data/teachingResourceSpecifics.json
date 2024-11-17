@@ -226,12 +226,22 @@
         "content": "segundo objetivo"
       }
     ],
-    "materials": ["asdasd.asdasd"],
-    "methods": ["asdasdasdasd", "asdasdasd"],
-    "methodsImages": ["/images/exp-9/img-0.jpg", "/images/exp-9/img-0.jpg"],
+    "materials": [
+      "asdasd.asdasd"
+    ],
+    "methods": [
+      "asdasdasdasd",
+      "asdasdasd"
+    ],
+    "methodsImages": [
+      "/images/exp-9/img-0.jpg",
+      "/images/exp-9/img-0.jpg"
+    ],
     "results": "asdasd",
     "scientificExplanation": "asdasd",
-    "references": ["asdasdasdasd"]
+    "references": [
+      "asdasdasdasd"
+    ]
   },
   {
     "id": "1719173649995",
@@ -1765,6 +1775,129 @@
       {
         "id": 3,
         "content": "Youtube, SCIENCE / BIOLOGY EXPRESS. Disponível em: <https://www.youtube.com/watch?v=SHzl7VDrXV8>. Acesso em: 16 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
+  },
+  {
+    "id": "1731854662009",
+    "postDate": "17 de novembro de 2024 às 10:44",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 1,
+          "title": "Termodinamica e Máquinas Térmicas",
+          "slug": "termodinamica-e-maquinas-termicas"
+        },
+        {
+          "id": 15,
+          "title": "Transformações de energia",
+          "slug": "transformacoes-de-energia"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 4,
+      "title": "Modelos físicos (Maquetes e Protótipos)",
+      "slug": "modelos-fisicos",
+      "steps": "Representações tridimensionais de objetos ou processos científicos que ajudam na visualização e compreensão dos conteúdos."
+    },
+    "title": "Uma usina térmica com latas de refrigerante",
+    "slug": "uma-usina-termica-com-latas-de-refrigerante",
+    "imagePreview": "/1731854662009/images/imagem_2024-11-17_105613938.png",
+    "description": "Vamos criar um protótipo de usina térmica utilizando latas de refrigerante.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar as etapas de transformação de energia em uma usina térmica;"
+      },
+      {
+        "id": 2,
+        "content": "Analisar as vantagens e desvantagens das usinas térmicas;"
+      },
+      {
+        "id": 3,
+        "content": "Estudar os princípios da termodinâmica aplicados ao funcionamento de máquinas térmicas."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 Latas de refrigerante;"
+      },
+      {
+        "id": 2,
+        "content": "01 Lata de sardinha;"
+      },
+      {
+        "id": 3,
+        "content": "01 Pastilha de álcool sólido;"
+      },
+      {
+        "id": 4,
+        "content": "01 Caixa de Fósforo;"
+      },
+      {
+        "id": 5,
+        "content": "01 Base retangular de madeira;"
+      },
+      {
+        "id": 6,
+        "content": "07 Pregos;"
+      },
+      {
+        "id": 7,
+        "content": "01 Seringa descartável sem agulha;"
+      },
+      {
+        "id": 8,
+        "content": "01 alicate de bico fino."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Primeiro fixe os pregos na tábua de madeira (Igual a imagem ao lado). De modo que a lata de refrigerante consiga ficar deitada em quatro pregos e a lata de sardinha fique em baixo. ",
+        "imagePath": "/1731854662009/images/imagem_2024-11-17_110412715.png"
+      },
+      {
+        "id": 2,
+        "content": "Depois utilize um prego e fure a parte de cima do refrigerante, ao lado da tampa. Retire o líquidos do refrigerante em um copo. E encha 1/3 da lata com água através do furo com auxílio de uma seringa, para servir de caldeira.",
+        "imagePath": "/1731854662009/images/imagem_2024-11-17_111258974.png"
+      },
+      {
+        "id": 3,
+        "content": "Esvazie a outra lata para fazer o cata-vento com o auxílio de um alicate. Se achar muito difícil, pode fazer utilizando outros materiais. mas lembre-se: Deve ser de metal ou outro material que aguente altas temperaturas. Utilize o seguinte vídeo para auxiliar em um modelo mais fácil: <https://www.youtube.com/watch?v=5GIr6ghPS_E>.",
+        "imagePath": "/1731854662009/images/imagem_2024-11-17_112313626.png"
+      },
+      {
+        "id": 4,
+        "content": "Ao final deixe lata em cima dos pregos, como na figura. Posicione a caldeira no suporte com a fornalha embaixo. E deixe o cata-ventos na frente da abertura da lata. Acenda o fogo com cuidado na lata de sardinha e após alguns minutos a água na caldeira ferverá e o jato de vapor que sai pelo furinho fará o cata-vento girar.",
+        "imagePath": "/1731854662009/images/imagem_2024-11-17_111907956.png"
+      }
+    ],
+    "results": "No decorrer do experimento, espera-se que os participantes compreendam como o calor gerado pela combustão da pastilha de álcool sólido aquece a água contida na lata, gerando vapor que, ao escapar, realiza trabalho mecânico simples. Esse processo é uma representação das turbinas de uma usina térmica, permitindo observar as transformações de energia química em térmica e, posteriormente, em energia cinética. Além disso, o experimento também deve estimular reflexões sobre as limitações práticas das usinas térmicas, como a perda de energia em forma de calor dissipada no ambiente e os impactos ambientais associados à queima de combustíveis.",
+    "scientificExplanation": "O funcionamento do experimento é baseado nos princípios da termodinâmica, simulando os processos básicos de uma usina térmica. O álcool sólido, ao ser queimado, realiza uma combustão que transforma sua energia química em energia térmica. Esse calor é transferido para a água na lata, causando sua vaporização e a criação de vapor de alta pressão. Quando o vapor é liberado, ele gera movimento mecânico, ilustrando como turbinas em uma usina real funcionam. O movimento das turbinas em uma escala industrial seria transferido a geradores elétricos, que convertem a energia mecânica em elétrica. Este processo evidencia a aplicação da primeira lei da termodinâmica, ao conservar energia nas diferentes etapas, e a segunda lei, que explica as perdas inevitáveis de energia em forma de calor disperso no meio ambiente. Além disso, o experimento também serve para discutir as limitações e impactos ambientais de usinas térmicas, como emissões de poluentes e consumo de combustíveis fósseis, destacando a importância de fontes de energia mais sustentáveis.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Lalidh. Disponível em: <http://lalidh.sites.uff.br/experimento-2/>. Acesso em:17 de NOV de 2024"
+      },
+      {
+        "id": 2,
+        "content": "IF. Disponível em: <https://www.if.ufrgs.br/~leila/heron.htm>. Acesso em:17 de NOV de 2024"
+      },
+      {
+        "id": 3,
+        "content": "Youtube, Arte GCN, . Disponível em: <https://www.youtube.com/watch?v=5GIr6ghPS_E>. Acesso em:17 de NOV de 2024"
       }
     ],
     "activitySheetOne": ""
