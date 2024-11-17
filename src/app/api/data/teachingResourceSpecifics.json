@@ -1986,5 +1986,94 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731862646759",
+    "postDate": "17 de novembro de 2024 às 12:57",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 4,
+          "title": "Trabalho e energia",
+          "slug": "trabalho-e-energia"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Verificando o trabalho e a energia com cubos",
+    "slug": "verificando-o-trabalho-e-a-energia-com-cubos",
+    "imagePreview": "/1731862646759/images/imagem_2024-11-17_131405547.png",
+    "description": "Vamos verificar o trabalho envolvido em cubos de madeira.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o conceito de trabalho na física;"
+      },
+      {
+        "id": 2,
+        "content": "Investigar a relação entre força, deslocamento e energia;"
+      },
+      {
+        "id": 3,
+        "content": "Analisar o papel do atrito no trabalho realizado."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 Cubos de madeira;"
+      },
+      {
+        "id": 2,
+        "content": "01 Pincel permanente."
+      },
+      {
+        "id": 3,
+        "content": "01 Pedaço de papelão ondulado;"
+      },
+      {
+        "id": 4,
+        "content": "01 Pedaço de papelão liso."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Adicione com um pincel setas aos cubos.",
+        "imagePath": "/1731862646759/images/imagem_2024-11-17_132106778.png"
+      },
+      {
+        "id": 2,
+        "content": "Forme duas superfícies, uma utilizando o papelão ondulado e outro utilizando a parte lisa do papelão.",
+        "imagePath": "/1731862646759/images/imagem_2024-11-17_132526621.png"
+      },
+      {
+        "id": 3,
+        "content": "Empurre os cubos uma vez em superfície ondulada e outra vez em uma superfície lisa.",
+        "imagePath": "/1731862646759/images/imagem_2024-11-17_132806023.png"
+      }
+    ],
+    "results": "Os participantes devem observar que o trabalho realizado em um cubo de madeira depende tanto da força aplicada quanto do deslocamento obtido. Quando os cubos são empurrados em superfícies diferentes, como madeira lisa ou áspera, a força necessária para movê-los varia, ilustrando o impacto do atrito no trabalho. Superfícies mais ásperas requerem maior força, enquanto superfícies lisas permitem que o trabalho seja realizado com menor esforço. Essa variação reforça a relação matemática do trabalho, mostrando como o ambiente influencia a energia necessária para deslocar objetos.",
+    "scientificExplanation": "O experimento ilustra o conceito de trabalho na física, definido pela fórmula: W=F⋅d⋅cos(θ), ondeW é o trabalho realizado,F é a força aplicada, d é o deslocamento, cos(θ) representa o ângulo entre a força e o deslocamento. Quando um cubo de madeira é empurrado, o trabalho realizado é diretamente proporcional à força aplicada e à distância percorrida pelo cubo. Além disso, a resistência do atrito desempenha um papel fundamental. Em superfícies rugosas, a força de atrito é maior, exigindo mais trabalho para deslocar o cubo, enquanto em superfícies lisas, a força de atrito é reduzida, diminuindo o trabalho necessário. O experimento também pode introduzir a relação entre trabalho e energia, destacando que o trabalho realizado para mover o cubo é convertido em energia cinética e calor devido ao atrito, evidenciando a conservação de energia no sistema.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Guia do estudante. Disponível em: <https://guiadoestudante.abril.com.br/curso-enem/aula-31-o-trabalho-que-uma-forca-realiza>. Acesso em: 17 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
