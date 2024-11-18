@@ -2159,5 +2159,97 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731896873093",
+    "postDate": "17 de novembro de 2024 às 22:27",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 5,
+          "title": "Máquinas simples e alavancas",
+          "slug": "maquinas-simples-e-alavancas"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Testando uma alavanca com copos e moedas",
+    "slug": "testando-uma-alavanca-com-copos-e-moedas",
+    "imagePreview": "/1731896873093/images/imagem_2024-11-17_222949388.png",
+    "description": "Vamos testar uma alavanca simples utilizando copos e uma régua.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o princípio de funcionamento de uma alavanca;"
+      },
+      {
+        "id": 2,
+        "content": "Introduzir o conceito de ponto de apoio e braços de alavanca;"
+      },
+      {
+        "id": 3,
+        "content": "Investigar a vantagem mecânica das alavancas."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Régua;"
+      },
+      {
+        "id": 2,
+        "content": "02 Copos descartáveis;"
+      },
+      {
+        "id": 3,
+        "content": "10 Moedas (De qualquer valor serve)"
+      },
+      {
+        "id": 4,
+        "content": "01 Fita."
+      },
+      {
+        "id": 5,
+        "content": "02 Borrachas (Ou outro material para fazer de base)."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Pegue as borrachas (Ou outro material para fazer de base) e deixe em cima da mesa, depois coloque a régua exatamente ao meio delas. Passe bastante fita para grudar a base com a régua. E adicione um copo escrito -Força potente- de um lado e outro copo escrito -Força resistente-. Adicione primeiro 3 moedas em no copo Força potente, e vá adicionando várias moedas no outro copo, até mudar o lado da gangorra.",
+        "imagePath": "/1731896873093/images/imagem_2024-11-17_223517451.png"
+      },
+      {
+        "id": 2,
+        "content": "Você deve fazer outra vez a mesma coisa, mas mudando a posição da régua na base para mais perto de um dos lados, como na seguinte imagem.",
+        "imagePath": "/1731896873093/images/imagem_2024-11-17_223951056.png"
+      }
+    ],
+    "results": "Os estudantes devem perceber que, ao posicionar o ponto de apoio em diferentes locais sob a régua, a força necessária para levantar as moedas varia. Quando o ponto de apoio está mais próximo da carga (as moedas), a força necessária para levantar o peso é menor, devido ao maior braço de força. Por outro lado, ao aproximar o ponto de apoio da extremidade onde a força é aplicada, o esforço aumenta. Esse experimento demonstra como a alavanca funciona como uma máquina simples para otimizar a aplicação de força, destacando sua vantagem mecânica.",
+    "scientificExplanation": "A alavanca é uma máquina simples composta por três elementos principais: o ponto de apoio (fulcro), o braço de força e o braço de resistência. A vantagem mecânica da alavanca depende da relação entre o comprimento do braço de força (a distância do ponto de aplicação da força até o fulcro) e o braço de resistência (a distância do fulcro até o peso).No experimento, ao deslocar o ponto de apoio mais próximo das moedas (peso), o braço de força aumenta, reduzindo a força necessária para equilibrar ou levantar o peso. O experimento também ilustra os diferentes tipos de alavancas, dependendo da posição relativa do fulcro, da força aplicada e da carga. Ele reforça a ideia de que, ao usar máquinas simples como a alavanca, o trabalho total realizado permanece o mesmo, mas o esforço físico é distribuído de maneira mais eficiente.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Colégio Carmo. Disponível em: <https://www.colegiocarmo.com.br/noticia/1787/aula-pratica-experimental-sobre-maquinas-simples-com-as-turmas-do-7o-ano>. Acesso em: 17 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Youtube, Sou Ciências. Disponível em: <https://youtu.be/vzT5R8nFnY0?si=XlG6cAxmTGv6mVb0>. Acesso em: 17 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
