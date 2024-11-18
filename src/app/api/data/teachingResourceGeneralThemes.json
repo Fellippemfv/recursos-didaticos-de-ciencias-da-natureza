@@ -255,8 +255,8 @@
       },
       {
         "id": 5,
-        "title": "Ligações químicas",
-        "slug": "ligacoes-quimicas"
+        "title": "Ligações químicas: iônicos, covalentes e metálicas",
+        "slug": "ligacoes-quimicas-ionicas-covalentes-e-metalicas"
       },
       {
         "id": 6,
@@ -307,11 +307,6 @@
         "id": 15,
         "title": "Poluição atmosférica",
         "slug": "poluicao-atmosferica"
-      },
-      {
-        "id": 16,
-        "title": "Compostos iônicos e covalentes",
-        "slug": "compostos-ionicos-e-covalentes"
       }
     ]
   }
