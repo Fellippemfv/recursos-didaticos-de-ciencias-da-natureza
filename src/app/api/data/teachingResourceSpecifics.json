@@ -2251,5 +2251,92 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731929981523",
+    "postDate": "18 de novembro de 2024 às 07:39",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 1,
+          "title": "Propriedades da matéria",
+          "slug": "propriedades-da-materia"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Observando a viscosidade entre dois líquidos",
+    "slug": "observando-a-viscosidade-entre-dois-liquidos",
+    "imagePreview": "/1731929981523/images/imagem_2024-11-18_075614705.png",
+    "description": "Vamos observar a viscosidade entre dois líquidos utilizando dois Becker.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Identificar as diferenças de viscosidade entre líquidos;"
+      },
+      {
+        "id": 2,
+        "content": "Compreender o conceito de viscosidade;"
+      },
+      {
+        "id": 3,
+        "content": "Analisar a aplicação prática da viscosidade."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 Tubos de ensaio;"
+      },
+      {
+        "id": 2,
+        "content": "02 Becker;"
+      },
+      {
+        "id": 3,
+        "content": "01 garrafa pequena de água;"
+      },
+      {
+        "id": 4,
+        "content": "01 garrafa pequena de óleo;"
+      },
+      {
+        "id": 5,
+        "content": "01 Cronômetro."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Deixe dois Becker em cima da mesa, e coloque água e óleo das garrafas em cada um dos tubos de ensaio. Depois derrame simultaneamente a água e o óleo dos tubos de ensaio em cada Becker e observe o tempo de demora para que caiam completamente. utilize um cronometro (Pode ser de celular) para medir o tempo.",
+        "imagePath": "/1731929981523/images/imagem_2024-11-18_075150250.png"
+      }
+    ],
+    "results": "Os estudantes observarão que a água, por ter menor viscosidade, flui mais facilmente pela seringa, enquanto o óleo, devido à maior viscosidade, oferece maior resistência ao ser puxado ou empurrado. A diferença entre os dois líquidos será notada tanto no tempo necessário para o fluxo quanto no esforço aplicado. O experimento deve despertar reflexões sobre a influência da viscosidade em fenômenos como o bombeamento de líquidos ou sua utilização em máquinas e motores.",
+    "scientificExplanation": "A viscosidade é a propriedade de um fluido que mede sua resistência ao movimento ou deformação. No caso da água e do óleo, a viscosidade do óleo é maior devido às suas interações moleculares mais fortes e sua maior densidade relativa. Durante o experimento, o óleo resiste mais ao movimento porque suas moléculas têm uma coesão maior, enquanto as moléculas de água, menores e mais móveis, fluem mais facilmente. Essa propriedade é crucial em diversos contextos práticos. Por exemplo, óleos lubrificantes são usados em máquinas devido à sua alta viscosidade, que forma uma película protetora entre superfícies móveis, enquanto líquidos de baixa viscosidade, como a água, são preferidos para resfriamento e limpeza. O experimento demonstra a relevância da viscosidade na física dos fluidos e sua aplicação em problemas do cotidiano.",
+    "references": [
+      {
+        "id": 1,
+        "content": "CSJ. Disponível em: <https://www.csj.com.br/noticias/9o-ano-realiza-aula-pratica-sobre-as-mudancas-de-estados-fisicos-da-materia>. Acesso em: 18 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Brasil Escola. Disponível em: <https://brasilescola.uol.com.br/quimica/propriedades-materia.htm>. Acesso em: 18 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
