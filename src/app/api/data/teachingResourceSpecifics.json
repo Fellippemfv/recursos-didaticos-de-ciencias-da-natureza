@@ -2529,5 +2529,98 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731937121457",
+    "postDate": "18 de novembro de 2024 às 09:38",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 4,
+          "title": "Transformações da matéria",
+          "slug": "transformacoes-da-materia"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "A transformação de matéria na prática utilizando balões",
+    "slug": "a-transformacao-de-materia-na-pratica-utilizando-baloes",
+    "imagePreview": "/1731937121457/images/imagem_2024-11-18_095206973.png",
+    "description": "Vamos ver na pratica a transformação de matéria utilizando garrafa pet, vinagre, balão e bicarbonato de sódio.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar uma transformação química;"
+      },
+      {
+        "id": 2,
+        "content": "Explorar os estados físicos da matéria;"
+      },
+      {
+        "id": 3,
+        "content": "Visualizar o desprendimento de gás."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Garrafa pet de 2L;"
+      },
+      {
+        "id": 2,
+        "content": "02 Balão; "
+      },
+      {
+        "id": 3,
+        "content": "01 Vinagre;"
+      },
+      {
+        "id": 4,
+        "content": "250g de Bicarbonato de sódio;"
+      },
+      {
+        "id": 5,
+        "content": "01 Funil."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Coloque vinagre na garrafa PET;",
+        "imagePath": "/1731937121457/images/imagem_2024-11-18_094716288.png"
+      },
+      {
+        "id": 2,
+        "content": "Utilizando um funil, coloque bicarbonato de sódio no balão;",
+        "imagePath": "/1731937121457/images/imagem_2024-11-18_094820528.png"
+      },
+      {
+        "id": 3,
+        "content": "Prenda o balão no gargalo da garrafa. Depois solte o bicarbonato de sódio que está no balão na garrafa. E ao final observe o que ocorre no balão.",
+        "imagePath": "/1731937121457/images/imagem_2024-11-18_094930141.png"
+      }
+    ],
+    "results": "Ao adicionar o bicarbonato de sódio ao vinagre dentro da garrafa PET, ocorre uma reação química que forma bolhas e gera gás carbônico (CO₂). Esse gás enche o balão, que estava preso na boca da garrafa, expandindo-o. O experimento também evidencia como uma transformação química pode ser identificada por mudanças como liberação de gás, efervescência e a formação de novos produtos.",
+    "scientificExplanation": "A reação entre o vinagre (ácido acético) e o bicarbonato de sódio (um composto básico) é uma reação ácido-base. O bicarbonato reage com o ácido acético para produzir acetato de sódio (em solução), água e gás carbônico (CO₂). A equação química simplificada da reação é: CH3​COOH+NaHCO3​→CH3​COONa+H2​O+CO2​↑. O gás carbônico produzido durante a reação se acumula na garrafa e, ao não encontrar saída, infla o balão preso na abertura. Esse experimento é uma forma prática de ilustrar conceitos de transformação química, reação ácido-base e formação de gases. Além disso, conecta-se ao princípio de conservação da massa, pois a matéria não é destruída, mas transformada em outras substâncias.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Tempo Junto. Disponível em: <https://www.tempojunto.com/2016/08/13/experiencia-ao-ar-livre-para-encher-balao-de-uma-forma-bem-divertida/>. Acesso em: 18 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
