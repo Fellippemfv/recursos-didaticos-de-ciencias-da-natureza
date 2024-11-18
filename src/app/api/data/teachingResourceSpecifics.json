@@ -2951,5 +2951,97 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731956148419",
+    "postDate": "18 de novembro de 2024 às 14:55",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 8,
+          "title": "Reações químicas simples",
+          "slug": "reacoes-quimicas-simples"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Velocidade de reações químicas com efervescentes",
+    "slug": "velocidade-de-reacoes-quimicas-com-efervescentes",
+    "imagePreview": "/1731956148419/images/imagem_2024-11-18_151505894.png",
+    "description": "Vamos realizar uma reação química simples com pastilhas de efervescentes e água.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Observar a influência da temperatura na velocidade das reações químicas;"
+      },
+      {
+        "id": 2,
+        "content": "Analisar o efeito da superfície de contato;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar os fatores experimentais com a Teoria das Colisões."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Garrafa de água gelada;"
+      },
+      {
+        "id": 2,
+        "content": "01 Garrafa de água em temperatura ambiente;"
+      },
+      {
+        "id": 3,
+        "content": "02 Copos transparentes;"
+      },
+      {
+        "id": 4,
+        "content": "02 efervescentes;"
+      },
+      {
+        "id": 5,
+        "content": "01 Faca de mesa."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Para o primeiro experimento: Coloque água em temperatura em ambiente em um dos copos e água gelada no outro copo. Depois corte um efervescente ao meio. Coloque uma banda em cada copo ao mesmo tempo. E observe quanto tempo vai demorar para cada reação química ocorrer.",
+        "imagePath": "/1731956148419/images/imagem_2024-11-18_150449212.png"
+      },
+      {
+        "id": 2,
+        "content": "Para o segundo experimento: Coloque água em temperatura ambiente em ambos os copos. Depois pique um dos eferscentes utilizando uma faca, e deixe um eferscente inteiro ao lado. Coloque o picado em um copo e o eferscentes  inteiro no outro copo. Lembre-se deve ser ao mesmo tempo. E observe quanto tempo vai demorar para cada reação química ocorrer.",
+        "imagePath": "/1731956148419/images/imagem_2024-11-18_150648854.png"
+      }
+    ],
+    "results": "Ao adicionar as pastilhas efervescentes à água, espera-se que a reação ocorra mais rapidamente na água quente do que na gelada, devido ao aumento da energia cinética das moléculas na água quente. Além disso, as pastilhas picadas devem reagir mais rapidamente do que as inteiras, independentemente da temperatura, porque possuem maior superfície de contato, permitindo mais interações entre as partículas do reagente e do solvente.",
+    "scientificExplanation": "A reação química nas pastilhas efervescentes é causada pela interação entre ácido cítrico e bicarbonato de sódio, que produz dióxido de carbono (CO₂), responsável pelas bolhas. Influência da temperatura: Em água quente, as moléculas de água possuem maior energia cinética, aumentando a frequência e a intensidade das colisões com as partículas da pastilha, acelerando a reação. Em água gelada, a menor energia cinética reduz a frequência das colisões eficazes, diminuindo a velocidade da reação. Superfície de contato: Pastilhas picadas oferecem maior área de contato com a água, permitindo que mais partículas interajam simultaneamente, acelerando a reação. Esse princípio está alinhado à Teoria das Colisões, que afirma que a velocidade de uma reação depende da frequência e da energia das colisões entre as moléculas reagentes. Este experimento ilustra os fatores que influenciam a velocidade das reações químicas, conectando conceitos teóricos com observações práticas.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Ciência Ação. Disponível em: <https://www.ciensacao.org/experimento_mao_na_massa/e5009c_reactionRate.html>. Acesso em: 18 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Ponto Ciência. Disponível em: <https://youtu.be/rP00vxivUpQ?si=Jdom1g2K6dVzWFDo>. Acesso em: 18 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
