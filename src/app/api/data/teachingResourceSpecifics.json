@@ -2622,5 +2622,106 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731947543806",
+    "postDate": "18 de novembro de 2024 às 12:32",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      },
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 4,
+          "title": "Transformações da matéria",
+          "slug": "transformacoes-da-materia"
+        }
+      ],
+      "fisica": [
+        {
+          "id": 6,
+          "title": "Pressão e densidade",
+          "slug": "pressao-e-densidade"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Nuvem na garrafa",
+    "slug": "nuvem-na-garrafa",
+    "imagePreview": "/1731947543806/images/imagem_2024-11-18_124306456.png",
+    "description": "Vamos criar nuvens dentro de uma garrafa utilizando álcool e uma bomba de encher bolas.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar uma transformação física da matéria;"
+      },
+      {
+        "id": 2,
+        "content": "Explorar os efeitos da pressão;"
+      },
+      {
+        "id": 3,
+        "content": "Conectar conceitos de pressão e temperatura."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Álcool etílico (Com pureza alta);"
+      },
+      {
+        "id": 2,
+        "content": "01 Bomba de ar penalty para encher bolas;"
+      },
+      {
+        "id": 3,
+        "content": "01 Garrafa pet;"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Coloque aproximadamente 1 dedo de álcool dentro da garrafa pet.",
+        "imagePath": "/1731947543806/images/imagem_2024-11-18_123851461.png"
+      },
+      {
+        "id": 2,
+        "content": "Prenda a bomba na garrafa pet. E balance bem a garrafa, de modo a fazer o álcool tocar em toda superfície de dentro da garrafa.",
+        "imagePath": "/1731947543806/images/imagem_2024-11-18_123931784.png"
+      },
+      {
+        "id": 3,
+        "content": "Utilize a bomba durante aproximadamente 15 segundos. Ao final retire a ponta da bomba e veja o que vai acontecer com a garrafa.",
+        "imagePath": "/1731947543806/images/imagem_2024-11-18_124110856.png"
+      }
+    ],
+    "results": "Ao bombear ar para dentro da garrafa com um pouco de álcool, o aumento da pressão eleva a temperatura do ar interno, causando a vaporização parcial do álcool. Quando o ar comprimido é liberado, a pressão cai rapidamente, resfriando o interior da garrafa. Esse resfriamento leva à condensação do vapor de álcool, formando uma nuvem visível dentro da garrafa. O fenômeno demonstra como mudanças de pressão e temperatura podem causar transformações físicas na matéria.",
+    "scientificExplanation": "O experimento simula em pequena escala a formação de nuvens na atmosfera. Quando o álcool é introduzido na garrafa, parte dele evapora, preenchendo o espaço interno com vapor. A pressão adicional, gerada pela bomba de ar, aquece o ar interno, aumentando a capacidade do ar de manter o vapor de álcool disperso. Ao liberar a pressão repentinamente, ocorre um rápido resfriamento do ar interno. Esse resfriamento reduz a capacidade do ar de reter o vapor de álcool, que se condensa em pequenas gotículas, tornando-se visível como uma nuvem. Esse fenômeno está diretamente relacionado ao ciclo de formação de nuvens naturais, onde o vapor d’água na atmosfera condensa-se em gotículas quando a temperatura ou pressão muda. O experimento também ilustra a interação entre pressão, temperatura e mudanças de estado físico, abordando princípios da termodinâmica e transformações da matéria.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Marlon Machado. Disponível em: <https://youtu.be/tHpyWOE3xdE?si=3tiMHk-xoCqFaeZd>. Acesso em: 18 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Ciência com criatividade. Disponível em: <https://cienciacomcriatividade.wordpress.com/2017/06/25/nuvem-na-garrafa/>. Acesso em: 18 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
