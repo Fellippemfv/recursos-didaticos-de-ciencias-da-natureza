@@ -2723,5 +2723,132 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731949382346",
+    "postDate": "18 de novembro de 2024 às 13:03",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 6,
+          "title": "Modelos atômicos",
+          "slug": "modelos-atomicos"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 4,
+      "title": "Modelos físicos (Maquetes e Protótipos)",
+      "slug": "modelos-fisicos",
+      "steps": "Representações tridimensionais de objetos ou processos científicos que ajudam na visualização e compreensão dos conteúdos."
+    },
+    "title": "Mostrando modelos atômicos com maquete",
+    "slug": "mostrando-modelos-atomicos-com-maquete",
+    "imagePreview": "/1731949382346/images/imagem_2024-11-18_132910356.png",
+    "description": "Vamos criar maquetes para visualizar modelos atômicos, utilizando papel de isopor, bolas de isopor e arame.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Visualizar modelos atômicos;"
+      },
+      {
+        "id": 2,
+        "content": "Compreender a estrutura atômica;"
+      },
+      {
+        "id": 3,
+        "content": "Desenvolver habilidades práticas."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "4  placas de isopor de 30x30 cm (uma para cada modelo)."
+      },
+      {
+        "id": 2,
+        "content": "02 Bola de isopor grande e 20 Bolas de isopor pequenas;"
+      },
+      {
+        "id": 3,
+        "content": "03 metros de arame fino;"
+      },
+      {
+        "id": 4,
+        "content": "05 Tintas guache ou acrílica de cores diferentes;"
+      },
+      {
+        "id": 5,
+        "content": "05 bastões de cola quente;"
+      },
+      {
+        "id": 6,
+        "content": "01 Tesoura;"
+      },
+      {
+        "id": 7,
+        "content": "01 Alicate de ponta fina;"
+      },
+      {
+        "id": 8,
+        "content": "20 Palitos de dente ou churrasco;"
+      },
+      {
+        "id": 9,
+        "content": "01 Canetinhas ou marcador permanente."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Para o modelo de Dalton: Use uma bola de isopor grande para representar átomos indivisíveis, fixados diretamente no papel de isopor e pinte com tinta. Ao final cole em uma das placas e identifique.",
+        "imagePath": "/1731949382346/images/imagem_2024-11-18_132720942.png"
+      },
+      {
+        "id": 2,
+        "content": "Para o modelo de Thomson: Uma bola maior (representando o átomo) com pequenas bolinhas coladas na superfície (representando elétrons), pinte com tinta. Ao final cole em uma das placas e identifique.",
+        "imagePath": "/1731949382346/images/imagem_2024-11-18_132706144.png"
+      },
+      {
+        "id": 3,
+        "content": "Para o modelo de Rutherford: Núcleo pequeno no centro (bolinhas pequenas) e elétrons (bolinhas pequenas) em órbitas simuladas com arame, depois pinte com tinta. Ao final cole em uma das placas e identifique.",
+        "imagePath": "/1731949382346/images/imagem_2024-11-18_132510649.png"
+      },
+      {
+        "id": 4,
+        "content": "Para o modelo de Bohr ou Rutherford-Bohr: Semelhante ao modelo de Rutherford, mas com órbitas mais organizadas em níveis definidos, depois pinte com tinta. Ao final cole em uma das placas e identifique.",
+        "imagePath": "/1731949382346/images/imagem_2024-11-18_132221288.png"
+      },
+      {
+        "id": 5,
+        "content": "Você deve ter como resultado vários modelos.",
+        "imagePath": "/1731949382346/images/imagem_2024-11-18_132336480.png"
+      }
+    ],
+    "results": "Os estudantes devem ser capazes de criar maquetes que ilustrem diferentes modelos atômicos. Cada modelo deve destacar características específicas, como a esfera maciça no modelo de Dalton, o núcleo central no modelo de Rutherford ou as camadas eletrônicas no modelo de Bohr. O experimento ajudará os participantes a compreender as evoluções e limitações de cada modelo proposto, relacionando-os com suas fundamentações experimentais e teóricas.",
+    "scientificExplanation": "Os modelos atômicos foram desenvolvidos para explicar como a matéria é formada e como seus constituintes interagem. O modelo de Dalton (esfera maciça) propôs que os átomos eram indivisíveis e homogêneos. Rutherford, por meio de seu experimento com partículas alfa, demonstrou que o átomo possui um núcleo pequeno e denso, onde está concentrada a maior parte da massa, cercado por um espaço vazio onde os elétrons orbitam. Bohr aprimorou essa ideia, sugerindo que os elétrons orbitam o núcleo em níveis de energia específicos, formando as camadas eletrônicas. A construção das maquetes permite observar as mudanças conceituais ao longo do tempo e facilita o entendimento de conceitos abstratos, como estrutura atômica, interações elétricas e estabilidade dos átomos. A utilização de materiais como papel e bolas de isopor para representar os componentes do átomo ajuda a visualizar as escalas relativas e a organização das partículas subatômicas.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Colégio Carmo. Disponível em: <https://www.colegiocarmo.com.br/noticia/1502/turmas-do-9o-ano-apresentam-a-evolucao-dos-modelos-atomicos>. Acesso em: 18 de NOV de 2024"
+      },
+      {
+        "id": 2,
+        "content": "Brasil Escola. Disponível em: <https://educador.brasilescola.uol.com.br/estrategias-ensino/estrategia-ensino-para-compreensao-dos-modelos-atomicos.htm>. Acesso em: 18 de NOV de 2024"
+      },
+      {
+        "id": 3,
+        "content": "Colégio Murialdo. Disponível em: <https://www.colegiomurialdo.com.br/porto-alegre/noticias/detalhes/modelos-atomicos-da-turma-92>. Acesso em: 18 de NOV de 2024"
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
