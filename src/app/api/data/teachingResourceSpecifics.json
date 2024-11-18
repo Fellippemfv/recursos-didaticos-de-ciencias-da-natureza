@@ -2422,5 +2422,112 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731933970269",
+    "postDate": "18 de novembro de 2024 às 08:46",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 3,
+          "title": "Misturas e substâncias",
+          "slug": "misturas-e-substancias"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Misturas e substâncias na prática",
+    "slug": "misturas-e-substancias-na-pratica",
+    "imagePreview": "/1731933970269/images/imagem_2024-11-18_090800172.png",
+    "description": "Vamos observar na prática a diferença entre substâncias e misturas utilizando água, óleo e corantes.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Diferenciar substâncias puras de misturas;"
+      },
+      {
+        "id": 2,
+        "content": "Explorar a imiscibilidade de líquidos;"
+      },
+      {
+        "id": 3,
+        "content": "Investigar o papel de um emulsificante."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 Copos;"
+      },
+      {
+        "id": 2,
+        "content": "01 Garra de água;"
+      },
+      {
+        "id": 3,
+        "content": "01 Garra de óleo;"
+      },
+      {
+        "id": 4,
+        "content": "02 Corantes alimentícios de cores diferentes;"
+      },
+      {
+        "id": 5,
+        "content": "01 Colher;"
+      },
+      {
+        "id": 6,
+        "content": "01 Detergente."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Primeiro adicione óleo em um dos copos. Depois adicione gotas de pelo menos dois corantes diferentes.",
+        "imagePath": "/1731933970269/images/imagem_2024-11-18_085716210.png"
+      },
+      {
+        "id": 2,
+        "content": "Mexa bastante com a colher. E veja se o corante se mistura ou não com o óleo.",
+        "imagePath": "/1731933970269/images/imagem_2024-11-18_085749092.png"
+      },
+      {
+        "id": 3,
+        "content": "Na próxima etapa, encha um copo de água a pouco mais da metade. E encha o restante do copo utilizando o copo com óleo e corante da etapa anterior.",
+        "imagePath": "/1731933970269/images/imagem_2024-11-18_085929202.png"
+      },
+      {
+        "id": 4,
+        "content": "Observe se principio houve uma mistura entre os líquidos. Espere pelo menos mais dois minutos e veja se houve alterações.",
+        "imagePath": "/1731933970269/images/imagem_2024-11-18_090144708.png"
+      },
+      {
+        "id": 5,
+        "content": "Por último, adicione um pouco de detergente a este copo misturado e mexa bem com uma colher. Veja o que acontece.",
+        "imagePath": "/1731933970269/images/imagem_2024-11-18_090449834.png"
+      }
+    ],
+    "results": "No início do experimento, o óleo e a água formarão duas camadas distintas devido à sua imiscibilidade, e o corante, sendo solúvel em água, se dissolverá apenas na camada aquosa. Após a adição de detergente e a mistura com a colher, será possível observar que o detergente permite a formação de uma emulsão temporária, misturando os líquidos de forma mais homogênea. Isso ilustra a diferença entre substâncias puras (água e óleo separadamente) e misturas heterogêneas (água e óleo não misturados) ou homogêneas (após a ação do detergente).",
+    "scientificExplanation": "Óleo e água são exemplos clássicos de substâncias imiscíveis porque possuem diferentes polaridades químicas: a água é polar, enquanto o óleo é apolar. Isso impede que suas moléculas interajam e se misturem naturalmente. O corante, sendo solúvel em água, evidencia a separação das fases, já que se distribui apenas na camada aquosa. Ao adicionar detergente, ocorre uma mudança significativa. O detergente contém moléculas anfifílicas, com uma extremidade polar e outra apolar. Essa estrutura permite que o detergente atue como um emulsificante, conectando as moléculas de água e óleo, formando uma mistura temporariamente homogênea chamada emulsão.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Mergulhe na Ciência. Disponível em: <https://youtu.be/Lp70CwomvbU?si=xmx-VjchhknmF-pm>. Acesso em: 18 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
