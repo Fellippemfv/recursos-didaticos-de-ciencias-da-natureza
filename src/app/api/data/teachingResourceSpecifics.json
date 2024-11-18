@@ -2850,5 +2850,106 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731951509272",
+    "postDate": "18 de novembro de 2024 às 13:38",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 10,
+          "title": "Soluções e concentração",
+          "slug": "solucoes-e-concentracao"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Solubilidade em ação",
+    "slug": "solubilidade-em-acao",
+    "imagePreview": "/1731951509272/images/imagem_2024-11-18_135634795.png",
+    "description": "Vamos observar na prática a solubilidade em ação utilizando água, sal e álcool.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Identificar soluções homogêneas e heterogêneas;"
+      },
+      {
+        "id": 2,
+        "content": "Compreender o conceito de solubilidade;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar solubilidade com características moleculares."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Garrafa pequena de água em temperatura ambiente;"
+      },
+      {
+        "id": 2,
+        "content": "01 Pacote de sal de cozinha;"
+      },
+      {
+        "id": 3,
+        "content": "01 Garrafa pequena de Álcool etílico 92ºGL;"
+      },
+      {
+        "id": 4,
+        "content": "02 Béqueres ou copos transparentes;"
+      },
+      {
+        "id": 5,
+        "content": "01 vareta de vidro ou uma colher para misturar."
+      },
+      {
+        "id": 6,
+        "content": "01 Colher desartavel."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Coloque água em um dos copos até a metade. Com a colher, vá adicionando sal e misturando até que se forme um corpo de fundo na solução, ou seja, até que certa quantidade de sal não se dissolva mais na água por mais que você misture.",
+        "imagePath": "/1731951509272/images/imagem_2024-11-18_134829552.png"
+      },
+      {
+        "id": 2,
+        "content": "Separe a solução do corpo de fundo, passando-a para outro copo.",
+        "imagePath": "/1731951509272/images/imagem_2024-11-18_135113134.png"
+      },
+      {
+        "id": 3,
+        "content": "Pegue este copo com liquido separado. Agora vá adicionando aos pouco o álcool nessa solução. Observe o que ocorre à medida que você coloca cada vez mais álcool.",
+        "imagePath": "/1731951509272/images/imagem_2024-11-18_135428847.png"
+      }
+    ],
+    "results": "Ao misturar sal de cozinha (NaCl) com água, espera-se que o sal se dissolva completamente, formando uma solução homogênea devido à alta solubilidade do NaCl na água. Já ao adicionar álcool etílico na água, será observado que os líquidos se misturam, mas apresentam diferenças em densidade e propriedades moleculares. Ao misturar sal com álcool, a solubilidade será menor ou inexistente, resultando em uma mistura heterogênea visível. Este experimento permitirá identificar as diferenças entre misturas homogêneas e heterogêneas e relacionar as propriedades moleculares dos materiais com sua solubilidade.",
+    "scientificExplanation": "A solubilidade de uma substância depende das forças intermoleculares entre o solvente e o soluto. No caso do sal (NaCl) na água, as moléculas polares da água interagem com os íons Na⁺ e Cl⁻, separando-os e permitindo a dissolução. Por outro lado, a água e o álcool se misturam porque ambas as substâncias possuem características polares que permitem a formação de ligações de hidrogênio. Entretanto, o sal não se dissolve no álcool devido à ausência de interações fortes suficientes entre as moléculas de álcool e os íons do sal. Este experimento ilustra o princípio \"semelhante dissolve semelhante\", ou seja, substâncias polares tendem a dissolver outras substâncias polares, enquanto as apolares dissolvem substâncias apolares. A observação prática reforça conceitos de química sobre interação molecular e comportamento de soluções.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Brasil Escola. Disponível em: <https://educador.brasilescola.uol.com.br/estrategias-ensino/aula-pratica-solubilidade-saturacao-das-solucoes.htm>. Acesso em: 18 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Escola  Fourc. Disponível em: <https://blog.escolafourc.com.br/atividades-experimentais-envolvendo-solubilidade/>. Acesso em: 18 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
