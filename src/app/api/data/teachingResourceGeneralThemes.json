@@ -108,6 +108,11 @@
         "id": 21,
         "title": "Movimento Retilíneo Uniformemente Variado – MRUV",
         "slug": "movimento-retilineo uniformemente variado-mruv"
+      },
+      {
+        "id": 22,
+        "title": "Pilhas e baterias",
+        "slug": "pilhas-e-baterias"
       }
     ]
   },
