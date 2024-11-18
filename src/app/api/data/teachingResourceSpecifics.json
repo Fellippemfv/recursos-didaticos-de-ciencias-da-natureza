@@ -2338,5 +2338,89 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1731931821249",
+    "postDate": "18 de novembro de 2024 às 08:10",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 2,
+          "title": "Estados físicos da matéria",
+          "slug": "estados-fisicos-da-materia"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Observando a mudança dos estados físicos",
+    "slug": "observando-a-mudanca-dos-estados-fisicos",
+    "imagePreview": "/1731931821249/images/imagem_2024-11-18_083854203.png",
+    "description": "Vamos observar na prática a mudança de estado físico.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar a formação de condensação;"
+      },
+      {
+        "id": 2,
+        "content": "Compreender as mudanças de estado físico;"
+      },
+      {
+        "id": 3,
+        "content": "Explorar o impacto da temperatura."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 Copos de vidro;"
+      },
+      {
+        "id": 2,
+        "content": "01 Garra de água em temperatura ambiente;"
+      },
+      {
+        "id": 3,
+        "content": "01 Garra de água gelada;"
+      },
+      {
+        "id": 4,
+        "content": "01 Papel toalha."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Deixe o papel toalha sobre a mesa. Depois coloque os dois copos um do lado do outro.",
+        "imagePath": "/1731931821249/images/imagem_2024-11-18_083302711.png"
+      },
+      {
+        "id": 2,
+        "content": "Adicione água em temperatura ambiente em um copo e água gelada no outro copo. Espere pelo menos 2 minutos. Ao final retire os copos e observe se houve alterações no papel toalha.",
+        "imagePath": "/1731931821249/images/imagem_2024-11-18_083358600.png"
+      }
+    ],
+    "results": "Após algum tempo, o copo com água gelada apresentará gotas de água em sua superfície externa, enquanto o copo com água em temperatura ambiente não exibirá essa formação. O papel toalha sob o copo com água gelada poderá ficar úmido devido à condensação. Isso ajudará os estudantes a entender que a água que aparece no copo gelado não veio de dentro, mas do vapor de água no ar, que mudou de estado gasoso para líquido ao entrar em contato com a superfície fria.",
+    "scientificExplanation": "A mudança de estado físico observada no experimento ocorre devido ao processo de condensação, que é a transformação de vapor de água (estado gasoso) em água líquida. No ambiente, o ar contém vapor de água, e quando esse vapor entra em contato com uma superfície fria, como o copo gelado, a temperatura do vapor diminui. Isso faz com que as moléculas percam energia térmica e se juntem para formar gotas de água líquida. No caso do copo com água em temperatura ambiente, a superfície não é suficientemente fria para causar a condensação, por isso não há formação de gotas. Esse experimento também ajuda a explicar fenômenos naturais, como o aparecimento de orvalho em superfícies durante a noite, quando a temperatura do ar diminui. A atividade reforça a compreensão dos estados físicos da matéria e suas transformações em condições cotidianas.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Saul Miranda. Disponível em: <https://youtu.be/ETlqYLIOVlA?si=szQ0EXRYVlWbQdDG>. Acesso em: 18 de NOV de 2024"
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
