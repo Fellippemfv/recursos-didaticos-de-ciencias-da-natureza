@@ -3457,5 +3457,71 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732030029141",
+    "postDate": "19 de novembro de 2024 às 11:27",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 2,
+        "title": "Biologia",
+        "slug": "biologia"
+      }
+    ],
+    "topicSpecific": {
+      "biologia": []
+    },
+    "resourceType": {
+      "id": 2,
+      "title": "Dinâmicas (Participação em dupla ou em grupo)",
+      "slug": "dinamicas",
+      "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos."
+    },
+    "title": "Classificação dos seres vivos com botões",
+    "slug": "classificacao-dos-seres-vivos-com-botoes",
+    "imagePreview": "/1732030029141/images/imagem_2024-11-19_113225033.png",
+    "description": "Vamos realizar uma dinâmica para aprender mais sobre a classificação dos seres vivos, utilizando basicamente botões.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Compreender o conceito de classificação;"
+      },
+      {
+        "id": 2,
+        "content": "Estabelecer critérios de categorização;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar a atividade com a biologia."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "25 Botões de diferentes tamanhos, cores e formas."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Peça aos alunos para que distribuam na suas mesas diferentes tipos de botões.",
+        "imagePath": "/1732030029141/images/imagem_2024-11-19_112724295.png"
+      },
+      {
+        "id": 2,
+        "content": "Depois peça que eles organizem e classifiquem da forma que acharem melhor os botões. Ao final verifique as classificações mais utilizadas.",
+        "imagePath": "/1732030029141/images/imagem_2024-11-19_113004804.png"
+      }
+    ],
+    "results": "Os estudantes devem propor diferentes maneiras de classificar os botões, como por cor, tamanho, número de furos ou material, percebendo que os critérios variam de acordo com o objetivo ou a perspectiva do observador. A atividade deve estimular a reflexão sobre a flexibilidade e utilidade dos sistemas de classificação na biologia.",
+    "scientificExplanation": "A classificação biológica, ou taxonomia, é essencial para organizar o conhecimento sobre os seres vivos e facilitar a comunicação científica. Critérios taxonômicos: Na biologia, os organismos são classificados com base em características compartilhadas, como estrutura, composição genética e funções biológicas. Essa organização resulta em sistemas hierárquicos, como os reinos, filos, classes, ordens, famílias, gêneros e espécies. Analogia com os botões: Assim como os estudantes definem critérios para categorizar botões, os cientistas criam critérios específicos para agrupar seres vivos. Importância científica: A classificação biológica permite identificar relações evolutivas, prever características e compreender a biodiversidade do planeta. A atividade conecta a prática lúdica ao conceito científico, ilustrando como sistemas de classificação ajudam a simplificar e organizar o estudo do mundo natural.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Ponto biologia. Disponível em: <https://pontobiologia.com.br/sistema-classificacao-atividade-pratica/>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
