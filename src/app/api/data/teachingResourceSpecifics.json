@@ -3292,5 +3292,99 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732025083860",
+    "postDate": "19 de novembro de 2024 às 10:04",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 14,
+          "title": "Reações de oxidação e redução (redox)",
+          "slug": "reacoes-de-oxidacao-e-reducao"
+        },
+        {
+          "id": 8,
+          "title": "Reações químicas simples",
+          "slug": "reacoes-quimicas-simples"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Purificando água com oxirredução",
+    "slug": "purificando-agua-com-oxirreducao",
+    "imagePreview": "/1732025083860/images/imagem_2024-11-19_102745156.png",
+    "description": "Vamos realizar uma atividade para demonstrar o efeito da oxirredução.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Compreender o processo de oxirredução;"
+      },
+      {
+        "id": 2,
+        "content": "Identificar agentes oxidantes e redutores;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar a oxirredução ao cotidiano."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "02 Becker ou 02 Copos transparentes;"
+      },
+      {
+        "id": 2,
+        "content": "01 Garrafa de água pequena;"
+      },
+      {
+        "id": 3,
+        "content": "01 Vidro de iodo;"
+      },
+      {
+        "id": 4,
+        "content": "01 Água sanitária"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Em um Becker coloque um pouco de água em temperatura ambiente. No outro Becker coloque um pouco de água sanitária.",
+        "imagePath": "/1732025083860/images/imagem_2024-11-19_102012668.png"
+      },
+      {
+        "id": 2,
+        "content": "No Becker com água adicione um pouco de iodo, de modo a sua cor ficar quase que totalmente escura.",
+        "imagePath": "/1732025083860/images/imagem_2024-11-19_102128079.png"
+      },
+      {
+        "id": 3,
+        "content": "Adicione aos poucos na água com iodo um pouco de água sanitária. Conforme for adicionando observe sua cor. Ao final você pode repetir, adicionando mais iodo e depois mais água sanitária.",
+        "imagePath": "/1732025083860/images/imagem_2024-11-19_102338592.png"
+      }
+    ],
+    "results": "Quando o iodo é adicionado à água sanitária, a solução deve mudar de cor, indicando que ocorreu uma reação química. Espera-se que o iodo (um agente oxidante) reaja com os componentes da água sanitária (hipoclorito de sódio, um agente redutor), resultando na mudança de coloração, evidenciando o processo de oxirredução.",
+    "scientificExplanation": "A oxirredução é uma reação química onde há transferência de elétrons entre substâncias. Oxidação: O iodo molecular (I₂), presente na solução, é oxidado, perdendo elétrons e formando íons iodato (IO₃⁻). Redução: O hipoclorito de sódio (NaClO), presente na água sanitária, é reduzido, ganhando elétrons e formando cloreto (Cl⁻). A mudança de cor é uma evidência visual da reação química, indicando que o iodo foi transformado durante o processo. Este experimento ilustra como reações de oxirredução ocorrem frequentemente no dia a dia, como no uso de produtos de limpeza, onde a água sanitária remove manchas por meio de processos semelhantes.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Sor Wagner. Disponível em: <https://youtu.be/jUi5oscbJic?si=c8kcBNLW5HJyISxw>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
