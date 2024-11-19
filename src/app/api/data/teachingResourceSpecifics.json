@@ -3185,5 +3185,112 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732021031361",
+    "postDate": "19 de novembro de 2024 às 08:57",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 11,
+          "title": "Ciclo da água",
+          "slug": "ciclo-da-agua"
+        },
+        {
+          "id": 2,
+          "title": "Estados físicos da matéria",
+          "slug": "estados-fisicos-da-materia"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "O ciclo da água na prática",
+    "slug": "o-ciclo-da-agua-na-pratica",
+    "imagePreview": "/1732021031361/images/imagem_2024-11-19_090331994.png",
+    "description": "Vamos observar na prática o ciclo a água e mudança de estados físicos.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o ciclo da água;"
+      },
+      {
+        "id": 2,
+        "content": "Identificar mudanças de estado físico;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar o experimento ao meio ambiente."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Copo com água filtrada;"
+      },
+      {
+        "id": 3,
+        "content": "01 Corante alimentício (De preferência azul);"
+      },
+      {
+        "id": 4,
+        "content": "01 Plástico filme;"
+      },
+      {
+        "id": 5,
+        "content": "01 Recipiente grande de vidro;"
+      },
+      {
+        "id": 6,
+        "content": "01 Colher de sal;"
+      },
+      {
+        "id": 7,
+        "content": "01 Colher descartável."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Pingue 5 gotas de corante no copo com água filtrada. E adicione 1 pitada de sal. Misture tudo com uma colher.",
+        "imagePath": "/1732021031361/images/imagem_2024-11-19_091049938.png"
+      },
+      {
+        "id": 2,
+        "content": "Passe o liquido do copo para o recipiente com vidro.",
+        "imagePath": "/1732021031361/images/imagem_2024-11-19_091216252.png"
+      },
+      {
+        "id": 3,
+        "content": "Coloque o copo recém vazio no meio do recipiente com vidro. Cubra tudo com o plástico filme. E deixe no sol durante 5 horas.",
+        "imagePath": "/1732021031361/images/imagem_2024-11-19_091307677.png"
+      },
+      {
+        "id": 4,
+        "content": "No final, retire o plástico filme e verifique se o copo continua vazio.",
+        "imagePath": "/1732021031361/images/imagem_2024-11-19_091509181.png"
+      }
+    ],
+    "results": "Espera-se que a água no copo evapore lentamente ao ser aquecida pelo calor ambiente, criando vapor d’água. Esse vapor se condensará na superfície do plástico filme, formando pequenas gotículas de água que, ao se acumularem, cairão de volta no copo ou no recipiente, simulando a precipitação. O corante alimentício ajuda a visualizar o processo, destacando a movimentação da água no ciclo.\n",
+    "scientificExplanation": "O ciclo da água é um processo contínuo que envolve mudanças de estado físico da água devido à influência do calor e da gravidade. Evaporação: O calor do ambiente fornece energia suficiente para que as moléculas de água na superfície do líquido escapem para a atmosfera como vapor d’água. Condensação: O vapor d’água se resfria ao entrar em contato com o plástico filme, um material mais frio que a água evaporada, retornando ao estado líquido em forma de pequenas gotas. Precipitação: Quando as gotículas acumuladas no plástico se tornam pesadas, elas \"precipitam\", caindo de volta no recipiente, simulando o fenômeno da chuva. Este experimento ilustra de forma prática o ciclo hidrológico, destacando como a água muda de estado físico e é constantemente reciclada na natureza. Além disso, reforça conceitos sobre a conservação e a importância da água para a vida no planeta.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Projeto Extensão, Vamos experimentar Biologia e Farmácia. Disponível em: <https://youtu.be/o0XvANEi82I?si=zw9lGsSkSyB7wqK1>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
