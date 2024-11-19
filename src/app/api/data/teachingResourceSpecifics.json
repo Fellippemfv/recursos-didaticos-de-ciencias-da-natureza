@@ -3607,5 +3607,94 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732040753475",
+    "postDate": "19 de novembro de 2024 às 14:25",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 17,
+          "title": "Reações Endotérmicas",
+          "slug": "reacoes-endotermicas"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Reação endotérmica na prática com água e ureia.",
+    "slug": "reacao-endotermica-na-pratica-com-agua-e-ureia",
+    "imagePreview": "/1732040753475/images/imagem_2024-11-19_143511651.png",
+    "description": "Vamos realizar uma reação endotérmica utilizando apenas água, ureia e um termômetro.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o conceito de reação endotérmica;"
+      },
+      {
+        "id": 2,
+        "content": "Medir a variação de temperatura;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar o fenômeno com aplicações práticas."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Becker."
+      },
+      {
+        "id": 2,
+        "content": "01 Jarra de água em temperatura ambiente;"
+      },
+      {
+        "id": 3,
+        "content": "01 Pacote de ureia em pó (O mesmo usado em plantas)."
+      },
+      {
+        "id": 4,
+        "content": "01 Termômetro."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Coloque um pouco de água no béquer.",
+        "imagePath": "/1732040753475/images/imagem_2024-11-19_142712300.png"
+      },
+      {
+        "id": 2,
+        "content": "Adicione um pouco de ureia em pó na água. ",
+        "imagePath": "/1732040753475/images/imagem_2024-11-19_142756739.png"
+      },
+      {
+        "id": 3,
+        "content": "Logo após adicionar o pó de ureia. Adicione imediatamente um termômetro dentro desta mistura e acompanhe a temperatura ao longo da reação.",
+        "imagePath": "/1732040753475/images/imagem_2024-11-19_143651170.png"
+      }
+    ],
+    "results": "Ao dissolver ureia na água, espera-se que a temperatura da solução diminua, evidenciando a absorção de calor do ambiente para realizar o processo de dissolução. Essa diminuição de temperatura será registrada no termômetro, permitindo que os estudantes associem o fenômeno ao conceito de reação endotérmica.",
+    "scientificExplanation": "A dissolução da ureia em água é um processo endotérmico, ou seja, ela absorve calor do ambiente para ocorrer. Nesse processo, as moléculas de ureia interagem com as moléculas de água, quebrando as forças intermoleculares entre suas partículas. Essa interação consome energia térmica do ambiente, resultando em uma redução perceptível da temperatura da solução. Etapas do fenômeno: Quebra das ligações da ureia: A ureia, um composto cristalino, requer energia para separar suas moléculas no estado sólido. Hidratação das moléculas: As moléculas de água envolvem as moléculas de ureia, estabilizando-as no estado líquido.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Fran Perseguelo. Disponível em: <https://youtu.be/Ve_Lrsv4Yhg?si=k5zBsmrc7QK82bsD>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
