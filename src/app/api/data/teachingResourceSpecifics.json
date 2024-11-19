@@ -3043,5 +3043,72 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732017400261",
+    "postDate": "19 de novembro de 2024 às 07:56",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 7,
+          "title": "Tabela periódica básica",
+          "slug": "tabela-periodica-basica"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 5,
+      "title": "Aplicativos Educativos (Apps e Sites Interativos)",
+      "slug": "aplicativos-educativos",
+      "steps": "Aplicações digitais que utilizam interatividade para promover a aprendizagem ativa, incluindo simulações e atividades práticas online."
+    },
+    "title": "Tabela periódica interativa online",
+    "slug": "tabela-periodica-interativa-online",
+    "imagePreview": "/1732017400261/images/imagem_2024-11-19_080913766.png",
+    "description": "Vamos observar como são os átomos dos elementos da tabela periódica de forma online.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Explorar visualmente os átomos dos elementos químicos;"
+      },
+      {
+        "id": 2,
+        "content": "Compreender as propriedades dos elementos da tabela periódica;"
+      },
+      {
+        "id": 3,
+        "content": "Incentivar o uso de tecnologias no estudo da química."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Celular ou computador."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Acesse o link: <https://artsexperiments.withgoogle.com/periodic-table/>. No site, clique em cada um dos elementos e peça que os alunos observem os elétrons presentes em cada átomos. Faça relações com o número presente em cima e a esquerda de cada elemento na tabela periódica.",
+        "imagePath": "/1732017400261/images/imagem_2024-11-19_081513084.png"
+      }
+    ],
+    "results": "Os estudantes devem compreender a estrutura dos átomos de diferentes elementos químicos ao explorar modelos visuais detalhados disponíveis em plataformas interativas. Espera-se que reconheçam padrões na tabela periódica, como a distribuição dos elementos nos grupos e períodos, bem como a relação entre propriedades físicas e químicas. Além disso, espera-se maior engajamento dos estudantes no estudo da química através da integração de tecnologia no aprendizado.",
+    "scientificExplanation": "Os átomos são compostos por partículas subatômicas: prótons (com carga positiva) e nêutrons (sem carga) no núcleo, além de elétrons (com carga negativa) orbitando ao redor. A tabela periódica organiza os elementos de acordo com suas propriedades atômicas e características químicas. Número atômico: Determina o número de prótons e define o elemento. Massa atômica: Representa a soma de prótons e nêutrons no núcleo. Distribuição eletrônica: A organização dos elétrons nos níveis de energia determina as propriedades químicas dos elementos. Plataformas interativas, como sites educativos ou simuladores, permitem visualizar esses conceitos de maneira prática, com representações dinâmicas e detalhadas. Isso facilita a compreensão de tópicos abstratos, como a estrutura atômica e a lógica por trás da disposição da tabela periódica. A integração da tecnologia no ensino melhora a assimilação de conteúdos e torna o aprendizado mais atrativo.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Arts Experiments. Disponível em: <https://artsexperiments.withgoogle.com/periodic-table/>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
