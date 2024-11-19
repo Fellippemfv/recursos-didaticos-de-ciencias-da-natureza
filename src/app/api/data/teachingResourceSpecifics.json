@@ -3523,5 +3523,89 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732037843852",
+    "postDate": "19 de novembro de 2024 às 13:37",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 16,
+          "title": "Reações Exotérmicas",
+          "slug": "reacoes-exotermicas"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Demonstrando uma reação exotérmica com um sinalizador de fumaça",
+    "slug": "demonstrando-uma-reacao-exotermica-com-um-sinalizador-de-fumaca",
+    "imagePreview": "/1732037843852/images/Web_Photo_Editor.jpg",
+    "description": "Vamos ver na prática uma reação exotérmica.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o conceito de reação exotérmica;"
+      },
+      {
+        "id": 2,
+        "content": "Explorar as propriedades dos reagentes;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar a reação com aplicações práticas."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Vidro de Dióxido de manganês."
+      },
+      {
+        "id": 2,
+        "content": "01 Garrafa pet vazia;"
+      },
+      {
+        "id": 3,
+        "content": "01 Garrafa de Água oxigenada 200 volumes;"
+      },
+      {
+        "id": 4,
+        "content": "01 Colher descartável."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Coloque aproximadamente 02 dedos de Água oxigenada dentro da garrafa.",
+        "imagePath": "/1732037843852/images/imagem_2024-11-19_135437608.png"
+      },
+      {
+        "id": 2,
+        "content": "Adicione com cuidado uma colher de Dióxido de manganês dentro da garrafa. Tome cuidado e afaste-se assim que colocar. E ao final, veja a reação química ocorrendo. Obs: Não se preocupe coma  fumaça pois é apenas Oxigênio.",
+        "imagePath": "/1732037843852/images/imagem_2024-11-19_135356769.png"
+      }
+    ],
+    "results": "Ao misturar a água oxigenada com o dióxido de manganês na garrafa PET, os estudantes devem observar uma reação rápida que libera calor perceptível (reação exotérmica), acompanhada pela liberação de gás oxigênio e formação de espuma. Essa reação demonstra de forma clara a transformação de energia química em energia térmica.",
+    "scientificExplanation": "A reação exotérmica observada é a decomposição da água oxigenada (H₂O₂) em água (H₂O) e gás oxigênio (O₂), com o dióxido de manganês (MnO₂) atuando como catalisador. A equação da reação é: 2𝐻2𝑂2→𝑀𝑛𝑂22𝐻2𝑂+𝑂2↑+Calor. Função do catalisador: O MnO₂ acelera a decomposição sem ser consumido, permitindo que a reação ocorra rapidamente. Liberação de calor: A energia liberada na quebra das ligações químicas do H₂O₂ excede a energia necessária para formar as novas ligações, resultando na liberação de calor perceptível. Aplicações práticas: Reações exotérmicas como esta têm ampla aplicação, desde o uso em catalisadores automotivos até processos industriais e demonstrações educacionais. A atividade combina observação prática com conceitos químicos, facilitando a compreensão de como reações exotérmicas ocorrem e seu impacto no mundo ao nosso redor.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, gersonciencia. Disponível em: <https://youtu.be/B3KH-8UyI4M?si=2CC8lcbWpNKra0ha>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
