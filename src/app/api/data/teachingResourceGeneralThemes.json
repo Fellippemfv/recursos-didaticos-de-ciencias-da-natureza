@@ -307,6 +307,16 @@
         "id": 15,
         "title": "Poluição atmosférica",
         "slug": "poluicao-atmosferica"
+      },
+      {
+        "id": 16,
+        "title": "Reações Exotérmicas",
+        "slug": "reacoes-exotermicas"
+      },
+      {
+        "id": 17,
+        "title": "Reações Endotérmicas",
+        "slug": "reacoes-endotermicas"
       }
     ]
   }
