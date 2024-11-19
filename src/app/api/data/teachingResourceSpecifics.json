@@ -3696,5 +3696,111 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732045035433",
+    "postDate": "19 de novembro de 2024 às 15:37",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 18,
+          "title": "Cromatografia",
+          "slug": "cromatografia"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Cromatografia na prática",
+    "slug": "cromatografia-na-pratica",
+    "imagePreview": "/1732045035433/images/imagem_2024-11-19_154004676.png",
+    "description": "Vamos fazer um experimento sobre cromatografia.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Compreender o princípio da cromatografia;"
+      },
+      {
+        "id": 2,
+        "content": "Observar a separação de cores;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar o experimento com aplicações práticas."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "06 Pinceis coloridos;"
+      },
+      {
+        "id": 2,
+        "content": "03 Filtros de papel (Mesmo do café);"
+      },
+      {
+        "id": 3,
+        "content": "01 Tesoura;"
+      },
+      {
+        "id": 4,
+        "content": "01 Garrafa de álcool;"
+      },
+      {
+        "id": 5,
+        "content": "01 Recipiente de vidro;"
+      },
+      {
+        "id": 6,
+        "content": "01 Fita adesiva;"
+      },
+      {
+        "id": 9,
+        "content": "01 Espeto de churrasco."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Corte a parte do meio do filtro em tiras. Cada filtro deve gerar até 02 tiras retangulares. Ao final você deve ter cortado 06 tiras advindas dos filtros de papel.",
+        "imagePath": "/1732045035433/images/imagem_2024-11-19_154931208.png"
+      },
+      {
+        "id": 2,
+        "content": "Em uma ponta da tira faça um X, na outra ponta faça um circulo e preencha o circulo com pincel. Repita este processo utilizando todos os 06 pinceis.",
+        "imagePath": "/1732045035433/images/imagem_2024-11-19_155109207.png"
+      },
+      {
+        "id": 3,
+        "content": "Pegue o recipiente de vidro e adicione aproximadamente 01 cm de altura (ou 1 dedo) de álcool dentro dele.",
+        "imagePath": "/1732045035433/images/imagem_2024-11-19_155224920.png"
+      },
+      {
+        "id": 4,
+        "content": "Utilizando dois copos e um espeto de churrasco e fita, monte de modo que apenas uma parte do álcool entre em contato com a tira. Aguarde alguns minutos e mostre o resultado aos alunos.",
+        "imagePath": "/1732045035433/images/imagem_2024-11-19_155423002.png"
+      }
+    ],
+    "results": "Ao aplicar as tintas dos pincéis coloridos no papel de filtro e mergulhar sua extremidade em álcool, espera-se que o solvente suba pelo papel por capilaridade, separando os pigmentos das tintas. Cada cor mostrará uma \"mancha\" de pigmentos individuais, permitindo a observação da composição da tinta.",
+    "scientificExplanation": "A cromatografia é um método de separação de misturas baseado na diferença de solubilidade e interação entre as moléculas do solvente (álcool) e do material adsorvente (papel de filtro). No experimento, os pigmentos das tintas são dissolvidos no álcool e transportados pelo papel. À medida que o álcool sobe, ele arrasta os pigmentos, que se separam de acordo com suas características: Pigmentos mais solúveis: São transportados mais longe pelo solvente. Pigmentos menos solúveis: Ficam mais próximos do ponto de origem. Etapas observadas no experimento: Interação inicial: O álcool dissolve os pigmentos da tinta. Capilaridade: O papel de filtro puxa o solvente para cima, carregando os pigmentos. Separação dos componentes: Pigmentos de diferentes tamanhos moleculares e solubilidades se movem a velocidades distintas. Aplicações práticas: Ciência forense: Identificação de tintas ou substâncias em investigações. Indústria farmacêutica: Análise da pureza de compostos. Química ambiental: Monitoramento de contaminantes em água ou solo.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Museu da Vida Fiocruz. Disponível em: <https://youtu.be/7qOcxfwF01g?si=4Skq82nYodX5BsFF>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
