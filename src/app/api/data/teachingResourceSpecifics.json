@@ -3802,5 +3802,81 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732047482333",
+    "postDate": "19 de novembro de 2024 às 16:18",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      }
+    ],
+    "topicSpecific": {
+      "fisica": [
+        {
+          "id": 9,
+          "title": "Eletricidade estática",
+          "slug": "eletricidade-estatica"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Gerador de Van de Graaff em ação",
+    "slug": "gerador-de-van-de-graaff-em-acao",
+    "imagePreview": "/1732047482333/images/imagem_2024-11-19_161922946.png",
+    "description": "Vamos utilizar o Gerador de Van de Graaff para ver o fenômeno da eletricidade estática.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Demonstrar o fenômeno da eletricidade estática de maneira prática;"
+      },
+      {
+        "id": 2,
+        "content": "Explicar como cargas elétricas podem ser geradas e acumuladas em um corpo condutor;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar o experimento com fenômenos naturais, como raios e eletrização por contato;"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Gerador de Van de Graaff;"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Pegue o Gerador de Van de Graaff e ligue na tomada.",
+        "imagePath": "/1732047482333/images/imagem_2024-11-19_162122782.png"
+      },
+      {
+        "id": 2,
+        "content": "Toque na parte esférica e veja o que ocorre com o cabelo.",
+        "imagePath": "/1732047482333/images/imagem_2024-11-19_162216179.png"
+      }
+    ],
+    "results": "Ao ligar o Gerador de Van de Graaff, a cúpula acumulará cargas elétricas, e objetos próximos, como cabelos ou pequenos pedaços de papel, reagirão a essa eletrização. Observa-se, por exemplo, que os cabelos de uma pessoa que toca na cúpula ficarão arrepiados devido à repulsão entre cargas iguais.",
+    "scientificExplanation": "O Gerador de Van de Graaff é um dispositivo que demonstra o fenômeno da eletricidade estática. Ele funciona por meio de uma correia em movimento que transporta cargas elétricas geradas por fricção até uma cúpula condutora, onde elas se acumulam. A eletrização ocorre devido à transferência de elétrons, criando uma diferença de potencial elevada. Fases do experimento: Fricção: A correia do gerador atrita com um material, gerando cargas elétricas. Transporte de cargas: As cargas são transferidas da correia para a cúpula condutora. Acúmulo de cargas: A cúpula acumula um alto potencial elétrico. Interação com objetos próximos: Os objetos próximos são afetados pelas cargas acumuladas, resultando em repulsão ou atração. Fenômenos observados: Arrepio dos cabelos: Quando uma pessoa toca a cúpula, as cargas se distribuem pelo corpo, fazendo com que os fios de cabelo se repelem devido às cargas iguais. Atração ou repulsão de objetos leves: Pequenos pedaços de papel ou materiais semelhantes podem ser atraídos ou repelidos pela cúpula.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Blogspot, Alexandre Medeiros Física Astronomia. Disponível em: <https://alexandremedeirosfisicaastronomia.blogspot.com/2011/10/fisica-com-o-circo-e-o-circo-sem-fisica.html>. Acesso em: 19 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Gênios da Física. Disponível em: <https://youtu.be/zq8NsEcbSDw?si=tv7cPVNnYAKwAWoq>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
