@@ -3386,5 +3386,76 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732028994430",
+    "postDate": "19 de novembro de 2024 às 11:09",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 2,
+        "title": "Biologia",
+        "slug": "biologia"
+      }
+    ],
+    "topicSpecific": {
+      "biologia": [
+        {
+          "id": 1,
+          "title": "Anatomia humana",
+          "slug": "anatomia-humana"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 4,
+      "title": "Modelos físicos (Maquetes e Protótipos)",
+      "slug": "modelos-fisicos",
+      "steps": "Representações tridimensionais de objetos ou processos científicos que ajudam na visualização e compreensão dos conteúdos."
+    },
+    "title": "Modelos prontos da anatomia humana",
+    "slug": "modelos-prontos-da-anatomia-humana",
+    "imagePreview": "/1732028994430/images/imagem_2024-11-19_111634704.png",
+    "description": "Vamos utilizar modelos prontos para mostrar a anatomia humana.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Compreender a anatomia humana;"
+      },
+      {
+        "id": 2,
+        "content": "Relacionar estrutura e função;"
+      },
+      {
+        "id": 3,
+        "content": "Aprimorar o aprendizado visual e tátil."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Modelo pronto."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Acesse os sites para comprar modelos prontos: 1 - <https://lista.mercadolivre.com.br/maquete-de-anatomia-humana>. 2- <https://pt.aliexpress.com/w/wholesale-maquetes-de-anatomia.html>. Utilize um dos modelos para explicar a anatomia humana.",
+        "imagePath": "/1732028994430/images/imagem_2024-11-19_111401126.png"
+      }
+    ],
+    "results": "Os estudantes devem ser capazes de identificar corretamente órgãos e sistemas no modelo, reconhecendo suas localizações e funções. Espera-se que a visualização tridimensional proporcione um aprendizado mais efetivo em comparação com diagramas bidimensionais, promovendo maior engajamento e compreensão dos conceitos de anatomia.",
+    "scientificExplanation": "Modelos anatômicos são ferramentas didáticas que simulam a estrutura tridimensional do corpo humano. Representação realista: Proporcionam uma visão clara da organização espacial dos órgãos e sistemas, como o sistema cardiovascular, respiratório e digestório. Aprendizagem prática: Facilita o estudo de estruturas complexas, como a interação entre ossos, músculos e órgãos, além de permitir a exploração visual e tátil. Aplicação na ciência: Esses modelos são amplamente utilizados em escolas e universidades para ensinar anatomia e fisiologia, especialmente porque permitem uma visão detalhada de estruturas que são difíceis de visualizar em gráficos planos. Essa atividade promove o aprendizado interativo, estimulando os sentidos e reforçando o conhecimento teórico de forma prática.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Aliexpress. Disponível em: <https://pt.aliexpress.com/w/wholesale-maquetes-de-anatomia.html>. Acesso em: 19 de NOV de 2024."
+      },
+      {
+        "id": 2,
+        "content": "Mercado Livre. Disponível em: <https://lista.mercadolivre.com.br/maquete-de-anatomia-humana>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
