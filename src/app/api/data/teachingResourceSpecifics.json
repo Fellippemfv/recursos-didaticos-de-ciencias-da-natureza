@@ -3110,5 +3110,80 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732020130194",
+    "postDate": "19 de novembro de 2024 às 08:42",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 3,
+        "title": "Química",
+        "slug": "quimica"
+      }
+    ],
+    "topicSpecific": {
+      "quimica": [
+        {
+          "id": 9,
+          "title": "Ácidos e bases",
+          "slug": "acidos-e-bases"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Ácidos e bases utilizando vários líquidos",
+    "slug": "acidos-e-bases-utilizando-varios-liquidos",
+    "imagePreview": "/1732020130194/images/imagem_2024-11-19_084450144.png",
+    "description": "Vamos determinar na prática algumas substâncias como ácidos ou bases.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Identificar substâncias ácidas e básicas;"
+      },
+      {
+        "id": 2,
+        "content": "Observar reações químicas;"
+      },
+      {
+        "id": 3,
+        "content": "Relacionar a química com o cotidiano."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "01 Jarra com 01 litro de suco de repolho roxo;"
+      },
+      {
+        "id": 2,
+        "content": "01 amostra de cada um dos liquidos: Água sanitária, água com sabão, bicarbonato de sódio, água, água com açucar temperado, leite, detergente, vinagre, suco de limão, álcool."
+      },
+      {
+        "id": 3,
+        "content": "09 Copos transparentes."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Posicione todos os copos com uma amostra de cada elemento, devem ficar um do lado do outro. Depois vá adicionando suco de repolho roxo em cada copo. Veja a mudança de cores ao final do experimento.",
+        "imagePath": "/1732020130194/images/imagem_2024-11-19_085133413.png"
+      }
+    ],
+    "results": "Espera-se que os estudantes classifiquem corretamente as substâncias como ácidas, básicas ou neutras com base na mudança de cor do suco de repolho roxo. Por exemplo, substâncias ácidas tendem a mudar o suco para tons avermelhados, enquanto bases o transformam em tons de verde ou azul. A água destilada ou substâncias neutras não devem alterar significativamente a coloração. Além disso, o experimento deve promover o entendimento prático do conceito de pH.",
+    "scientificExplanation": "O pH é uma escala que mede a acidez ou basicidade de uma substância, variando de 0 a 14. Substâncias com pH menor que 7 são ácidas, enquanto aquelas com pH maior que 7 são básicas. O suco de repolho roxo contém antocianinas, pigmentos naturais que funcionam como indicadores de pH, mudando de cor em diferentes condições. Ácidos (pH < 7): Como vinagre, suco de limão e água temperada com açúcar, liberam íons𝐻+, tornando o suco avermelhado ou rosa. Bases (pH > 7): Como água sanitária, água com sabão e bicarbonato de sódio, liberam íons𝑂𝐻−, causando tons de azul, verde ou amarelo. Neutros (pH = 7): Como água destilada, não afetam a cor do suco significativamente. Este experimento ajuda os estudantes a identificar substâncias ácidas e básicas no cotidiano e compreender o papel dos indicadores químicos na análise de pH.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, CEN Canal de Ciências Exatas e Naturais. Disponível em: <https://youtu.be/bRyPsan79mA?si=IL59y9uZwXjH21Ox>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
