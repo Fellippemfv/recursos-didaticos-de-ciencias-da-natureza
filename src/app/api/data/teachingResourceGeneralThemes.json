@@ -317,6 +317,11 @@
         "id": 17,
         "title": "Reações Endotérmicas",
         "slug": "reacoes-endotermicas"
+      },
+      {
+        "id": 18,
+        "title": "Cromatografia",
+        "slug": "cromatografia"
       }
     ]
   }
