@@ -1122,8 +1122,8 @@
       "slug": "experimentos",
       "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
     },
-    "title": "Observando a força do som",
-    "slug": "observando-a-forca-do-som",
+    "title": "Efeito do som",
+    "slug": "efeito-do-som",
     "imagePreview": "/1731685209749/images/imagem_2024-11-15_114045212.png",
     "description": "Nesta atividade, os estudantes observam na prática como o som, uma onda mecânica, pode mover objetos. Utilizando uma colher, uma panela de metal e grãos de arroz, eles visualizam a propagação das ondas sonoras e exploram conceitos como frequência e intensidade sonora. Uma forma envolvente de demonstrar como o som pode interagir com o ambiente e estimular a curiosidade científica!",
     "objectives": [
@@ -1169,7 +1169,7 @@
     "methods": [
       {
         "id": 1,
-        "content": "Pegue o pote e cubra toda a parte de cima de cima com um pedaço de sacola (Sacola de mercado ou sacola de lixo). E prenda a sacola em cima utilizando uma fita, de modo a superfície ficar bem rígida e reta,",
+        "content": "Pegue o pote e cubra toda a parte de cima com um pedaço de sacola (Sacola de mercado ou sacola de lixo). E prenda a sacola em cima utilizando uma fita, de modo a superfície ficar bem rígida e reta,",
         "imagePath": "/1731685209749/images/imagem_2024-11-15_114626782.png"
       },
       {

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 16, // Maior que os outros títulos
     fontWeight: "bold",
     textAlign: "center", // Centralizado no topo
-    marginBottom: spacing * 2, // Espaço adicional abaixo do título
+    marginBottom: spacing * 4, // Espaço adicional abaixo do título
     color: "#000",
   },
   title: {
@@ -96,12 +96,6 @@ const styles = StyleSheet.create({
 });
 
 const DownloadPDF = ({ experimentInfo }) => {
-  // Função para gerar o nome de arquivo dinâmico
-  const generateFileName = () => {
-    const timestamp = Date.now(); // Obtém o timestamp atual em milissegundos
-    return `recurso-didatico-${timestamp}.pdf`; // Cria o nome do arquivo com o timestamp
-  };
-
   const renderMethods = () => {
     const leftColumn = [];
     const rightColumn = [];
@@ -147,16 +141,28 @@ const DownloadPDF = ({ experimentInfo }) => {
               {/* Título principal no topo */}
               <Text style={styles.mainTitle}>{experimentInfo.title}</Text>
 
-              <Text style={styles.text}>
-                Objetivos:{" "}
-                {experimentInfo.objectives
-                  .map((objective) => objective.content)
-                  .join(" ")}{" "}
-                Lista de materiais necessários:{" "}
-                {experimentInfo.materials
-                  .map((material) => material.content)
-                  .join(" ")}
-              </Text>
+              {/* Materiais e Objetivos em colunas */}
+              <View style={styles.doubleColumn}>
+                {/* Coluna esquerda: Materiais */}
+                <View style={styles.column}>
+                  <Text style={styles.title}>Lista de Materiais</Text>
+                  {experimentInfo.materials.map((material, index) => (
+                    <Text key={index} style={styles.text}>
+                      {material.content}
+                    </Text>
+                  ))}
+                </View>
+
+                {/* Coluna direita: Objetivos */}
+                <View style={styles.column}>
+                  <Text style={styles.title}>Objetivos</Text>
+                  {experimentInfo.objectives.map((objective, index) => (
+                    <Text key={index} style={styles.text}>
+                      {objective.content}
+                    </Text>
+                  ))}
+                </View>
+              </View>
 
               {/* Metodologia */}
               <View style={styles.section}>
@@ -180,7 +186,7 @@ const DownloadPDF = ({ experimentInfo }) => {
             </Page>
           </Document>
         }
-        fileName={generateFileName()} // Passa o nome dinâmico aqui
+        fileName={`recurso-didatico-${experimentInfo.id}`} // Passa o nome dinâmico aqui
       >
         {({ loading }) =>
           loading ? (
