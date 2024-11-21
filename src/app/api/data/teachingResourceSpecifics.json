@@ -3777,5 +3777,97 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732223166403",
+    "postDate": "21 de novembro de 2024 às 17:06",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 2,
+        "title": "Biologia",
+        "slug": "biologia"
+      }
+    ],
+    "topicSpecific": {
+      "biologia": [
+        {
+          "id": 20,
+          "title": "Nutrição e alimentação saudável",
+          "slug": "nutricao-e-alimentacao-saudavel"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "Verificando se alimentos possuem amido utilizando iodo",
+    "slug": "verificando-se-alimentos-possuem-amido-utilizando-iodo",
+    "imagePreview": "/1732223166403/images/imagem_2024-11-21_170748613.png",
+    "description": "Nesta atividade, exploraremos a presença de amido em diversos alimentos, como arroz, batata-doce, ovo e frango. O experimento permite identificar o amido como uma fonte de energia, diferenciando alimentos ricos nesse carboidrato de outros que são predominantes em proteínas ou gorduras. Essa abordagem prática auxilia no entendimento da composição nutricional dos alimentos e seu impacto na dieta.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Identificar a presença de amido em diferentes alimentos;"
+      },
+      {
+        "id": 2,
+        "content": "Compreender o papel do amido como uma fonte de energia nos alimentos;"
+      },
+      {
+        "id": 3,
+        "content": "Diferenciar alimentos ricos em amido de outros nutrientes."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "04 Pratos descraveis ou placas de petri;"
+      },
+      {
+        "id": 2,
+        "content": "01 Amostra de frango;"
+      },
+      {
+        "id": 3,
+        "content": "01 Amostra de ovo cozido;"
+      },
+      {
+        "id": 4,
+        "content": "01 Amostra de batata doce;"
+      },
+      {
+        "id": 5,
+        "content": "01 amostra de arroz;"
+      },
+      {
+        "id": 6,
+        "content": "01 Vidro de iodo ou de lugol."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Coloque todos os quatro pratos na mesa, em cada um adicione uma amostra diferente.",
+        "imagePath": "/1732223166403/images/imagem_2024-11-21_171415794.png"
+      },
+      {
+        "id": 2,
+        "content": "Pingue pelo menos 5 gotas em cada amostra. Observe primeiro a cor do iodo para ser nossa base, depois verifique as amostras em que o iodo muda de cor, e quais não mudam.",
+        "imagePath": "/1732223166403/images/imagem_2024-11-21_171509384.png"
+      }
+    ],
+    "results": "Espera-se que os estudantes observem uma reação de coloração azulada e escura ao adicionar o reagente de iodo em alimentos ricos em amido, como arroz e batata-doce, enquanto alimentos como ovo e frango, ricos em proteínas, não apresentam alteração de cor.",
+    "scientificExplanation": "O amido é um carboidrato complexo armazenado em vegetais como fonte de energia. Ao entrar em contato com o iodo, ele forma um composto que resulta em uma coloração azul-escura, permitindo sua identificação em alimentos. Alimentos de origem animal, como ovo e frango, não possuem amido, pois são constituídos principalmente por proteínas e gorduras. Esse experimento ilustra como métodos químicos simples podem ser usados para detectar a composição de alimentos.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Prof Raísa Broggio. Disponível em: <https://youtu.be/u6no_V-LXak?si=SfGfL85szyOKGgFq>. Acesso em: 21 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
