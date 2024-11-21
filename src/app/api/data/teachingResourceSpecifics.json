@@ -46,7 +46,6 @@
         }
       ]
     },
-
     "resourceType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
@@ -3668,6 +3667,113 @@
       {
         "id": 2,
         "content": "Gênios da Física. Disponível em: <https://youtu.be/zq8NsEcbSDw?si=tv7cPVNnYAKwAWoq>. Acesso em: 19 de NOV de 2024."
+      }
+    ],
+    "activitySheetOne": ""
+  },
+  {
+    "id": "1732219012084",
+    "postDate": "21 de novembro de 2024 às 15:56",
+    "profileName": "Fellippe Matheus",
+    "topicGeneral": [
+      {
+        "id": 2,
+        "title": "Biologia",
+        "slug": "biologia"
+      }
+    ],
+    "topicSpecific": {
+      "biologia": [
+        {
+          "id": 22,
+          "title": "Permeabilidade do solo",
+          "slug": "permeabildiade-do-solo"
+        }
+      ]
+    },
+    "resourceType": {
+      "id": 1,
+      "title": "Experimentos (Demonstrativos e Investigativos)",
+      "slug": "experimentos",
+      "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
+    },
+    "title": "A permeabilidade em diferentes solos",
+    "slug": "a-permeabilidade-em-diferentes-solos",
+    "imagePreview": "/1732219012084/images/imagem_2024-11-21_155847765.png",
+    "description": "Neste experimento, vamos analisar a permeabilidade de diferentes tipos de solo e rochas utilizando garrafas PET como ferramentas principais. O objetivo é compreender como a composição do solo influencia sua capacidade de infiltração de água, destacando as características que afetam a retenção e o escoamento. Essa atividade permite explorar, de maneira prática, conceitos importantes sobre a interação entre água e solo, contribuindo para a compreensão de fenômenos naturais e aplicações no manejo ambiental.",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "Avaliar a permeabilidade de diferentes tipos de solo e rochas;"
+      },
+      {
+        "id": 2,
+        "content": "Compreender a relação entre a composição do solo e sua capacidade de infiltração de água;"
+      },
+      {
+        "id": 3,
+        "content": "Identificar características dos solos e rochas que influenciam na retenção e escoamento de água."
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "04 Garrafas pet pequenas;"
+      },
+      {
+        "id": 2,
+        "content": "04 Copos cheios de água (Com a mesma quantidade em todos);"
+      },
+      {
+        "id": 3,
+        "content": "03 Copos com amostras de solos diferentes (Terra preta, Barro, Areia);"
+      },
+      {
+        "id": 4,
+        "content": "01 Copo com rochas;"
+      },
+      {
+        "id": 5,
+        "content": "01 Faca;"
+      },
+      {
+        "id": 6,
+        "content": "01 Pacote de algodão."
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "Pegue todas as garrafas pets pequenas, utilizando uma faca faça furos na sua tampa bem pequenos.",
+        "imagePath": "/1732219012084/images/imagem_2024-11-21_160615229.png"
+      },
+      {
+        "id": 2,
+        "content": "Posteriormente utilizando uma faca, corte todas as garrafas pet bem ao meio.",
+        "imagePath": "/1732219012084/images/imagem_2024-11-21_160717508.png"
+      },
+      {
+        "id": 3,
+        "content": "Coloque um chumaço de algodão dentro da parte da garrafa com tampa. Depois fixe a parte da cabeça da garrafa no fundo da outra metade da garrafa.",
+        "imagePath": "/1732219012084/images/imagem_2024-11-21_160905354.png"
+      },
+      {
+        "id": 4,
+        "content": "Dentro de cada garrafa, coloque uma amostra presentes nos copos (de solo e rochas).",
+        "imagePath": "/1732219012084/images/imagem_2024-11-21_161024992.png"
+      },
+      {
+        "id": 5,
+        "content": "Ao final, adicione um copo cheio de água em todas as garrafas com amostras, de preferência ao mesmo tempo. E verifique a quantidade de água que cai em cada um.",
+        "imagePath": "/1732219012084/images/imagem_2024-11-21_161320031.png"
+      }
+    ],
+    "results": "Espera-se que os estudantes observem variações na taxa de infiltração da água entre diferentes tipos de solo e rochas. Solos arenosos devem apresentar maior permeabilidade devido aos poros maiores, enquanto solos argilosos e rochas compactas devem demonstrar menor permeabilidade devido à sua densidade e menor espaço entre partículas.",
+    "scientificExplanation": "A permeabilidade do solo é a capacidade que ele possui de permitir a passagem de água por seus poros. Solos arenosos, compostos por partículas grandes e pouco compactadas, possuem alta permeabilidade, permitindo maior infiltração de água. Já solos argilosos e rochas apresentam partículas menores e maior compactação, resultando em menor permeabilidade. Esse experimento simula processos naturais, como o ciclo da água, e ajuda a entender questões ambientais, como o escoamento superficial e a recarga de lençóis freáticos.",
+    "references": [
+      {
+        "id": 1,
+        "content": "Youtube, Prof. Claudinei Vieira - Ciências e Biologia. Disponível em: <https://youtu.be/hwA823-7FTw?si=4lzY9Si6SA2IVi9B>. Acesso em: 21 de NOV de 2024."
       }
     ],
     "activitySheetOne": ""
