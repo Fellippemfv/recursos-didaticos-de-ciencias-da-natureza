@@ -23,11 +23,6 @@
           "slug": "combustiveis-e-combustao"
         },
         {
-          "id": 14,
-          "title": "Reações de oxidação e redução (redox)",
-          "slug": "reacoes-de-oxidacao-e-reducao"
-        },
-        {
           "id": 8,
           "title": "Reações químicas simples",
           "slug": "reacoes-quimicas-simples"
@@ -51,25 +46,7 @@
         }
       ]
     },
-    "topicLocation": [
-      {
-        "id": 3,
-        "title": "Ambiente aberto",
-        "slug": "ambiente-aberto"
-      },
-      {
-        "id": 2,
-        "title": "Laboratório de ciências",
-        "slug": "laboratorio-de-ciencias"
-      }
-    ],
-    "difficulty": {
-      "id": 1,
-      "title": "Fácil",
-      "slug": "facil",
-      "steps": "1 - 5",
-      "explanation": "De 1 a 5 passos são necessários para completar."
-    },
+
     "resourceType": {
       "id": 1,
       "title": "Experimentos Demonstrativos",
@@ -83,29 +60,33 @@
     "objectives": [
       {
         "id": 1,
-        "content": "Primeiro objetivo"
+        "content": "Demonstrar o conceito de combustão de forma controlada e segura;"
       },
       {
         "id": 2,
-        "content": "Segundo Objetivo"
+        "content": "Explicar o papel do gás inflamável, do detergente e da água na realização do experimento;"
+      },
+      {
+        "id": 3,
+        "content": "Desenvolver a compreensão sobre a propagação do calor e a segurança em reações químicas."
       }
     ],
     "materials": [
       {
         "id": 1,
-        "content": "01 Bacia."
+        "content": "01 Bacia;"
       },
       {
         "id": 2,
-        "content": "01 Bom ar (aerossol)."
+        "content": "01 Bom ar (aerossol);"
       },
       {
         "id": 3,
-        "content": "02 Litros de água."
+        "content": "02 Litros de água;"
       },
       {
         "id": 4,
-        "content": "01 Caixa de fósforo ou isqueiro."
+        "content": "01 Caixa de fósforo ou isqueiro;"
       },
       {
         "id": 5,
@@ -115,17 +96,17 @@
     "methods": [
       {
         "id": 1,
-        "content": "Separe em uma superfície plana os materiais. Adicione a bacia água.\n",
+        "content": "Separe em uma superfície plana os materiais. E adicione a bacia água.\n",
         "imagePath": "/images/1710363294372/img-project-01.jpg"
       },
       {
         "id": 2,
-        "content": "Em seguida, adicione detergente à água e verifique se estão se formando bolhas.",
+        "content": "Em seguida, adicione detergente à água.",
         "imagePath": "/images/1710363294372/img-project-02.jpg"
       },
       {
         "id": 3,
-        "content": "Remova o borrifador do bom ar e pressione-o contra a parede da bacia, submerso na água, para liberar o gás.",
+        "content": "Remova o borrifador do bom ar e pressione-o contra a parede da bacia, submerso na água, para liberar o gás. Neste momento Deve gerar muitas bolhas densas",
         "imagePath": "/images/1710363294372/img-project-03.jpg"
       },
       {
@@ -135,12 +116,12 @@
       },
       {
         "id": 5,
-        "content": "Peça para que as pessoas se afastem, acenda o fósforo e aproxime-o das bolhas.",
+        "content": "Peça para que as pessoas se afastem, acenda o fósforo e aproxime-o das bolhas. Lembrando que deve ser muito rapido o momento de pegar as bolhas nas mãos e ascender. Pois o que deve proteger as mãos é a água, se você demorar a água vai sair da mão e causar acidentes.",
         "imagePath": "/images/1710363294372/img-project-05.jpg"
       }
     ],
-    "results": "A mão deve pegar fogo por um curto período de tempo sem causar danos.",
-    "scientificExplanation": "O gás propileno (propano) contido nos recipientes de aerossol é altamente inflamável. A água atua como um isolante térmico, absorvendo o calor gerado durante a combustão, protegendo suas mãos. A água é conhecida por sua alta capacidade de absorver calor, tornando-se um excelente isolante térmico.\n",
+    "results": "Quando a mistura de detergente e gás inflamável (aerossol) é usada para gerar bolhas na superfície da água, e essas bolhas são incendiadas, o fogo será visível por alguns instantes na mão sem causar queimaduras, devido à camada protetora de água e ao rápido consumo do gás.",
+    "scientificExplanation": "Este experimento utiliza a combustão de um gás inflamável (proveniente do aerossol) misturado ao detergente para formar bolhas, que servem como -reservatórios- de gás inflamável. A combustão ocorre apenas enquanto o gás é consumido, com a proteção da camada de água impedindo o contato direto entre o fogo e a pele. Processos químicos envolvidos: Formação das bolhas: O gás inflamável é capturado no interior das bolhas criadas pela mistura de detergente e água. Combustão: Quando o gás inflamável nas bolhas entra em contato com o fogo, ocorre a reação de combustão, liberando energia em forma de luz e calor. Proteção térmica: A água que cobre as mãos absorve a maior parte do calor gerado pela combustão, protegendo a pele de queimaduras.",
     "references": [
       {
         "id": 1,
@@ -150,97 +131,6 @@
         "id": 2,
         "content": "PT WIKIHOW. Disponível em: https://pt.wikihow.com/Segurar-Fogo-com-as-Mãos. Acesso em: 13 de MAR de 2024."
       }
-    ]
-  },
-  {
-    "id": "1710365323075",
-    "postDate": "13 de março de 2024 às 17:28",
-    "profileName": "Fellippe Matheus",
-    "topicGeneral": [
-      {
-        "id": 1,
-        "title": "Física",
-        "slug": "fisica"
-      }
-    ],
-    "topicSpecific": {
-      "fisica": [
-        {
-          "id": 8,
-          "title": "Luz e óptica",
-          "slug": "luz-e-optica"
-        },
-        {
-          "id": 1,
-          "title": "Movimento e deslocamento",
-          "slug": "movimento-e-deslocamento"
-        },
-        {
-          "id": 13,
-          "title": "Óptica geométrica",
-          "slug": "optica-geometrica"
-        }
-      ]
-    },
-    "topicLocation": [
-      {
-        "id": 1,
-        "title": "Sala de aula",
-        "slug": "sala-de-aula"
-      },
-      {
-        "id": 2,
-        "title": "Laboratório de ciências",
-        "slug": "laboratorio-de-ciencias"
-      },
-      {
-        "id": 3,
-        "title": "Ambiente aberto",
-        "slug": "ambiente-aberto"
-      }
-    ],
-    "difficulty": {
-      "id": 2,
-      "title": "Médio",
-      "slug": "medio",
-      "steps": "6 - 10",
-      "explanation": "De 6 a 10 passos são necessários para completar."
-    },
-    "resourceType": {
-      "id": 1,
-      "title": "Experimentos Demonstrativos",
-      "slug": "demonstrativos",
-      "steps": "São experimentos realizados para demonstrar um conceito específico."
-    },
-    "title": "Disco de newton",
-    "slug": "disco-de-newton",
-    "imagePreview": "/images/1710365323075/img-preview-001.png",
-    "description": " Prepare-se para uma experiência visual fascinante com o Disco de Newton! Neste experimento, você explorará a velocidade da luz, o processo da visão e as cores de uma forma divertida e educativa.",
-    "objectives": [
-      {
-        "id": 1,
-        "content": "primeiro objetivo"
-      },
-      {
-        "id": 2,
-        "content": "segundo objetivo"
-      }
-    ],
-    "materials": [
-      "asdasd.asdasd"
-    ],
-    "methods": [
-      "asdasdasdasd",
-      "asdasdasd"
-    ],
-    "methodsImages": [
-      "/images/exp-9/img-0.jpg",
-      "/images/exp-9/img-0.jpg"
-    ],
-    "results": "asdasd",
-    "scientificExplanation": "asdasd",
-    "references": [
-      "asdasdasdasd"
     ]
   },
   {
@@ -265,11 +155,6 @@
           "id": 6,
           "title": "Pressão e densidade",
           "slug": "pressao-e-densidade"
-        },
-        {
-          "id": 15,
-          "title": "Transformações de energia",
-          "slug": "transformacoes-de-energia"
         }
       ],
       "quimica": [
@@ -282,57 +167,8 @@
           "id": 3,
           "title": "Misturas e substâncias",
           "slug": "misturas-e-substancias"
-        },
-        {
-          "id": 5,
-          "title": "Elementos, compostos e misturas",
-          "slug": "elementos-compostos-e-misturas"
-        },
-        {
-          "id": 8,
-          "title": "Reações químicas simples",
-          "slug": "reacoes-quimicas-simples"
-        },
-        {
-          "id": 10,
-          "title": "Soluções e concentração",
-          "slug": "solucoes-e-concentracao"
         }
       ]
-    },
-    "topicLocation": [
-      {
-        "id": 1,
-        "title": "Sala de aula",
-        "slug": "sala-de-aula"
-      },
-      {
-        "id": 2,
-        "title": "Laboratório de ciências",
-        "slug": "laboratorio-de-ciencias"
-      },
-      {
-        "id": 3,
-        "title": "Ambiente aberto",
-        "slug": "ambiente-aberto"
-      },
-      {
-        "id": 4,
-        "title": "Quadra da escola",
-        "slug": "quadra-da-escola"
-      },
-      {
-        "id": 5,
-        "title": "Pátio da escola",
-        "slug": "patio-da-escola"
-      }
-    ],
-    "difficulty": {
-      "id": 1,
-      "title": "Fácil",
-      "slug": "facil",
-      "steps": "1 - 5",
-      "explanation": "De 1 a 5 passos são necessários para completar."
     },
     "resourceType": {
       "id": 1,
@@ -347,15 +183,15 @@
     "objectives": [
       {
         "id": 1,
-        "content": "Demonstrar a imiscibilidade entre óleo e água."
+        "content": "Demonstrar a imiscibilidade entre óleo e água;"
       },
       {
         "id": 2,
-        "content": "Observar a formação de bolhas devido à reação efervescente."
+        "content": "Observar a formação de bolhas devido à reação efervescente;"
       },
       {
         "id": 3,
-        "content": "Explicar o fenômeno de densidade e pressão através do movimento das bolhas."
+        "content": "Explicar o fenômeno de densidade e pressão através do movimento das bolhas;"
       },
       {
         "id": 4,
@@ -365,23 +201,27 @@
     "materials": [
       {
         "id": 1,
-        "content": "01 Garrafa pet de refrigerante com tampa, vazia e limpa."
+        "content": "01 Garrafa pet de refrigerante com tampa, vazia e limpa;"
       },
       {
         "id": 2,
-        "content": "01 garrafa de Óleo vegetal (escolha um bem barato)."
+        "content": "01 garrafa de Óleo vegetal (escolha um bem barato);"
       },
       {
         "id": 3,
-        "content": "04 Corante alimentar (De cores variadas)."
+        "content": "04 Corante alimentar (De cores variadas);"
       },
       {
         "id": 4,
-        "content": "01 Sal, antiácido efervescente ou comprimido de vitamina C (Em pastilhas ou estado sólido)"
+        "content": "01 Sal, antiácido efervescente ou comprimido de vitamina C (Em pastilhas ou estado sólido);"
       },
       {
         "id": 5,
-        "content": "500 ml de Água."
+        "content": "500 ml de Água;"
+      },
+      {
+        "id": 6,
+        "content": "01 Funil."
       }
     ],
     "methods": [
@@ -392,7 +232,7 @@
       },
       {
         "id": 2,
-        "content": "Coloque óleo, água e corante alimentar na garrafa pet. Preencha a garrafa com ¾ de óleo vegetal, complete o restante com água e pingue dez gotas de corante alimentar (ou uma quantia suficiente para deixar a solução bem escura).",
+        "content": "Com auxílio do funil, preencha a garrafa com ¾ de óleo vegetal, complete o restante com água e pingue dez gotas de corante alimentar (ou uma quantia suficiente para deixar a solução bem escura).",
         "imagePath": "/1719173649995/images/lava-2.jpg"
       },
       {
@@ -425,11 +265,6 @@
         "id": 1,
         "title": "Física",
         "slug": "fisica"
-      },
-      {
-        "id": 3,
-        "title": "Química",
-        "slug": "quimica"
       }
     ],
     "topicSpecific": {
@@ -438,28 +273,6 @@
           "id": 8,
           "title": "Luz e óptica",
           "slug": "luz-e-optica"
-        }
-      ],
-      "quimica": [
-        {
-          "id": 4,
-          "title": "Transformações da matéria",
-          "slug": "transformacoes-da-materia"
-        },
-        {
-          "id": 3,
-          "title": "Misturas e substâncias",
-          "slug": "misturas-e-substancias"
-        },
-        {
-          "id": 5,
-          "title": "Elementos, compostos e misturas",
-          "slug": "elementos-compostos-e-misturas"
-        },
-        {
-          "id": 8,
-          "title": "Reações químicas simples",
-          "slug": "reacoes-quimicas-simples"
         }
       ]
     },
@@ -510,41 +323,33 @@
     "objectives": [
       {
         "id": 1,
-        "content": "Observar o efeito da interação entre o detergente e o leite colorido com corante alimentar."
-      },
-      {
-        "id": 2,
-        "content": "Estimular a curiosidade e o interesse das crianças pela ciência através de uma atividade lúdica."
+        "content": "Observar o efeito da interação entre o detergente e o leite colorido com corante alimentar;"
       },
       {
         "id": 3,
-        "content": "Promover a experimentação e a exploração sensorial com diferentes materiais."
+        "content": "Promover a experimentação e a exploração sensorial com diferentes materiais;"
       },
       {
         "id": 4,
         "content": "Facilitar a compreensão do conceito de tensão superficial e suas aplicações práticas."
-      },
-      {
-        "id": 5,
-        "content": "Incentivar a colaboração e a interação entre as crianças durante a realização da atividade."
       }
     ],
     "materials": [
       {
         "id": 1,
-        "content": "01 prato raso grande."
+        "content": "01 prato raso grande;"
       },
       {
         "id": 2,
-        "content": "01 garrafa de 500ml de leite liquido."
+        "content": "01 garrafa de 500ml de leite liquido;"
       },
       {
         "id": 3,
-        "content": "01 corantes de alimentos (De cores variadas)."
+        "content": "01 corantes de alimentos (De cores variadas);"
       },
       {
         "id": 4,
-        "content": "01 garrafa de detergente de cozinha."
+        "content": "01 garrafa de detergente de cozinha;"
       },
       {
         "id": 5,
@@ -584,6 +389,11 @@
     "profileName": "Fellippe Matheus",
     "topicGeneral": [
       {
+        "id": 1,
+        "title": "Física",
+        "slug": "fisica"
+      },
+      {
         "id": 3,
         "title": "Química",
         "slug": "quimica"
@@ -592,60 +402,23 @@
     "topicSpecific": {
       "quimica": [
         {
-          "id": 3,
-          "title": "Misturas e substâncias",
-          "slug": "misturas-e-substancias"
-        },
-        {
           "id": 1,
           "title": "Propriedades da matéria",
           "slug": "propriedades-da-materia"
-        },
-        {
-          "id": 5,
-          "title": "Elementos, compostos e misturas",
-          "slug": "elementos-compostos-e-misturas"
         },
         {
           "id": 10,
           "title": "Soluções e concentração",
           "slug": "solucoes-e-concentracao"
         }
+      ],
+      "fisica": [
+        {
+          "id": 6,
+          "title": "Pressão e densidade",
+          "slug": "pressao-e-densidade"
+        }
       ]
-    },
-    "topicLocation": [
-      {
-        "id": 1,
-        "title": "Sala de aula",
-        "slug": "sala-de-aula"
-      },
-      {
-        "id": 2,
-        "title": "Laboratório de ciências",
-        "slug": "laboratorio-de-ciencias"
-      },
-      {
-        "id": 3,
-        "title": "Ambiente aberto",
-        "slug": "ambiente-aberto"
-      },
-      {
-        "id": 4,
-        "title": "Quadra da escola",
-        "slug": "quadra-da-escola"
-      },
-      {
-        "id": 5,
-        "title": "Pátio da escola",
-        "slug": "patio-da-escola"
-      }
-    ],
-    "difficulty": {
-      "id": 1,
-      "title": "Fácil",
-      "slug": "facil",
-      "steps": "1 - 5",
-      "explanation": "De 1 a 5 passos são necessários para completar."
     },
     "resourceType": {
       "id": 1,
@@ -660,41 +433,45 @@
     "objectives": [
       {
         "id": 1,
-        "content": "Verificar quando uma substância aumenta ou diminui de densidade."
+        "content": "Verificar quando uma substância aumenta ou diminui de densidade;"
       },
       {
         "id": 2,
-        "content": "Estudar sobre concentração e densidade."
+        "content": "Entender a relação entre a densidade das substâncias e o comportamento de objetos submersos;"
+      },
+      {
+        "id": 3,
+        "content": "Verificar como diferentes substâncias influenciam a densidade de uma solução."
       }
     ],
     "materials": [
       {
         "id": 1,
-        "content": "01 pacote de sal de cozinha."
+        "content": "01 pacote de sal de cozinha;"
       },
       {
         "id": 2,
-        "content": "01 pacote de açucar de cozinha."
+        "content": "01 pacote de açucar de cozinha;"
       },
       {
         "id": 3,
-        "content": "01 Solução salina (soro ou congestionante)."
+        "content": "01 Solução salina (soro ou congestionante);"
       },
       {
         "id": 4,
-        "content": "04 frascos de vidro, copos (ou béqueres) altos e largos o suficiente para conter um ovo."
+        "content": "04 frascos de vidro, copos (ou béqueres) altos e largos o suficiente para conter um ovo;"
       },
       {
         "id": 5,
-        "content": "01 colher de metal ou plástico."
+        "content": "01 colher de metal ou plástico;"
       },
       {
         "id": 6,
-        "content": "1 L de água."
+        "content": "1 L de água;"
       },
       {
         "id": 7,
-        "content": "04 ovos crus (certifique-se de que não estejam rachados)."
+        "content": "04 ovos crus (certifique-se de que não estejam rachados);"
       },
       {
         "id": 8,
@@ -714,12 +491,12 @@
       },
       {
         "id": 3,
-        "content": "Com cuidado, coloque 1 ovo em cada copo e observe quais irão flutuar.",
+        "content": "Identifique cada copo com um papel para não confundir. E com cuidado, coloque 1 ovo em cada copo e observe quais irão flutuar.",
         "imagePath": "/1719193862873/images/exp-salina-4.jpg"
       }
     ],
-    "results": "",
-    "scientificExplanation": "A densidade de uma substância é definida como a massa por unidade de volume. Quando um ovo é colocado na água da torneira ou solução salina, ele afunda porque a densidade do ovo é maior que a densidade da água. Ao adicionar sal ou açúcar à água, aumentamos a densidade da água, pois essas substâncias aumentam a massa da solução sem alterar significativamente o volume.",
+    "results": "Na água pura, o ovo tende a afundar, pois sua densidade é maior que a da água. Na solução com sal, o ovo deve flutuar devido ao aumento significativo da densidade. Na água com açúcar, o resultado pode variar dependendo da concentração, mas o ovo geralmente afundará ou flutuará parcialmente. Na solução salina, o comportamento será intermediário, mostrando leve flutuação ou afundamento dependendo da quantidade de sal presente. Este experimento oferece uma aplicação prática dos conceitos de densidade e propriedades de soluções, permitindo aos estudantes visualizar e compreender essas ideias de maneira interativa e experimental.",
+    "scientificExplanation": "A densidade é definida como a razão entre massa e volume de uma substância. Adicionar sal ou açúcar à água aumenta sua densidade. Um objeto submerso flutuará se for menos denso que o líquido, e afundará se for mais denso. Neste experimento, o ovo serve como objeto de referência, enquanto as soluções demonstram a variação na densidade causada pela adição de diferentes solutos.",
     "references": [
       {
         "id": 1,
@@ -760,8 +537,8 @@
     },
     "title": "Células na garrafa",
     "slug": "celulas-na-garrafa",
-    "imagePreview": "/1731605562512/images/Captura de tela 2024-11-14 125342.png",
-    "description": "Criando células com garrafa pet, utilizando materiais baratos e acessíveis",
+    "imagePreview": "/1731605562512/images/preview-image.png",
+    "description": "Nesta atividade prática e acessível, os estudantes utilizam materiais simples como garrafas PET, massa de modelar e gel de cabelo para modelar células eucariontes e procariontes. Ao explorar as estruturas celulares de forma criativa, eles aprendem a identificar organelas, compreender sua organização e desenvolver habilidades manuais. Transforme conceitos abstratos em algo tangível e divertido, ideal para aproximar os estudantes do fascinante mundo da Biologia!",
     "objectives": [
       {
         "id": 1,
@@ -811,8 +588,8 @@
         "imagePath": "/1731605562512/images/imagem_2024-11-14_133842933.png"
       }
     ],
-    "results": "",
-    "scientificExplanation": "",
+    "results": "Espera-se que os estudantes consigam montar modelos representativos de células eucariontes e procariontes, destacando as principais diferenças estruturais entre elas. O modelo da célula eucarionte deve incluir núcleo e organelas delimitadas, enquanto o modelo da célula procarionte deve apresentar uma organização mais simples, sem núcleo definido.",
+    "scientificExplanation": "Células procariontes, como as bactérias, possuem uma organização simples, sem núcleo delimitado por membrana, com o material genético disperso no citoplasma. Já células eucariontes, presentes em organismos como animais e plantas, possuem núcleo bem definido e diversas organelas membranosas, como mitocôndrias e retículo endoplasmático, que desempenham funções específicas. Ao criar modelos físicos dessas células, os estudantes podem visualizar e compreender essas diferenças de forma concreta, relacionando a estrutura celular à sua funcionalidade.",
     "references": [
       {
         "id": 1,
@@ -855,7 +632,7 @@
     "title": "Medindo horas com o sol",
     "slug": "medindo-horas-com-o-sol",
     "imagePreview": "/1731608083583/images/Relógiode-sol-2-Cartoon-e1548015907475.jpg",
-    "description": "Criando um dispositivo arcaico para a medição das horas.",
+    "description": "Nesta atividade fascinante, os estudantes criam um dispositivo simples para medir as horas utilizando materiais como papel, um espeto de madeira e uma bússola. Ao explorar o movimento aparente do Sol, eles aprendem sobre a passagem do tempo, conceitos de orientação e localização geográfica, além de desenvolver habilidades de observação e registro científico. Uma forma prática e envolvente de conectar Física e Astronomia ao cotidiano!",
     "objectives": [
       {
         "id": 1,
@@ -945,7 +722,7 @@
     "title": "1° Lei de newton no copo",
     "slug": "1-lei-de-newton-no-copo",
     "imagePreview": "/1731610038443/images/imagem_2024-11-14_144921900.png",
-    "description": "Vamos observar a 1° Lei de newton utilizando objetos simples e baratos.",
+    "description": "Nesta atividade interativa, os estudantes testam a relação entre força, massa e aceleração ao assoprar três bolinhas de tamanhos e materiais diferentes. Utilizando um canudo, eles observam na prática como a Segunda Lei de Newton (F = m.a) explica o movimento dos objetos. Uma maneira simples, divertida e eficaz de explorar conceitos fundamentais da Física e desenvolver habilidades de experimentação e análise!",
     "objectives": [
       {
         "id": 1,
@@ -1020,7 +797,7 @@
     "title": "2° Lei de Newton com bolinhas e canudo",
     "slug": "2-lei-de-newton-com-bolinhas-e-canudo",
     "imagePreview": "/1731627817422/images/imagem_2024-11-14_195201817.png",
-    "description": "Vamos verificar na prática a segunda lei de newton, assoprando três bolinhas de tamanhos diferentes.",
+    "description": "Nesta atividade interativa, os estudantes testam a relação entre força, massa e aceleração ao assoprar três bolinhas de tamanhos e materiais diferentes. Utilizando um canudo, eles observam na prática como a Segunda Lei de Newton (F = m.a) explica o movimento dos objetos. Uma maneira simples, divertida e eficaz de explorar conceitos fundamentais da Física e desenvolver habilidades de experimentação e análise!",
     "objectives": [
       {
         "id": 1,
@@ -1098,8 +875,8 @@
     },
     "title": "3° Lei de Newton com balanças",
     "slug": "3-lei-de-newton-com-balancas",
-    "imagePreview": "/1731629207462/images/Captura de tela 2024-11-14 202504.png",
-    "description": "Vamos verificar a 3° Lei de Newton utilizando duas balanças",
+    "imagePreview": "/1731629207462/images/image-preview.png",
+    "description": "Nesta atividade prática, os estudantes exploram a interação entre forças utilizando duas balanças simples. Ao realizar o experimento, eles comprovam na prática a Terceira Lei de Newton (Ação e Reação), observando como os objetos interagem e como suas forças se equilibram. Uma abordagem simples e eficaz para entender conceitos fundamentais da Física enquanto desenvolvem habilidades de análise experimental!",
     "objectives": [
       {
         "id": 1,
@@ -1166,7 +943,7 @@
     "title": "Testando a gravidade atirando materiais no chão",
     "slug": "testando-a-gravidade-atirando-materiais-no-chao",
     "imagePreview": "/1731678115284/images/applefeather-1400x756.png",
-    "description": "Vamos testar a força da gravidade jogando alguns materiais no chão e verificar o tempo em que cada uma demora para chegar no solo.",
+    "description": "Nesta atividade prática, os estudantes testam a gravidade ao soltar materiais de massas diferentes e observam o tempo que cada um leva para chegar ao solo. Ao comparar o movimento de um livro e de folhas amassadas, eles compreendem como a gravidade afeta igualmente todos os objetos, ao mesmo tempo em que percebem o impacto da resistência do ar. Uma maneira divertida e envolvente de explorar conceitos de Física enquanto desenvolvem habilidades de observação e análise científica!",
     "objectives": [
       {
         "id": 1,
@@ -1188,18 +965,18 @@
       },
       {
         "id": 2,
-        "content": "02 folhas de caderno (Uma folha normal e outra amassada)"
+        "content": "02 folhas de caderno (Uma folha normal e outra amassada)."
       }
     ],
     "methods": [
       {
         "id": 1,
-        "content": "Primeiro jogue ao mesmo tempo e na mesma altura o caderno e a folha de caderno inteira. Verifique o tempo em que cada uma demora cair ao chão.",
+        "content": "Primeiro, jogue ao mesmo tempo e na mesma altura o caderno e a folha de caderno inteira. Verifique o tempo em que cada uma demora cair ao chão.",
         "imagePath": "/1731678115284/images/imagem_2024-11-15_095930345.png"
       },
       {
         "id": 2,
-        "content": "Segundo jogue ao mesmo tempo e na mesma altura o caderno e a folha de caderno amassada. Verifique o tempo em que cada uma demora cair ao chão.",
+        "content": "Em seguida, jogue ao mesmo tempo e na mesma altura o caderno e a folha de caderno amassada. Verifique o tempo em que cada uma demora cair ao chão.",
         "imagePath": "/1731678115284/images/imagem_2024-11-15_100024009.png"
       }
     ],
@@ -1242,7 +1019,7 @@
     "title": "Simulando o magnetismo da terra",
     "slug": "simulando-o-magnetismo-da-terra",
     "imagePreview": "/1731681806674/images/imagem_2024-11-15_104452840.png",
-    "description": "Vamos simular como é o magnetismo da terra utilizando uma bola de isopor grande, alguns imãs e limalha de ferro.",
+    "description": "Nesta atividade, os estudantes criam uma representação do campo magnético da Terra utilizando uma bola de isopor, imãs e limalha de ferro. Ao movimentar os imãs, eles observam como as linhas de campo magnético se formam, compreendendo a interação entre materiais magnéticos e campos magnéticos de maneira visual e interativa. Uma maneira envolvente de explorar conceitos fundamentais de Física e despertar a curiosidade científica!",
     "objectives": [
       {
         "id": 1,
@@ -1348,7 +1125,7 @@
     "title": "Observando a força do som",
     "slug": "observando-a-forca-do-som",
     "imagePreview": "/1731685209749/images/imagem_2024-11-15_114045212.png",
-    "description": "Vamos observar na prática a força do som, ao utilizar uma colher e panela para mover grãos de arroz.",
+    "description": "Nesta atividade, os estudantes observam na prática como o som, uma onda mecânica, pode mover objetos. Utilizando uma colher, uma panela de metal e grãos de arroz, eles visualizam a propagação das ondas sonoras e exploram conceitos como frequência e intensidade sonora. Uma forma envolvente de demonstrar como o som pode interagir com o ambiente e estimular a curiosidade científica!",
     "objectives": [
       {
         "id": 1,
@@ -1440,7 +1217,7 @@
     "title": "Separando balões com eletricidade estática",
     "slug": "separando-baloes-com-eletricidade-estatica",
     "imagePreview": "/1731713407421/images/imagem_2024-11-15_193323880.png",
-    "description": "Vamos visualizar a eletricidade estática utilizando dois balões e um barbante. ",
+    "description": "Nesta atividade, os estudantes visualizam o fenômeno da eletricidade estática utilizando dois balões, um barbante e uma vareta. Ao esfregar os balões e observar suas interações, eles exploram as forças entre cargas elétricas e se familiarizam com os conceitos básicos de eletricidade estática. Uma maneira prática e envolvente de entender a física das cargas elétricas de forma lúdica!",
     "objectives": [
       {
         "id": 1,
@@ -1520,7 +1297,7 @@
     "title": "Criando um circuito elétrico simples",
     "slug": "criando-um-circuito-eletrico-simples",
     "imagePreview": "/1731715400034/images/imagem_2024-11-15_204332118.png",
-    "description": "Vamos criar um circuito elétrico simples para demonstrar como ele funciona.",
+    "description": "Nesta atividade, os estudantes constroem um circuito elétrico simples utilizando pilhas, fios condutores e uma lâmpada, aprendendo sobre os componentes básicos de um circuito elétrico. Ao montar e testar o circuito, eles compreendem como a eletricidade circula, desenvolvendo habilidades práticas e raciocínio lógico. Uma forma prática e divertida de explorar conceitos de Física e estimular a curiosidade científica!",
     "objectives": [
       {
         "id": 1,
@@ -1612,7 +1389,7 @@
     "title": "A lata mágica e a transformação de energia",
     "slug": "a-lata-magica-e-a-transformacao-de-energia",
     "imagePreview": "/1731770209682/images/imagem_2024-11-16_112757316.png",
-    "description": "Vamos observar a transformação de energia por meio da chamada lata mágica.",
+    "description": "Nesta atividade, os estudantes observam a transformação de energia potencial elástica em energia cinética por meio de um experimento simples com uma lata de alumínio, elásticos, pregos, parafusos e porcas. Eles exploram o conceito de conservação de energia e compreendem como a energia mecânica é transformada em movimento. Uma forma divertida e prática de aprender sobre as transformações de energia e estimular a curiosidade científica!",
     "objectives": [
       {
         "id": 1,
@@ -1703,8 +1480,8 @@
     },
     "title": "Observando o efeito do calor e da temperatura.",
     "slug": "observando-o-efeito-do-calor-e-da-temperatura",
-    "imagePreview": "/1731771891490/images/imagem_2024-11-16_121530650.png",
-    "description": "Vamos verificar na prática a temperatura de alguns líquidos.",
+    "imagePreview": "/1731771891490/images/img-1.png",
+    "description": "Nesta prática, os estudantes verificam a temperatura de diferentes líquidos (gelado, quente e em temperatura ambiente) e exploram o fenômeno da adaptação sensorial térmica. Utilizando termômetro, cronômetro e copos plásticos, eles observam como estímulos térmicos influenciam a percepção sensorial e como isso se relaciona com conceitos científicos de calor e temperatura. Uma maneira envolvente e educativa de aprender sobre o mundo físico!.",
     "objectives": [
       {
         "id": 1,
@@ -1722,11 +1499,11 @@
     "materials": [
       {
         "id": 1,
-        "content": "03 Copos plásticos;"
+        "content": "01 Toalha;"
       },
       {
         "id": 2,
-        "content": "03 Recipientes plásticos grandes;"
+        "content": "03 Baldes plásticos;"
       },
       {
         "id": 3,
@@ -1739,26 +1516,28 @@
       {
         "id": 5,
         "content": "01 garrafa de agua em temperatura ambiente;"
-      },
-      {
-        "id": 6,
-        "content": "01 termômetro;"
-      },
-      {
-        "id": 7,
-        "content": "01 Cronômetro."
       }
     ],
     "methods": [
       {
         "id": 1,
-        "content": "Primeiro coloque água gelada em um copo e verifique a temperatura. Depois Coloque a água quente em outro copo e verifique a temperatura. Em um terceiro coloque agua em temperatura ambiente e também vá medir a temperatura.",
-        "imagePath": "/1731771891490/images/imagem_2024-11-16_120342218.png"
+        "content": "Coloque água gelada no primeiro balde. Depois Coloque a água em temperatura ambiente no balde do meio. E coloque água quente no terceiro balde.",
+        "imagePath": "/1731771891490/images/img-1.png"
       },
       {
         "id": 2,
-        "content": "Derrame a água gelada sobre um dos recipiente de plástico grande, e faça o mesmo coma água quente e a água em temperatura ambiente. Depois peça para o aluno colocar as duas mãos por 1 minuto na água em temperatura ambiente. Posteriormente, peça para colocar cada mão em um dos recipientes (de água gelada e quente) ao mesmo tempo durante 1 minuto.  Ao final pergunte se eles sentem a diferença.",
-        "imagePath": "/1731771891490/images/imagem_2024-11-16_120803253.png"
+        "content": "Coloque ao mesmo tempo uma mão na água gelada e a outra mão na água quente. Aguarde seu corpo acostumar com as temperaturas. Deve demorar em torno de 1 minuto e meio.",
+        "imagePath": "/1731771891490/images/img-2.png"
+      },
+      {
+        "id": 3,
+        "content": "Depois do tempo retire ambas as mãos e seque rapidamente com uma toalha.",
+        "imagePath": "/1731771891490/images/img-3.png"
+      },
+      {
+        "id": 3,
+        "content": "Após passar a toalha, coloque suas duas mãos no balde do meio (Com água em temperatura ambiente). E verifique em qual mão esta sentindo calor ou frio",
+        "imagePath": "/1731771891490/images/img-4.png"
       }
     ],
     "results": "Após mergulhar as mãos em água à temperatura ambiente por um minuto, espera-se que: A mão colocada em água quente sinta uma forte percepção de calor devido à diferença de temperatura em relação à água ambiente. A mão colocada em água gelada sinta um frio intenso inicialmente, novamente devido ao contraste com a temperatura ambiente. Ambos os participantes notarão uma adaptação gradual das sensações após manterem as mãos nos novos ambientes por um tempo prolongado, com uma diminuição da intensidade das sensações iniciais.",
@@ -1775,6 +1554,10 @@
       {
         "id": 3,
         "content": "Youtube, SCIENCE / BIOLOGY EXPRESS. Disponível em: <https://www.youtube.com/watch?v=SHzl7VDrXV8>. Acesso em: 16 de NOV de 2024."
+      },
+      {
+        "id": 3,
+        "content": "Youtube, TEC Educação. Disponível em: <https://youtu.be/HQvA28fSuIg?si=oxF01fCbzA6OhS7P>. Acesso em: 20 de NOV de 2024."
       }
     ],
     "activitySheetOne": ""
@@ -1813,7 +1596,7 @@
     "title": "Uma usina térmica com latas de refrigerante",
     "slug": "uma-usina-termica-com-latas-de-refrigerante",
     "imagePreview": "/1731854662009/images/imagem_2024-11-17_105613938.png",
-    "description": "Vamos criar um protótipo de usina térmica utilizando latas de refrigerante.",
+    "description": "Nesta atividade, os estudantes criam um modelo de usina térmica utilizando latas de refrigerante e outros materiais simples, explorando as etapas de transformação de energia. Ao montar o protótipo, eles analisam as vantagens e desvantagens das usinas térmicas e estudam os princípios da termodinâmica aplicados ao funcionamento de máquinas térmicas. Uma maneira prática e envolvente de aprender sobre a conversão de energia e os processos termodinâmicos!",
     "objectives": [
       {
         "id": 1,
@@ -1936,7 +1719,7 @@
     "title": "Observando a força e o movimento utilizando carrinhos",
     "slug": "observando-a-forca-e-o-movimento-utilizando-carrinhos",
     "imagePreview": "/1731859684230/images/imagem_2024-11-17_122216407.png",
-    "description": "Vamos verificar por meio de uma rampa e carrinhos como a força aplicada a um objeto influência seu movimento.",
+    "description": "Vamos verificar por meio de uma rampa e carrinhos como a força aplicada a um objeto influência seu movimento.Nesta atividade, os estudantes verificam como a força aplicada a um objeto pode alterar seu movimento utilizando carrinhos de brinquedo e uma rampa. Ao estudar a relação entre força e movimento, eles compreendem os conceitos de aceleração e velocidade, além de analisar a influência das forças externas no movimento dos objetos. Uma maneira prática e divertida de entender a 2ª Lei de Newton!",
     "objectives": [
       {
         "id": 1,
@@ -1973,7 +1756,7 @@
       },
       {
         "id": 2,
-        "content": "Bem ao centro adicione uma fita delimitando exatamente a mesma distância entre os dois lados. Peça a um aluno para soltar o carrinho de um lado e peça a outro aluno para adicionar força ao outro carrinho, ambos ao mesmo tempo. Peça para que observem qual carrinho chegou primeiro a linha.",
+        "content": "Bem ao centro adicione uma fita delimitando exatamente a mesma distância entre os dois lados. Primeiro, peça os alunos soltarem o carrinho ambos ao mesmo tempo, verifique se chegam ao mesmo tempo. Na segunda vez, peça para que um aluno apenas solte e o outro aluno coloque força no carrinho e peça para fazerem isto ao mesmo tempo, ao final verifique se ainda chegam ao mesmo tempo.",
         "imagePath": "/1731859684230/images/imagem_2024-11-17_121807917.png"
       }
     ],
@@ -2016,7 +1799,7 @@
     "title": "Verificando o trabalho e a energia com cubos",
     "slug": "verificando-o-trabalho-e-a-energia-com-cubos",
     "imagePreview": "/1731862646759/images/imagem_2024-11-17_131405547.png",
-    "description": "Vamos verificar o trabalho envolvido em cubos de madeira.",
+    "description": "Nesta atividade, os estudantes exploram o conceito de trabalho na física ao investigar a relação entre força, deslocamento e energia utilizando cubos de madeira. Eles analisam o impacto do atrito no trabalho realizado, compreendendo como esse fator influencia o movimento e a quantidade de energia envolvida. Uma forma prática de aprender sobre trabalho e energia de maneira dinâmica e aplicada!",
     "objectives": [
       {
         "id": 1,
@@ -2105,7 +1888,7 @@
     "title": "Testando uma roldana com corda de varal",
     "slug": "testando-uma-roldana-com-corda-de-varal",
     "imagePreview": "/1731884186947/images/imagem_2024-11-17_193123876.png",
-    "description": "Vamos testar na prática a eficiência de uma roldana.",
+    "description": "Neste experimento, os estudantes testam a eficiência de uma roldana, comparando o trabalho realizado com e sem o seu uso. Ao introduzir o conceito de vantagem mecânica, a atividade permite observar de forma prática como uma roldana pode facilitar o levantamento de objetos pesados. Uma maneira divertida de aprender sobre máquinas simples!",
     "objectives": [
       {
         "id": 1,
@@ -2189,7 +1972,7 @@
     "title": "Testando uma alavanca com copos e moedas",
     "slug": "testando-uma-alavanca-com-copos-e-moedas",
     "imagePreview": "/1731896873093/images/imagem_2024-11-17_222949388.png",
-    "description": "Vamos testar uma alavanca simples utilizando copos e uma régua.",
+    "description": "Neste experimento, os estudantes vão testar uma alavanca simples utilizando materiais acessíveis como copos, uma régua e moedas. A atividade visa demonstrar o princípio de funcionamento de uma alavanca, introduzindo os conceitos de ponto de apoio e braços de alavanca, além de investigar a vantagem mecânica proporcionada pelas alavancas. Uma experiência prática e divertida para entender os conceitos de máquinas simples!",
     "objectives": [
       {
         "id": 1,
@@ -2215,11 +1998,11 @@
       },
       {
         "id": 3,
-        "content": "10 Moedas (De qualquer valor serve)"
+        "content": "10 Moedas (De qualquer valor serve);"
       },
       {
         "id": 4,
-        "content": "01 Fita."
+        "content": "01 Fita;"
       },
       {
         "id": 5,
@@ -2229,12 +2012,12 @@
     "methods": [
       {
         "id": 1,
-        "content": "Pegue as borrachas (Ou outro material para fazer de base) e deixe em cima da mesa, depois coloque a régua exatamente ao meio delas. Passe bastante fita para grudar a base com a régua. E adicione um copo escrito -Força potente- de um lado e outro copo escrito -Força resistente-. Adicione primeiro 3 moedas em no copo Força potente, e vá adicionando várias moedas no outro copo, até mudar o lado da gangorra.",
+        "content": "Pegue as borrachas (Ou outro material para fazer de base) e deixe em cima da mesa, depois coloque a régua exatamente ao meio delas. Passe bastante fita para grudar a base com a régua. E adicione um copo escrito -Força potente- de um lado e outro copo escrito -Força resistente-. Adicione primeiro 3 moedas no copo Força potente, e vá adicionando várias moedas no outro copo até mudar o lado da gangorra.",
         "imagePath": "/1731896873093/images/imagem_2024-11-17_223517451.png"
       },
       {
         "id": 2,
-        "content": "Você deve fazer outra vez a mesma coisa, mas mudando a posição da régua na base para mais perto de um dos lados, como na seguinte imagem.",
+        "content": "Você deve fazer outra vez a mesma coisa, mas mudando a posição da régua na base para mais perto de um dos lados, como na seguinte imagem. E verifique se os resultados serão o mesmo que antes.",
         "imagePath": "/1731896873093/images/imagem_2024-11-17_223951056.png"
       }
     ],
@@ -2281,7 +2064,7 @@
     "title": "Observando a viscosidade entre dois líquidos",
     "slug": "observando-a-viscosidade-entre-dois-liquidos",
     "imagePreview": "/1731929981523/images/imagem_2024-11-18_075614705.png",
-    "description": "Vamos observar a viscosidade entre dois líquidos utilizando dois Becker.",
+    "description": "Neste experimento, vamos investigar a diferença de viscosidade entre água e óleo, utilizando materiais simples como béqueres, tubos de ensaio e um cronômetro. O objetivo é identificar as diferenças de viscosidade entre os líquidos, compreender o conceito de viscosidade e analisar sua aplicação prática em diversas situações. Uma maneira divertida e educativa de entender essa importante propriedade da matéria!",
     "objectives": [
       {
         "id": 1,
@@ -2303,7 +2086,7 @@
       },
       {
         "id": 2,
-        "content": "02 Becker;"
+        "content": "02 Béqueres;"
       },
       {
         "id": 3,
@@ -2321,7 +2104,7 @@
     "methods": [
       {
         "id": 1,
-        "content": "Deixe dois Becker em cima da mesa, e coloque água e óleo das garrafas em cada um dos tubos de ensaio. Depois derrame simultaneamente a água e o óleo dos tubos de ensaio em cada Becker e observe o tempo de demora para que caiam completamente. utilize um cronometro (Pode ser de celular) para medir o tempo.",
+        "content": "Deixe dois Béqueres em cima da mesa, e coloque água e óleo das garrafas em cada um dos tubos de ensaio. Depois derrame simultaneamente a água e o óleo dos tubos de ensaio em cada Béquer e observe o tempo de demora para que caiam completamente. utilize um cronometro (Pode ser de celular) para medir o tempo.",
         "imagePath": "/1731929981523/images/imagem_2024-11-18_075150250.png"
       }
     ],
@@ -2368,7 +2151,7 @@
     "title": "Observando a mudança dos estados físicos",
     "slug": "observando-a-mudanca-dos-estados-fisicos",
     "imagePreview": "/1731931821249/images/imagem_2024-11-18_083854203.png",
-    "description": "Vamos observar na prática a mudança de estado físico.",
+    "description": "Neste experimento, vamos observar as mudanças de estado físico da matéria, com foco na formação de condensação, utilizando materiais simples e acessíveis. O objetivo é demonstrar a mudança de estado físico da água, compreender o processo de condensação e explorar o impacto da temperatura nessas transformações.",
     "objectives": [
       {
         "id": 1,
@@ -2452,7 +2235,7 @@
     "title": "Misturas e substâncias na prática",
     "slug": "misturas-e-substancias-na-pratica",
     "imagePreview": "/1731933970269/images/imagem_2024-11-18_090800172.png",
-    "description": "Vamos observar na prática a diferença entre substâncias e misturas utilizando água, óleo e corantes.",
+    "description": "Neste experimento, vamos diferenciar substâncias puras de misturas, explorar a imiscibilidade entre líquidos e investigar o papel de um emulsificante na formação de misturas. Vamos utilizar água, óleo e corantes para demonstrar como essas substâncias se comportam quando misturadas.",
     "objectives": [
       {
         "id": 1,
@@ -2506,7 +2289,7 @@
       },
       {
         "id": 3,
-        "content": "Na próxima etapa, encha um copo de água a pouco mais da metade. E encha o restante do copo utilizando o copo com óleo e corante da etapa anterior.",
+        "content": "Na próxima etapa, encha em torno de 3/4 um copo de água. E encha o restante do copo utilizando o copo com óleo e corante da etapa anterior.",
         "imagePath": "/1731933970269/images/imagem_2024-11-18_085929202.png"
       },
       {
@@ -2559,7 +2342,7 @@
     "title": "A transformação de matéria na prática utilizando balões",
     "slug": "a-transformacao-de-materia-na-pratica-utilizando-baloes",
     "imagePreview": "/1731937121457/images/imagem_2024-11-18_095206973.png",
-    "description": "Vamos ver na pratica a transformação de matéria utilizando garrafa pet, vinagre, balão e bicarbonato de sódio.",
+    "description": "Vamos ver na pratica a transformação de matéria utilizando garrafa pet, vinagre, balão e bicarbonato de sódio. Neste experimento, vamos observar uma transformação química, explorar os estados físicos da matéria e visualizar o desprendimento de gás. Usaremos uma garrafa PET, vinagre, balões e bicarbonato de sódio para demonstrar como esses materiais reagem entre si.",
     "objectives": [
       {
         "id": 1,
@@ -2593,7 +2376,11 @@
       },
       {
         "id": 5,
-        "content": "01 Funil."
+        "content": "01 Funil;"
+      },
+      {
+        "id": 6,
+        "content": "01 Fita crepe."
       }
     ],
     "methods": [
@@ -2609,7 +2396,7 @@
       },
       {
         "id": 3,
-        "content": "Prenda o balão no gargalo da garrafa. Depois solte o bicarbonato de sódio que está no balão na garrafa. E ao final observe o que ocorre no balão.",
+        "content": "Utilizando uma fita, prenda o balão no gargalo da garrafa. Depois solte o bicarbonato de sódio que está no balão na garrafa. E ao final observe o que ocorre no balão.",
         "imagePath": "/1731937121457/images/imagem_2024-11-18_094930141.png"
       }
     ],
@@ -2664,7 +2451,7 @@
     "title": "Nuvem na garrafa",
     "slug": "nuvem-na-garrafa",
     "imagePreview": "/1731947543806/images/imagem_2024-11-18_124306456.png",
-    "description": "Vamos criar nuvens dentro de uma garrafa utilizando álcool e uma bomba de encher bolas.",
+    "description": "Neste experimento, vamos observar uma transformação física da matéria e explorar os efeitos da pressão. Também faremos a conexão entre os conceitos de pressão e temperatura ao criar nuvens dentro de uma garrafa utilizando álcool e uma bomba de encher bolas.",
     "objectives": [
       {
         "id": 1,
@@ -2690,7 +2477,7 @@
       },
       {
         "id": 3,
-        "content": "01 Garrafa pet;"
+        "content": "01 Garrafa pet."
       }
     ],
     "methods": [
@@ -2706,7 +2493,7 @@
       },
       {
         "id": 3,
-        "content": "Utilize a bomba durante aproximadamente 15 segundos. Ao final retire a ponta da bomba e veja o que vai acontecer com a garrafa.",
+        "content": "Utilize a bomba durante aproximadamente 45 segundos. Ao final retire a ponta da bomba e veja o que vai acontecer com a garrafa.",
         "imagePath": "/1731947543806/images/imagem_2024-11-18_124110856.png"
       }
     ],
@@ -2753,7 +2540,7 @@
     "title": "Mostrando modelos atômicos com maquete",
     "slug": "mostrando-modelos-atomicos-com-maquete",
     "imagePreview": "/1731949382346/images/imagem_2024-11-18_132910356.png",
-    "description": "Vamos criar maquetes para visualizar modelos atômicos, utilizando papel de isopor, bolas de isopor e arame.",
+    "description": "Vamos criar maquetes para visualizar modelos atômicos, utilizando materiais simples como papel de isopor, bolas de isopor e arame. Este experimento permite representar graficamente a estrutura atômica e compreender melhor os modelos atômicos. Além disso, desenvolve habilidades práticas ao trabalhar com diferentes materiais e técnicas de construção.",
     "objectives": [
       {
         "id": 1,
@@ -2771,7 +2558,7 @@
     "materials": [
       {
         "id": 1,
-        "content": "4  placas de isopor de 30x30 cm (uma para cada modelo)."
+        "content": "4  placas de isopor de 30x30 cm (uma para cada modelo);"
       },
       {
         "id": 2,
@@ -2880,7 +2667,7 @@
     "title": "Solubilidade em ação",
     "slug": "solubilidade-em-acao",
     "imagePreview": "/1731951509272/images/imagem_2024-11-18_135634795.png",
-    "description": "Vamos observar na prática a solubilidade em ação utilizando água, sal e álcool.",
+    "description": "Vamos observar na prática a solubilidade em ação utilizando água, sal e álcool. Este experimento tem como objetivo identificar soluções homogêneas e heterogêneas, compreender o conceito de solubilidade e relacionar esse fenômeno com as características moleculares das substâncias. Através da observação, será possível entender como diferentes solventes influenciam na dissolução de substâncias, como o sal, e como isso se reflete em soluções de diferentes concentrações.",
     "objectives": [
       {
         "id": 1,
@@ -2914,7 +2701,7 @@
       },
       {
         "id": 5,
-        "content": "01 vareta de vidro ou uma colher para misturar."
+        "content": "01 vareta de vidro ou uma colher para misturar;"
       },
       {
         "id": 6,
@@ -2929,7 +2716,7 @@
       },
       {
         "id": 2,
-        "content": "Separe a solução do corpo de fundo, passando-a para outro copo.",
+        "content": "Separe a solução do corpo de fundo, ou seja separe o liquido do excesso de sal, passando o liquido para outro copo.",
         "imagePath": "/1731951509272/images/imagem_2024-11-18_135113134.png"
       },
       {
@@ -2938,7 +2725,7 @@
         "imagePath": "/1731951509272/images/imagem_2024-11-18_135428847.png"
       }
     ],
-    "results": "Ao misturar sal de cozinha (NaCl) com água, espera-se que o sal se dissolva completamente, formando uma solução homogênea devido à alta solubilidade do NaCl na água. Já ao adicionar álcool etílico na água, será observado que os líquidos se misturam, mas apresentam diferenças em densidade e propriedades moleculares. Ao misturar sal com álcool, a solubilidade será menor ou inexistente, resultando em uma mistura heterogênea visível. Este experimento permitirá identificar as diferenças entre misturas homogêneas e heterogêneas e relacionar as propriedades moleculares dos materiais com sua solubilidade.",
+    "results": "A formação de um precipitado ou corpo de fundo na solução é um indicativo de que a solução está saturada, ou seja, atingiu o coeficiente de solubilidade naquela temperatura. Então, não é possível dissolver mais nenhuma quantidade de sal nessa quantidade de solvente. Entretanto, quando se adiciona o álcool, os alunos podem observar que uma quantidade de sal que estava dissolvido na solução começa a precipitar e ir para o fundo do copo. Isso acontece porque o álcool é infinitamente solúvel em água, pois a hidroxila do álcool (etanol – CH3CH2OH) forma ligações de hidrogênio com as moléculas de água. Desse modo, algumas moléculas de água, que antes estavam interagindo com o sal, passam a interagir com as moléculas do álcool, por isso o sal precipita.",
     "scientificExplanation": "A solubilidade de uma substância depende das forças intermoleculares entre o solvente e o soluto. No caso do sal (NaCl) na água, as moléculas polares da água interagem com os íons Na⁺ e Cl⁻, separando-os e permitindo a dissolução. Por outro lado, a água e o álcool se misturam porque ambas as substâncias possuem características polares que permitem a formação de ligações de hidrogênio. Entretanto, o sal não se dissolve no álcool devido à ausência de interações fortes suficientes entre as moléculas de álcool e os íons do sal. Este experimento ilustra o princípio \"semelhante dissolve semelhante\", ou seja, substâncias polares tendem a dissolver outras substâncias polares, enquanto as apolares dissolvem substâncias apolares. A observação prática reforça conceitos de química sobre interação molecular e comportamento de soluções.",
     "references": [
       {
@@ -2981,7 +2768,7 @@
     "title": "Velocidade de reações químicas com efervescentes",
     "slug": "velocidade-de-reacoes-quimicas-com-efervescentes",
     "imagePreview": "/1731956148419/images/imagem_2024-11-18_151505894.png",
-    "description": "Vamos realizar uma reação química simples com pastilhas de efervescentes e água.",
+    "description": "Vamos realizar uma reação química simples com pastilhas efervescentes e água. O objetivo deste experimento é observar a influência da temperatura na velocidade das reações químicas, analisar o efeito da superfície de contato e relacionar esses fatores com a Teoria das Colisões. Através dessa experiência, será possível perceber como a temperatura e a área de contato das substâncias afetam a rapidez com que ocorre a reação efervescente, proporcionando uma compreensão prática dos conceitos químicos envolvidos.",
     "objectives": [
       {
         "id": 1,
@@ -3073,7 +2860,7 @@
     "title": "Tabela periódica interativa online",
     "slug": "tabela-periodica-interativa-online",
     "imagePreview": "/1732017400261/images/imagem_2024-11-19_080913766.png",
-    "description": "Vamos observar como são os átomos dos elementos da tabela periódica de forma online.",
+    "description": "Vamos observar como são os átomos dos elementos da tabela periódica de forma online. O objetivo deste recurso é explorar visualmente os átomos dos elementos químicos, compreender as propriedades dos elementos da tabela periódica e incentivar o uso de tecnologias no estudo da química. Por meio de uma plataforma online, os estudantes poderão interagir com representações digitais dos átomos, facilitando a compreensão de suas estruturas e propriedades.",
     "objectives": [
       {
         "id": 1,
@@ -3097,7 +2884,7 @@
     "methods": [
       {
         "id": 1,
-        "content": "Acesse o link: <https://artsexperiments.withgoogle.com/periodic-table/>. No site, clique em cada um dos elementos e peça que os alunos observem os elétrons presentes em cada átomos. Faça relações com o número presente em cima e a esquerda de cada elemento na tabela periódica.",
+        "content": "Acesse o link: <https://artsexperiments.withgoogle.com/periodic-table/>. No site, clique em cada um dos elementos e peça que os alunos observem os elétrons presentes em cada átomo. Faça relações com o número presente em cima e a esquerda de cada elemento na tabela periódica.",
         "imagePath": "/1732017400261/images/imagem_2024-11-19_081513084.png"
       }
     ],
@@ -3140,7 +2927,7 @@
     "title": "Ácidos e bases utilizando vários líquidos",
     "slug": "acidos-e-bases-utilizando-varios-liquidos",
     "imagePreview": "/1732020130194/images/imagem_2024-11-19_084450144.png",
-    "description": "Vamos determinar na prática algumas substâncias como ácidos ou bases.",
+    "description": "Neste experimento, os estudantes terão a oportunidade de identificar substâncias ácidas e básicas por meio de um indicador natural de pH, o suco de repolho roxo. Eles observarão as mudanças de cor que ocorrem ao adicionar diferentes líquidos, permitindo a classificação de substâncias em ácidas ou básicas. A atividade também visa promover uma compreensão das reações químicas envolvidas e reforçar a relação entre a química e o cotidiano.",
     "objectives": [
       {
         "id": 1,
@@ -3162,7 +2949,7 @@
       },
       {
         "id": 2,
-        "content": "01 amostra de cada um dos liquidos: Água sanitária, água com sabão, bicarbonato de sódio, água, água com açucar temperado, leite, detergente, vinagre, suco de limão, álcool."
+        "content": "01 amostra de cada um dos liquidos: Água sanitária, água com sabão, bicarbonato de sódio, água, água com açucar, leite, detergente, vinagre, suco de limão e álcool;"
       },
       {
         "id": 3,
@@ -3172,7 +2959,7 @@
     "methods": [
       {
         "id": 1,
-        "content": "Posicione todos os copos com uma amostra de cada elemento, devem ficar um do lado do outro. Depois vá adicionando suco de repolho roxo em cada copo. Veja a mudança de cores ao final do experimento.",
+        "content": "Posicione todos os copos com uma amostra de cada elemento, devem ficar um do lado do outro. Depois vá adicionando suco de repolho roxo em cada copo. Veja a mudança de cores ao final do experimento. Peça que os alunos classifiquem cada copo em ácido, base ou neutro. Devem Utilizar como base alguma figura.",
         "imagePath": "/1732020130194/images/imagem_2024-11-19_085133413.png"
       }
     ],
@@ -3220,7 +3007,7 @@
     "title": "O ciclo da água na prática",
     "slug": "o-ciclo-da-agua-na-pratica",
     "imagePreview": "/1732021031361/images/imagem_2024-11-19_090331994.png",
-    "description": "Vamos observar na prática o ciclo a água e mudança de estados físicos.",
+    "description": "Neste experimento, os estudantes irão observar o ciclo da água e as mudanças de estados físicos da matéria. Através da prática, será possível visualizar o processo de evaporação, condensação e precipitação, demonstrando como a água se move através desses estágios naturais. Além disso, o experimento permitirá relacionar esses fenômenos ao meio ambiente e à importância do ciclo da água no planeta.",
     "objectives": [
       {
         "id": 1,
@@ -3327,7 +3114,7 @@
     "title": "Purificando água com oxirredução",
     "slug": "purificando-agua-com-oxirreducao",
     "imagePreview": "/1732025083860/images/imagem_2024-11-19_102745156.png",
-    "description": "Vamos realizar uma atividade para demonstrar o efeito da oxirredução.",
+    "description": "Nesta atividade, os estudantes irão explorar as reações de oxidação e redução (redox) através de um experimento prático. O objetivo é compreender como ocorrem as trocas de elétrons entre os reagentes e identificar os agentes oxidantes e redutores envolvidos no processo. Além disso, será possível relacionar esses conceitos com reações químicas do cotidiano, como a corrosão e o clareamento de substâncias.",
     "objectives": [
       {
         "id": 1,
@@ -3345,7 +3132,7 @@
     "materials": [
       {
         "id": 1,
-        "content": "02 Becker ou 02 Copos transparentes;"
+        "content": "02 Béquer ou 02 Copos transparentes;"
       },
       {
         "id": 2,
@@ -3357,18 +3144,18 @@
       },
       {
         "id": 4,
-        "content": "01 Água sanitária"
+        "content": "01 Água sanitária."
       }
     ],
     "methods": [
       {
         "id": 1,
-        "content": "Em um Becker coloque um pouco de água em temperatura ambiente. No outro Becker coloque um pouco de água sanitária.",
+        "content": "Em um Béquer coloque um pouco de água em temperatura ambiente. No outro Béquer coloque um pouco de água sanitária.",
         "imagePath": "/1732025083860/images/imagem_2024-11-19_102012668.png"
       },
       {
         "id": 2,
-        "content": "No Becker com água adicione um pouco de iodo, de modo a sua cor ficar quase que totalmente escura.",
+        "content": "No Béquer com água adicione um pouco de iodo, de modo a sua cor ficar quase que totalmente escura.",
         "imagePath": "/1732025083860/images/imagem_2024-11-19_102128079.png"
       },
       {
@@ -3416,7 +3203,7 @@
     "title": "Modelos prontos da anatomia humana",
     "slug": "modelos-prontos-da-anatomia-humana",
     "imagePreview": "/1732028994430/images/imagem_2024-11-19_111634704.png",
-    "description": "Vamos utilizar modelos prontos para mostrar a anatomia humana.",
+    "description": "Nesta atividade, os estudantes irão utilizar modelos prontos para explorar a anatomia humana. O objetivo é compreender a estrutura e a função dos sistemas do corpo humano, promovendo uma aprendizagem visual e tátil. A atividade permitirá uma conexão prática entre teoria e a representação física dos órgãos, facilitando a compreensão dos conceitos anatômicos essenciais.",
     "objectives": [
       {
         "id": 1,
@@ -3470,7 +3257,13 @@
       }
     ],
     "topicSpecific": {
-      "biologia": []
+      "biologia": [
+        {
+          "id": 3,
+          "title": "Classificação dos seres vivos",
+          "slug": "classificacao-dos-seres-vivos"
+        }
+      ]
     },
     "resourceType": {
       "id": 2,
@@ -3481,7 +3274,7 @@
     "title": "Classificação dos seres vivos com botões",
     "slug": "classificacao-dos-seres-vivos-com-botoes",
     "imagePreview": "/1732030029141/images/imagem_2024-11-19_113225033.png",
-    "description": "Vamos realizar uma dinâmica para aprender mais sobre a classificação dos seres vivos, utilizando basicamente botões.",
+    "description": "Nesta dinâmica, os estudantes utilizarão botões de diferentes tamanhos, cores e formas para aprender sobre a classificação dos seres vivos. O objetivo é compreender o conceito de classificação biológica, estabelecer critérios para categorizar objetos e relacionar esses princípios com a biologia. A atividade proporcionará uma abordagem prática e visual para o entendimento da organização dos seres vivos, estimulando a reflexão sobre como os cientistas classificam as espécies.",
     "objectives": [
       {
         "id": 1,
@@ -3553,7 +3346,7 @@
     "title": "Demonstrando uma reação exotérmica com um sinalizador de fumaça",
     "slug": "demonstrando-uma-reacao-exotermica-com-um-sinalizador-de-fumaca",
     "imagePreview": "/1732037843852/images/Web_Photo_Editor.jpg",
-    "description": "Vamos ver na prática uma reação exotérmica.",
+    "description": "Neste experimento, vamos observar na prática uma reação exotérmica, que libera calor durante a sua ocorrência. O objetivo é demonstrar o conceito de reação exotérmica, explorar as propriedades dos reagentes utilizados e relacionar o processo com suas aplicações práticas. A atividade permite visualizar a transformação de energia química em calor, com destaque para as reações que geram calor ao reagir com outros materiais, como ocorre no uso de substâncias como o dióxido de manganês e o peróxido de hidrogênio.",
     "objectives": [
       {
         "id": 1,
@@ -3571,7 +3364,7 @@
     "materials": [
       {
         "id": 1,
-        "content": "01 Vidro de Dióxido de manganês."
+        "content": "01 Vidro de Dióxido de manganês;"
       },
       {
         "id": 2,
@@ -3598,7 +3391,7 @@
         "imagePath": "/1732037843852/images/imagem_2024-11-19_135356769.png"
       }
     ],
-    "results": "Ao misturar a água oxigenada com o dióxido de manganês na garrafa PET, os estudantes devem observar uma reação rápida que libera calor perceptível (reação exotérmica), acompanhada pela liberação de gás oxigênio e formação de espuma. Essa reação demonstra de forma clara a transformação de energia química em energia térmica.",
+    "results": "Ao misturar a água oxigenada com o dióxido de manganês na garrafa PET, os estudantes devem observar uma reação rápida que libera calor e uma fumaça perceptível (reação exotérmica). Esta furmaça nada mais é que a liberação de gás oxigênio. Essa reação demonstra de forma clara a transformação de energia química em energia térmica.",
     "scientificExplanation": "A reação exotérmica observada é a decomposição da água oxigenada (H₂O₂) em água (H₂O) e gás oxigênio (O₂), com o dióxido de manganês (MnO₂) atuando como catalisador. A equação da reação é: 2𝐻2𝑂2→𝑀𝑛𝑂22𝐻2𝑂+𝑂2↑+Calor. Função do catalisador: O MnO₂ acelera a decomposição sem ser consumido, permitindo que a reação ocorra rapidamente. Liberação de calor: A energia liberada na quebra das ligações químicas do H₂O₂ excede a energia necessária para formar as novas ligações, resultando na liberação de calor perceptível. Aplicações práticas: Reações exotérmicas como esta têm ampla aplicação, desde o uso em catalisadores automotivos até processos industriais e demonstrações educacionais. A atividade combina observação prática com conceitos químicos, facilitando a compreensão de como reações exotérmicas ocorrem e seu impacto no mundo ao nosso redor.",
     "references": [
       {
@@ -3637,7 +3430,7 @@
     "title": "Reação endotérmica na prática com água e ureia.",
     "slug": "reacao-endotermica-na-pratica-com-agua-e-ureia",
     "imagePreview": "/1732040753475/images/imagem_2024-11-19_143511651.png",
-    "description": "Vamos realizar uma reação endotérmica utilizando apenas água, ureia e um termômetro.",
+    "description": "Neste experimento, vamos realizar uma reação endotérmica, onde a absorção de calor resulta em uma diminuição de temperatura no sistema. O objetivo é demonstrar o conceito de reação endotérmica, medir a variação de temperatura durante a reação e relacionar o fenômeno com aplicações práticas, como a utilização de reações endotérmicas em processos como resfriamento. Utilizando materiais simples como água, ureia e um termômetro, será possível observar a mudança de temperatura e entender o processo de absorção de calor.",
     "objectives": [
       {
         "id": 1,
@@ -3655,7 +3448,7 @@
     "materials": [
       {
         "id": 1,
-        "content": "01 Becker."
+        "content": "01 Béquer;"
       },
       {
         "id": 2,
@@ -3663,7 +3456,7 @@
       },
       {
         "id": 3,
-        "content": "01 Pacote de ureia em pó (O mesmo usado em plantas)."
+        "content": "01 Pacote de ureia em pó (O mesmo usado em plantas);"
       },
       {
         "id": 4,
@@ -3726,7 +3519,7 @@
     "title": "Cromatografia na prática",
     "slug": "cromatografia-na-pratica",
     "imagePreview": "/1732045035433/images/imagem_2024-11-19_154004676.png",
-    "description": "Vamos fazer um experimento sobre cromatografia.",
+    "description": "Neste experimento, vamos realizar uma demonstração prática do princípio da cromatografia, técnica utilizada para separar diferentes componentes de uma mistura. O objetivo é observar a separação de cores e compreender como as substâncias se distribuem em diferentes fases, com base em sua solubilidade e interação com o solvente. Através deste experimento simples, será possível também relacionar a cromatografia com suas aplicações práticas, como na análise de compostos em misturas. Utilizaremos materiais como pincéis coloridos, filtros de papel, álcool e outros itens para realizar a separação e análise das cores.",
     "objectives": [
       {
         "id": 1,
@@ -3832,7 +3625,7 @@
     "title": "Gerador de Van de Graaff em ação",
     "slug": "gerador-de-van-de-graaff-em-acao",
     "imagePreview": "/1732047482333/images/imagem_2024-11-19_161922946.png",
-    "description": "Vamos utilizar o Gerador de Van de Graaff para ver o fenômeno da eletricidade estática.",
+    "description": "Neste experimento, vamos utilizar o Gerador de Van de Graaff para observar o fenômeno da eletricidade estática de forma prática. O objetivo é demonstrar como as cargas elétricas podem ser geradas e acumuladas em um corpo condutor, proporcionando uma compreensão visual e interativa do fenômeno. Além disso, o experimento permite explicar como esse processo está relacionado a fenômenos naturais, como raios e eletrização por contato. O Gerador de Van de Graaff será o principal equipamento utilizado para gerar e acumular cargas elétricas, proporcionando uma experiência enriquecedora no estudo da eletricidade estática.",
     "objectives": [
       {
         "id": 1,
@@ -3844,13 +3637,13 @@
       },
       {
         "id": 3,
-        "content": "Relacionar o experimento com fenômenos naturais, como raios e eletrização por contato;"
+        "content": "Relacionar o experimento com fenômenos naturais, como raios e eletrização por contato."
       }
     ],
     "materials": [
       {
         "id": 1,
-        "content": "01 Gerador de Van de Graaff;"
+        "content": "01 Gerador de Van de Graaff."
       }
     ],
     "methods": [

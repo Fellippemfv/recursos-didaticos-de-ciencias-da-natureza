@@ -525,16 +525,16 @@ export default function Search() {
                 className="block"
                 target="_blank"
               >
-                <div className="bg-white p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200">
+                <div className="bg-white p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200 flex flex-col h-full">
                   <img
                     src={resource.imagePreview}
                     alt={resource.title}
                     className="w-full h-48 object-cover rounded-md mb-4"
                   />
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2 flex-grow-0">
                     {resource.title}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 flex-grow-0">
                     {resource.description.length > 90
                       ? `${resource.description.slice(0, 90)}...`
                       : resource.description}
