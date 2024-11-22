@@ -10,8 +10,9 @@ const siteMetadata = {
   siteLogo: "/static/images/logo.png",
   socialBanner: "/static/images/twitter-card.png",
   mastodon: "https://mastodon.social/@mastodonuser",
-  email: "address@yoursite.com",
-  github: "https://github.com",
+  email: "prof.fellippe@gmail.com",
+  github:
+    "https://github.com/Fellippemfv/recursos-didaticos-de-ciencias-da-natureza",
   twitter: "https://twitter.com/Twitter",
   facebook: "https://facebook.com",
   youtube: "https://youtube.com",

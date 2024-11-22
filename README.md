@@ -85,7 +85,7 @@ Antes de começar, certifique-se de ter os seguintes pré-requisitos instalados 
 1. **Clone o repositório**: Para baixar o projeto para o seu computador, abra o terminal e use o comando abaixo para clonar o repositório do GitHub.
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone recursos-didaticos-de-ciencias-da-natureza
 ```
 
 2. **Instale as dependências**: Para conseguir rodar o projeto em sua maquina, você deve instalar as dependências utilizando algum dos comandos abaixo.
@@ -177,7 +177,7 @@ Para garantir que sua atividade seja enviada corretamente e que todas as informa
 
 2. **Nomeação dos Arquivos**
 
-   - Se a atividade incluir vários arquivos (documentos e imagens), tome cuidado para os arquivos NÃO TEREM O MESMO NOME, caso contrário vai ocorrer erro ao enviar.
+   - Se a atividade incluir vários arquivos (documentos e imagens), tome cuidado para os arquivos NÃO TEREM O MESMO NOME.
 
 ### 3. **Corpo do Email**
 
