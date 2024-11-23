@@ -3869,5 +3869,58 @@
       }
     ],
     "activitySheetOne": ""
+  },
+  {
+    "id": "1732367576770",
+    "postDate": "23 de novembro de 2024 às 09:12",
+    "profileName": "teste",
+    "topicGeneral": [
+      {
+        "id": 2,
+        "title": "Biologia",
+        "slug": "biologia"
+      }
+    ],
+    "topicSpecific": {
+      "biologia": []
+    },
+    "resourceType": {
+      "id": 2,
+      "title": "Dinâmicas (Participação em dupla ou em grupo)",
+      "slug": "dinamicas",
+      "steps": "Atividades interativas que envolvem os estudantes em ações colaborativas para compreender melhor conceitos."
+    },
+    "title": "dsdasd",
+    "slug": "dsdasd",
+    "imagePreview": "/1732367576770/images/Untitled (18).jpg",
+    "description": "adsa",
+    "objectives": [
+      {
+        "id": 1,
+        "content": "das"
+      }
+    ],
+    "materials": [
+      {
+        "id": 1,
+        "content": "dasd"
+      }
+    ],
+    "methods": [
+      {
+        "id": 1,
+        "content": "asdasd",
+        "imagePath": ""
+      }
+    ],
+    "results": "sdad",
+    "scientificExplanation": "saddsa",
+    "references": [
+      {
+        "id": 2,
+        "content": "dasdas"
+      }
+    ],
+    "activitySheetOne": ""
   }
 ]
