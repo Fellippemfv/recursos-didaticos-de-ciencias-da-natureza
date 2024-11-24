@@ -52,6 +52,7 @@ export default function Home() {
           <a
             href="/teaching-resource/verificando-se-alimentos-possuem-amido-utilizando-iodo"
             className="bg-white p-4 rounded-lg shadow-md"
+            target="_blank"
           >
             <img
               src="/1732223166403/images/imagem_2024-11-21_170748613.png"
@@ -72,8 +73,9 @@ export default function Home() {
 
           {/* 2 */}
           <a
-            href="/acidos-e-bases-utilizando-varios-liquidos"
+            href="/teaching-resource/acidos-e-bases-utilizando-varios-liquidos"
             className="bg-white p-4 rounded-lg shadow-md"
+            target="_blank"
           >
             <img
               src="/1732020130194/images/imagem_2024-11-19_084450144.png"
@@ -95,7 +97,8 @@ export default function Home() {
           {/* 3 */}
           <a
             className="bg-white p-4 rounded-lg shadow-md"
-            href="/demonstrando-uma-reacao-exotermica-com-um-sinalizador-de-fumaca"
+            href="/teaching-resource/demonstrando-uma-reacao-exotermica-com-um-sinalizador-de-fumaca"
+            target="_blank"
           >
             <img
               src="/1732037843852/images/Web_Photo_Editor.jpg"

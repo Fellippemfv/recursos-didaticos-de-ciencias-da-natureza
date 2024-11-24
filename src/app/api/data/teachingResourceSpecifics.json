@@ -2147,8 +2147,8 @@
       "slug": "experimentos",
       "steps": "Atividades práticas que demonstram conceitos científicos de forma experimental."
     },
-    "title": "Observando a mudança dos estados físicos",
-    "slug": "observando-a-mudanca-dos-estados-fisicos",
+    "title": "Observando as mudanças dos estados físicos",
+    "slug": "observando-as-mudancas-dos-estados-fisicos",
     "imagePreview": "/1731931821249/images/imagem_2024-11-18_083854203.png",
     "description": "Neste experimento, vamos observar as mudanças de estado físico da matéria, com foco na formação de condensação, utilizando materiais simples e acessíveis. O objetivo é demonstrar a mudança de estado físico da água, compreender o processo de condensação e explorar o impacto da temperatura nessas transformações.",
     "objectives": [
@@ -2172,11 +2172,11 @@
       },
       {
         "id": 2,
-        "content": "01 Garra de água em temperatura ambiente;"
+        "content": "01 Garrafa de água em temperatura ambiente;"
       },
       {
         "id": 3,
-        "content": "01 Garra de água gelada;"
+        "content": "01 Garrafa de água gelada;"
       },
       {
         "id": 4,
@@ -3825,19 +3825,19 @@
     "materials": [
       {
         "id": 1,
-        "content": "04 Pratos descraveis ou placas de petri;"
+        "content": "04 Pratos descartáveis ou placas de petri;"
       },
       {
         "id": 2,
-        "content": "01 Amostrasde frango;"
+        "content": "01 Amostras de frango;"
       },
       {
         "id": 3,
-        "content": "01 Amostrasde ovo cozido;"
+        "content": "01 Amostras de ovo cozido;"
       },
       {
         "id": 4,
-        "content": "01 Amostrasde batata doce;"
+        "content": "01 Amostras de batata doce;"
       },
       {
         "id": 5,

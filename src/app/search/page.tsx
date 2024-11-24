@@ -453,7 +453,9 @@ export default function Search() {
       </div>
 
       <section className="w-full mt-8">
-        <h2 className="font-bold mb-6 text-gray-800">Experimentos Filtrados</h2>
+        <h2 className="font-bold mb-6 text-gray-800">
+          Recursos didáticos Filtrados
+        </h2>
         <div
           ref={filteredSectionRef}
           className="flex flex-wrap gap-2 mb-4 mt-4"

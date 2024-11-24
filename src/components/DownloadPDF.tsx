@@ -90,38 +90,53 @@ const styles = StyleSheet.create({
     borderRadius: "5px",
     cursor: "pointer",
     textAlign: "center",
-    display: "inline-block",
+    display: "none",
     fontWeight: "bold",
   },
 });
 
-const DownloadPDF = ({ experimentInfo }) => {
+interface ExperimentInfo {
+  id?: string;
+  title?: string;
+  materials?: { content: string }[];
+  objectives?: { content: string }[];
+  methods?: { id?: string | number; content: string; imagePath?: string }[];
+  results?: string;
+  scientificExplanation?: string;
+}
+
+const DownloadPDF: React.FC<{ experimentInfo: ExperimentInfo }> = ({
+  experimentInfo,
+}) => {
   const renderMethods = () => {
-    const leftColumn = [];
-    const rightColumn = [];
+    const leftColumn: JSX.Element[] = [];
+    const rightColumn: JSX.Element[] = [];
 
-    experimentInfo.methods.forEach((method, index) => {
-      const methodKey = `${method.id || index}-${method.content}`;
+    // Verifique se experimentInfo.methods está definido antes de usar .forEach
+    if (experimentInfo.methods) {
+      experimentInfo.methods.forEach((method, index) => {
+        const methodKey = `${method.id || index}-${method.content}`;
 
-      const content = (
-        <View key={methodKey} style={styles.stepContainer}>
-          {/* Descrição da etapa */}
-          <Text style={styles.text}>
-            Etapa {index + 1}: {method.content}
-          </Text>
-          {/* Imagem centralizada */}
-          {method.imagePath && (
-            <Image style={styles.image} src={method.imagePath} />
-          )}
-        </View>
-      );
+        const content = (
+          <View key={methodKey} style={styles.stepContainer}>
+            {/* Descrição da etapa */}
+            <Text style={styles.text}>
+              Etapa {index + 1}: {method.content}
+            </Text>
+            {/* Imagem centralizada */}
+            {method.imagePath && (
+              <Image style={styles.image} src={method.imagePath} />
+            )}
+          </View>
+        );
 
-      if (index % 2 === 0) {
-        leftColumn.push(content);
-      } else {
-        rightColumn.push(content);
-      }
-    });
+        if (index % 2 === 0) {
+          leftColumn.push(content);
+        } else {
+          rightColumn.push(content);
+        }
+      });
+    }
 
     return (
       <View style={styles.doubleColumn}>
@@ -146,7 +161,7 @@ const DownloadPDF = ({ experimentInfo }) => {
                 {/* Coluna esquerda: Materiais */}
                 <View style={styles.column}>
                   <Text style={styles.title}>Lista de Materiais</Text>
-                  {experimentInfo.materials.map((material, index) => (
+                  {experimentInfo.materials?.map((material, index) => (
                     <Text key={index} style={styles.text}>
                       {material.content}
                     </Text>
@@ -156,7 +171,7 @@ const DownloadPDF = ({ experimentInfo }) => {
                 {/* Coluna direita: Objetivos */}
                 <View style={styles.column}>
                   <Text style={styles.title}>Objetivos</Text>
-                  {experimentInfo.objectives.map((objective, index) => (
+                  {experimentInfo.objectives?.map((objective, index) => (
                     <Text key={index} style={styles.text}>
                       {objective.content}
                     </Text>
@@ -188,21 +203,10 @@ const DownloadPDF = ({ experimentInfo }) => {
         }
         fileName={`recurso-didatico-${experimentInfo.id}`} // Passa o nome dinâmico aqui
       >
-        {({ loading }) =>
-          loading ? (
-            <button
-              className="lex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none cursor-not-allowed"
-              disabled
-            >
-              Baixar PDF
-            </button>
-          ) : (
-            <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none cursor-pointer">
-              <FiDownload className="mr-2" />
-              Baixar PDF
-            </button>
-          )
-        }
+        <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none cursor-pointer">
+          <FiDownload className="mr-2" />
+          Baixar PDF
+        </button>
       </PDFDownloadLink>
     </div>
   );

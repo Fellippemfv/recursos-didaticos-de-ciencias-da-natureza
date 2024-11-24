@@ -17,6 +17,8 @@
 
 </p>
 
+![gif-5](https://github.com/user-attachments/assets/acd696b8-f8b8-4e3b-bce9-db4c71065abf)
+
 ## 📑 Sumário
 
 - [Sobre o projeto](#round_pushpin-sobre-o-projeto)
@@ -118,41 +120,41 @@ Abaixo uma descrição detalhada de todas as páginas presentes em nosso projeto
 
 #### Página Inicial (Home)
 
+![gif-2](https://github.com/user-attachments/assets/b112786a-82a2-4213-b93f-7a4a87b2eeb6)
 A página inicial do site é o ponto de partida para os usuários. Nesta página, são apresentados:
 
 - **Banner**: Uma imagem ou mensagem de boas-vindas para introduzir o propósito da plataforma.
 - **Atividades em Destaque**: Uma seção que mostra atividades populares ou sugeridas, facilitando o acesso rápido a recursos selecionados.
-- **Dados sobre Atividades**: Informações gerais sobre a quantidade de tipos de atividades disponíveis, oferecendo uma visão do conteúdo e diversidade dos recursos oferecidos.
-
-> **Imagem da Página Inicial**
 
 ---
 
 #### Página Sobre
 
-A página **Sobre** fornece uma apresentação detalhada do projeto. Aqui, o usuário pode entender melhor o objetivo da plataforma, os valores e as motivações por trás de seu desenvolvimento. É uma página dedicada a esclarecer o propósito e o público-alvo do site, além de oferecer uma visão dos benefícios educacionais pretendidos.
+![gif-3](https://github.com/user-attachments/assets/a8218200-fb40-4863-8206-8652114420a6)
 
-> **Imagem da Página Sobre**
+A página **Sobre** fornece uma apresentação detalhada do projeto. Aqui, o usuário pode entender melhor o objetivo da plataforma, os valores e as motivações por trás de seu desenvolvimento. É uma página dedicada a esclarecer o propósito e o público-alvo do site, além de oferecer uma visão dos benefícios educacionais pretendidos.
 
 ---
 
 #### Página de Filtragem de Atividades
 
-A página de filtragem permite aos usuários **buscar e filtrar** atividades e recursos didáticos conforme suas necessidades específicas. A interface de filtragem ajuda a personalizar a busca com base em temas, tipos de atividades, nível educacional e outras características. É uma página essencial para encontrar rapidamente recursos que correspondam ao objetivo de ensino e aprendizagem.
+![gif-4](https://github.com/user-attachments/assets/026e141f-76b8-48ab-a5c8-61da724e0286)
 
-> **Imagem da Página de Filtragem**
+A página de filtragem permite aos usuários **buscar e filtrar** atividades e recursos didáticos conforme suas necessidades específicas. A interface de filtragem ajuda a personalizar a busca com base em temas, tipos de atividades, nível educacional e outras características. É uma página essencial para encontrar rapidamente recursos que correspondam ao objetivo de ensino e aprendizagem.
 
 ---
 
 #### Página Específica de Atividade
+
+![gif-7](https://github.com/user-attachments/assets/4627d769-0ed3-448c-8e76-59572f426e85)
 
 Cada recurso possui uma **página específica** dedicada aos seus detalhes. Nesta página, o usuário encontra:
 
 - **Descrição Completa da Atividade**: Informações detalhadas sobre o recurso, objetivos educacionais e instruções de uso.
 - **Características e Categorias**: Dados específicos como temas, disciplinas e nível de ensino para ajudar na contextualização do recurso.
 - **Links e Downloads**: Acesso direto a materiais ou links adicionais, facilitando o uso do recurso na prática educacional.
-
-> **Imagem da Página Específica de Atividade**
+- **Download em PDF**: O botão permite baixar uma versão mais limpa e objetiva do experimento para auxiliar o professor em sala de aula.
+  ![gif-8](https://github.com/user-attachments/assets/461dfb96-7a0d-4c20-af42-ebf137bc7311)
 
 ### Página de Acesso Restrito a Desenvolvedores
 
@@ -161,6 +163,8 @@ Esta seção descreve a página exclusiva para desenvolvedores, permitindo o env
 ---
 
 #### Página de Enviar Atividade
+
+![gif-6](https://github.com/user-attachments/assets/f2aaba26-13f0-4669-ac4c-a5fda752990d)
 
 A página de **Enviar Atividade** foi desenvolvida para facilitar o processo de contribuição de atividades e recursos diretamente no repositório do projeto. Esta página é restrita a desenvolvedores e apresenta um formulário extenso com os seguintes elementos:
 
