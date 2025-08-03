@@ -104,7 +104,7 @@ export default function RootLayout({
         <SectionContainer>
           <div className="flex h-screen flex-col justify-between font-sans">
             <Header />
-            <main className="mb-auto">{children}</main>
+            <main className="max-w-5xl mx-auto flex justify-center items-center ">{children}</main>
             <Footer />
           </div>
         </SectionContainer>

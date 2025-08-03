@@ -173,6 +173,9 @@ export default function sendTeachingResource() {
     scientificExplanation: "",
     references: [],
     activitySheetOne: "",
+    activitySheetTwo: "",
+    activitySheetThree: "",
+
   });
 
   const handleSelectResourceTypeChange = (selectedType: ResourceType) => {
@@ -1620,7 +1623,7 @@ export default function sendTeachingResource() {
 
   return (
     <>
-      <div className="">
+      <div className="max-w-5xl mx-auto text-center mb-16 mt-16">
         <div className="flex flex-col gap-10">
           <form onSubmit={handleSubmit}>
             <div className="m-4 sm:m-0">
@@ -1642,7 +1645,7 @@ export default function sendTeachingResource() {
                       onClick={handleEditClick}
                       className={`bg-blue-600 ${isEditing ? "hover:bg-blue-700" : ""} text-white py-2 px-4 rounded-lg mr-2 ${isEditing ? "px-4 py-2 mr-2 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-600" : ""}`}
                     >
-                      {isEditing ? "Concluir" : "Editar código"}
+                      {isEditing ? "Concluir" : "Editar"}
                     </button>
                     <button
                       onClick={handleTestClick}
@@ -1690,7 +1693,7 @@ export default function sendTeachingResource() {
                           </Label>
                         </div>
                         <div className="flex flex-col">
-                          <p className="mt-2 mb-4 text-sm text-muted-foreground flex-1">
+                          <p className="text-justify mt-2 mb-4 text-sm text-muted-foreground flex-1">
                             O "ID" é gerado automaticamente, seria o numero de
                             identificação do recurso didático e deve servir para
                             editar a atividade na plataforma do github.
@@ -1719,7 +1722,7 @@ export default function sendTeachingResource() {
                           </Label>
                         </div>
                         <div className="flex flex-col">
-                          <p className="mt-2 mb-4 text-sm text-muted-foreground flex-1">
+                          <p className="text-justify mt-2 mb-4 text-sm text-muted-foreground flex-1">
                             A data é gerada automaticamente, deve servir para
                             mostrar na página da atividade o dia e hora que ele
                             foi enviado.
@@ -1747,10 +1750,10 @@ export default function sendTeachingResource() {
                           Nome do autor/da autora *Obrigatório
                         </Label>
                       </div>
-                      <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                      <p className="text-justify mt-2 mb-4 text-sm text-muted-foreground">
                         O nome do autor/da autora é a identificação de quem
                         enviou os dados do recurso didático e aparecerá dentro
-                        da página da atividade para sabermos quem enviou.
+                        da página da atividade para sabermos quem enviou. Ex: Prof. Fellippe.
                       </p>
                       <Input
                         placeholder="Clique e escreva seu nome."
@@ -1788,7 +1791,7 @@ export default function sendTeachingResource() {
                       </div>
                       <Label htmlFor="title">Tópico geral *Obrigatório</Label>
                     </div>
-                    <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                    <p className="text-justify mt-2 mb-4 text-sm text-muted-foreground">
                       Selecione um tópico geral para o seu recurso didático
                       entre Biologia, Física e Química. Escolha cuidadosamente,
                       pois isso ajudará na identificação e classificação de sua
@@ -1873,7 +1876,7 @@ export default function sendTeachingResource() {
                               </div>
                               {/* Restante do código... */}
                             </div>
-                            <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                            <p className="text-justify mt-2 mb-4 text-sm text-muted-foreground">
                               Selecione um tópico específico dentro da{" "}
                               {generalTopic.title} para o seu recurso didático.
                               Escolha cuidadosamente, pois isso ajudará na
@@ -1966,7 +1969,7 @@ export default function sendTeachingResource() {
                             Tipo de Recurso didático *Obrigatório
                           </Label>
                         </div>
-                        <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                        <p className="text-justify mt-2 mb-4 text-sm text-muted-foreground">
                           Esta classificação ajuda a definir o tipo de recurso
                           didático que será mostrado. Cada tipo tem
                           características e objetivos específicos.
@@ -1974,11 +1977,11 @@ export default function sendTeachingResource() {
                         <div className="mt-4 mb-8">
                           <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-50">
-                              <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <tr className="flex w-full">
+                                <th className="w-1/2 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                   Tipo de Recurso Didático
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="w-1/2 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                   Descrição
                                 </th>
                               </tr>
@@ -2012,7 +2015,7 @@ export default function sendTeachingResource() {
                                   </td>
 
                                   {/* Coluna para a descrição */}
-                                  <td className="px-6 py-4 w-1/2">
+                                  <td className=" text-justify px-6 py-4 w-1/2">
                                     {type.steps}
                                   </td>
                                 </tr>
@@ -2052,7 +2055,7 @@ export default function sendTeachingResource() {
                       </div>
                       {/* Restante do código... */}
                     </div>
-                    <p className="mt-2 mb-4 text-sm text-muted-foreground">
+                    <p className="text-justify mt-2 mb-4 text-sm text-muted-foreground">
                       O título é uma parte crucial da identificação de sua
                       atividade. Por favor, seja claro e descritivo, de
                       preferência faça algo chamativo.
@@ -2089,7 +2092,7 @@ export default function sendTeachingResource() {
                         </Label>
                       </div>
 
-                      <p className="mb-2 text-sm text-muted-foreground">
+                      <p className="text-justify mb-2 text-sm text-muted-foreground">
                         Forneça uma imagem que represente a atividade como um
                         todo. Essa imagem vai ficar na página de busca e na
                         página da atividade em si.
@@ -2170,7 +2173,7 @@ export default function sendTeachingResource() {
                           Descrição *Obrigatório
                         </Label>
                       </div>
-                      <p className="mb-2 text-sm text-muted-foreground">
+                      <p className="text-justify mb-2 text-sm text-muted-foreground">
                         Forneça uma descrição objetiva, detalhada e concisa da
                         atividade, escreva de forma que fique chamativo e atraia
                         as pessoas a acessarem. Essa descrição vai aparecer na
@@ -2213,8 +2216,8 @@ export default function sendTeachingResource() {
                       </div>
 
                       {/* Texto explicativo */}
-                      <p className="mb-2 text-sm text-gray-600">
-                        Anexe até 3 arquivos adicionais nos formatos ".docx" ou
+                      <p className="text-justify mb-2 text-sm text-gray-600">
+                        Anexe até 3 arquivos adicionais nos formatos ".docx", ".pdf" ou
                         ".pptx". De no máximo 1mb. Esses arquivos podem
                         complementar o recurso didático com materiais de apoio,
                         como roteiros, apresentações ou documentos explicativos.
@@ -2388,7 +2391,7 @@ export default function sendTeachingResource() {
                       </div>
                       {/* Restante do código... */}
                     </div>
-                    <p className="mb-2 text-sm text-muted-foreground">
+                    <p className="text-justify mb-2 text-sm text-muted-foreground">
                       Liste os objetivos da atividade no infinitivo, ou seja,
                       descreva o que se pretende alcançar de forma clara e
                       sucinta. Certifique-se de incluir todos os objetivos que a
@@ -2468,7 +2471,7 @@ export default function sendTeachingResource() {
                       </div>
                       {/* Restante do código... */}
                     </div>
-                    <p className="mb-2 text-sm text-muted-foreground">
+                    <p className="text-justify mb-2 text-sm text-muted-foreground">
                       Liste os materiais essenciais para a realização da
                       atividade. Certifique-se de incluir tudo o que os
                       participantes precisarão para realizar a atividade com
@@ -2548,7 +2551,7 @@ export default function sendTeachingResource() {
                         </Label>
                       </div>
                     </div>
-                    <p className="mb-2 text-sm text-muted-foreground">
+                    <p className="text-justify mb-2 text-sm text-muted-foreground">
                       Forneça uma descrição objetiva, detalhada e concisa de
                       cada passo para a realização da atividade porposta,
                       escreva de forma que fique claro o que devemos realizar,
@@ -2675,49 +2678,7 @@ export default function sendTeachingResource() {
                     )}
                   </div>
 
-                  <div className="grid w-full gap-1.5 mt-8 ">
-                    <div className="mb-4">
-                      <div className="flex flex-row items-center mb-2">
-                        <div>
-                          <MdAddchart style={{ marginRight: "5px" }} />{" "}
-                          {/* Adicionando o ícone MdImage dentro de uma div */}
-                        </div>
-                        <Label htmlFor="previewImage">
-                          Resultados esperados *Opcional
-                        </Label>
-                      </div>
-                      {/* Restante do código... */}
-                    </div>
-                    <p className="mb-2 text-sm text-muted-foreground">
-                      Insira os resultados obtidos a partir da realização da
-                      atividade. Seja claro e objetivo para que outros usuários
-                      possam entender facilmente o que deve ocorrer ao final da
-                      sua realização, mais especificamente o que devemos
-                      observar após o realizar todas as etapas da metodologia.
-                      Insira apenas se for pertinente.
-                    </p>
-
-                    <Textarea
-                      placeholder="Clique e escreva os resultados da sua atividade."
-                      id="results"
-                      className="max-w-40rem h-32 px-4 border border-gray-350 focus:border-gray-400 focus:ring-gray-350 focus-visible:ring-transprent focus:ring-transparent outline-none resize-none"
-                      name="results"
-                      onChange={handleInputChange}
-                    />
-                    <p className="text-sm text-muted-foreground">
-                      Insira entre 10-300 caracteres.
-                    </p>
-
-                    {resourceData.results.length === 0 && (
-                      <div className="flex flex-row justify-center w-full mt-2 p-3 rounded border border-red-200 bg-red-50 flex items-center text-red-500">
-                        <MdError className="mr-2" />
-                        <span>
-                          Escreva o resultado esperado ao realizar o recurso
-                          didático (se houver)
-                        </span>
-                      </div>
-                    )}
-                  </div>
+                
 
                   <div className="grid w-full gap-1.5 mt-8">
                     <div className="mb-4">
@@ -2732,7 +2693,7 @@ export default function sendTeachingResource() {
                       </div>
                       {/* Restante do código... */}
                     </div>
-                    <p className="mb-2 text-sm text-muted-foreground">
+                    <p className="text-justify mb-2 text-sm text-muted-foreground">
                       Insira uma explicação científica detalhada de sua
                       atividade. Utilize terminologia apropriada e seja claro
                       para que outros usuários possam compreender facilmente
@@ -2775,7 +2736,7 @@ export default function sendTeachingResource() {
                           Referências *Obrigatório
                         </Label>
                       </div>
-                      <p className="text-sm text-gray-500 mb-4">
+                      <p className="text-justify text-sm text-gray-500 mb-4">
                         Liste as referências utilizadas. Certifique-se de
                         incluir todas as fontes e materiais consultados para
                         realizar a atividade.
@@ -2793,12 +2754,12 @@ export default function sendTeachingResource() {
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="bg-white divide-y divide-gray-200">
+                          <tbody className="text-justify bg-white divide-y divide-gray-200">
                             {abntRules.map((rule, index) => (
                               <tr key={index}>
                                 <td className="px-6 py-4">{rule.source}</td>
                                 <td
-                                  className="px-6 py-4"
+                                  className="text-justify px-6 py-4"
                                   dangerouslySetInnerHTML={{
                                     __html: rule.rule,
                                   }}
@@ -2874,50 +2835,51 @@ export default function sendTeachingResource() {
                   <div className="flex flex-col md:flex-row items-start justify-between w-full gap-8">
                     {/* Bloco do Botão */}
                     <div className="w-full md:w-1/2">
-                      <div className="bg-white p-6 rounded-lg border border-gray-300">
-                        <h3 className="text-xl font-semibold text-gray-800">
-                          Envio da Atividade
-                        </h3>
-                        <p className="mt-2 text-gray-600">
-                          Preencha todos os campos obrigatórios para enviar sua
-                          atividade. Acompanhe no campo "Status dos campos".
-                        </p>
+                <div className="bg-white p-6 rounded-lg border border-gray-300">
+  <h3 className="text-xl font-semibold text-gray-800">Envio do recurso didático</h3>
+  <p className="mt-2 text-gray-600">
+    Preencha todos os campos obrigatórios para enviar seu recurso didático. Acompanhe no campo "Status dos campos".
+  </p>
 
-                        <button
-                          onClick={handleSend}
-                          disabled={isSending || isSent || !allFieldsFilled}
-                          className={`mt-6 flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
-                            isSending || isSent || !allFieldsFilled
-                              ? "cursor-not-allowed opacity-50"
-                              : "hover:bg-green-600"
-                          }`}
-                        >
-                          {isSending ? (
-                            <>
-                              <span className="mr-4">Enviando Atividade</span>
-                              <FaSpinner className="w-6 h-6 animate-spin mr-3 text-white" />
-                            </>
-                          ) : (
-                            <>
-                              <span>Enviar Atividade</span>
-                              <svg
-                                className="w-6 h-6 ml-2"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M9 5l7 7-7 7"
-                                ></path>
-                              </svg>
-                            </>
-                          )}
-                        </button>
-                      </div>
+  {/* Wrapper flex para centralizar */}
+  <div className="mt-6 flex justify-center">
+    <button
+      onClick={handleSend}
+      disabled={isSending || isSent || !allFieldsFilled}
+      className={`flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
+        isSending || isSent || !allFieldsFilled
+          ? "cursor-not-allowed opacity-50"
+          : "hover:bg-green-600"
+      }`}
+    >
+      {isSending ? (
+        <>
+          <span className="mr-4">Enviando recurso didático...</span>
+          <FaSpinner className="w-6 h-6 animate-spin mr-3 text-white" />
+        </>
+      ) : (
+        <>
+          <span>Enviar Recurso Didático para o Github</span>
+          <svg
+            className="w-6 h-6 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </>
+      )}
+    </button>
+  </div>
+</div>
+
                     </div>
 
                     {/* Bloco de Lista de Tópicos */}
