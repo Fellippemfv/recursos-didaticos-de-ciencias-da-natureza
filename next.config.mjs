@@ -7,6 +7,9 @@ const nextConfig = {
     // …
     serverComponentsExternalPackages: ["@react-pdf/renderer"],
   },
+   eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;

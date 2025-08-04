@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect, useCallback, Suspense } from "react";
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
@@ -11,7 +11,11 @@ import teachingResourceData from "../api/data/teachingResourceSpecifics.json";
 import topicGeneralData from "../api/data/teachingResourceGeneralThemes.json";
 import resourceTypes from "../api/data/teachingResourceTypes.json";
 
-export default function Search() {
+/**
+ * Este componente contém toda a lógica de busca e a interface do usuário.
+ * Ele usa o hook `useSearchParams` e, por isso, é envolvido por <Suspense> no componente da página.
+ */
+function SearchImplementation() {
   // Hooks do Next.js para manipulação da URL
   const router = useRouter();
   const pathname = usePathname();
@@ -66,9 +70,8 @@ export default function Search() {
           Array.from(topicos).some((key) => {
             const [generalSlug, specificSlug] = key.split("|");
            return (resource.topicSpecific as any)?.[generalSlug as any]?.some(
-              (spec: any) => (spec as any).slug === (specificSlug as any)
-            );
-
+             (spec: any) => (spec as any).slug === (specificSlug as any)
+           );
           });
         
         const matchesExperimentType =
@@ -165,13 +168,11 @@ export default function Search() {
         </button>
       </div>
       
-      {/* --- ALTERAÇÃO 1: Condição agora inclui o termo de busca --- */}
       {(searchTermInput || selectedGeneralTopics.size > 0 || selectedSpecificTopics.size > 0 || selectedExperimentTypes.size > 0) ? (
         <div className="mb-8 p-4 bg-gray-50 rounded-lg border">
           <div className="flex justify-between items-start">
             <div className="flex flex-wrap gap-2 items-center">
               <span className="font-semibold text-sm mr-2 text-gray-700">Filtros Ativos:</span>
-              {/* --- ALTERAÇÃO 2: Exibe o termo de busca como um filtro --- */}
               {searchTermInput && (
                 <span className="flex items-center gap-1 text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded-full">
                   Busca: "{searchTermInput}"
@@ -187,7 +188,7 @@ export default function Search() {
       ) : ( <div className="mb-8 p-4 bg-gray-50 rounded-lg border"> <p className="text-center text-sm text-gray-500">Nenhum filtro aplicado</p> </div> )}
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-left">
-        <div className="space-y-4 col-span-1">
+        <aside className="space-y-4 col-span-1">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Disciplina</h3>
             <div className="flex flex-wrap gap-2">
@@ -201,7 +202,7 @@ export default function Search() {
               {resourceTypes.map((type) => { const isActive = selectedExperimentTypes.has(type.slug); return ( <button key={type.id} onClick={() => toggleExperimentType(type.slug)} className={`px-3 py-1 rounded-full text-sm border transition-all ${ isActive ? "bg-purple-100 text-purple-800 border-purple-400 font-medium" : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100" }`}>{type.title}</button> ); })}
             </div>
           </div>
-        </div>
+        </aside>
 
         <div className="col-span-1 md:col-span-3">
           <div className="mb-4 text-sm text-gray-500 text-left">{statusMessage}</div>
@@ -222,7 +223,7 @@ export default function Search() {
             ) : (
               filteredExperiments.slice(0, visibleCount).map((exp, idx) => (
                 <div key={exp.slug || idx} className="border p-3 rounded-xl shadow-md bg-white hover:shadow-lg transition-shadow flex flex-col">
-                  {exp.imagePreview && ( <img src={exp.imagePreview} alt={exp.title} className="w-full h-40 object-cover rounded-md mb-3" /> )}
+                  {exp.imagePreview && ( <img src={exp.imagePreview} alt={exp.title} className="w-full h-40 object-cover rounded-md mb-3" onError={(e) => (e.currentTarget.style.display = 'none')} /> )}
                   <div className="flex flex-col flex-grow">
                     <h3 className="text-lg font-semibold mb-2 text-gray-800">{exp.title}</h3>
                     <p className="text-gray-600 mb-3 text-sm flex-grow">
@@ -251,5 +252,25 @@ export default function Search() {
         </div>
       </div>
     </main>
+  );
+}
+
+
+/**
+ * Este é o componente de página principal (o default export).
+ * Ele é responsável por renderizar a fronteira de Suspense, que é uma
+ * exigência do Next.js para componentes que usam `useSearchParams`.
+ */
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+        <div className="flex items-center justify-center h-screen w-full">
+            <div className="text-center p-10 text-gray-500">
+                Carregando recursos...
+            </div>
+        </div>
+    }>
+      <SearchImplementation />
+    </Suspense>
   );
 }
